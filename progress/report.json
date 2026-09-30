@@ -1,6 +1,6 @@
 {
   "measures": {
-    "fuzzy_match_percent": 13.476616,
+    "fuzzy_match_percent": 13.477133,
     "total_code": "3558980",
     "matched_code": "406848",
     "matched_code_percent": 11.43159,
@@ -9,7 +9,7 @@
     "matched_functions_percent": 37.524818,
     "complete_code": "406848",
     "complete_code_percent": 11.43159,
-    "total_units": 466,
+    "total_units": 467,
     "complete_units": 105
   },
   "units": [
@@ -3629,11 +3629,11 @@
     {
       "name": "game/unclassified",
       "measures": {
-        "fuzzy_match_percent": 56.367223,
-        "total_code": "47568",
+        "fuzzy_match_percent": 56.376558,
+        "total_code": "47536",
         "matched_code": "0",
         "matched_code_percent": 0.0,
-        "total_functions": 55,
+        "total_functions": 54,
         "matched_functions": 0,
         "matched_functions_percent": 0.0,
         "complete_code": "0",
@@ -3739,15 +3739,6 @@
           "address": "886848",
           "metadata": {
             "virtual_address": "1026384"
-          }
-        },
-        {
-          "name": "FUN_001fa2b8",
-          "size": "32",
-          "fuzzy_match_percent": 42.5,
-          "address": "889128",
-          "metadata": {
-            "virtual_address": "1028664"
           }
         },
         {
@@ -8643,6 +8634,40 @@
       ],
       "metadata": {
         "complete": true,
+        "progress_categories": [
+          "boot",
+          "game"
+        ]
+      }
+    },
+    {
+      "name": "game/math/matrices",
+      "measures": {
+        "fuzzy_match_percent": 99.99,
+        "total_code": "32",
+        "matched_code": "0",
+        "matched_code_percent": 0.0,
+        "total_functions": 1,
+        "matched_functions": 0,
+        "matched_functions_percent": 0.0,
+        "complete_code": "0",
+        "complete_code_percent": 0.0,
+        "total_units": 1,
+        "complete_units": 0
+      },
+      "functions": [
+        {
+          "name": "copy_matrix_basis_columns",
+          "size": "32",
+          "fuzzy_match_percent": 99.99,
+          "address": "0",
+          "metadata": {
+            "virtual_address": "1028664"
+          }
+        }
+      ],
+      "metadata": {
+        "complete": false,
         "progress_categories": [
           "boot",
           "game"
@@ -52597,7 +52622,7 @@
       "id": "boot",
       "name": "Boot executable",
       "measures": {
-        "fuzzy_match_percent": 85.964403,
+        "fuzzy_match_percent": 85.969808,
         "total_code": "340320",
         "matched_code": "219772",
         "matched_code_percent": 64.578044,
@@ -52606,7 +52631,7 @@
         "matched_functions_percent": 87.678122,
         "complete_code": "219772",
         "complete_code_percent": 64.578044,
-        "total_units": 116,
+        "total_units": 117,
         "complete_units": 76
       }
     },
@@ -52614,7 +52639,7 @@
       "id": "game",
       "name": "Game",
       "measures": {
-        "fuzzy_match_percent": 83.048054,
+        "fuzzy_match_percent": 83.055049,
         "total_code": "263020",
         "matched_code": "159628",
         "matched_code_percent": 60.690442,
@@ -52623,7 +52648,7 @@
         "matched_functions_percent": 87.039106,
         "complete_code": "159628",
         "complete_code_percent": 60.690442,
-        "total_units": 105,
+        "total_units": 106,
         "complete_units": 70
       }
     },

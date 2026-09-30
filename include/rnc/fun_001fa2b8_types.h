@@ -1,22 +1,13 @@
 #ifndef RNC_FUN_001FA2B8_TYPES_H
 #define RNC_FUN_001FA2B8_TYPES_H
 
-#include "types.h"
+#include "eetypes.h"
 
-struct M2c_arg0 {
-    s64 unk0;
-    u8 pad_8[0x8];
-    s64 unk10;
-    u8 pad_18[0x8];
-    s64 unk20;
-};
-
-struct M2c_arg1 {
-    s32 unk0;
-    u8 pad_4[0xC];
-    s32 unk10;
-    u8 pad_14[0xC];
-    s32 unk20;
+/* Three aligned matrix columns, at byte offsets 0, 16, and 32. */
+struct RncMatrixBasis {
+    u128 first_column;
+    u128 second_column;
+    u128 third_column;
 };
 
 #endif /* RNC_FUN_001FA2B8_TYPES_H */

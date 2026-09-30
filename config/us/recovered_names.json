@@ -3178,9 +3178,9 @@
     },
     "summary": {
       "functions": 771,
-      "proposed": 488,
+      "proposed": 489,
       "needs_review": 2,
-      "unresolved": 281,
+      "unresolved": 280,
       "evidence_items_by_kind": {
         "cross_region_module": 258,
         "git_log": 188,
@@ -3188,7 +3188,7 @@
         "neighboring_group_context": 91,
         "recovered_symbol": 273,
         "source_alias": 27,
-        "source_analysis": 256
+        "source_analysis": 257
       },
       "functions_by_logical_group": {
         "audio": 4,
@@ -3217,6 +3217,7 @@
         "math/conversion": 2,
         "math/floating_point": 1,
         "math/interpolation": 2,
+        "math/matrices": 1,
         "math/random": 3,
         "math/rotations": 6,
         "math/vectors": 2,
@@ -3271,7 +3272,7 @@
         "ui/menus/save_data": 4,
         "ui/menus/weapons": 1,
         "ui/text": 23,
-        "unclassified": 82,
+        "unclassified": 81,
         "video/decoder": 33,
         "video/decoder/buffers": 3,
         "video/decoder/callbacks": 5,
@@ -7156,12 +7157,17 @@
         "source_path": "src/assembly/textbin/fun_001fa2b8.c",
         "address": "0x001fa2b8",
         "current_name": "FUN_001fa2b8",
-        "proposed_name": null,
-        "logical_group": "unclassified",
-        "status": "unresolved",
-        "confidence": "unresolved",
-        "evidence": [],
-        "logical_group_confidence": "unresolved"
+        "proposed_name": "copy_matrix_basis_columns",
+        "logical_group": "math/matrices",
+        "status": "proposed",
+        "confidence": "high",
+        "evidence": [
+          {
+            "kind": "source_analysis",
+            "note": "Retail 0x001fa2b8..0x001fa2d8 loads all three 16-byte columns at source offsets 0, 16, and 32 before storing them at the same destination offsets; the fourth column is untouched. The camera and moby matrix callers use this as a basis copy."
+          }
+        ],
+        "logical_group_confidence": "high"
       },
       {
         "unit": "textbin/math/rotations/fast_add_rotations",
