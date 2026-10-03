@@ -883,7 +883,7 @@
           }
         },
         {
-          "name": "IsNaN",
+          "name": "dpdiv",
           "size": "360",
           "fuzzy_match_percent": 100.0,
           "address": "56072",
@@ -892,7 +892,7 @@
           }
         },
         {
-          "name": "IsNaN",
+          "name": "CompareDoubleParts",
           "size": "276",
           "fuzzy_match_percent": 100.0,
           "address": "56432",
@@ -1630,7 +1630,7 @@
           }
         },
         {
-          "name": "UncAddr",
+          "name": "_initRefImages",
           "size": "224",
           "fuzzy_match_percent": 100.0,
           "address": "107464",
@@ -10465,7 +10465,7 @@
           }
         },
         {
-          "name": "pauseSlotCount",
+          "name": "update_menu_help_text_load",
           "size": "364",
           "fuzzy_match_percent": 100.0,
           "address": "92608",
@@ -10492,7 +10492,7 @@
           }
         },
         {
-          "name": "pauseFlagState",
+          "name": "FUN_0021ddd0",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "address": "95320",
