@@ -516,7 +516,7 @@ void FUN_L08_002e2078(struct Moby *m) {
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002e2250.s", FUN_L08_002e2250);
 #else
-extern int FUN_L00_0025a420(struct Moby *, int, int);
+extern int target_board_check_hit(struct Moby *, int, int) __asm__("FUN_L00_0025a420");
 extern void FUN_L00_0025f090(void *, void *, s32, f32, f32);
 extern void FUN_001f9a28(void *, void *, void *);
 extern void normalize_vector_xyz(void *, void *, f32) __asm__("FUN_001f9bf8");
@@ -526,19 +526,19 @@ extern s32 allocate_voice_for_target_entry(s32, s32, struct Moby *) __asm__("FUN
 extern float D_0015ED6C;
 
 void FUN_L08_002e2250(struct Moby *moby) {
+    u8 mark = 0xff;
+    int selected = 0;
     TargetBoardVars *vars = (TargetBoardVars *)moby->pvars;
     TargetSlot *slots = vars->slots;
     TargetSlot *slot = slots;
     int i = 0;
     int hits = 0;
-    int selected = 0;
     int sound = -1;
     int total;
-    u8 mark = 0xff;
 
     do {
         if (slot->moby != 0) {
-            if (FUN_L00_0025a420(slot->moby, 0x10000, 0) != 0) {
+            if (target_board_check_hit(slot->moby, 0x10000, 0) != 0) {
                 if (i < 7) {
                     if (hits < 1) {
                         hits = 1;
@@ -564,9 +564,8 @@ mark_hit:
         i++;
         slot++;
     } while (i < 34);
-    total = (u16)vars->points + hits;
-    vars->points = total;
-    total = (s16)total;
+    vars->points = (u16)vars->points + hits;
+    total = vars->points;
     if (total >= 8) {
         vars->points = total - (total / 8) * 8;
         sound = 0;
