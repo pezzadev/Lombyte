@@ -229,7 +229,99 @@ void FUN_L11_003112b8(void *m, char *t) {
         }
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L11_003192c8.s", FUN_L11_003192c8);
+#else
+extern unsigned char D_0015EDB2[];
+extern float D_L11_001F1490[];
+extern short D_L11_001623F0_d __asm__("D_L11_001623F0") __attribute__((sda));
+extern long long trail_effect_texture(int) __asm__("FUN_001f44b8");
+extern float integer_to_float(int) __asm__("FUN_001fa6c0");
+extern int tween_color(float, int, int) __asm__("FUN_001fa6e0");
+extern void FUN_001153fc(void *, int, int);
+extern void add_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void draw_packet(void *, int, int) __asm__("FUN_001f7d30");
+extern int D_L11_0015F5CC;
+extern int D_L11_0015FFD8;
+extern short *D_L11_001AC240[];
+
+int FUN_L11_003192c8(char *moby) {
+    char stack_data[0x900] __attribute__((aligned(16)));
+    float offset[16] __attribute__((aligned(16)));
+    short *list;
+    int i, j;
+    float phase;
+
+    if ((unsigned char)moby[0x21] == 0xff) {
+        return;
+    }
+    if (D_0015EDB2[0] != 0) {
+        *(float *)&D_L11_001623F0_d = 16.0f;
+    } else {
+        *(float *)&D_L11_001623F0_d = 5.0f;
+    }
+    for (i = 0; i < 16; i++) {
+        char *packet = stack_data + 0x40 + i * 0x90;
+        float *source;
+        float *position;
+        int *colors;
+        *(long long *)(packet + 0x30) = 0;
+        *(long long *)(packet + 0x38) = trail_effect_texture(0x13);
+        *(long long *)(packet + 0x40) = 0xff9000000260LL;
+        *(long long *)(packet + 0x48) = 0x8000000048LL;
+        phase = integer_to_float((D_L11_0015F5CC + 3) & 3) / (*(float *)&D_L11_001623F0_d * 4.0f);
+        source = D_L11_001F1490;
+        position = (float *)(packet + 0x10);
+        colors = (int *)packet;
+        for (j = 0; j < 4; j++) {
+            float t;
+            position[0] = source[0];
+            position[1] = source[1];
+            t = integer_to_float(i - ((j >> 1) - 1)) / *(float *)&D_L11_001623F0_d + phase;
+            if (t > 1.0f) t = 1.0f;
+            else if (t < 0.0f) t = 0.0f;
+            *colors = tween_color(t, 0x8c28aa28, 0x144646);
+            position += 2;
+            source += 2;
+            colors++;
+        }
+    }
+    FUN_001153fc(offset, 0, 0x20);
+    offset[2] = 0.25f;
+    offset[6] = -0.25f;
+    list = D_L11_001AC240[(unsigned char)moby[0x21]];
+    do {
+        unsigned short entry = *(unsigned short *)list;
+        char *linked = (char *)(D_L11_0015FFD8 + ((entry & 0x7fff) << 8));
+        if (linked[0x31] != 0 && *(short *)(linked + 0xa6) == *(short *)(moby + 0xa6)) {
+            char *trail = *(char **)(linked + 0x78);
+            for (i = 0; i < *(int *)(trail + 0x2c0); i++) {
+                int next = *(int *)(trail + 0x2c4) - i;
+                int a = next + 15;
+                int b = next + 30;
+                int start;
+                if (a > -1) b = a;
+                start = a - ((b >> 4) << 4);
+                for (j = 0; j < 2; j++) {
+                    int k;
+                    char *packet = stack_data + i * 0x90;
+                    char *points = trail + 0xc0 + j * 0x100;
+                    for (k = 0; k < 4; k++) {
+                        int n = start + k / 2;
+                        int q = n + 15;
+                        if (n > -1) q = n;
+                        n -= (q >> 4) << 4;
+                        add_vector_xyz(packet + 0x54 + k * 16, points + n * 16,
+                                       (char *)offset + (k & 1) * 16);
+                    }
+                    draw_packet(packet, 0, 0);
+                }
+            }
+        }
+        if (*list++ < 0) break;
+    } while (1);
+}
+#endif
 /* Advances a trail ring buffer and records two offset points each fourth frame. */
 /* Ported from rac1-decomp (src/overlays/shared/vendor_002C99E0.c: func_L11_0031AAE0), where it is exact; names translated to the US level program. */
 
