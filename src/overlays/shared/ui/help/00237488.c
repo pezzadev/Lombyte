@@ -403,7 +403,91 @@ void FUN_L05_0023dc88(int i) {
         }
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L05_0024bdc0.s", FUN_L05_0024bdc0);
+#else
+extern int D_L05_0015F5CC;
+extern u8 D_L05_00174240[] __attribute__((section(".data")));
+extern u8 D_L05_00174260[] __attribute__((section(".data")));
+extern u8 D_L05_0017AB20[] __attribute__((section(".data")));
+extern u128 D_0013F3D0;
+extern int FUN_L05_002388a0(float, float, float *) __asm__("FUN_L00_0020a240");
+extern float FUN_L00_0022e0f0(void *) __asm__("FUN_001f9b20");
+extern float FUN_L00_0022e598(float, float) __asm__("FUN_001f9e90");
+extern int FUN_L00_00288630(void) __asm__("FUN_L00_0025e3b8");
+extern void FUN_L00_0025c9d8(float *, float, float, float) __asm__("FUN_L00_00233660");
+extern int FUN_L00_0021e8d8(void *, void *, int, void *, int) __asm__("FUN_001efa68");
+extern float FUN_L00_0022e138(void *, void *) __asm__("FUN_001f9b48");
+extern int FUN_L00_0021f9c8(float, void *, int, int) __asm__("FUN_L00_001f0d60");
+extern void FUN_L00_0022e3b8(void *, void *, void *) __asm__("FUN_001f9cf8");
+extern void FUN_L00_0022e758(void *, void *) __asm__("FUN_001fa050");
+extern void FUN_L00_0022e3e0(void *, void *, void *) __asm__("FUN_001f9d20");
+extern void FUN_L00_0022df60(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void FUN_L00_0022e9a0(void *, void *) __asm__("FUN_001fa298");
+extern void FUN_L00_0022eac0(void *, void *, void *) __asm__("FUN_001fa378");
+extern void FUN_L00_0022e9c0(void *, void *) __asm__("FUN_001fa2b8");
+
+void FUN_L05_0024bdc0(void) {
+    float start[4], end[4], probe[4];
+    u128 moby_rotation[4], rotation[4], combined[4];
+    float distance;
+    float offset;
+    int hit;
+    if (hero.unk20AD == 0) {
+        FUN_L05_002413e0();
+    }
+    if (D_L05_0015F5CC % 3 == 0) {
+        hero.unk248 = 4.0f;
+        hero.unk254 = 0;
+        hero.unk255 = 0;
+        if (FUN_L05_002388a0(0.7f, 4.0f, &hero.unk248)) {
+            u8 *level = D_L05_00174240;
+            float probe_value = FUN_L00_0022e0f0(level + 0x40);
+            hero.unk250 = FUN_L00_0022e598(*(float *)(level + 0x48), probe_value);
+            if (*(int *)(level + 0x18)) {
+                hero.unk255 = 1;
+                if (FUN_L00_00288630()) hero.unk254 = 1;
+            }
+        }
+    }
+    if (D_L05_0015F5CC % 5 == 0) {
+        hero.unk260 = 0;
+        hero.unk258 = 0.0f;
+        if (hero.unk300) {
+            FUN_L00_0025c9d8(start, 1.1f, 0.0f, 1.0f);
+            FUN_L00_0025c9d8(end, 1.1f, 0.0f, -20.0f);
+            if (end[2] < 0.5f) end[2] = 0.5f;
+            distance = 20.0f;
+            hit = FUN_L00_0021e8d8(start, end, 2, hero.moby, 0);
+            if (!hit || (distance = FUN_L00_0022e138(start, D_L05_00174260), distance > 3.0f)) {
+                for (offset = -0.4f; offset < 0.5f; offset += 0.1f) {
+                    FUN_L00_0025c9d8(probe, 1.1f + offset, 0.0f, 0.0f);
+                    if (!FUN_L00_0021f9c8(hero.unk234, probe, 2, 0)) {
+                        hero.unk260 = 1;
+                        if (!hit) hero.unk258 = 20.0f;
+                        else hero.unk258 = distance;
+                        hero.unk25C = hero.unk234 + offset;
+                        if (hero.unk25C < 0.0f) hero.unk25C = 0.0f;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    if ((unsigned)(hero.state.control_mode - 0x15) < 2 && hero.unk86C) {
+        u128 *position = (u128 *)(hero.unk86C + 0x10);
+        *position = *(u128 *)((char *)&hero + 0x80);
+        start[0] = start[1] = start[3] = 0.0f; start[2] = 0.21f;
+        FUN_L00_0022e3b8(start, start, (char *)hero.moby + 0xc0);
+        FUN_L00_0022e758(rotation, D_L05_0017AB20);
+        FUN_L00_0022e3e0(start, start, rotation);
+        FUN_L00_0022df60(hero.unk86C + 0x10, hero.unk86C + 0x10, start);
+        FUN_L00_0022e9a0(moby_rotation, (char *)hero.moby + 0xc0);
+        FUN_L00_0022eac0(combined, moby_rotation, rotation);
+        FUN_L00_0022e9c0(hero.unk86C + 0xc0, combined);
+    }
+}
+#endif
 /* Adapted from the exact FUN_L00_002279b0 (src/overlays/shared/ui/help/00221310.c): L05 has a wider head guard and its own level data. */
 
 extern float D_L05_00174268 __attribute__((section(".data")));
