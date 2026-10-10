@@ -577,8 +577,8 @@ void FUN_L12_003094a0(struct Moby *moby) {
 
         phase = D_L12_0016CCE0.phase;
         switch (phase) {
-        case 1: index = 2; break;
         case 7: index = 0; break;
+        case 1: index = 2; break;
         default: return;
         }
         FUN_L00_002637f8(D_L12_0016CCE0.mobys[index]);
