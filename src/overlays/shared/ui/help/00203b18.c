@@ -32,7 +32,134 @@ extern char D_L00_00179448[];
 void FUN_L00_00203b78(void) {
     *(short *)D_L00_00179448 = 0;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_00204c60.s", FUN_L00_00204c60);
+#else
+#include "rnc/overlay/quad.h"
+extern char D_0013F350_204c60[] __asm__("D_0013F350");
+extern char D_L00_0017A680_204c60[] __asm__("D_L00_0017A680");
+extern u32 D_L00_0015FFD8;
+extern volatile s32 D_00141660 __attribute__((section(".data")));
+extern s32 D_L00_00160540;
+extern u32 D_0015EDA0;
+extern void fill_transfer_words_204c60(void *, s32, s32) __asm__("FUN_001f97e8");
+extern void clear_u64_value_204c60(void *) __asm__("FUN_001f99f8");
+extern f32 ground_height_204c60(f32, void *, s32) __asm__("FUN_00213508");
+extern void FUN_L00_002127b8(void);
+extern void FUN_L00_00208820(void);
+extern s32 FUN_001f96f8_204c60(s32) __asm__("FUN_001f96f8");
+extern s32 FUN_L00_00257b90(s32, s32);
+
+void FUN_L00_00204c60(void) {
+    char *g;
+    u32 *src;
+    volatile u32 saved[7];
+    u32 *entry;
+    u32 end;
+    s32 i;
+    f32 value;
+    char *record;
+    char *p40, *p50, *p60, *p70, *p80, *p90, *active;
+    u32 *saved_entry;
+    OvlQuad *quad_src, *quad_dst;
+    s32 *slot;
+    s32 low, high;
+    u32 *cursor;
+    volatile u32 *dest;
+
+    src = (u32 *)(D_0013F350_204c60 + 0x10B8);
+    cursor = src;
+    dest = saved;
+    for (i = 6; i >= 0; i--) {
+        *dest++ = *cursor;
+        cursor = (u32 *)((char *)cursor + 0x50);
+    }
+    fill_transfer_words_204c60(D_0013F350_204c60, 0, 0x2310);
+    g = D_0013F350_204c60;
+    src = (u32 *)(g + 0x10B8);
+    cursor = src;
+    dest = saved;
+    for (i = 6; i >= 0; i--) {
+        *dest++ = *cursor;
+        cursor = (u32 *)((char *)cursor + 0x50);
+    }
+
+    end = D_L00_0015FFDC;
+    entry = (u32 *)D_L00_0015FFD8;
+    if ((u32)entry < end) {
+        do {
+            if (*(s16 *)((char *)entry + 0xA6) == 0) {
+                *(u32 *)(g + 0x2080) = (u32)entry;
+                value = ground_height_204c60(0.5f, (char *)entry + 0x10, 0);
+                if (value > 0.0f) {
+                    saved_entry = (u32 *)*(u32 *)(g + 0x2080);
+                    *(f32 *)((char *)saved_entry + 0x18) = value;
+                }
+                saved_entry = (u32 *)*(u32 *)(g + 0x2080);
+                *(u16 *)((char *)saved_entry + 0x34) |= 2;
+                saved_entry = (u32 *)*(u32 *)(g + 0x2080);
+                *(u32 *)(g + 0xA88) = (u32)saved_entry;
+                *(f32 *)(g + 0x98) = *(f32 *)((char *)saved_entry + 0x48);
+                quad_src = (OvlQuad *)((char *)saved_entry + 0x10);
+                quad_dst = (OvlQuad *)(g + 0x80);
+                *quad_dst = *quad_src;
+                FUN_L00_002127b8();
+                FUN_L00_00208820();
+                if (D_L00_00160540 == 0) {
+                    quad_src = (OvlQuad *)(g + 0x80);
+                    quad_dst = (OvlQuad *)0x13E090;
+                    *quad_dst = *quad_src;
+                    quad_src = (OvlQuad *)(g + 0x90);
+                    quad_dst = (OvlQuad *)0x13E0A0;
+                    *quad_dst = *quad_src;
+                }
+                break;
+            }
+            entry = (u32 *)((char *)entry + 0x100);
+        } while ((u32)entry < end);
+    }
+    if (D_00141660 == 0)
+        D_00141660 = 10;
+    record = D_L00_0017A680_204c60;
+    active = record + 1;
+    p80 = record + 0x80;
+    p70 = record + 0x70;
+    p90 = record + 0x90;
+    p50 = record + 0x50;
+    p40 = record + 0x40;
+    p60 = record + 0x60;
+    for (i = 30; i >= 0; i--) {
+        *active = 0;
+        clear_u64_value_204c60(p60);
+        p60 += 0xB0;
+        active += 0xB0;
+        clear_u64_value_204c60(p40);
+        p40 += 0xB0;
+        clear_u64_value_204c60(p50);
+        p50 += 0xB0;
+        clear_u64_value_204c60(p90);
+        p90 += 0xB0;
+        clear_u64_value_204c60(p70);
+        p70 += 0xB0;
+        clear_u64_value_204c60(p80);
+        p80 += 0xB0;
+    }
+    slot = (s32 *)(D_0013F350_204c60 + 0x2234);
+    for (i = 7; i >= 0; i--, slot--)
+        *slot = -1;
+    *(u32 *)(g + 0x22A8) = D_0015EDA0;
+    *(f32 *)(g + 0x2288) = 2.125f;
+    *(f32 *)(g + 0x228C) = 1.25f;
+    *(s32 *)(g + 0x22AC) = 4;
+    *(u16 *)(g + 0x22B0) = *(u16 *)(g + 0x22A8);
+    low = FUN_001f96f8_204c60(0xB4);
+    high = FUN_001f96f8_204c60(0x12C);
+    *(s32 *)(g + 0x1010) = FUN_L00_00257b90(low, high);
+    *(f32 *)(g + 0xD20) = 0.97f;
+    *(f32 *)(g + 0x1014) = 0.007f;
+    *(f32 *)(g + 0x1018) = 0.3f;
+}
+#endif
 #define NOT_SDA
 
 #define MACRO_ADDR
