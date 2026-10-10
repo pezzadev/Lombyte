@@ -923,11 +923,15 @@ void FUN_L00_002997c8(void) {
     FUN_00122298(0);
     FUN_00120558(0, 0);
     FUN_00122e68((s32)count_vsync);
-    source = depth_buffer_address;
-    destination = D_L00_00161058;
+    second_count = 17;
+    count = 13;
     pal = D_0015ED80;
-    count = pal != 0 ? 14 : 13;
-    second_count = pal != 0 ? 14 : 17;
+    destination = D_L00_00161058;
+    source = depth_buffer_address;
+    if (pal != 0) {
+        count = 14;
+        second_count = 14;
+    }
     for (; count != 0;) {
         count--;
         FUN_00122518(buffer, (source << 8) >> 16, 2, 1, 0, 0, 0x80, 0x80);
@@ -954,12 +958,12 @@ void FUN_L00_002997c8(void) {
         D_0015EED8 = 0;
     FUN_L00_001f9838(4);
     FUN_00265418(music_stream_state.primary.track, 1, 0x400);
-    callback = *(s32 *)&active_scene_trigger.moby;
     *(volatile s32 *)&D_L00_0015F5C4 = 0;
+    callback = (s32)active_scene_trigger.moby;
     if (callback != 0) {
-        callback_arg = ((s32 *)&active_scene_trigger.moby)[1];
-        ((s32 *)&active_scene_trigger.moby)[1] = 0;
-        *(s32 *)&active_scene_trigger.moby = 0;
+        callback_arg = (s32)active_scene_trigger.trigger;
+        active_scene_trigger.trigger = 0;
+        active_scene_trigger.moby = 0;
         FUN_00266970(callback, callback_arg, 1);
     }
     voice_pool.header[0x6B] |= 0x10;
