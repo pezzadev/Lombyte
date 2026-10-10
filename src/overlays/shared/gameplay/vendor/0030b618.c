@@ -51,7 +51,105 @@ char *FUN_L01_0030c898(char *owner, char *pos, float a, float b, float c, float 
     }
     return m;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L01_0030c9a8.s", FUN_L01_0030c9a8);
+#else
+typedef struct {
+    OvlQuad dir;
+    void *owner;
+    s32 flags;
+    u8 b28;
+    u8 b29;
+    u16 id;
+    f32 scale;
+    s32 count;
+} DropProbe_30c9a8;
+
+extern f32 FUN_L00_00258110(f32 *, f32, f32, f32, f32, f32);
+extern void build_spherical_offset_30c9a8(f32 *, f32, f32, f32) __asm__("FUN_00214db0");
+extern void add_vector_xyz_30c9a8(void *, void *, void *) __asm__("FUN_001f9a10");
+extern f32 distance_xyz_30c9a8(void *, void *) __asm__("FUN_001f9b80");
+extern void subtract_vector_xyz_30c9a8(void *, void *, void *) __asm__("FUN_001f9a28");
+extern void scale_vector_xyz_30c9a8(void *, void *, f32) __asm__("FUN_001f9c48");
+extern s32 is_timer_active_30c9a8(void *) __asm__("FUN_001f9770");
+extern s32 collision_line_30c9a8(void *, void *, s32, void *, void *) __asm__("FUN_001efa68");
+extern s32 FUN_001f0b58(void);
+extern void mark_moby_for_removal_30c9a8(void *) __asm__("FUN_0020c828");
+extern f32 D_L01_00167240_30c9a8[] __asm__("D_L01_00167240");
+extern OvlQuad D_L01_001742E0_30c9a8 __asm__("D_L01_001742E0");
+extern OvlQuad D_0013F3D0_30c9a8 __asm__("D_0013F3D0");
+
+void FUN_L01_0030c9a8(char *m) {
+    char *e = *(char **)(m + 0x78);
+    f32 *pos;
+    OvlVec4 old_pos;
+    OvlVec4 offset;
+    DropProbe_30c9a8 probe;
+    f32 desired_yaw, desired_pitch;
+    f32 pitch_k, pitch_d, pitch_max;
+    f32 height = *(f32 *)(*(char **)(m + 0x24) + 0x24);
+
+    if (*(f32 *)(m + 0x2c) < height)
+        *(f32 *)(m + 0x2c) += frame_scale * 0.21f * height;
+
+    if (*(s16 *)(e + 0x14) < scale_game_frames(0x23) - scale_game_frames(1)) {
+        desired_yaw = *(f32 *)(e + 8);
+        desired_pitch = *(f32 *)(e + 0xc);
+    } else {
+        desired_yaw = *(f32 *)(m + 0x48);
+        desired_pitch = *(f32 *)(m + 0x44);
+    }
+    pos = (f32 *)(m + 0x10);
+    desired_yaw = FUN_L00_00258110((f32 *)e, *(f32 *)(m + 0x48), desired_yaw,
+                                            frame_time_sq * 4.712389f,
+                                            frame_time_sq * 3.1415927f,
+                                            frame_time * 3.1415927f);
+    pitch_d = frame_time_sq * 3.1415927f;
+    pitch_k = frame_time_sq * 4.712389f;
+    pitch_max = frame_time * 3.1415927f;
+    *(f32 *)(m + 0x48) = desired_yaw;
+    *(f32 *)(m + 0x44) = FUN_L00_00258110((f32 *)(e + 4), *(f32 *)(m + 0x44), desired_pitch,
+                                            pitch_k, pitch_d, pitch_max);
+    build_spherical_offset_30c9a8(offset.f, frame_time * 40.0f,
+                                   *(f32 *)(m + 0x48), -*(f32 *)(m + 0x44));
+    old_pos.q = *(OvlQuad *)pos;
+    add_vector_xyz_30c9a8(pos, pos, &offset);
+    if (pos[0] < 2.0f || pos[0] > 1021.0f ||
+        pos[1] < 2.0f || pos[1] > 1021.0f ||
+        pos[2] < 2.0f || pos[2] > 1021.0f ||
+        pos[0] < 0.0f || pos[1] < 0.0f || pos[2] < 0.0f ||
+        distance_xyz_30c9a8(pos, D_L01_00167240_30c9a8) > 64.0f) {
+        mark_moby_for_removal_30c9a8(m);
+        return;
+    }
+    probe.owner = m;
+    probe.flags = 0x10001;
+    probe.scale = 0.5f;
+    probe.count = 1;
+    subtract_vector_xyz_30c9a8(&probe.dir, pos, &D_0013F3D0_30c9a8);
+    scale_vector_xyz_30c9a8(&probe.dir, &probe.dir, 1.0f);
+    ((f32 *)&probe.dir)[2] = 1.0f;
+    ((f32 *)&probe.dir)[3] = 5627.9248f;
+    probe.b28 = 1;
+    probe.b29 = 1;
+    probe.id = *(u16 *)(m + 0xa6);
+    if (is_timer_active_30c9a8(e + 0x14)) {
+        mark_moby_for_removal_30c9a8(m);
+        return;
+    }
+    {
+        if (!collision_line_30c9a8(&old_pos, pos, 0, *(void **)(e + 0x10), &probe))
+            return;
+        if (!FUN_001f0b58()) {
+            if (*(s16 *)(e + 0x14) > scale_game_frames(3))
+                *(s16 *)(e + 0x14) = scale_game_frames(3);
+            return;
+        }
+        *(OvlQuad *)pos = D_L01_001742E0_30c9a8;
+    }
+    mark_moby_for_removal_30c9a8(m);
+}
+#endif
 #define NOT_SDA
 
 #define MACRO_ADDR
