@@ -85,9 +85,9 @@ void FUN_L01_002b8f98(void) {
     base[1].vif1 = 0x6C0C43A4;
     FUN_001fa378(base + 2, D_L01_00167240 - 0x100, m);
     FUN_001fa378(base + 6, D_L01_00167240 - 0x80, m);
+    base[10].vif0 = 0x412;
     base[10].tag = 0x8000;
     base[10].addr = 0x303EC000;
-    base[10].vif0 = 0x412;
     *(f32 *)&base[10].vif1 = D_0016CEC0.f210;
     p = (u8 *)(base + 11);
     *(u128 *)p = *(u128 *)D_0016CEC0.v190;
@@ -97,8 +97,8 @@ void FUN_L01_002b8f98(void) {
     *(f32 *)&base[13].addr = D_0016CEC0.f228;
     base[13].vif0 = 0;
     base[13].vif1 = 0;
-    base[14].tag = 0x3000000;
     base[14].addr = 0x20001D2;
+    base[14].tag = 0x3000000;
     base[14].vif0 = 0x15000000;
     base[14].vif1 = 0;
     p = (u8 *)(base + 15);
