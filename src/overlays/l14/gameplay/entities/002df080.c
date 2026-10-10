@@ -841,11 +841,12 @@ void FUN_L14_002eef60(struct Moby *m) {
 
     *(float *)(d + 0xB4) = 0.0f;
     i = 0;
-    first = path + 4;
-    point = path + 4;
-    if (0 < *path - 1) {
-        next = path + 8;
-        length_out = (float *)(path + 7);
+    point = path;
+    first = point + 4;
+    if (0 < *point - 1) {
+        length_out = (float *)(point + 7);
+        next = point + 8;
+        point = first;
         do {
             length = FUN_001f9b48(point, next);
             i++;
@@ -877,8 +878,8 @@ void FUN_L14_002eef60(struct Moby *m) {
     }
     *(float *)(second_path + i * 4 + 7) = FUN_001f9b48(second_path + i * 4 + 4, second_path + 4);
     *(float *)(d + 0xAC) = -1.0f;
-    *(int *)(d + 0xA4) = 0;
     *(int *)(d + 0xA8) = 0;
+    *(int *)(d + 0xA4) = 0;
 }
 #endif
 /* Ported from rac1-decomp (src/overlays/l14_oltanis/vendor_002E0538.c: func_L14_002F05D8), where it is exact; names translated to the US level program. */
