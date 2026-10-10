@@ -840,7 +840,86 @@ void FUN_L01_00316e88(float a, float b) {
     *(float *)(d + 0x44) = a;
     *(float *)(d + 0x48) = b;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L01_00319928.s", FUN_L01_00319928);
+#else
+extern char *D_L00_0015F5F4;
+extern char D_0013E550[];
+extern char D_0013E5E0[];
+extern char D_L01_00167240[];
+extern void subtract_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a28");
+extern void transform_vector_by_basis(void *, void *, void *) __asm__("FUN_001f9cf8");
+extern void add_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a10");
+extern float vector_length_319928(void *) __asm__("FUN_001f9af0");
+extern float absolute_float(float) __asm__("FUN_001f99c0");
+extern int calculate_spatial_volume_319928(float, float, float, void *) __asm__("FUN_0022c6f8");
+extern int is_timer_active_319928(void *) __asm__("FUN_001f9740");
+extern int play_voice_319928(int, int, void *, int) __asm__("FUN_L00_0028ddd8");
+extern void release_voice_slot(int) __asm__("FUN_0022d798");
+extern int random_integer_below_319928(int) __asm__("FUN_00213260");
+extern int scale_game_frames(int) __asm__("FUN_001f96f8");
+extern int set_voice_volume_319928(int, int) __asm__("FUN_L01_002a1968");
+
+void FUN_L01_00319928(char *moby) {
+    OvlVec4 delta, radius, box_size, listener;
+    int *sound_data = *(int **)(moby + 8);
+    int volume;
+    int flags;
+    float box_length, listener_length;
+    char *slot;
+
+    radius.f[2] = radius.f[1] = radius.f[0] = *(float *)(moby + 0xc);
+    subtract_vector_xyz(&delta, D_L01_00167240, moby + 0x40);
+    delta.f[3] = 0.0f;
+    transform_vector_by_basis(&box_size, &delta, moby + 0x50);
+    transform_vector_by_basis(&listener, &radius, moby + 0x50);
+    listener_length = vector_length_319928(&listener);
+    box_length = vector_length_319928(&box_size);
+    if (box_length < listener_length) {
+        flags = 0x10;
+        if (absolute_float(box_size.f[0]) <= 1.0f &&
+            absolute_float(box_size.f[1]) <= 1.0f &&
+            absolute_float(box_size.f[2]) <= 1.0f) {
+            volume = *(int *)(D_L00_0015F5F4 + sound_data[0] * 0x20 + 0xc);
+        } else {
+            if (box_size.f[0] > 1.0f) box_size.f[0] = 1.0f;
+            else if (box_size.f[0] < -1.0f) box_size.f[0] = -1.0f;
+            if (box_size.f[1] > 1.0f) box_size.f[1] = 1.0f;
+            else if (box_size.f[1] < -1.0f) box_size.f[1] = -1.0f;
+            if (box_size.f[2] > 1.0f) box_size.f[2] = 1.0f;
+            else if (box_size.f[2] < -1.0f) box_size.f[2] = -1.0f;
+            volume = calculate_spatial_volume_319928(box_length, vector_length_319928(&box_size),
+                                                     listener_length, D_L00_0015F5F4 + sound_data[0] * 0x20);
+        }
+        if (*(u8 *)(D_L00_0015F5F4 + sound_data[0] * 0x20 + 0x18)) flags = 0x14;
+        slot = D_0013E550 + sound_data[4] * 0x70;
+        if (*(char **)(slot + 0x8c) != moby || *(u8 *)(slot + 0x74) == 0) {
+            if (is_timer_active_319928(&sound_data[3])) {
+                sound_data[4] = play_voice_319928(sound_data[0], flags, moby, volume);
+                if (sound_data[2] > 0) {
+                    sound_data[3] = (int)((float)scale_game_frames(sound_data[1] +
+                        random_integer_below_319928(sound_data[2] - sound_data[1])) * 60.0f);
+                }
+            } else {
+                sound_data[4] = -1;
+            }
+        }
+        if (sound_data[4] != -1) {
+            set_voice_volume_319928(sound_data[4], volume);
+            transform_vector_by_basis(&delta, &box_size, moby + 0x10);
+            add_vector_xyz(&delta, &delta, moby + 0x40);
+            qcopy(D_0013E5E0 + sound_data[4] * 0x70, &delta);
+        }
+    } else {
+        if (sound_data[4] != -1) {
+            slot = D_0013E550 + sound_data[4] * 0x70;
+            if (*(char **)(slot + 0x8c) == moby && *(u8 *)(slot + 0x74) != 0)
+                release_voice_slot(sound_data[4]);
+        }
+        sound_data[4] = -1;
+    }
+}
+#endif
 /* reverb box sound update: starts or stops the sound as the listener enters or leaves the box */
 /* Ported from rac1-decomp (src/overlays/shared/vendor_0031AD00.c: func_L01_0031B2F0), where it is exact; names translated to the US level program. */
 
