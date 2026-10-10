@@ -858,7 +858,7 @@ extern void FUN_L00_001ff008(void);
 
 void FUN_L00_002995d0(s32 sector, s32 size, s32 language) {
     u8 buffer[0x60] __attribute__((aligned(16)));
-    s32 source, destination, count, second_count, pal;
+    s32 source, destination, count, pal;
 
     voice_pool.header[0x6B] |= 8;
     FUN_00118a80(0);
@@ -866,8 +866,8 @@ void FUN_L00_002995d0(s32 sector, s32 size, s32 language) {
     FUN_L00_002656c0();
     D_L00_0015F5D8 = 1;
     D_L00_00161048 = sector;
-    D_L00_00161050 = language;
     D_L00_0016104C = size;
+    D_L00_00161050 = language;
     FUN_L00_001f9838(4);
     FUN_L00_002039a0();
     D_L00_0015F5C4 = 1;
@@ -876,7 +876,6 @@ void FUN_L00_002995d0(s32 sector, s32 size, s32 language) {
     D_L00_00161058 = destination;
     source = depth_buffer_address;
     pal = D_0015ED80;
-    second_count = pal != 0 ? 14 : 17;
     count = pal != 0 ? 14 : 13;
     for (; count != 0; count--) {
         FUN_00122330(buffer, (source << 8) >> 16, 2, 1, 0, 0, 0x80, 0x80);
@@ -887,7 +886,7 @@ void FUN_L00_002995d0(s32 sector, s32 size, s32 language) {
         FUN_00120558(0, 0);
     }
     source = D_0015EE78_gp;
-    count = second_count;
+    count = pal != 0 ? 14 : 17;
     for (; count != 0; count--) {
         FUN_00122330(buffer, (source << 8) >> 16, 1, 0, 0, 0, 0x40, 0x40);
         source += 0x4000;
