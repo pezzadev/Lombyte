@@ -352,7 +352,88 @@ void FUN_L08_002d55c8(struct Moby *moby, int path_id) {
     }
 }
 #endif
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d5950.s", FUN_L08_002d5950);
+#else
+extern void FUN_0020cca8(void *, int, void *);
+extern void FUN_L00_0024f7c8(void *, int, void *);
+extern float random_angle_radians(void) __asm__("FUN_00213308");
+extern float fast_cos(float) __asm__("FUN_001f9dc8");
+extern float fast_sin(float) __asm__("FUN_001f9de0");
+extern s32 truncate_float_to_s32(f32) __asm__("FUN_001fa6d0");
+extern void normalize_vector_xyz(void *, void *, float) __asm__("FUN_001f9bf8");
+extern void add_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void scale_vector_xyz(void *, void *, float) __asm__("FUN_001f9a68");
+extern char *FUN_00218888(void *, void *, void *, int, int, int, int, int, int);
+extern float D_0015ED6C;
+extern int D_L08_001618D4 __attribute__((sda));
+extern int D_L08_001618D8 __attribute__((sda));
+extern float D_L08_001618DC __attribute__((sda));
+extern float D_L08_001618E0 __attribute__((sda));
+extern float D_L08_001618E8 __attribute__((sda));
+extern int D_L08_001618EC __attribute__((sda));
+extern int D_L08_001618F0 __attribute__((sda));
+extern int D_L08_001618F4 __attribute__((sda));
+extern float D_L08_001618F8 __attribute__((sda));
+extern float D_L08_001618FC __attribute__((sda));
+
+void FUN_L08_002d5950(struct Moby *moby, int joint, int count) {
+    float basis[16];
+    float base[4];
+    float velocity[4];
+    float offset[4];
+    float jitter[4];
+    float pos[4];
+    float angle;
+    float sine;
+    float spread;
+    int i;
+    int a, b, c;
+    char *vars = (char *)moby->pvars;
+    float * volatile pos_ptr;
+
+    i = 0;
+    FUN_L00_0024f7c8(moby, joint, base);
+    FUN_0020cca8(moby, joint, basis);
+    if (count <= 0)
+        return;
+    pos_ptr = pos;
+    do {
+        angle = random_angle_radians();
+        qcopy(pos_ptr, base);
+        pos[0] += random_float_between(-0.05f, 0.05f);
+        pos[1] += random_float_between(-0.05f, 0.05f);
+        pos[2] += random_float_between(-0.05f, 0.05f);
+        qcopy(velocity, vars + 0x40);
+        qcopy(offset, vars + 0x40);
+        if (count / 3 < i) {
+            spread = D_L08_001618DC * 1.2f;
+            normalize_vector_xyz(jitter, basis + 8, random_float_between(D_L08_001618DC, spread) * D_0015ED6C);
+            add_vector_xyz(velocity, velocity, jitter);
+            scale_vector_xyz(offset, offset, 0.5f);
+            velocity[0] += fast_cos(angle) * (random_float_between(0.0f, D_L08_001618E8) * D_0015ED6C);
+            sine = fast_sin(angle);
+            spread = D_L08_001618E8;
+        } else {
+            normalize_vector_xyz(jitter, basis + 8, random_float_between(0.0f, D_L08_001618DC) * D_0015ED6C);
+            add_vector_xyz(velocity, velocity, jitter);
+            scale_vector_xyz(offset, offset, 0.5f);
+            velocity[0] += fast_cos(angle) * (random_float_between(0.0f, D_L08_001618E8 * 0.25f) * D_0015ED6C);
+            sine = fast_sin(angle);
+            spread = D_L08_001618E8 * 0.25f;
+        }
+        velocity[1] += sine * (random_float_between(0.0f, spread) * D_0015ED6C);
+        velocity[2] = D_L08_001618E0 * D_0015ED6C;
+        velocity[3] = D_L08_001618FC;
+        offset[3] = D_L08_001618F8;
+        a = truncate_float_to_s32(frame_scale_inv * random_float_between((float)D_L08_001618EC, (float)D_L08_001618EC * 1.2f));
+        b = truncate_float_to_s32(frame_scale_inv * random_float_between((float)D_L08_001618F0, (float)D_L08_001618F0 * 1.2f));
+        c = truncate_float_to_s32(frame_scale_inv * random_float_between((float)D_L08_001618F4, (float)D_L08_001618F4 * 1.5f));
+        FUN_00218888(pos, velocity, offset, D_L08_001618D4, D_L08_001618D8, a, b, c, -1);
+        i++;
+    } while (i < count);
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d5d08.s", FUN_L08_002d5d08);
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d6450.s", FUN_L08_002d6450);
