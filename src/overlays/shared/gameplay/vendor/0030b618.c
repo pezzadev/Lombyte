@@ -718,9 +718,6 @@ void FUN_L01_00314e98(Camera *cam) {
     control->mode = 0;
 }
 INCLUDE_ASM("config/us/overlays/asm/FUN_L01_00315358.s", FUN_L01_00315358);
-#ifndef NON_MATCHING
-INCLUDE_ASM("config/us/overlays/asm/FUN_L01_00315de0.s", FUN_L01_00315de0);
-#else
 extern Camera *D_L01_00167284 __attribute__((section(".data")));
 extern OvlVec4 D_0013F3D0_315de0 __asm__("D_0013F3D0");
 extern f32 FUN_001f9b48(void *, void *);
@@ -730,9 +727,8 @@ void FUN_L01_00315de0(Camera *cam) {
     CameraPresetRow *rows = D_L01_0015EF50;
     Camera *src = D_L01_00167284;
     CameraPreset *s = rows[cam->preset].preset;
-    CameraPath *path;
     OvlVec4 at, delta, to_camera;
-    s32 seg, next;
+    s32 seg;
     f32 t;
 
     qcopy((char *)cam + 0x30, (char *)src + 0x30);
@@ -742,7 +738,9 @@ void FUN_L01_00315de0(Camera *cam) {
     qcopy((char *)cam + 0x40, cam);
 
     if (s->track_path >= 0) {
+        CameraPath *path;
         s32 i;
+        s32 next;
         path = D_L01_001B0930[s->track_path];
         for (i = 0; i < path->count; i++) {
             next = (i + 1) % path->count;
@@ -752,6 +750,8 @@ void FUN_L01_00315de0(Camera *cam) {
 
     *(s16 *)((char *)s + 0x36) = 0;
     if (s->kind == 3) {
+        CameraPath *path;
+        s32 next;
         path = D_L01_001B0930[s->track_path];
         seg = 0;
         t = 0.0f;
@@ -771,7 +771,6 @@ void FUN_L01_00315de0(Camera *cam) {
     }
     FUN_L01_00314e98(cam);
 }
-#endif
 #include "sda.h"
 
 /* Camera data reached through D_L01_0015EF50 */
