@@ -285,7 +285,96 @@ int FUN_L12_002e2eb8(struct Moby *m, float speed) {
     }
     return r;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L12_002e3098.s", FUN_L12_002e3098);
+#else
+extern int D_L12_0016183C __attribute__((sda));
+extern int D_L12_00161840 __attribute__((sda));
+extern float D_L12_00161844 __attribute__((sda));
+extern float D_L12_00161848 __attribute__((sda));
+extern float D_L12_0016184C __attribute__((sda));
+extern float D_L12_00161850 __attribute__((sda));
+extern float D_L12_00161854 __attribute__((sda));
+extern float D_L12_00161858 __attribute__((sda));
+extern float D_L12_0016185C __attribute__((sda));
+extern float D_L12_00161860 __attribute__((sda));
+extern float D_L12_00161864 __attribute__((sda));
+extern float D_L12_00161868 __attribute__((sda));
+extern int D_L12_0016186C __attribute__((sda));
+extern int D_L12_00161870 __attribute__((sda));
+extern int D_L12_00161874 __attribute__((sda));
+extern int D_L12_00161878 __attribute__((sda));
+extern int D_L12_0016187C __attribute__((sda));
+extern int D_L12_00161880 __attribute__((sda));
+extern int D_L12_00161884 __attribute__((sda));
+extern int scale_game_frames_e3098(int) __asm__("FUN_001f96f8");
+extern float random_angle_radians_e3098(void) __asm__("FUN_00213308");
+extern float random_float_between_alt_e3098(float, float) __asm__("FUN_002132a8");
+extern float fast_cos_e3098(float) __asm__("FUN_001f9dc8");
+extern float fast_sin_e3098(float) __asm__("FUN_001f9de0");
+extern int truncate_float_to_s32_e3098(float) __asm__("FUN_001fa6d0");
+extern int random_integer_between(float, int, int) __asm__("FUN_001fa6e0");
+extern void randomize_position(float *, float) __asm__("FUN_L00_0025f8e0");
+extern void set_direction(float, float *, void *) __asm__("FUN_001f9a68");
+extern void rotate_vector(float *, float *, void *) __asm__("FUN_001f9a10");
+extern void spawn_particle(void *, void *, void *, int, int, int, int, int, int)
+    __asm__("FUN_00218888");
+
+void FUN_L12_002e3098(struct Moby *moby) {
+    float pos[4] __attribute__((aligned(16)));
+    float velocity[4] __attribute__((aligned(16)));
+    float accel[4] __attribute__((aligned(16)));
+    float direction[4] __attribute__((aligned(16)));
+    float angle, horizontal, vertical, radius;
+    int i, j, count, a, b, c, d, life;
+    float *position = pos;
+
+    void *vars = moby->pvars;
+
+    count = D_L12_0016183C;
+    if (moby->state == 15)
+        count = truncate_float_to_s32_e3098((float)count * 1.5f);
+    for (i = 0; i < count; i++) {
+        *(OvlQuad *)pos = *(OvlQuad *)&moby->pos;
+        randomize_position(position, D_L12_00161844);
+        pos[2] += 0.55f;
+        angle = random_angle_radians_e3098();
+        horizontal = random_float_between_alt_e3098(D_L12_00161850, D_L12_00161854);
+        vertical = random_float_between_alt_e3098(D_L12_00161858, D_L12_0016185C);
+        if (moby->state == 15) {
+            horizontal *= 0.55f;
+            vertical *= 0.55f;
+            pos[2] -= 0.2f;
+        }
+        velocity[0] = fast_cos_e3098(angle) * (horizontal * frame_time);
+        velocity[1] = fast_sin_e3098(angle) * (horizontal * frame_time);
+        velocity[2] = vertical * frame_time + 0.0f;
+        set_direction(0.5f, direction, (char *)vars + 0x120);
+        direction[2] = 0.0f;
+        rotate_vector(velocity, velocity, direction);
+        *(OvlQuad *)accel = *(OvlQuad *)velocity;
+        accel[2] -= D_L12_00161860 * frame_time_sq *
+                    (float)scale_game_frames_e3098(D_L12_00161880);
+        for (j = 0; j < D_L12_00161840; j++) {
+            radius = random_float_between_alt_e3098(0.5f, 1.5f);
+            velocity[3] = radius * D_L12_00161864;
+            accel[3] = radius * D_L12_00161868;
+            randomize_position(position, D_L12_00161848);
+            randomize_position(accel, D_L12_0016184C * frame_time);
+            a = random_integer_between(random_float_between_alt_e3098(0.0f, 1.0f),
+                                       D_L12_0016186C, D_L12_00161874);
+            b = random_integer_between(random_float_between_alt_e3098(0.0f, 1.0f),
+                                       D_L12_00161870, D_L12_00161878);
+            c = scale_game_frames_e3098(D_L12_0016187C);
+            d = scale_game_frames_e3098(D_L12_00161880);
+            life = truncate_float_to_s32_e3098(
+                frame_scale_inv * random_float_between_alt_e3098(
+                    (float)D_L12_00161884 * 0.5f, (float)D_L12_00161884 * 2.5f));
+            spawn_particle(position, velocity, accel, a, b, c, d, life, -1);
+        }
+    }
+}
+#endif
 #include "qcopy.h"
 #include "sda.h"
 #include "rnc/gameplay/entities/moby.h"
