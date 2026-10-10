@@ -769,7 +769,110 @@ void FUN_L00_002bc1a0(void *mv) {
     }
     FUN_001f7d30_2bc1a0(&quad, 0, 0);
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002bc3b0.s", FUN_L00_002bc3b0);
+#else
+extern char *D_L00_001ABA00[];
+extern char D_0013F3D0[];
+extern char *D_001413D0;
+extern float D_0013F634;
+extern float D_L00_001616CC_2bc3b0 __asm__("D_L00_001616CC") __attribute__((sda));
+extern float D_L00_001616D0_2bc3b0 __asm__("D_L00_001616D0") __attribute__((sda));
+extern u128 D_L00_00173E60_2bc3b0 __asm__("D_L00_00173E60") __attribute__((section(".data")));
+extern char *D_L00_00173E58;
+extern float D_L00_00161660_f[];
+extern float FUN_001f9e90(float, float);
+extern float FUN_001f9b80(void *, void *);
+extern float FUN_001f9b48(void *, void *);
+extern float FUN_001fa688(float, float);
+extern float FUN_001f99c0(float);
+extern float FUN_001f9df8(float);
+extern float FUN_001fa6c0(int);
+extern void FUN_001f9a10(void *, void *, void *);
+extern char *FUN_002141f8(char *);
+extern void build_spherical_offset(void *, float, float, float) __asm__("FUN_00214db0");
+extern int FUN_001efa68_2bc3b0(void *, void *, int, void *, int) __asm__("FUN_001efa68");
+
+char *FUN_L00_002bc3b0(char *self, float *position, float *heading, float *pitch) {
+    float start[4] __attribute__((aligned(16)));
+    float end[4] __attribute__((aligned(16)));
+    float target[4] __attribute__((aligned(16)));
+    float offset[4] __attribute__((aligned(16)));
+    char *candidate;
+    char *data;
+    char *best = 0;
+    float distance, angle, elevation, headingError, limit, apparentAngle, radius, reduction;
+    int i;
+
+    qcopy(start, position);
+    qcopy(end, D_001413D0 + 0x10);
+    end[2] = start[2];
+    if (FUN_001efa68_2bc3b0(end, start, 6, D_001413D0, 0)) {
+        qcopy(start, &D_L00_00173E60_2bc3b0);
+        return 0;
+    }
+    limit = D_L00_001616D0_2bc3b0;
+    for (i = 0; (candidate = D_L00_001ABA00[i]) != 0; i++) {
+        if (*(s8 *)(candidate + 0x20) < 0 || *(s16 *)(candidate + 0xA6) == 0x58E ||
+            *(s16 *)(candidate + 0xA6) == 0x452)
+            continue;
+        *(u128 *)target = *(u128 *)(candidate + 0x10);
+        data = FUN_002141f8(candidate);
+        if (!data)
+            continue;
+        target[2] += *(float *)(data + 0x10);
+        if (!*(char **)(candidate + 0x24) || *(s16 *)(*(char **)(candidate + 0x24) + 0x46) != 5)
+            continue;
+        angle = FUN_001f9e90(target[0] - start[0], target[1] - start[1]);
+        distance = FUN_001f9b80(start, target);
+        elevation = FUN_001f9e90(distance, target[2] - start[2]);
+        headingError = FUN_001fa688(*heading, angle);
+        distance = FUN_001f9b48(start, target);
+        if (distance < 2.5f) {
+            float toward = FUN_001f9e90(*(float *)(candidate + 0x10) - *(float *)(D_0013F3D0 + 0),
+                                          *(float *)(candidate + 0x14) - *(float *)(D_0013F3D0 + 4));
+            if (FUN_001fa688(*(float *)(D_001413D0 + 0x48), toward) < 1.0471976f &&
+                FUN_001f99c0(start[2] - target[2]) < 2.0f &&
+                !FUN_001efa68_2bc3b0(start, target, 6, D_001413D0, 0)) {
+                *pitch = -elevation;
+                *heading = angle;
+                return candidate;
+            }
+        }
+        if (distance > limit)
+            continue;
+        build_spherical_offset(offset, distance, *heading, *pitch + D_0013F634 * 0.5f);
+        FUN_001f9a10(offset, offset, start);
+        apparentAngle = FUN_001f9df8(FUN_001f9b48(offset, target) / (distance + distance));
+        apparentAngle += apparentAngle;
+        if (D_L00_001616CC_2bc3b0 * 0.017453292f < apparentAngle) {
+            data = FUN_002141f8(candidate);
+            if (data) {
+                radius = FUN_001fa6c0(*(u8 *)(data + 10)) * 0.125f;
+                reduction = FUN_001f9df8(radius / distance);
+                if (radius < distance) {
+                    apparentAngle -= reduction;
+                    if (apparentAngle < 0.0f)
+                        apparentAngle = 0.0f;
+                }
+            }
+        }
+        if (apparentAngle < D_L00_001616CC_2bc3b0 * 0.017453292f) {
+            int valid = 1;
+            if (FUN_001efa68_2bc3b0(start, target, 6, self, 0) && D_L00_00173E58 != candidate)
+                valid = 0;
+            if (valid) {
+                *pitch = -elevation;
+                limit = distance;
+                best = candidate;
+                if (headingError < 0.17453292f)
+                    *heading = angle;
+            }
+        }
+    }
+    return best;
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002bc7e8.s", FUN_L00_002bc7e8);
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002bcf98.s", FUN_L00_002bcf98);
