@@ -1744,4 +1744,57 @@ void FUN_L00_002b1af0(unsigned char *o) {
         spark_2b1af0(&c, &d, 0x4F007FFF, 0x1FFFFFFF, rndi_2b1af0(t, fr_2b1af0(0x28)), 1, 10000.0f);
     }
 }
-INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002b1de0.s", FUN_L00_002b1de0);
+extern V_2b1af0 D_0013F9B0_2b1de0 __asm__("D_0013F9B0");
+void direction_2b1de0(void *, void *, void *, float) __asm__("FUN_00214890");
+int count_2b1de0(float) __asm__("FUN_001fa6d0");
+int random_bit_2b1de0(int) __asm__("FUN_00213260");
+
+void FUN_L00_002b1de0(unsigned char *o) {
+    V_2b1af0 c;
+    V_2b1af0 a;
+    V_2b1af0 b;
+    V_2b1af0 d;
+    int i;
+    int j;
+    int t;
+    float angle;
+
+    *(OvlQuad *)&a = 0;
+    a.f[0] = 0.3f;
+    a.f[1] = -1.2f;
+    a.f[3] = 1.0f;
+    rot_2b1af0(&a, &a, o + 0xC0);
+    add_2b1af0(&b, o + 0x10, &a);
+    for (i = 0; i < count_2b1de0(24.0f); i++) {
+        angle = rnd_2b1af0(0.0f, 0.1308997f);
+        direction_2b1de0(&c, &D_0013F9B0_2b1de0, (char *)&D_0013F9B0_2b1de0 - 0x20,
+                         (float)i * 0.2617994f + angle);
+        ff500_2b1af0(&c, &c, rndf_2b1af0(0.05f, 0.1f));
+        t = rndi_2b1af0(0, 3);
+        if (random_bit_2b1de0(2) != 0)
+            t = -t;
+        if (*(int *)((char *)&D_0013F9B0_2b1de0 - 0x360) != 0) {
+            scale_2b1af0(&d, (char *)&D_0013F9B0_2b1de0 - 0x560, 1.7f);
+            add_2b1af0(&c, &c, &d);
+        }
+        {
+            int low = fr_2b1af0(30);
+            int high = fr_2b1af0(90);
+            smoke_2b1af0(&b, &c, rndi_2b1af0(low, high), 30, 0xFFFFFF, t,
+                         60000.0f, 3000.0f, 0.85f, -0.001f, 0.0f);
+        }
+    }
+    for (j = 0; j < count_2b1de0(6.0f); j++) {
+        angle = rndf_2b1af0(0.0f, 0.7853982f);
+        direction_2b1de0(&c, &D_0013F9B0_2b1de0, (char *)&D_0013F9B0_2b1de0 - 0x20,
+                         (float)j * 1.0471976f + angle);
+        ff500_2b1af0(&c, &c, rndf_2b1af0(0.05f, 0.1f));
+        {
+            int low = fr_2b1af0(20);
+            int high = fr_2b1af0(60);
+            spark_2b1af0(&b, &c, 0x4F007FFF, 0x1FFFFFFF,
+                         rndi_2b1af0(low, high), 1, 10000.0f);
+        }
+    }
+    o[0xBC] = fr_2b1af0(5);
+}
