@@ -248,7 +248,113 @@ void FUN_L18_002f9c20(struct Moby *m) {
     }
     draw_9c20(&pk, 0, 0);
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L18_002f9eb8.s", FUN_L18_002f9eb8);
+#else
+extern float D_L18_0016252C_9eb8 __asm__("D_L18_0016252C");
+extern float D_L18_00162514_9eb8 __asm__("D_L18_00162514") __attribute__((sda));
+extern float D_L18_00162518_9eb8 __asm__("D_L18_00162518") __attribute__((sda));
+extern float D_L18_0016251C_9eb8 __asm__("D_L18_0016251C") __attribute__((sda));
+extern int D_L18_00162504_9eb8 __asm__("D_L18_00162504") __attribute__((sda));
+extern int D_L18_00162510_9eb8 __asm__("D_L18_00162510") __attribute__((sda));
+extern float D_L18_001DFBD0_9eb8[4][4] __asm__("D_L18_001DFBD0");
+
+void FUN_L18_002f9eb8(struct Moby *m) {
+    Pk_9c20 pk;
+    float mat[4][4];
+    float up[4];
+    float vertices[4][4];
+    float scale_z;
+    int i;
+    int color;
+
+    pk.b = tex_9c20(0xB);
+    pk.c = 0x0000FF9000000260ULL;
+    pk.d = 0x8000000048ULL;
+    pk.a = 0;
+    gs_9c20(0x4A, 0);
+    gs_9c20(0x47, 0x51001);
+    rot_9c20(mat[3], &D_L18_00162560_9c20, &m->unkC0);
+    add_9c20(mat[3], mat[3], &m->pos);
+    *(u128_9c20 *)up = 0;
+    up[2] = -1.0f;
+    up[3] = 1.0f;
+    rot_9c20(mat[0], up, &m->unkC0);
+    sub_9c20(mat[1], mat[3], D_L18_001677C0_9c20);
+    cross_9c20(mat[2], mat[1], mat[0]);
+    norm_9c20(mat[2], mat[2], 1.0f);
+    cross_9c20(mat[1], mat[0], mat[2]);
+
+    pk.uv[0] = 1.0f;
+    pk.uv[1] = 1.0f;
+    pk.uv[2] = 0.0f;
+    pk.uv[3] = 1.0f;
+    pk.uv[4] = 1.0f;
+    pk.uv[5] = 0.0f;
+    pk.uv[6] = 0.0f;
+    pk.uv[7] = 0.0f;
+
+    color = D_L18_00162504_9eb8 | 0xFF000000;
+    pk.col[3] = color;
+    pk.col[2] = color;
+    pk.col[1] = color;
+    pk.col[0] = color;
+    scale_z = D_L18_00162514_9eb8;
+    for (i = 0; i < 4; i++) {
+        *(u128_9c20 *)vertices[i] = *(u128_9c20 *)D_L18_001DFBD0_9eb8[i];
+        {
+            float z = vertices[i][2];
+            float x = vertices[i][0];
+            vertices[i][2] = z * scale_z;
+            vertices[i][0] = x * D_L18_0016252C_9eb8;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        xform_9c20(pk.m[i], vertices[i], mat);
+    }
+    draw_9c20(&pk, 0, 0);
+
+    color = D_L18_00162510_9eb8 | 0x7F000000;
+    pk.col[3] = color;
+    pk.col[2] = color;
+    pk.col[1] = color;
+    pk.col[0] = color;
+    scale_z = D_L18_00162518_9eb8;
+    for (i = 0; i < 4; i++) {
+        *(u128_9c20 *)vertices[i] = *(u128_9c20 *)D_L18_001DFBD0_9eb8[i];
+        {
+            float z = vertices[i][2];
+            float x = vertices[i][0];
+            vertices[i][2] = z * scale_z;
+            vertices[i][0] = x * D_L18_0016252C_9eb8;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        xform_9c20(pk.m[i], vertices[i], mat);
+    }
+    draw_9c20(&pk, 0, 0);
+
+    color = D_L18_00162510_9eb8 | 0x7F000000;
+    pk.col[3] = color;
+    pk.col[2] = color;
+    pk.col[1] = color;
+    pk.col[0] = color;
+    scale_z = D_L18_0016251C_9eb8;
+    for (i = 0; i < 4; i++) {
+        *(u128_9c20 *)vertices[i] = *(u128_9c20 *)D_L18_001DFBD0_9eb8[i];
+        {
+            float z = vertices[i][2];
+            float x = vertices[i][0];
+            vertices[i][2] = z * scale_z;
+            vertices[i][0] = x * D_L18_0016252C_9eb8;
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        xform_9c20(pk.m[i], vertices[i], mat);
+    }
+    draw_9c20(&pk, 0, 0);
+}
+#endif
 #define NOT_SDA
 
 #define MACRO_ADDR
