@@ -351,7 +351,113 @@ void FUN_L15_002a3ba8(struct Moby *moby) {
 INCLUDE_ASM("config/us/overlays/asm/FUN_L15_002a7880.s", FUN_L15_002a7880);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L15_002aa280.s", FUN_L15_002aa280);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L15_002c2938.s", FUN_L15_002c2938);
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L15_002c4f88.s", FUN_L15_002c4f88);
+#else
+typedef union { u128 q; float f[4]; } SteeringVec_4f88;
+typedef struct {
+    char pad[0x150];
+    SteeringVec_4f88 delta;
+    char pad160[0x10];
+    float speed;
+    float pitch_velocity;
+    float yaw_velocity;
+    float facing_velocity;
+    char pad180[0x28];
+    float height;
+} SteeringVars_4f88;
+
+extern float FUN_001f9b48(void *, void *);
+extern void subtract_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a28");
+extern void FUN_001f9bf8_4f88(float, void *, void *) __asm__("FUN_001f9bf8");
+extern void FUN_001f9a68_4f88(float, void *, void *) __asm__("FUN_001f9a68");
+extern void FUN_L00_001ff290(void *, void *, void *);
+extern void FUN_L15_00247e90(float, float, struct Moby *, void *, int);
+extern float FUN_001f9e90(float, float);
+extern float fast_subtract_rotations(float, float) __asm__("FUN_001fa5c8");
+extern float fast_cos(float) __asm__("FUN_001f9dc8");
+extern float fast_sin(float) __asm__("FUN_001f9de0");
+extern float FUN_L00_00258110(float *, float, float, float, float, float);
+
+void FUN_L15_002c4f88(struct Moby *moby, SteeringVec_4f88 *goal, SteeringVec_4f88 *look) {
+    SteeringVec_4f88 target = *goal;
+    SteeringVec_4f88 look_copy = *look;
+    SteeringVec_4f88 scaled;
+    SteeringVec_4f88 origin = *(SteeringVec_4f88 *)&moby->pos;
+    SteeringVec_4f88 delta;
+    SteeringVec_4f88 *look_at = &look_copy;
+    SteeringVec_4f88 *target_at = &target;
+    SteeringVars_4f88 *vars = (SteeringVars_4f88 *)moby->pvars;
+    float distance = FUN_001f9b48(&moby->pos, target_at);
+    float step = frame_time_sq * 10.0f;
+    float old_speed = vars->speed;
+    float limit;
+    float facing;
+    float angle;
+    float c;
+    float s;
+    float yaw_target;
+    float pitch_target;
+    float dx;
+    float dy;
+    float threshold;
+    float speed_sq;
+    float twice_step;
+    float height;
+    float pos_x;
+    float pos_y;
+
+
+    speed_sq = old_speed * old_speed;
+    twice_step = step + step;
+    threshold = speed_sq / twice_step;
+    if (distance <= threshold) {
+        vars->speed = old_speed - step;
+        if (vars->speed < 0.0f) {
+            vars->speed = 0.0f;
+        }
+    } else {
+        vars->speed = old_speed + step;
+        limit = frame_time * 10.0f;
+        if (limit < vars->speed) {
+            vars->speed = limit;
+        }
+    }
+
+    subtract_vector_xyz(&delta, target_at, &moby->pos);
+    scaled.q = delta.q;
+    FUN_001f9bf8_4f88(vars->speed * 0.1f, &scaled, &scaled);
+    FUN_001f9a68_4f88(0.9f, &delta, &vars->delta);
+    vars->delta.q = delta.q;
+    FUN_L00_001ff290(&delta, &vars->delta, &scaled);
+    FUN_L15_00247e90(1.0f, 2.0f, moby, &vars->delta, 0);
+    height = vars->height;
+    moby->pos.z = height;
+    pos_x = moby->pos.x;
+    pos_y = moby->pos.y;
+    dx = look_at->f[0] - pos_x;
+    dy = look_at->f[1] - pos_y;
+    facing = FUN_001f9e90(dx, dy);
+    moby->rot.z = FUN_L00_00258110(&vars->facing_velocity, moby->rot.z, facing,
+                                   0.01f, 0.3f, 0.1f);
+    subtract_vector_xyz(&delta, &moby->pos, &origin);
+    vars->delta.q = delta.q;
+    angle = FUN_001f9e90(vars->delta.f[0], vars->delta.f[1]);
+    angle = fast_subtract_rotations(angle, moby->rot.z);
+    c = fast_cos(angle);
+    yaw_target = (vars->speed * 0.34906584f * c) / (frame_time * 10.0f);
+    s = fast_sin(angle);
+    pitch_target = (vars->speed * -0.34906584f * s) / (frame_time * 10.0f);
+    moby->rot.y = FUN_L00_00258110(&vars->yaw_velocity, moby->rot.y,
+        yaw_target,
+        frame_time_sq * 0.5235988f, frame_time_sq * 1.0471976f,
+        frame_time * 0.7853982f);
+    moby->rot.x = FUN_L00_00258110(&vars->pitch_velocity, moby->rot.x,
+        pitch_target,
+        frame_time_sq * 1.0471976f, frame_time_sq * 2.0943952f,
+        frame_time * 1.5707964f);
+}
+#endif
 #include "qcopy.h"
 #include "rnc/overlay/quad.h"
 
