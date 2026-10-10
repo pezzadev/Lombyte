@@ -7,7 +7,94 @@
 #include "asm.h"
 #include "rnc/overlay/entities.h"
 
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L12_003028c8.s", FUN_L12_003028c8);
+#else
+#include "eetypes.h"
+
+typedef struct {
+    u128 vertices[4];
+    int color[4];
+    float uv[4][2];
+    long tag;
+    long texture;
+    long texture_state;
+    long gs_state;
+    char unused[0x150];
+} VendorStripPacket;
+
+extern void FUN_001fa050(void *, void *) __asm__("FUN_001fa050");
+extern void FUN_001fa378(void *, void *, void *) __asm__("FUN_001fa378");
+extern void FUN_001f9a10(void *, void *, void *) __asm__("FUN_001f9a10");
+extern long get_effect_texture_l12(int) __asm__("FUN_001f44b8");
+extern void draw_geometry_quad_l12(void *, void *, int) __asm__("FUN_001f7d30");
+extern float convert_integer_to_float(int) __asm__("FUN_001fa6c0");
+extern int FUN_001fa6e0(float, int, int) __asm__("FUN_001fa6e0");
+extern float D_L12_001FB510[4][2];
+extern u128 D_L12_001FB530[4];
+extern float D_L12_001FB5B0[2][4];
+#define L12_WORD(address) (*(int *)(address))
+#define L12_FLOAT(address) (*(float *)(address))
+
+void FUN_L12_003028c8(struct Moby *moby) {
+    char *data = (char *)moby->pvars;
+    float base[16] __attribute__((aligned(16)));
+    float matrices[2][16] __attribute__((aligned(16)));
+    VendorStripPacket packet;
+    u128 position;
+    int i, j, strip;
+
+    FUN_001fa050(base, &moby->rot);
+    for (i = 0; i < 2; i++) {
+        FUN_001fa050(matrices[i], D_L12_001FB5B0[i]);
+        FUN_001fa378(matrices[i], base, matrices[i]);
+        if (!(i & 1) && *(int *)(data + 0x2314) != -1) {
+            struct Moby *other = (struct Moby *)(D_L12_0015FFD8_p + *(int *)(data + 0x2314) * 0x100);
+            position = *(u128 *)&other->pos;
+        } else {
+            position = *(u128 *)&moby->pos;
+        }
+        FUN_001f9a10(&matrices[i][12], &matrices[i][12], &position);
+        matrices[i][15] = 1.0f;
+    }
+    packet.texture = get_effect_texture_l12(14);
+    packet.gs_state = (long)L12_WORD(0x001fb1cc) | (long)L12_WORD(0x001fb1d0) << 2 |
+        (long)L12_WORD(0x001fb1d4) << 4 | (long)L12_WORD(0x001fb1d8) << 6 | 0x8000000000L;
+    packet.texture_state = 0xff9000000260L;
+    packet.tag = 0;
+    for (i = 0; i < 4; i++) packet.uv[i][1] = D_L12_001FB510[i][1];
+    for (strip = 0; strip < 4; strip++) {
+        float fade;
+        float phase = 0.0f;
+        int count;
+        int timer = *(int *)(data + 0x2300 + strip * 4);
+        if (L12_WORD(0x00161e08) < timer) {
+            fade = convert_integer_to_float(timer - L12_WORD(0x00161e08)) /
+                convert_integer_to_float(L12_WORD(0x00161e04) - L12_WORD(0x00161e08));
+        } else {
+            fade = 1.0f - convert_integer_to_float(timer) /
+                convert_integer_to_float(L12_WORD(0x00161e08));
+        }
+        packet.color[0] = packet.color[1] = packet.color[2] = packet.color[3] =
+            FUN_001fa6e0(fade, L12_WORD(0x001fb1ec), L12_WORD(0x001fb1f0));
+        count = *(int *)(data + 0x232c) - 1;
+        for (i = 0; i < count; i++) {
+            phase += L12_FLOAT(0x001fb1f4);
+            if (phase > 1.0f) phase -= 1.0f;
+            for (j = 0; j < 4; j++)
+                packet.uv[j][0] = D_L12_001FB510[j][0] + phase + L12_FLOAT(0x001fb1f8);
+            for (j = 0; j < 4; j++) {
+                int point = i + (j >> 1);
+                FUN_001f9a10(&packet.vertices[j], &D_L12_001FB530[j],
+                    data + strip * 0x460 + point * 0x10);
+            }
+            draw_geometry_quad_l12(&packet, matrices[0], 0);
+            draw_geometry_quad_l12(&packet, matrices[1], 0);
+            count = *(int *)(data + 0x232c) - 1;
+        }
+    }
+}
+#endif
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L12_00302c58.s", FUN_L12_00302c58);
 #else
