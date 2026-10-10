@@ -158,45 +158,51 @@ int FUN_L00_0020cd08(void *from, void *outOwner, void *to, void *outI, void *out
     Vec4 pos;
     s32 gotI;
     f32 gotF;
-    s32 i;
+    s32 i, spot_offset, only_offset, active_offset;
     s32 count = D_L00_0015F710;
     Vec4 *p = &pos;
     f32 distance_limit, height_limit, distance, height;
 
     *(u128 *)p = *(u128 *)from;
     i = 0;
-    if (count > 0) do {
-        if (skip != 0 && (int)D_L00_0015F70C[i].owner == skip)
-            goto next_spot;
-        if (only != 0 && (int)D_L00_0015F70C[i].owner != only)
-            goto next_spot;
-        if (*D_L00_0015F70C[i].owner == 0)
-            goto next_spot;
-        if (FUN_001f9b48(&D_L00_0015F70C[i], p) > D_L00_0015F70C[i].sphere.f[3])
-            goto next_spot;
-        if (!FUN_L00_0025df68(D_L00_0015F70C[i].owner, p, to, &gotI, &gotF,
-                              D_L00_0015F70C[i].kind, 12.0f, 10.0f, 0.0f))
-            goto next_spot;
-        distance_limit = 0.9f;
-        height_limit = 1.5f;
-        if ((u32)D_001413DC < 2)
-            distance_limit = 0.3f;
-        if (hero.unk1CA != 0) {
-            height_limit = 10.0f;
-            distance_limit += 0.5f;
-        }
-        distance = FUN_001f9b80(p, to);
-        height = FUN_001f99c0(p->f[2] - ((Vec4 *)to)->f[2]);
-        if (!(distance < distance_limit && height < height_limit))
-            goto next_spot;
-        *(s32 **)outOwner = D_L00_0015F70C[i].owner;
-        *(s32 *)outI = gotI;
-        *(f32 *)outF = gotF;
-        *(s32 *)outKind = D_L00_0015F70C[i].kind;
-        return 1;
+    if (count > 0) {
+        active_offset = 0;
+        only_offset = 0;
+        do {
+            spot_offset = i * 0x20;
+            if (!((skip == 0 || (int)D_L00_0015F70C[i].owner != skip) &&
+                  (only == 0 || (int)((struct LedgeSpot_20cd08 *)((u8 *)D_L00_0015F70C + only_offset))->owner == only) &&
+                  *((struct LedgeSpot_20cd08 *)((u8 *)D_L00_0015F70C + active_offset))->owner != 0))
+                goto next_spot;
+            if (FUN_001f9b48((u8 *)D_L00_0015F70C + spot_offset, p) >
+                ((struct LedgeSpot_20cd08 *)((u8 *)D_L00_0015F70C + spot_offset))->sphere.f[3])
+                goto next_spot;
+            if (!FUN_L00_0025df68(D_L00_0015F70C[i].owner, p, to, &gotI, &gotF,
+                                  D_L00_0015F70C[i].kind, 12.0f, 10.0f, 0.0f))
+                goto next_spot;
+            distance_limit = 0.9f;
+            height_limit = 1.5f;
+            if ((u32)D_001413DC < 2)
+                distance_limit = 0.3f;
+            if (hero.unk1CA != 0) {
+                height_limit = 10.0f;
+                distance_limit += 0.5f;
+            }
+            distance = FUN_001f9b80(p, to);
+            height = FUN_001f99c0(p->f[2] - ((Vec4 *)to)->f[2]);
+            if (!(distance < distance_limit && height < height_limit))
+                goto next_spot;
+            *(s32 **)outOwner = D_L00_0015F70C[i].owner;
+            *(s32 *)outI = gotI;
+            *(f32 *)outF = gotF;
+            *(s32 *)outKind = D_L00_0015F70C[i].kind;
+            return 1;
 next_spot:
-        i++;
-    } while (i < D_L00_0015F710);
+            i++;
+            active_offset += 0x20;
+            only_offset += 0x20;
+        } while (i < D_L00_0015F710);
+    }
     return 0;
 }
 #endif /* NON_MATCHING */
