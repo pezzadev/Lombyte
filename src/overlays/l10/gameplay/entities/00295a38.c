@@ -996,7 +996,104 @@ void FUN_L10_002d9eb8(char *moby) {
         delete_moby(moby);
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L10_002da2c8.s", FUN_L10_002da2c8);
+#else
+extern char D_L10_001DD1D0[] __asm__("D_L10_001DD1D0");
+extern char D_L10_001DD210[] __asm__("D_L10_001DD210");
+extern unsigned char D_L10_00161CA8[] __asm__("D_L10_00161CA8");
+extern unsigned char D_001413F4[];
+extern void FUN_L10_002da690(void *);
+extern int stub_printf() __asm__("FUN_001e93b0");
+extern void delete_moby(void *) __asm__("FUN_0020c828");
+extern s32 random_integer_below(s32) __asm__("func_00213260");
+extern float fast_add_rotations(float, float) __asm__("FUN_001fa580");
+extern int FUN_001f96f8(int);
+extern int FUN_001fa6d0(float);
+extern float FUN_001f9988(float);
+extern float FUN_001f9b48(void *, void *);
+extern int FUN_001fa728(void *);
+extern void enqueue_callback_list_1(void *, void *) __asm__("FUN_001f4600");
+extern int FUN_L00_0028d8c0(void *, int);
+extern int allocate_voice_for_target_entry(int, int, int) __asm__("FUN_0022da68");
+extern void release_voice_slot(s32) __asm__("FUN_0022d798");
+extern int tick_countdown_32(void *) __asm__("FUN_001f9740");
+
+void FUN_L10_002da2c8(struct Moby *moby) {
+    char *data = (char *)moby->pvars;
+    union { unsigned char order[10]; float position2[4]; } scratch;
+    float position1[4];
+    float half_height;
+    int pass, i, copy_index;
+
+    if (*(int *)(data + 0xC) == -1) {
+        stub_printf(D_L10_001DD1D0);
+        stub_printf(D_L10_001DD210, *(short *)&moby->save_id);
+        delete_moby(moby);
+    }
+    switch (moby->state) {
+    case 0:
+        if (current_level_index == 10 && D_001413F4[0] == 1) {
+            delete_moby(moby);
+            break;
+        }
+        memcpy(scratch.order, D_L10_00161CA8, 10);
+        for (pass = 0; pass < 10; pass++) {
+            for (i = 0; i < random_integer_below(9); i++) {
+                unsigned char tmp = scratch.order[i + 1];
+                scratch.order[i + 1] = scratch.order[i];
+                scratch.order[i] = tmp;
+            }
+        }
+        copy_index = 0;
+        if (*(int *)(data + 4) > 0) {
+            char *dest = data + 0x10;
+            do {
+                dest[copy_index] = scratch.order[copy_index];
+                copy_index++;
+            } while (copy_index < *(int *)(data + 4));
+        }
+        {
+            float new_rotation = fast_add_rotations(moby->rot.z, 1.5707964f);
+            moby->state = 1;
+            moby->unk30 = 0x60;
+            moby->rot.z = new_rotation;
+        }
+        *(int *)(data + 0x30) = -1;
+        *(int *)(data + 0x34) = FUN_001f96f8(FUN_001fa6d0(frame_time * 60.0f));
+        moby->flags |= 0x41;
+        break;
+    case 1:
+        *(OvlQuad *)position1 = *(OvlQuad *)&moby->pos;
+        half_height = (float)*(int *)(data + 4) * *(float *)(data + 8) * 0.5f;
+        position1[2] += half_height;
+        position1[3] = FUN_001f9988(half_height * half_height + (*(float *)data * 0.5f) * (*(float *)data * 0.5f));
+        if (FUN_001f9b48(&moby->pos, &D_L10_00167240) < 80.0f && 0.0f <= (float)FUN_001fa728(position1))
+            enqueue_callback_list_1((void *)FUN_L10_002da690, moby);
+        if (FUN_L00_0028d8c0(moby, *(int *)(data + 0x30)) == 0)
+            *(int *)(data + 0x30) = allocate_voice_for_target_entry(0, 4, (int)moby);
+        break;
+    case 2: {
+        int voice;
+        tick_countdown_32(data + 0x34);
+        voice = *(int *)(data + 0x30);
+        if (voice != -1) {
+            unsigned char *entry = (unsigned char *)D_0013E550 + voice * 0x70;
+            if (*(struct Moby **)(entry + 0x88) == moby && entry[0x74] != 0)
+                release_voice_slot(voice);
+        }
+        *(int *)(data + 0x30) = -1;
+        *(OvlQuad *)scratch.position2 = *(OvlQuad *)&moby->pos;
+        half_height = (float)*(int *)(data + 4) * *(float *)(data + 8) * 0.5f;
+        scratch.position2[2] += half_height;
+        scratch.position2[3] = FUN_001f9988(half_height * half_height + (*(float *)data * 0.5f) * (*(float *)data * 0.5f));
+        if (FUN_001f9b48(&moby->pos, &D_L10_00167240) < 80.0f && 0.0f <= (float)FUN_001fa728(scratch.position2))
+            enqueue_callback_list_1((void *)FUN_L10_002da690, moby);
+        break;
+    }
+    }
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L10_002da690.s", FUN_L10_002da690);
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L10_002dcc58.s", FUN_L10_002dcc58);
