@@ -1131,7 +1131,7 @@ void FUN_L00_0029a400(s32 param_1) {
         if (value == 0xFF)
             continue;
         if (value & 0x40) {
-            if (*(u16 *)((u8 *)&D_L00_001C40B0[0].h8 + item * sizeof(D_L00_001C40B0[0])) == 0)
+            if (D_L00_001C40B0[item].h8 == 0)
                 continue;
             sound = *(s32 *)(vendor_sound_29a400 + item * 0x14);
             vendor_list_29a400.entries[vendor_list_29a400.count].item = item;
@@ -1148,7 +1148,7 @@ void FUN_L00_0029a400(s32 param_1) {
         vendor_list_29a400.count++;
     }
     for (i = 0; i < 37; i++) {
-        if (D_0013D4C0[i] == 0 || *(u16 *)((u8 *)&D_L00_001C40B0[0].h8 + i * sizeof(D_L00_001C40B0[0])) == 0)
+        if (D_0013D4C0[i] == 0 || D_L00_001C40B0[i].h8 == 0)
             continue;
         for (j = 0; j < vendor_list_29a400.count; j++) {
             if (vendor_list_29a400.entries[j].item == i)
