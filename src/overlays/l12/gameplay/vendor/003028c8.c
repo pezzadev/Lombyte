@@ -451,7 +451,7 @@ extern unsigned char *moby_bytes __asm__("D_L12_0015FFD8");
 extern void release_voice_slot(int) __asm__("FUN_0022d798");
 extern void enqueue_callback_list_1(void *, void *) __asm__("FUN_001f4600");
 extern void FUN_L00_002502a0(int);
-extern void FUN_L12_00308350(void);
+extern void FUN_L12_00308350(struct Moby *);
 
 /* Pvars: d[0] is the moby to watch, d[1] the voice slot held for this moby. */
 void FUN_L12_003081b0(struct Moby *m) {
@@ -499,7 +499,96 @@ void FUN_L12_003081b0(struct Moby *m) {
         break;
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L12_00308350.s", FUN_L12_00308350);
+#else
+#include "eetypes.h"
+
+typedef struct {
+    u128 vertices[4];
+    int color[4];
+    float uv[4][2];
+    long tag;
+    long texture;
+    long texture_state;
+    long gs_state;
+} VendorDrawPacket;
+
+extern int D_L12_00161FBC __attribute__((sda));
+extern int D_L12_00161FC0 __attribute__((sda));
+extern int D_L12_00161FC4 __attribute__((sda));
+extern int D_L12_00161FC8 __attribute__((sda));
+extern int D_L12_00161FCC __attribute__((sda));
+extern int D_L12_00161FD0 __attribute__((sda));
+extern int D_L12_00161FD4 __attribute__((sda));
+extern int D_L12_00161FD8 __attribute__((sda));
+extern unsigned int D_L12_00161F90 __attribute__((sda));
+extern unsigned int D_L12_00161F94 __attribute__((sda));
+extern float D_L12_001FB6D0[4][2];
+extern u128 D_L12_001FB6F0[4];
+extern u128 D_L12_001FB730[4];
+extern void copy_moby_matrix(void *, void *) __asm__("FUN_001fa298");
+extern long get_effect_texture_l12(int) __asm__("FUN_001f44b8");
+extern void draw_geometry_quad_l12(void *, void *, int) __asm__("FUN_001f7d30");
+
+void FUN_L12_00308350(struct Moby *m) {
+    VendorDrawPacket first, second;
+    float matrix[4][4] __attribute__((aligned(16)));
+    int i, j;
+    long flags;
+
+    copy_moby_matrix(matrix, &m->unkC0);
+    *(u128 *)&matrix[3] = *(u128 *)&m->pos;
+    matrix[3][3] = 1.0f;
+    first.texture = get_effect_texture_l12(0xe);
+    flags = (long)D_L12_00161FBC | (long)D_L12_00161FC0 << 2 |
+            (long)D_L12_00161FC4 << 4 | (long)D_L12_00161FC8 << 6 |
+            0x8000000000L;
+    first.gs_state = flags;
+    flags = (long)D_L12_00161FCC | (long)D_L12_00161FD0 << 2 |
+            (long)D_L12_00161FD4 << 4 | (long)D_L12_00161FD8 << 6 |
+            0x8000000000L;
+    second.gs_state = flags;
+    first.texture_state = 0xFF9000000260L;
+    second.texture_state = 0xFF9000000260L;
+    second.texture = first.texture;
+    first.tag = second.tag = 0;
+    first.color[0] = first.color[1] = first.color[2] = first.color[3] = D_L12_00161F90;
+    second.color[0] = second.color[1] = second.color[2] = second.color[3] = D_L12_00161F94;
+    j = 0;
+    do {
+        first.vertices[j] = D_L12_001FB730[j];
+        second.vertices[j] = D_L12_001FB6F0[j];
+        first.uv[j][0] = second.uv[j][0] = D_L12_001FB6D0[j][0];
+        first.uv[j][1] = second.uv[j][1] = D_L12_001FB6D0[j][1];
+        j++;
+    } while (j < 4);
+    i = 0;
+    do {
+        float x_offset;
+        float jitter = 0.0f;
+        int row;
+        i++;
+        x_offset = random_float_between(-0.5f, 0.5f);
+        for (j = 0; j < 4; j++) {
+            ((float *)&first.vertices[j])[2] += 1.0f;
+            ((float *)&second.vertices[j])[2] += 1.0f;
+            first.uv[j][0] = D_L12_001FB6D0[j][0] + x_offset;
+            first.uv[j][1] = D_L12_001FB6D0[j][1];
+        }
+        for (row = -3; row < 3; row++) {
+            float x = (float)row + jitter;
+            ((float *)&first.vertices[0])[1] = x;
+            ((float *)&first.vertices[1])[1] = x;
+            if (row < 4) jitter = random_float_between(-0.2f, 0.2f);
+            x = (float)(row + 1) + jitter;
+            ((float *)&first.vertices[2])[1] = x;
+            ((float *)&first.vertices[3])[1] = x;
+            draw_geometry_quad_l12(&first, matrix, 0);
+        }
+    } while (i < 5);
+}
+#endif
 #include "sda.h"
 
 /* Vendor-counter moby update: once the shared block is ready, latch its data and copy two vectors. */
