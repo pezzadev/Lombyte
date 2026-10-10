@@ -741,7 +741,6 @@ void FUN_L00_0026b500(unsigned char *m) {
 
     life = FUN_001fa6c0_26b500(*(short *)(m + 0xa));
     duration = FUN_001fa6c0_26b500(p[0x1d]);
-    t = life / duration;
     if (p[0x1f] & 1) {
         start = D_L00_001601DC_26b500;
         end = D_L00_001601D8_26b500;
@@ -749,6 +748,7 @@ void FUN_L00_0026b500(unsigned char *m) {
         start = D_L00_001601BC_26b500;
         end = D_L00_001601B8_26b500;
     }
+    t = life / duration;
     *(float *)(m + 0xc) = ((end - start * scale) * t + start * scale) * 210000.0f;
 
     *(int *)(m + 4) = FUN_001fa6e0_26b500(*(int *)(p + 0x18), *(int *)(p + 0x14), t);
