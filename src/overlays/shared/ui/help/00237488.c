@@ -678,7 +678,7 @@ typedef struct {
 } HelpPath;
 
 void FUN_L05_00254358(f32 *position, f32 *direction) {
-    char *g = D_0013F350_c2;
+    char *g = (char *)&hero;
     HelpPath *path;
     f32 best;
     s32 index = 0;
@@ -699,8 +699,8 @@ void FUN_L05_00254358(f32 *position, f32 *direction) {
         s32 next;
         f32 b;
         p = &path->points[index];
-        next = (index + (path->count + 2)) % path->count;
         a = FUN_001f9e90(p->x - *(f32 *)(origin + 0), p->y - *(f32 *)(origin + 4));
+        next = (index + (path->count + 2)) % path->count;
         b = FUN_001f9e90(path->points[next].x - p->x, path->points[next].y - p->y);
         if (fast_difference_between_rotations(a, b) > 1.5707964f) {
             if (current_level_index == 0x10 && *(void **)(g + 0x8B4) != 0) {
@@ -719,6 +719,8 @@ void FUN_L05_00254358(f32 *position, f32 *direction) {
                     selected = index;
                 }
             }
+        } else {
+            selected = index;
         }
 next_point:
         index += 2;
