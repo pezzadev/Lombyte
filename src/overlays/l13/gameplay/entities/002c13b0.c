@@ -845,7 +845,136 @@ void FUN_L13_002c4428(Moby_2C56B0 *moby) {
         moby->pos.z = 1003.0f;
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L13_002c7f38.s", FUN_L13_002c7f38);
+#else
+extern unsigned char D_0014C050[];
+extern float fast_subtract_rotations(float, float) __asm__("FUN_001fa5c8");
+extern void allocate_voice_for_target_entry_7f38(int, int, struct Moby *) __asm__("FUN_0022da68");
+
+typedef struct Data_2C7F38 {
+    float initial_rot[3];
+    float progress;
+    int linked_index;
+    int active_state;
+    int inactive_state;
+    float angle[3];
+    int unknown_28;
+    int duration;
+    int start_sound;
+    int end_sound;
+    float initial_scale;
+    int start_active;
+} Data_2C7F38;
+
+void FUN_L13_002c7f38(struct Moby *moby) {
+    Data_2C7F38 *data = (Data_2C7F38 *)moby->pvars;
+    struct Moby *linked;
+    float step;
+    float angle;
+    float frames;
+
+    if (moby->unkB0 != 0xFF &&
+        D_0014C050[moby->unkB0 + current_level_index * 16] == 0xFF) {
+        data->linked_index = -1;
+    }
+
+    switch (moby->state) {
+    case 0:
+        qcopy(data, &moby->rot);
+        moby->state = data->start_active == 0 ? 1 : 2;
+        data->progress = 0.0f;
+        if (data->progress < data->initial_scale) {
+            moby->scale = moby->pclass->scale * data->initial_scale;
+        }
+        return;
+    case 1:
+        if (data->linked_index != -1 &&
+            (linked = (struct Moby *)(D_L13_0015FFD8 + data->linked_index * 0x100)) != 0 &&
+            linked->state != 0xFE && linked->state != 0xFD && linked->state != data->active_state) {
+            return;
+        }
+        if (data->start_sound != -1) {
+            allocate_voice_for_target_entry_7f38(data->start_sound, 0, moby);
+        }
+        data->progress = 0.0f;
+        moby->state = 2;
+        break;
+    case 2:
+        if (data->linked_index == -1 ||
+            (linked = (struct Moby *)(D_L13_0015FFD8 + data->linked_index * 0x100)) == 0 ||
+            linked->state == 0xFE || linked->state == 0xFD || linked->state != data->inactive_state) {
+            frames = (float)data->duration * 60.0f;
+            step = 1.0f / frames;
+            data->progress += step;
+            angle = data->angle[0] * 0.017453292f * step;
+            moby->rot.x = fast_add_rotations(moby->rot.x, angle);
+            angle = data->angle[1] * 0.017453292f * step;
+            moby->rot.y = fast_add_rotations(moby->rot.y, angle);
+            angle = data->angle[2] * 0.017453292f * step;
+            moby->rot.z = fast_add_rotations(moby->rot.z, angle);
+            if (!(1.0f <= data->progress)) return;
+            moby->rot.x = fast_add_rotations(data->initial_rot[0], data->angle[0] * 0.017453292f);
+            moby->rot.y = fast_add_rotations(data->initial_rot[1], data->angle[1] * 0.017453292f);
+            moby->rot.z = fast_add_rotations(data->initial_rot[2], data->angle[2] * 0.017453292f);
+            data->progress = 1.0f;
+            moby->state = 3;
+            if (data->end_sound != -1) {
+                allocate_voice_for_target_entry_7f38(data->start_sound, 0, moby);
+            }
+            return;
+        } else {
+            if (data->start_sound != -1) {
+                allocate_voice_for_target_entry_7f38(data->start_sound, 0, moby);
+            }
+            moby->state = 4;
+        }
+        break;
+    case 3:
+        if (data->linked_index == -1) return;
+        linked = (struct Moby *)(D_L13_0015FFD8 + data->linked_index * 0x100);
+        if (linked == 0 || linked->state == 0xFE || linked->state == 0xFD || linked->state != data->inactive_state) return;
+        data->progress = 1.0f;
+        if (data->start_sound != -1) {
+            allocate_voice_for_target_entry_7f38(data->start_sound, 0, moby);
+        }
+        moby->state = 4;
+        break;
+    case 4:
+        if (data->linked_index == -1 ||
+            (linked = (struct Moby *)(D_L13_0015FFD8 + data->linked_index * 0x100)) == 0 ||
+            linked->state == 0xFE || linked->state == 0xFD || linked->state == data->active_state) {
+            if (data->start_sound != -1) {
+                allocate_voice_for_target_entry_7f38(data->start_sound, 0, moby);
+            }
+            moby->state = 2;
+        } else {
+            int invalid_index = -1;
+            frames = (float)data->duration * 60.0f;
+            step = 1.0f / frames;
+            data->progress -= step;
+            angle = data->angle[0] * 0.017453292f * step;
+            moby->rot.x = fast_subtract_rotations(moby->rot.x, angle);
+            angle = data->angle[1] * 0.017453292f * step;
+            moby->rot.y = fast_subtract_rotations(moby->rot.y, angle);
+            angle = data->angle[2] * 0.017453292f * step;
+            moby->rot.z = fast_subtract_rotations(moby->rot.z, angle);
+            if (!(data->progress <= 0.0f)) return;
+            moby->rot.x = data->initial_rot[0];
+            moby->rot.y = data->initial_rot[1];
+            moby->rot.z = data->initial_rot[2];
+            data->progress = 0.0f;
+            if (data->start_sound != invalid_index) {
+                allocate_voice_for_target_entry_7f38(data->end_sound, 0, moby);
+            }
+            moby->state = 1;
+        }
+        break;
+    case 5:
+        break;
+    }
+}
+#endif
 /* Ported from rac1-decomp src/overlays/l13_gemlik/vendor_002C2638.c (func_L13_002CF960) */
 
 /* Gemlik spark emitter: builds a spark frame from a1, runs two burst loops of effect calls, and with a2 set, the extra burst set. */
