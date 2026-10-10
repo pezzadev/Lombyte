@@ -1061,7 +1061,95 @@ void FUN_L00_00299c00(void) {
     D_L00_0015F3FC = 0;
     FUN_002335a0();
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_00299c48.s", FUN_L00_00299c48);
+#else
+extern s16 D_L00_0015F620;
+extern s16 D_L00_0015F624;
+extern s16 D_L00_0015F626;
+extern s16 D_001516D8[];
+extern u8 D_0013D1D2;
+extern s32 D_L00_00173BF0[];
+extern void FUN_L00_0028cc08(void);
+
+void FUN_L00_00299c48(void) {
+    s32 index;
+    s32 offset;
+    s32 *source;
+    s32 *destination;
+    s32 pal;
+    s32 active;
+    s16 stage;
+
+    FUN_L00_002660c0(0);
+    fade_level -= 0.05f;
+    if (fade_level < 0.0f) {
+        fade_level = 0.0f;
+    }
+    stage = D_L00_0015F620;
+    active = 1;
+    pal = D_0013D1D2 == 'A';
+    if (stage == 0) {
+        if (D_L00_0015F626 >= D_L00_00173BF0[(s16)D_L00_0015F622] - 0x24) {
+            if (D_001516D8[0] != 0) {
+                FUN_L00_002660c0(1);
+            }
+            if (!pal && (s16)D_L00_0015F622 == 0x27) {
+                FUN_L00_00299c00();
+                return;
+            }
+            if ((s16)D_L00_0015F622 >= 0x2b) {
+                FUN_L00_00299c00();
+                return;
+            }
+            D_L00_0015F624 = -1;
+            D_L00_0015F620 = 1;
+        }
+    } else if (stage == active) {
+        FUN_L00_002a09d8(1);
+        if (D_L00_0015F624 < 0x20) {
+            source = (s32 *)(D_L00_0015F62C + D_L00_0015F624 * 4);
+            destination = (s32 *)(D_L00_0015F628 + D_L00_0015F624 * 4);
+            for (offset = 0; offset < 0x38000; offset += 0x20) {
+                *destination = *source;
+                source += 0x20;
+                destination += 0x20;
+            }
+        } else if (D_L00_0015F624 >= 0x24) {
+            if (pal) {
+                if ((s16)D_L00_0015F622 == 0x11) {
+                    D_L00_0015F622 = 0x1b;
+                    D_L00_0015F626 = 0x2238;
+                }
+                if ((s16)D_L00_0015F622 == 0x25) {
+                    D_L00_0015F622 = 0x27;
+                    D_L00_0015F626 = 0x32b4;
+                }
+            } else if ((s16)D_L00_0015F622 == 8) {
+                D_L00_0015F622 = 0x11;
+                D_L00_0015F626 = 0x1590;
+            }
+            D_L00_0015F620 = 0;
+            D_L00_0015F622++;
+            D_L00_0015F624 = -1;
+            index = (s16)D_L00_0015F622 % 0x14;
+            if (pal_mode == 0) {
+                FUN_L00_00265fa0(D_L00_0015F62C, disc_table.music_60000[index + 18].sector,
+                                   disc_table.music_60000[index + 18].size);
+            } else {
+                FUN_L00_00265fa0(D_L00_0015F62C, disc_table.music_60000[index + 38].sector,
+                                   disc_table.music_60000[index + 38].size);
+            }
+        }
+    }
+    D_L00_0015F624++;
+    D_L00_0015F626++;
+    if (D_0013CAE4 & 0x800) {
+        FUN_L00_00299c00();
+    }
+    FUN_L00_0028cc08();
+}
+#endif
 /* Ported from rac1-decomp (src/overlays/shared/update_0029B6A0.c: func_L00_0029B6A0), where it is exact; names translated to the US level program. */
 
 extern char *D_L00_00197300_d[] __asm__("D_L00_00197300") __attribute__((section(".data")));
