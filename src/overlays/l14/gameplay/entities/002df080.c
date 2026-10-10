@@ -214,12 +214,12 @@ void FUN_L14_002eb568(struct Moby *m) {
             opacity = D_L14_00161C10_spark;
             age = d->n380[i];
             count = d->n320[i];
-            if (age - D_L14_00161C2C_spark < count) {
-                first = spark_integer_to_float(age - count);
-                age = D_L14_00161C2C_spark;
-            } else {
+            if (age - D_L14_00161C2C_spark >= count) {
                 first = spark_integer_to_float(count);
                 age -= D_L14_00161C2C_spark;
+            } else {
+                first = spark_integer_to_float(age - count);
+                age = D_L14_00161C2C_spark;
             }
             second = spark_integer_to_float(age);
             ratio = first / second;
