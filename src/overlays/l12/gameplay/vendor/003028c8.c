@@ -36,16 +36,19 @@ void FUN_L12_00302c58(struct Moby *moby) {
         float *points;
         float *intermediate;
         if (tick_countdown_32_alt((int *)(data + 0x2300 + strip * 4))) {
-            count = *(int *)(data + 0x232c);
-            intermediate = (float *)__builtin_alloca((count & 0x1ffffff) * 16);
+            int vector_count = *(int *)(data + 0x232c);
+            float intermediate_storage[vector_count][4];
+            intermediate = &intermediate_storage[0][0];
             points = (float *)(data + strip * 0x460);
-            for (i = 0; i < *(int *)(data + 0x232c); i++) {
+            i = 0;
+            if (0 < *(int *)(data + 0x232c)) do {
                 clear_u64_value(points);
                 points[3] = 1.0f;
                 points[0] = (float)i * (*(float *)(data + 0x2324) / (float)*(int *)(data + 0x232c));
                 FUN_L00_00257d78(intermediate + i * 4, 0.0f, D_L12_00161E00 * frame_time);
                 points += 4;
-            }
+                i++;
+            } while (i < *(int *)(data + 0x232c));
             i = 1;
             if (1 < *(int *)(data + 0x232c) - 1) do {
                 float *out = (float *)(data + strip * 0x460 + 0x1190 + i * 16 - 16);
