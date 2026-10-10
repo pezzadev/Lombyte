@@ -88,7 +88,6 @@ s32 FUN_L00_00261b48(s32 path_index, OvlVec4 *start, OvlVec4 *end, OvlVec4 *out)
     OvlVec4 origin;
     OvlVec4 first;
     OvlVec4 next;
-    OvlVec4 *previous;
     OvlVec4 *current;
     SegmentPath_261b48 **entry;
     s32 i;
@@ -107,28 +106,26 @@ s32 FUN_L00_00261b48(s32 path_index, OvlVec4 *start, OvlVec4 *end, OvlVec4 *out)
     FUN_001ff260_261b48(&origin);
     origin.f[2] = 1.0f;
     entry = &D_L00_001B04B0_261b48[path_index];
-    previous = &first;
-    FUN_001ff2a8_261b48(previous, &(*entry)->points[0], start);
-    FUN_001ff6d0_261b48(previous, previous, &direction);
     found = 0;
     i = 1;
+    FUN_001ff2a8_261b48(&first, &(*entry)->points[0], start);
+    FUN_001ff6d0_261b48(&first, &first, &direction);
     current = &next;
     if (i < (*entry)->count) {
         offset = 0x20;
         do {
             FUN_001ff2a8_261b48(current, (OvlVec4 *)((u8 *)*entry + offset), start);
             FUN_001ff6d0_261b48(current, &next, &direction);
-            if (previous->f[3] == 0.0f && current->f[3] == 0.0f)
-                goto next_point_261b48;
-            if (!(current->f[1] * previous->f[1] < 0.0f))
-                goto next_point_261b48;
-            crossing = (previous->f[0] - current->f[0]) / (previous->f[1] - current->f[1]) * -current->f[1] + current->f[0];
-            if (crossing > 0.0f && crossing < nearest) {
-                nearest = crossing;
-                found = 1;
+            if (first.f[3] != 0.0f || current->f[3] != 0.0f) {
+                if (current->f[1] * first.f[1] < 0.0f) {
+                    crossing = (first.f[0] - current->f[0]) / (first.f[1] - current->f[1]) * -current->f[1] + current->f[0];
+                    if (crossing > 0.0f && crossing < nearest) {
+                        nearest = crossing;
+                        found = 1;
+                    }
+                }
             }
-next_point_261b48:
-            previous->q = current->q;
+            first.q = current->q;
             i++;
             offset += 0x10;
         } while (i < (*entry)->count);
