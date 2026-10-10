@@ -912,7 +912,95 @@ float FUN_L00_0020f0b8(float *a, float *b) {
     }
     return s;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_0020f160.s", FUN_L00_0020f160);
+#else
+extern s32 D_00141508 __attribute__((section(".data")));
+extern s32 D_0014150C __attribute__((section(".data")));
+extern s32 D_00141510 __attribute__((section(".data")));
+extern s32 D_001413D4 __attribute__((section(".data")));
+extern s32 D_001413DC __attribute__((section(".data")));
+extern s32 D_00141514 __attribute__((sda));
+extern u8 D_00140640[] __asm__("D_00140640") __attribute__((section(".data")));
+extern void FUN_001ffcd8_f160(void *, void *) __asm__("FUN_001fa2b8");
+extern void FUN_0025c170_f160(void *) __asm__("FUN_00214128");
+extern void FUN_001ff260_f160(void *) __asm__("FUN_001f99f8");
+extern void FUN_001ff278_f160(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void FUN_001ff300_f160(void *, void *, f32) __asm__("FUN_001f9a68");
+extern void FUN_0025d330_f160(void *, void *) __asm__("FUN_00214598");
+
+void FUN_L00_0020f160(void *moby, void *matrix)
+{
+    u8 sum[0x40] __attribute__((aligned(16)));
+    f32 scores[16];
+    s32 i, j, n, count, chosen, ring, limit;
+    f32 maximum;
+    u8 *record;
+
+    record = D_00140640 + D_00141508 * 0x30;
+    FUN_001ffcd8_f160(record, matrix);
+    FUN_0025c170_f160(record);
+    ring = D_00141508 + 1;
+    D_00141508 = ring % 16;
+    D_0014150C++;
+    if (D_0014150C > 16)
+        D_0014150C = 16;
+    for (i = 0; i < 3; i++)
+        FUN_001ff260_f160(sum + i * 16);
+
+    if (D_001413DC == 22)
+        limit = 14;
+    else if (D_001413D4 == 2)
+        limit = 5;
+    else
+        limit = 11;
+    D_00141514 = limit;
+    if (D_00141510 < limit)
+        D_00141510++;
+    else if (D_00141510 > limit)
+        D_00141510--;
+    n = D_00141510;
+    if (n < 2)
+        n = 2;
+    if (D_0014150C < n)
+        return;
+
+    for (i = 0; i < n; i++) {
+        s32 a = D_00141508 - (i - 15);
+        a -= ((a < 0 ? a + 15 : a) >> 4) * 16;
+        for (j = 0; j < n; j++) {
+            if (i != j) {
+                s32 b = D_00141508 - (j - 15);
+                b -= ((b < 0 ? b + 15 : b) >> 4) * 16;
+                scores[i] += FUN_L00_0020f0b8((f32 *)(D_00140640 + a * 0x30),
+                                                  (f32 *)(D_00140640 + b * 0x30));
+            }
+        }
+    }
+    maximum = 0.0f;
+    for (i = 0; i < n; i++)
+        if (maximum < scores[i])
+            maximum = scores[i];
+    count = 0;
+    for (i = 0; i < n; i++)
+        if (maximum * 0.2f < scores[i])
+            count++;
+    chosen = 0;
+    for (i = 0; i < n; i++) {
+        if (scores[i] <= maximum * 0.2f || count < 1 || count > 2) {
+            s32 a = D_00141508 - (i - 15);
+            a -= ((a < 0 ? a + 15 : a) >> 4) * 16;
+            record = D_00140640 + a * 0x30;
+            chosen++;
+            for (j = 0; j < 3; j++)
+                FUN_001ff278_f160(sum + j * 16, sum + j * 16, record + j * 16);
+        }
+    }
+    for (i = 0; i < 3; i++)
+        FUN_001ff300_f160(sum + i * 16, sum + i * 16, 1.0f / (f32)chosen);
+    FUN_0025d330_f160(sum, (u8 *)moby + 0x40);
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_0020f580.s", FUN_L00_0020f580);
 typedef struct {
     char pad[0x20];
