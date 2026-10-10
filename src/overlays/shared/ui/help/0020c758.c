@@ -1281,20 +1281,22 @@ void FUN_L00_00210748(void) {
                 slot_hero->items[0].unk20++;
                 FUN_L00_0020fea0(i);
                 if (i == 0) {
-                    int j = 0;
+                    char *p = (char *)&hero;
+                    struct HeroEase *e = &hero.unk18F0[0];
+                    char *end = p + 0x210;
                     do {
-                        struct HeroEase *e = &hero.unk18F0[j];
-                        if (e->unkA0 != -1) {
-                            e->kind = 5;
+                        if (((struct HeroEase *)(p + 0x18F0))->unkA0 != -1) {
+                            ((struct HeroEase *)(p + 0x18F0))->kind = 5;
                             FUN_L00_00205168(e);
                         }
-                        j++;
-                    } while (j < 3);
+                        p += 0xB0;
+                        e++;
+                    } while (p < end);
                 }
                 if ((moby->unk70 & 2) && moby->prev_seq == 0)
                     FUN_L00_00257880(moby, 1, 0, 2);
             } else if (slot_hero->items[0].state == 3) {
-                (*(u8 *)((char *)&slot_hero->items[0] + 0x1b))++;
+                slot_hero->items[0].unk1B++;
                 if ((moby->unk70 & 2) || i == 1 || i == 0)
                     FUN_L00_0020fca8(i, D_L00_0015F3F8 + 2);
             }
