@@ -27,7 +27,85 @@ void FUN_L11_0030e690(char *moby) {
     } while (*p++ >= 0);
 }
 INCLUDE_ASM("config/us/overlays/asm/FUN_L11_0030ee00.s", FUN_L11_0030ee00);
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L11_00310cf8.s", FUN_L11_00310cf8);
+#else
+typedef unsigned int u128_quad __attribute__((mode(TI)));
+extern int D_L11_001611C0_g __asm__("D_L11_001611C0");
+extern int D_0013E500_g[] __asm__("D_0013E500");
+extern int ftoi_g(float) __asm__("FUN_001fa6d0");
+extern void add_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void subtract_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a28");
+extern float fast_cos(float) __asm__("FUN_001f9dc8");
+extern float fast_sin(float) __asm__("FUN_001f9de0");
+
+void FUN_L11_00310cf8(float x, float y, float width, float height, float angle, int texture_width,
+                       int texture_height, int texture, int z_and_fog, int red, int green,
+                       int blue, int alpha) {
+    float vertical[4];
+    float horizontal[4];
+    float center[4];
+    float top_left[4];
+    float bottom_left[4];
+    float top_right[4];
+    float bottom_right[4];
+    int *tag;
+    unsigned long long *q;
+    int sx, sy;
+
+    center[0] = x;
+    center[1] = y;
+    vertical[0] = height * fast_sin(angle);
+    vertical[1] = height * fast_cos(angle);
+    horizontal[0] = width * fast_cos(angle);
+    horizontal[1] = -width * fast_sin(angle);
+    add_vector_xyz(top_left, center, vertical);
+    subtract_vector_xyz(top_left, top_left, horizontal);
+    add_vector_xyz(bottom_left, center, vertical);
+    subtract_vector_xyz(top_right, center, horizontal);
+    *(u128_quad *)bottom_right = *(u128_quad *)center;
+
+    tag = (int *)D_L11_001611C0_g;
+    tag[0] = 0x10000007;
+    tag[1] = 0;
+    tag[2] = 0;
+    tag[3] = 0x50000007;
+    q = (unsigned long long *)(tag + 4);
+    D_L11_001611C0_g = (int)q;
+    q[0] = 0xB400000000008001ULL;
+    q[1] = 0x53535353106ULL;
+    q[2] = (unsigned long long)texture;
+    q[3] = 0x154;
+    q[4] = ((unsigned long long)(alpha & 0xff) << 24) | ((blue & 0xff) << 16) |
+           ((green & 0xff) << 8) | (red & 0xff);
+    q[5] = 0x100010;
+    sx = ftoi_g(top_left[0] * 16.0f);
+    sy = ftoi_g(top_left[1] * 16.0f);
+    q[7] = texture_width << 4;
+    q[6] = (unsigned long long)(sx + D_0013E500_g[4] - 8) |
+           ((unsigned long long)(sy + D_0013E500_g[5] - 8) << 16) |
+           ((unsigned long long)z_and_fog << 32);
+    sx = ftoi_g(bottom_left[0] * 16.0f);
+    sy = ftoi_g(bottom_left[1] * 16.0f);
+    q[9] = texture_height << 20;
+    q[8] = (unsigned long long)(sx + D_0013E500_g[4] - 8) |
+           ((unsigned long long)(sy + D_0013E500_g[5] - 8) << 16) |
+           ((unsigned long long)z_and_fog << 32);
+    sx = ftoi_g(top_right[0] * 16.0f);
+    sy = ftoi_g(top_right[1] * 16.0f);
+    q[11] = (texture_height << 20) + (texture_width << 4);
+    q[10] = (unsigned long long)(sx + D_0013E500_g[4] - 8) |
+            ((unsigned long long)(sy + D_0013E500_g[5] - 8) << 16) |
+            ((unsigned long long)z_and_fog << 32);
+    sx = ftoi_g(bottom_right[0] * 16.0f);
+    sy = ftoi_g(bottom_right[1] * 16.0f);
+    q[13] = 0;
+    q[12] = (unsigned long long)(sx + D_0013E500_g[4] - 8) |
+            ((unsigned long long)(sy + D_0013E500_g[5] - 8) << 16) |
+            ((unsigned long long)z_and_fog << 32);
+    D_L11_001611C0_g += 0x70;
+}
+#endif
 #define NOT_SDA
 
 #define MACRO_ADDR
