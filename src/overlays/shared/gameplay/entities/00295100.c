@@ -1007,7 +1007,7 @@ extern void FUN_L00_00265fa0(s32, s32, s32);
 
 void FUN_L00_00299a68(void) {
     s32 offset;
-    char *table;
+    s32 first_destination, second_destination;
     s32 index;
 
     FUN_L00_002660c0(0);
@@ -1017,28 +1017,29 @@ void FUN_L00_00299a68(void) {
     D_L00_0015F3FC_298840 = 1.0f;
     FUN_L00_001ff040((char *)&D_L00_0015F622 - 2, 0, 0x10);
     offset = D_L00_001611CC - 0xE0000;
+    second_destination = D_L00_00173E00_298840.x8 + offset;
+    first_destination = D_L00_00173E00_298840.x4 + offset;
+    D_L00_0015F62C = second_destination;
     D_L00_001611CC = offset;
-    D_L00_0015F62C = D_L00_00173E00_298840.x8 + offset;
-    D_L00_0015F628 = D_L00_00173E00_298840.x4 + offset;
-    table = (char *)&disc_table;
+    D_L00_0015F628 = first_destination;
     if (pal_mode != 0) {
-        index = *(volatile s16 *)&D_L00_0015F622 * 8;
-        FUN_L00_00265fa0(D_L00_0015F628, *(s32 *)(table + index + 0x1748),
-                           *(s32 *)(table + index + 0x174C));
+        index = (s16)D_L00_0015F622;
+        FUN_L00_00265fa0(D_L00_0015F628, disc_table.music_60000[index + 38].sector,
+                           disc_table.music_60000[index + 38].size);
     } else {
-        index = *(volatile s16 *)&D_L00_0015F622 * 8;
-        FUN_L00_00265fa0(D_L00_0015F628, *(s32 *)(table + index + 0x16A8),
-                           *(s32 *)(table + index + 0x16AC));
+        index = (s16)D_L00_0015F622;
+        FUN_L00_00265fa0(D_L00_0015F628, disc_table.music_60000[index + 18].sector,
+                           disc_table.music_60000[index + 18].size);
     }
     FUN_L00_002660c0(1);
     D_L00_0015F622++;
-    index = (s16)D_L00_0015F622 * 8;
+    index = (s16)D_L00_0015F622;
     if (pal_mode != 0) {
-        FUN_L00_00265fa0(D_L00_0015F62C, *(s32 *)(table + index + 0x1748),
-                           *(s32 *)(table + index + 0x174C));
+        FUN_L00_00265fa0(D_L00_0015F62C, disc_table.music_60000[index + 38].sector,
+                           disc_table.music_60000[index + 38].size);
     } else {
-        FUN_L00_00265fa0(D_L00_0015F62C, *(s32 *)(table + index + 0x16A8),
-                           *(s32 *)(table + index + 0x16AC));
+        FUN_L00_00265fa0(D_L00_0015F62C, disc_table.music_60000[index + 18].sector,
+                           disc_table.music_60000[index + 18].size);
     }
 }
 #endif
