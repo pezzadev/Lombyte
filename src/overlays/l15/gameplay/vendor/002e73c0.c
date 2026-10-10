@@ -891,7 +891,95 @@ void FUN_L15_002edb20(struct Moby *m) {
         break;
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L15_002edbe0.s", FUN_L15_002edbe0);
+#else
+extern float D_L15_001DE860[];
+extern float D_L15_001DECB0[];
+extern float D_L15_001DEA88[][2];
+extern float D_L15_001DEED8[][2];
+extern int D_L15_001DF048[];
+extern Quad4 D_L15_00162208;
+extern int D_L15_001621B0[2] __attribute__((sda));
+extern int D_L15_001621D0[2] __attribute__((sda));
+extern int D_L15_001621D8[2] __attribute__((sda));
+extern int D_L15_001621E0[2] __attribute__((sda));
+extern int D_L15_001621E4 __attribute__((sda));
+extern int D_L15_001621E8 __attribute__((sda));
+extern int D_L15_001621EC __attribute__((sda));
+extern float D_L15_001621F0 __attribute__((sda));
+extern float D_L15_001621F4 __attribute__((sda));
+extern float D_L15_001621F8 __attribute__((sda));
+extern float D_L15_001621FC __attribute__((sda));
+
+void FUN_L15_002edbe0(struct Moby *moby) {
+    unsigned int i = 0;
+    unsigned int off = 0;
+    RingVars *data = (RingVars *)moby->pvars;
+    unsigned int n;
+    int j;
+    int k;
+    int color;
+    struct { char pad[4]; Quad4 q; } t;
+    int r;
+    int g;
+    int b;
+    float scale;
+    Quad4 *p;
+    float *o;
+    float *zout;
+    float *end;
+    float *s;
+    int *colors;
+
+    scale = convert_integer_to_float(D_L15_0015F5CC) * (D_L15_001621FC * frame_time);
+    vu1_add_gs_register(6, get_effect_texture(D_L15_001621E8));
+    vu1_add_gs_register(0x42, ((long)D_L15_001621E4 << 32) | 0x44);
+    vu1_add_gs_register(8, 0);
+    vu1_add_gs_register(0x14, 0xFF9000000260L);
+    data->prev = data->angle;
+    data->angle = fast_add_rotations(data->angle, 360.0f / FUN_001f96b0(D_L15_001621F4) *
+                                                      DEG_TO_RAD * frame_time);
+    FUN_L00_00250320(moby, &r, &g, &b);
+    p = (Quad4 *)&t.q.f[1];
+    color = (D_L15_001621EC << 24) | (b << 16) | (g << 8) | r;
+    o = D_L15_001DECB0;
+    s = D_L15_001DE860;
+    colors = D_L15_001DF048;
+    zout = D_L15_001DECB0 + 2;
+    end = D_L15_001DECB0 + 0x230 / 4;
+    do {
+        float x = s[0];
+        float y = s[1];
+        float rad = FUN_001f9988(x * x + y * y);
+        float a = FUN_L00_00200260(rad, D_L15_001621F0);
+        float w = wrap_angle(a * 6.2831855f / D_L15_001621F0);
+        float z = fast_sin(fast_add_rotations(w, data->angle));
+        o[0] = D_L15_00162170.f[0] * s[0] + moby->pos.x;
+        *(float *)((char *)D_L15_001DECB0 + 4 + off) = D_L15_00162170.f[0] * s[1] + moby->pos.y;
+        *zout = D_L15_00162170.f[0] * s[2] + moby->pos.z + D_L15_001621F8 * z;
+        *colors++ = color;
+        off += 12;
+        o += 3;
+        s += 3;
+        zout += 3;
+    } while (zout < end);
+    for (j = 0; j < 2; j++) {
+        for (n = 0; n < 46; n++) {
+            t.q = D_L15_00162208;
+            D_L15_001DEED8[n][0] = D_L15_001DEA88[n][0] +
+                FUN_L00_00200260(scale * t.q.f[j * 2], 1.0f);
+            D_L15_001DEED8[n][1] = D_L15_001DEA88[n][1] +
+                FUN_L00_00200260(scale * p->f[j * 2], 1.0f);
+        }
+        font_queue_vu_state();
+        for (k = 0; k < 1; k++) {
+            FUN_L00_001fde98(D_L15_001621B0[k], D_L15_001621D0[k], D_L15_001621E0[k],
+                             (void *)D_L15_001621D8[k], 1);
+        }
+    }
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L15_002edfc0.s", FUN_L15_002edfc0);
 /* Tells whether the vendor menu lets this slot's item be bought (1) or not (0). */
 
