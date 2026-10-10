@@ -5,7 +5,138 @@
 #include "rnc/math_consts.h"
 #include "asm.h"
 
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L01_0030b618.s", FUN_L01_0030b618);
+#else
+#include "rnc/overlay/quad.h"
+#include "qcopy.h"
+extern s32 truncate_float_to_s32_b618(f32) __asm__("FUN_001fa6d0");
+extern f32 distance_xyz_b618(void *, void *) __asm__("FUN_001f9b80");
+extern s32 is_point_inside_clip_volume_b618(void *, s32) __asm__("FUN_00214720");
+extern s32 is_timer_active_b618(void *) __asm__("FUN_001f9740");
+extern s32 random_integer_between_b618(s32, s32) __asm__("FUN_L00_00257b90");
+extern f32 itof_s_b618(s32) __asm__("FUN_001fa6c0");
+extern f32 fast_sin_b618(f32) __asm__("FUN_001f9de0");
+extern void interpolate_vector_b618(void *, void *, void *, f32) __asm__("FUN_L00_0025b6b8");
+extern s32 FUN_L00_0023e738(void *, f32, f32, f32, f32, f32);
+extern void FUN_L00_0023e838(s32);
+extern void mark_moby_for_removal_b618(void *) __asm__("FUN_0020c828");
+extern char D_L01_00167240_b618[] __asm__("D_L01_00167240");
+extern char *D_L01_0015FFD8_b618 __asm__("D_L01_0015FFD8") __attribute__((sda));
+extern char D_L01_00180740_b618[] __asm__("D_L01_00180740");
+
+void FUN_L01_0030b618(u8 *m) {
+    s32 state = m[0x20];
+    char *e = *(char **)(m + 0x78);
+    s32 i;
+    s32 count;
+    s32 current;
+    s32 next;
+    s32 slot;
+    f32 elapsed;
+    f32 active;
+    f32 phase;
+    f32 cutoff;
+    OvlQuad first;
+    OvlQuad second;
+
+    switch (state) {
+    case 0:
+        if (*(s32 *)(e + 0x58) < 2) {
+            mark_moby_for_removal_b618(m);
+            return;
+        }
+        for (i = 0; i < *(s32 *)(e + 0x58); i++) {
+            f32 *point = ((f32 *)e) + i * 4;
+            point[0] *= 0.00390625f;
+            point[1] *= 0.00390625f;
+            point[2] *= 0.00390625f;
+            point[3] *= 0.00390625f;
+        }
+        *(s32 *)(e + 0x68) = -1;
+        if (m[0x30] < truncate_float_to_s32_b618(*(f32 *)(e + 0x5c)) + 4)
+            m[0x30] = truncate_float_to_s32_b618(*(f32 *)(e + 0x5c)) + 4;
+        m[0x20] = 1;
+        return;
+    case 1:
+        break;
+    default:
+        return;
+    }
+
+    elapsed = distance_xyz_b618(m + 0x10, D_L01_00167240_b618);
+    active = elapsed < *(f32 *)(e + 0x5c) ? 1.0f : 0.0f;
+    if (active != 0.0f && *(s32 *)(e + 0x80) != -1) {
+        if (!is_point_inside_clip_volume_b618(D_L01_00167240_b618, *(s32 *)(e + 0x80)))
+            active = 0.0f;
+    }
+    i = *(s32 *)(e + 0x84);
+    if (i != -1 && *(s8 *)(D_L01_0015FFD8_b618 + (i << 8) + 0x20) < 0) {
+        slot = *(s32 *)(e + 0x68);
+        if (slot != -1)
+            FUN_L00_0023e838(slot);
+        mark_moby_for_removal_b618(m);
+        return;
+    }
+    if (active != 0.0f) {
+
+        if (is_timer_active_b618(e + 0x6c)) {
+            current = random_integer_between_b618(*(s32 *)(e + 0x50), *(s32 *)(e + 0x54));
+            *(s32 *)(e + 0x74) = *(s32 *)(e + 0x78);
+            *(s32 *)(e + 0x6c) = current;
+            *(s32 *)(e + 0x70) = current;
+            count = *(s32 *)(e + 0x58);
+            next = random_integer_between_b618(1, count - 1);
+            i = (*(s32 *)(e + 0x78) + next) % count;
+            *(s32 *)(e + 0x7c) = *(s32 *)(e + 0x7c) == 0;
+            *(s32 *)(e + 0x78) = i;
+        }
+        phase = itof_s_b618(*(s32 *)(e + 0x70) - *(s32 *)(e + 0x6c));
+        phase = phase / itof_s_b618(*(s32 *)(e + 0x70));
+        phase = phase * 3.1415927f * 0.5f;
+        if (*(s32 *)(e + 0x7c) != 0)
+            phase += 1.5707964f;
+        phase = fast_sin_b618(phase);
+
+        if (*(s32 *)(e + 0x7c) == 0) {
+            first = ((OvlQuad *)e)[*(s32 *)(e + 0x74)];
+            next = *(s32 *)(e + 0x78);
+        } else {
+            first = ((OvlQuad *)e)[*(s32 *)(e + 0x78)];
+            next = *(s32 *)(e + 0x74);
+        }
+        second = ((OvlQuad *)e)[next];
+        interpolate_vector_b618(e + 0x40, &first, &second, phase);
+        cutoff = *(f32 *)(e + 0x5c) * 0.75f;
+        if (cutoff < elapsed) {
+            second = *(OvlQuad *)(e + 0x40);
+            first = 0;
+            interpolate_vector_b618(e + 0x40, &second, &first,
+                                    (elapsed - cutoff) / (*(f32 *)(e + 0x5c) - cutoff));
+        }
+        slot = *(s32 *)(e + 0x68);
+        if (slot == -1) {
+            slot = FUN_L00_0023e738(m + 0x10, *(f32 *)(e + 0x60), *(f32 *)(e + 0x4c),
+                                  *(f32 *)(e + 0x40), *(f32 *)(e + 0x44),
+                                  *(f32 *)(e + 0x48));
+            *(s32 *)(e + 0x68) = slot;
+            return;
+        }
+        {
+            char *p = D_L01_00180740_b618 + slot * 0x20;
+            qcopy(p + 0x10, m + 0x10);
+            *(f32 *)(p + 0x1c) = *(f32 *)(e + 0x60);
+            qcopy(p, e + 0x40);
+        }
+    } else {
+        slot = *(s32 *)(e + 0x68);
+        if (slot != -1) {
+            FUN_L00_0023e838(slot);
+            *(s32 *)(e + 0x68) = -1;
+        }
+    }
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L01_0030bfa8.s", FUN_L01_0030bfa8);
 #define NOT_SDA
 
