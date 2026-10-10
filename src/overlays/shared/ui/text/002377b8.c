@@ -840,7 +840,83 @@ void FUN_L00_0023a218(u8 *m) {
         }
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_0023a2d0.s", FUN_L00_0023a2d0);
+#else
+extern s32 D_0013E504;
+extern s32 D_L00_0015F5CC;
+extern char D_L00_0015F918[];
+extern s32 D_L00_0015F8F8 __attribute__((sda));
+extern s32 D_L00_0015F8FC __attribute__((sda));
+extern s32 D_L00_0015F900 __attribute__((sda));
+extern s32 D_L00_0015F904 __attribute__((sda));
+extern s32 D_L00_0015F908 __attribute__((sda));
+extern s32 D_L00_0015F90C __attribute__((sda));
+extern s32 D_L00_0015F910 __attribute__((sda));
+extern s32 D_L00_0015F914 __attribute__((sda));
+extern s32 FUN_001f96f8(s32);
+extern f32 fast_sin(f32) __asm__("FUN_001f9de0");
+extern void FUN_L00_001fb470(s32, s32, s32, char *, s32);
+
+/* Draws the short counter panel, its spinning icon, and a pulsing label. */
+s32 FUN_L00_0023a2d0(Hud *m) {
+    char buf[16];
+    u8 *q;
+    s32 x, y, panel_right, panel_left, slide, alpha, text_alpha;
+    s32 color, shadow, period;
+    f32 text, open, pulse, scaled_text;
+
+    y = D_0013E504 - 42;
+    if (pal_mode_reload[0] == 0)
+        y = D_0013E504 - 50;
+    x = m->x;
+    if (hero.unk20A4 == 2)
+        goto out;
+    if (*(s32 *)((u8 *)&hero + 0x2084) == 50)
+        goto out;
+    q = m->ab;
+    if (q[0] == 0)
+        goto out;
+
+    open = convert_integer_to_float(q[0]) / convert_integer_to_float(D_L00_0015F7F0);
+    if (1.0f < open)
+        open = 1.0f;
+    else if (open < 0.0f)
+        open = 0.0f;
+    text = convert_integer_to_float(q[1]);
+    text /= convert_integer_to_float(D_L00_0015F7F0);
+    if (1.0f < text)
+        text = 1.0f;
+    else if (text < 0.0f)
+        text = 0.0f;
+
+    text_alpha = truncate_float_to_s32(text * 128.0f);
+    alpha = truncate_float_to_s32((f32)D_L00_0015F8F8 * open);
+    panel_right = x + D_L00_0015F900;
+    slide = truncate_float_to_s32((f32)D_L00_0015F8FC * open);
+    panel_left = panel_right - slide;
+    draw_hud_sprite_flipped(get_icon_frame(0x7580, 1), panel_right + 16, y, 32, 32, alpha);
+    draw_hud_sprite(get_icon_frame(0x7580, 0), panel_left, y, slide + 16, 32, alpha);
+    draw_hud_sprite(get_icon_frame(0x7580, 1), panel_left - 32, y, 32, 32, alpha);
+    draw_hud_icon(m, get_icon_frame(0x754f, D_L00_0015F5CC % 60 >> 1), x - 32, y, 0, text_alpha);
+
+    sprintf_alt(buf, D_L00_0015F918);
+    x += D_L00_0015F904;
+    y += D_L00_0015F908;
+    period = FUN_001f96f8(D_L00_0015F914);
+    pulse = fast_sin((f32)(D_L00_0015F5CC % period) /
+                     convert_integer_to_float(period) * 6.28318f - 3.14159f) * 4.0f - 3.0f;
+    if (pulse < 0.0f)
+        pulse = 0.0f;
+    scaled_text = pulse * text;
+    shadow = fast_tween_color(0, 0x80000000, scaled_text);
+    color = fast_tween_color(D_L00_0015F90C, D_L00_0015F910, scaled_text);
+    FUN_L00_001fb470(x + 1, y + 1, shadow, buf, -1);
+    FUN_L00_001fb470(x, y, color, buf, -1);
+out:
+    return m->ret;
+}
+#endif
 extern short D_00140986 __attribute__((section(".data")));
 int FUN_L00_00235a70(char *, int *, int *);
 void FUN_L00_00235ad8(char *, int *, int *, int, int);
