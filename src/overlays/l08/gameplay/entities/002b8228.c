@@ -888,9 +888,6 @@ char *FUN_L08_002dc8a0(char *src, char *pos, char *vec) {
 }
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002dc9a8.s", FUN_L08_002dc9a8);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002dd3c0.s", FUN_L08_002dd3c0);
-#ifndef NON_MATCHING
-INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002de3e0.s", FUN_L08_002de3e0);
-#else
 extern struct Moby *create_moby(s32) __asm__("FUN_0020c4f8");
 extern float D_L08_001675C0[];
 extern float FUN_001f9b80(void *, void *);
@@ -918,7 +915,8 @@ struct Moby *FUN_L08_002de3e0(void *pos, struct Moby *target, void *velocity, fl
         moby->rot.y = -FUN_001f9e90(distance, reference[82] - moby->pos.z);
         *(volatile float *)&moby->rot.z = FUN_001f9e90(reference[80] - moby->pos.x,
                                                         reference[81] - moby->pos.y);
-        scale = D_L08_00161A40 * moby->pclass->scale;
+        scale = moby->pclass->scale;
+        scale *= D_L08_00161A40;
         moby->unk30 = 0xFF;
         moby->unk31 = 1;
         *(volatile u8 *)&moby->state = 1;
@@ -934,7 +932,6 @@ struct Moby *FUN_L08_002de3e0(void *pos, struct Moby *target, void *velocity, fl
     }
     return moby;
 }
-#endif /* NON_MATCHING */
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002de528.s", FUN_L08_002de528);
 #else
