@@ -716,7 +716,108 @@ void FUN_L14_003087c0(struct Moby *moby) {
         break;
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L14_00314f00.s", FUN_L14_00314f00);
+#else
+extern char *D_L14_0015EF50;
+extern char *D_L14_001B0BB0[];
+extern char *D_L14_001600EC;
+extern char *D_L14_00167504;
+extern float D_L14_0016D1F0;
+extern int scale_game_frames_14f00(int) __asm__("FUN_001f96f8");
+extern void clear_u64_value_14f00(void *) __asm__("FUN_001f99f8");
+extern float FUN_001f9b48_14f00(void *, void *) __asm__("FUN_001f9b48");
+extern float FUN_001f9e90_14f00(float, float) __asm__("FUN_001f9e90");
+extern float FUN_001fa6c0_14f00(int) __asm__("FUN_001fa6c0");
+extern void FUN_L00_00216f90_14f00(void *, void *, int, int) __asm__("FUN_L00_00216f90");
+
+void FUN_L14_00314f00(char *moby) {
+    char *rec = *(char **)(D_L14_0015EF50 + *(short *)(moby + 0x84) * 32 + 0x1C);
+    char *motion = *(char **)(moby + 0x70);
+    char *path;
+    short *indices;
+    float *lengths;
+    float length;
+    int i;
+    int count;
+    float identity[4];
+
+    rec[0x38] = 3;
+    *(int *)(motion + 0x40) = 0;
+    *(int *)(motion + 0x44) = 0;
+    *(int *)(motion + 0x48) = 0;
+    *(int *)(motion + 0x4C) = 0;
+    *(int *)(motion + 0x50) = 0;
+    *(short *)(motion + 0x54) = 0;
+    *(short *)(motion + 0x56) = scale_game_frames_14f00(*(short *)(rec + 0x3A));
+    indices = (short *)(motion + 0x58);
+    lengths = (float *)(motion + 0x68);
+    i = 7;
+    do {
+        *lengths++ = 0.0f;
+        *indices++ = -1;
+    } while (--i >= 0);
+    *(float *)(motion + 0x88) = FUN_001f9e90_14f00(1.0f, D_L14_0016D1F0) * 2.0f;
+
+    if (*(int *)(rec + 0x20) >= 0) {
+        path = D_L14_001B0BB0[*(int *)(rec + 0x20)];
+        if (*(int *)path > 0) {
+            indices = (short *)(motion + 0x58);
+            lengths = (float *)(motion + 0x68);
+            i = 0;
+            do {
+                length = *(float *)(path + i * 16 + 0x1C);
+                if (length > 0.0f) {
+                    *lengths++ = length;
+                    *indices++ = i;
+                }
+                count = *(int *)path;
+                length = FUN_001f9b48_14f00(path + i * 16 + 0x10,
+                    path + ((i + 1) % count) * 16 + 0x10);
+                *(float *)(path + i * 16 + 0x1C) = length;
+                if (i < *(int *)path - 1)
+                    *(float *)(motion + 0x48) += length;
+                i++;
+            } while (i < *(int *)path);
+        }
+    }
+    if (*(short *)(rec + 0x3A) > 0) {
+        length = FUN_001fa6c0_14f00(scale_game_frames_14f00(*(short *)(rec + 0x3A)));
+        *(float *)(rec + 0x3C) = (*(float *)(motion + 0x48) / length) * 60.0f;
+    }
+    if (*(int *)(rec + 0x24) >= 0) {
+        path = D_L14_001B0BB0[*(int *)(rec + 0x24)];
+        if (*(int *)path > 0) {
+            i = 0;
+            do {
+                count = *(int *)path;
+                length = FUN_001f9b48_14f00(path + i * 16 + 0x10,
+                    path + ((i + 1) % count) * 16 + 0x10);
+                *(float *)(path + i * 16 + 0x1C) = length;
+                if (i < *(int *)path - 1)
+                    *(float *)(motion + 0x4C) += length;
+                i++;
+            } while (i < *(int *)path);
+        }
+    }
+    *(float *)motion = 0.03f;
+    *(float *)(motion + 4) = 0.2f;
+    clear_u64_value_14f00(motion + 0x10);
+    *(float *)(motion + 0x20) = 0.03f;
+    *(float *)(motion + 0x24) = 0.2f;
+    clear_u64_value_14f00(motion + 0x30);
+    qcopy(moby + 0x30, D_L14_00167504 + 0x30);
+    qcopy(moby, D_L14_00167504);
+    qcopy(moby + 0x10, D_L14_00167504 + 0x10);
+    qcopy(moby + 0x20, D_L14_00167504 + 0x20);
+    identity[0] = 0.0f;
+    identity[1] = 0.0f;
+    identity[2] = 0.0f;
+    identity[3] = 1.0f;
+    FUN_L00_00216f90_14f00(D_L14_001600EC + *(int *)(rec + 0x54) * 0x80 + 0x30,
+        identity, 0x72, 0);
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L14_00315290.s", FUN_L14_00315290);
 #ifndef NOT_SDA
 #define NOT_SDA __attribute__((section(".data")))
