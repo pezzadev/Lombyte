@@ -1116,7 +1116,86 @@ void FUN_L12_002e87b0(char *moby) {
     float value = probe_ground_height(moby + 0x10, 0, 0.5f);
     approach_value(moby + 0x18, value, 27.0f * frame_time_sq);
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L12_002e8808.s", FUN_L12_002e8808);
+#else
+extern float angle_8808(float, float) __asm__("FUN_001f9e90");
+extern float limit_angle_8808(float, float) __asm__("FUN_001fa580");
+extern float angle_difference_8808(float, float) __asm__("FUN_001fa688");
+extern float distance_8808(void *, void *) __asm__("FUN_001f9b80");
+extern float moved_distance_8808(void *, void *) __asm__("FUN_001f9b48");
+extern void turn_8808(void *, void *, float, float, float, float) __asm__("FUN_L00_0025be00");
+extern void approach_8808(void *, float, float) __asm__("FUN_00213ed8");
+extern void steer_8808(void *, void *) __asm__("FUN_L12_00271dd8");
+extern void subtract_8808(void *, void *, void *) __asm__("FUN_001f9a28");
+extern void normalize_8808(void *, void *, float) __asm__("FUN_001f9bf8");
+extern void add_8808(void *, void *, void *) __asm__("FUN_001f9a10");
+extern int path_8808(int, void *, void *, void *) __asm__("FUN_L00_00261b48");
+extern int inside_8808(void *, void *, int) __asm__("FUN_L00_00259740");
+extern int frames_8808(int) __asm__("FUN_001f96f8");
+
+void FUN_L12_002e8808(struct Moby *moby, float *target, float max_angle, float approach_speed) {
+    char *data = (char *)moby->pvars;
+    float distance;
+    float angle;
+    float old[4] __attribute__((aligned(16)));
+    float result[4] __attribute__((aligned(16)));
+    float next[4] __attribute__((aligned(16)));
+    float delta[4] __attribute__((aligned(16)));
+    int count;
+
+    if (*(unsigned char *)(data + 0x242)) {
+        float *rotation = &moby->rot.z;
+        angle = angle_8808(target[0] - moby->pos.x, target[1] - moby->pos.y);
+        turn_8808(rotation, data + 0x23c, angle, frame_time_sq * 15.707963f,
+                  frame_time_sq * 12.566371f, frame_time * 25.132742f);
+        return;
+    }
+    distance = distance_8808(&moby->pos, target);
+    if (distance > 6.5f && max_angle != 0.0f) {
+        angle = angle_8808(target[0] - moby->pos.x, target[1] - moby->pos.y);
+        angle = limit_angle_8808(angle, max_angle);
+        turn_8808(&moby->rot.z, data + 0x23c, angle, frame_time_sq * 15.707963f,
+                  frame_time_sq * 12.566371f, frame_time * 25.132742f);
+    } else {
+        float *rotation = &moby->rot.z;
+        angle = angle_8808(target[0] - moby->pos.x, target[1] - moby->pos.y);
+        turn_8808(rotation, data + 0x23c, angle, frame_time_sq * 15.707963f,
+                  frame_time_sq * 12.566371f, frame_time * 25.132742f);
+    }
+    if (approach_speed != 0.0f) {
+        approach_8808(data + 0xf4, approach_speed, frame_time_sq * 7.0f);
+    } else {
+        angle = angle_8808(target[0] - moby->pos.x, target[1] - moby->pos.y);
+        if (angle_difference_8808(moby->rot.z, angle) < 1.5707964f && 6.0f < distance) {
+            approach_8808(data + 0xf4, frame_time * 7.0f, frame_time_sq * 7.0f);
+        } else {
+            approach_8808(data + 0xf4, frame_time, frame_time_sq * 7.0f);
+        }
+    }
+    *(OvlQuad *)old = *(OvlQuad *)&moby->pos;
+    steer_8808(moby, data + 0xd0);
+    if (*(int *)(data + 0x26c) != -1) {
+        subtract_8808(delta, old, &moby->pos);
+        normalize_8808(delta, delta, 0.05f);
+        add_8808(next, old, delta);
+        if (path_8808(*(int *)(data + 0x26c), &moby->pos, next, result)) {
+            char *path = D_L12_001B0930_w[*(int *)(data + 0x26c)];
+            if (!inside_8808(&moby->pos, path + 0x10, *(int *)path))
+                *(OvlQuad *)&moby->pos = *(OvlQuad *)result;
+            if (moved_distance_8808(&moby->pos, old) < frame_time * 0.5f) {
+                count = *(unsigned char *)(data + 0x243) + 1;
+                *(unsigned char *)(data + 0x243) = count;
+                count &= 0xff;
+                if (frames_8808(15) < count)
+                    *(unsigned char *)(data + 0x242) = 1;
+            } else {
+                *(unsigned char *)(data + 0x243) = 0;
+            }
+        }
+    }
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L12_002e9f68.s", FUN_L12_002e9f68);
 /* Springs the moby's two rotation angles toward a heading taken from its data's direction vector. */
 /* Ported from rac1-decomp (src/overlays/l12_hoven/vendor_002C0310.c: func_L12_002EC180), where it is exact; names translated to the US level program. */
