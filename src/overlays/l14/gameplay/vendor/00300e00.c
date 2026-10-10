@@ -745,7 +745,120 @@ int FUN_L14_00315920(char *a, char *b) {
         return 0;
     return 1;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L14_003159d8.s", FUN_L14_003159d8);
+#else
+extern char *D_L14_0015EF50;
+extern char *D_L14_0015F70C;
+extern float D_L14_001624A8 __attribute__((sda));
+extern char D_0013F3D0[];
+extern char D_0013F5E0[];
+extern char *D_001413D0[];
+extern float FUN_001f9e90_159d8(float, float) __asm__("FUN_001f9e90");
+extern void FUN_L00_001ed580_159d8(void *, void *, void *) __asm__("FUN_L00_001ed580");
+extern void FUN_001f9a28_159d8(void *, void *, void *) __asm__("FUN_001f9a28");
+extern void FUN_001f9a68_159d8(void *, void *, float) __asm__("FUN_001f9a68");
+extern void FUN_001f9a10_159d8(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void FUN_001f9bf8_159d8(void *, void *, float) __asm__("FUN_001f9bf8");
+extern void FUN_001f9ad8_159d8(void *, void *, void *) __asm__("FUN_001f9ad8");
+
+void FUN_L14_003159d8(char *moby) {
+    char *rec = *(char **)(D_L14_0015EF50 + *(short *)(moby + 0x84) * 32 + 0x1C);
+    char *path;
+    char *motion;
+    float *lengths;
+    float *out;
+    float total;
+    int i;
+    float v0[4], v1[4];
+    float angle[3];
+
+    *(int *)(rec + 0x20) = 2;
+    *(short *)(rec + 0x30) = 0;
+    *(short *)(rec + 0x32) = 0;
+    path = *(char **)(D_L14_0015F70C + *(int *)(rec + 0x34) * 32 + 0x10);
+    lengths = (float *)(path + 0x1C);
+    out = (float *)0x001F6C80;
+    total = 0.0f;
+    i = 0;
+    if (*(int *)path - 1 > 0) {
+        do {
+            out[i] = total;
+            i++;
+            total += *lengths;
+            lengths += 4;
+        } while (i < *(int *)path - 1);
+    }
+    out[i] = total;
+
+    path = *(char **)(D_L14_0015F70C + *(int *)(rec + 0x38) * 32 + 0x10);
+    lengths = (float *)(path + 0x1C);
+    out = (float *)0x001F7C20;
+    total = 0.0f;
+    i = 0;
+    if (*(int *)path - 1 > 0) {
+        do {
+            out[i] = total;
+            i++;
+            total += *lengths;
+            lengths += 4;
+        } while (i < *(int *)path - 1);
+    }
+    out[i] = total;
+
+    path = *(char **)(D_L14_0015F70C + *(int *)(rec + 0x3C) * 32 + 0x10);
+    lengths = (float *)(path + 0x1C);
+    out = (float *)0x001F8BC0;
+    total = 0.0f;
+    i = 0;
+    if (*(int *)path - 1 > 0) {
+        do {
+            out[i] = total;
+            i++;
+            total += *lengths;
+            lengths += 4;
+        } while (i < *(int *)path - 1);
+    }
+    out[i] = total;
+
+    motion = *(char **)(moby + 0x70);
+    *(int *)(motion + 0x88) = 1;
+    *(int *)(motion + 0x98) = 0;
+    *(int *)(motion + 0x8C) = 0;
+    *(int *)(motion + 0x90) = 0;
+    *(int *)(motion + 0x94) = 0;
+    D_L14_001624A8 = 1.0f;
+    *(float *)(motion + 0x60) = *(float *)0x001F6488 * 0.017453292f;
+    *(float *)(motion + 0x64) = *(float *)0x001F648C * 0.017453292f;
+    *(float *)(motion + 0x68) = *(float *)0x001F6490;
+    *(float *)(motion + 0x6C) = *(float *)0x001F6494 * 0.017453292f;
+    *(float *)(motion + 0x70) = *(float *)0x001F6498 * 0.017453292f;
+    *(int *)(motion + 0x74) = 0;
+    *(int *)(motion + 0x84) = 0;
+    *(int *)(motion + 0x78) = 0;
+    *(int *)(motion + 0x7C) = 0;
+    *(int *)(motion + 0x80) = 0;
+
+    angle[0] = FUN_001f9e90_159d8(*(float *)(D_001413D0[0] + 0xD0), *(float *)(D_001413D0[0] + 0xD4));
+    angle[1] = *(float *)(motion + 0x64);
+    angle[2] = *(float *)(motion + 0x68);
+    FUN_L00_001ed580_159d8(moby + 0x30, angle, D_0013F3D0);
+    FUN_001f9a28_159d8(v0, D_0013F3D0, moby + 0x30);
+    FUN_001f9a68_159d8(v1, D_0013F5E0, -1.5f);
+    FUN_001f9a10_159d8(v0, v0, v1);
+    FUN_001f9bf8_159d8(moby, v0, 1.0f);
+    FUN_001f9ad8_159d8(moby + 0x10, moby, v1);
+    FUN_001f9bf8_159d8(moby + 0x10, moby + 0x10, 1.0f);
+    FUN_001f9ad8_159d8(moby + 0x20, moby + 0x10, moby);
+
+    for (i = 0; i < 39; i++) {
+        int *value = (int *)(0x001F64CC + i * 0x30);
+        if (*value == 0) {
+            *value = 10000;
+        }
+    }
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L14_00315d48.s", FUN_L14_00315d48);
 /* Tells whether the vendor slot still blocks the menu (1) or lets it through (0). */
 
