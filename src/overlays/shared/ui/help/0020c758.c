@@ -1856,6 +1856,7 @@ void FUN_L00_00211670(void)
 {
     s32 index;
     s32 buttons;
+    s32 negative_x;
     u8 mode;
     struct Hero *p;
     u8 *source;
@@ -1871,7 +1872,8 @@ void FUN_L00_00211670(void)
     p->unk1D24 = *(f32 *)(source + 0x10C);
     if (FUN_L00_001ff408(&p->unk1D20) < 0.25f) {
         buttons = *(s32 *)(source + 0x1B0);
-        p->unk1D20 = (f32)(((buttons >> 13) & 1) - ((buttons >> 15) & 1));
+        negative_x = buttons >> 15;
+        p->unk1D20 = (f32)(((buttons >> 13) & 1) - (negative_x & 1));
         p->unk1D24 = (f32)(((buttons >> 14) & 1) - ((buttons >> 12) & 1));
     }
     FUN_L00_00217970();
