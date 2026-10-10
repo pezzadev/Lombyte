@@ -209,9 +209,6 @@ void FUN_L14_00305680(struct Moby *moby) {
         *(float *)(o + 0x18) = lo + (a - lo) * t;
     } while (*p++ >= 0);
 }
-#ifndef NON_MATCHING
-INCLUDE_ASM("config/us/overlays/asm/FUN_L14_00305758.s", FUN_L14_00305758);
-#else
 extern u8 D_0014C050[];
 extern u8 D_0013D4D5 __attribute__((section(".data")));
 extern s32 D_L14_0015F5CC;
@@ -250,7 +247,7 @@ void FUN_L14_00305758(struct Moby *moby) {
         probe_ground_height(o + 0x10, 0, 0.5f);
         moby->rot.x = 0.0f;
         moby->rot.y = -1.5707964f;
-        moby->pos.z = D_L14_001621E8 + D_L14_00174568[0];
+        moby->pos.z = D_L14_00174568[0] + D_L14_001621E8;
         qcopy(d, o + 0x10);
         moby->state = 1;
         break;
@@ -297,7 +294,6 @@ void FUN_L14_00305758(struct Moby *moby) {
         break;
     }
 }
-#endif
 #define NOT_SDA
 
 #define MACRO_ADDR
