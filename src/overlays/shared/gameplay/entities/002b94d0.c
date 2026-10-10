@@ -1244,9 +1244,6 @@ float FUN_L00_002bec80(Vec4_2bec80 *p, void *q) {
     }
     return 0.0f;
 }
-#ifndef NON_MATCHING
-INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002bed90.s", FUN_L00_002bed90);
-#else
 extern char *D_L00_001ABA00[];
 extern char D_0013F3D0[] __attribute__((section(".data")));
 extern float FUN_001f9b48(void *, void *);
@@ -1290,17 +1287,19 @@ char *FUN_L00_002bed90(char *self, float *position, float *angles, int unused, i
         } else {
             valid = *(unsigned char *)(candidate + 0x31) == 0;
         }
-        bonus = 0.0f;
         if (mode != 0 || !valid) {
+            bonus = 0.0f;
             score = FUN_001f9b48(position, target);
             if (*(float *)(candidate + 0x18) - *(float *)(self + 0x18) > 3.25f)
                 score += 15.0f;
             if (valid)
                 bonus = 5.0f;
-            score = score + bonus + heightError + angleError;
-            if (score < bestScore) {
-                bestScore = score;
-                best = candidate;
+            {
+                float finalScore = score + bonus + heightError + angleError;
+                if (finalScore < bestScore) {
+                    bestScore = finalScore;
+                    best = candidate;
+                }
             }
         }
     }
@@ -1311,7 +1310,6 @@ char *FUN_L00_002bed90(char *self, float *position, float *angles, int unused, i
     }
     return best;
 }
-#endif
 #include "sda.h"
 
 typedef int V4 __attribute__((mode(TI), aligned(16)));
