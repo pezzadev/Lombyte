@@ -36,7 +36,92 @@ void FUN_L14_002df080(u8 *moby) {
     d[0x1E8 / 4] = 0.0f;
     d[0x1EC / 4] = 0.0f;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L14_002df138.s", FUN_L14_002df138);
+#else
+extern float fast_add_rotations(float, float) __asm__("FUN_001fa580");
+extern float fast_subtract_rotations(float, float) __asm__("FUN_001fa5c8");
+extern float fast_cos(float) __asm__("FUN_001f9dc8");
+extern float fast_sin(float) __asm__("FUN_001f9de0");
+extern float integer_to_float_l14(int) __asm__("FUN_001fa6c0");
+extern float normalize_rotation_l14(float) __asm__("FUN_L00_0025e310");
+extern float spread_l14(float, float) __asm__("FUN_L00_00257c48");
+extern void enqueue_callback_l14(void *, void *) __asm__("FUN_001f4600");
+void FUN_L14_002df458(struct Moby *);
+
+void FUN_L14_002df138(u8 *moby) {
+    f32 *d = *(f32 **)(moby + 0x78);
+    f32 *p = d;
+    f32 *mirror;
+    f32 *tail;
+    f32 step;
+    f32 angle;
+    f32 height;
+    f32 index;
+    s32 i;
+
+    d[0x78] = fast_add_rotations(d[0x78], 0.17453292f);
+    d[0x79] = fast_subtract_rotations(d[0x79], 0.80285144f);
+    d[0x7a] = fast_add_rotations(d[0x7a], 0.05236f);
+    step = 360.0f / (integer_to_float_l14(10) * 0.5f) * 0.017453292f;
+    i = 0;
+    do {
+        integer_to_float_l14(i);
+        integer_to_float_l14(10);
+        if (i == 0) {
+            index = 0.0f;
+            height = 0.0f;
+        } else {
+            index = (f32)i;
+            angle = normalize_rotation_l14(d[0x78] + index * step);
+            height = fast_sin(angle);
+            height *= 0.1f;
+            height += spread_l14(0.0f, 0.2f);
+        }
+        p[2] = height;
+        i++;
+        p[1] = 0.0f;
+        p[3] = 1.0f;
+        p[0] = d[0x7c] * index + 1.6f;
+        p += 4;
+    } while (i < 5);
+
+    mirror = d + 0x12;
+    tail = d + 0x14;
+    i = 5;
+    do {
+        height = *mirror;
+        index = (f32)i;
+        tail[1] = 0.0f;
+        i++;
+        tail[2] = height;
+        mirror -= 4;
+        tail[3] = 1.0f;
+        tail[0] = d[0x7c] * index + 1.6f;
+        tail += 4;
+    } while (i < 10);
+
+    p = d;
+    i = 0;
+    do {
+        f32 index2 = (f32)i;
+        f32 yaw;
+        f32 pitch;
+        p[0x2a] = 0.0f;
+        i++;
+        yaw = normalize_rotation_l14(d[0x79] + index2 * 0.99483764f);
+        pitch = normalize_rotation_l14(d[0x7a] + index2 * 0.20944f);
+        height = fast_sin(pitch) * 0.75f;
+        height *= fast_sin(yaw);
+        p[0x2a] += height + spread_l14(0.0f, 0.2f);
+        p[0x2b] = 1.0f;
+        p[0x29] = fast_cos(yaw) * 0.5f;
+        p[0x28] = index2 * 0.39f;
+        p += 4;
+    } while (i < 19);
+    enqueue_callback_l14(FUN_L14_002df458, moby);
+}
+#endif
 #define NOT_SDA
 
 #define MACRO_ADDR
