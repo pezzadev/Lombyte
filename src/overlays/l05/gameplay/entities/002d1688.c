@@ -687,7 +687,7 @@ float FUN_L05_00304058(volatile s32 path_index, void *position, void *out, float
         path = D_L05_001B0930[path_index];
     }
     if (changed)
-        *(u128 *)out = *(u128 *)&from_point;
+        *(Vec4 *)out = from_point;
     return best;
 }
 #endif
