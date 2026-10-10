@@ -1399,6 +1399,8 @@ extern struct { char pad[0x18]; unsigned char flag; } D_0013D408;
 extern void *D_L14_00161F5C __attribute__((sda));
 extern char D_0013E550[];
 extern char *D_L14_001B0BB0_c[] __asm__("D_L14_001B0BB0");
+extern char D_L14_001FCE10[];
+extern char D_L14_001FCE48[];
 
 void FUN_L14_002fc0f0(struct Moby *moby) {
     char *data = (char *)moby->pvars;
@@ -1432,19 +1434,19 @@ void FUN_L14_002fc0f0(struct Moby *moby) {
     case 0:
         path_index = *(int *)(data + 0x68);
         if (path_index == -1) {
-            FUN_L00_001fe1f8((const char *)0x1fce10, moby->save_id);
+            FUN_L00_001fe1f8(D_L14_001FCE10, moby->save_id);
             FUN_L00_00257068(moby);
             return;
         }
         if (*(int *)D_L14_001B0BB0_c[path_index] == 0) {
-            FUN_L00_001fe1f8((const char *)0x1fce48, moby->save_id);
+            FUN_L00_001fe1f8(D_L14_001FCE48, moby->save_id);
             FUN_L00_00257068(moby);
             return;
         }
         FUN_L14_002fc890(moby);
-        moby->unk30 = 0xff;
-        moby->state = 1;
-        moby->unk32 = 0xff;
+        ((volatile struct Moby *)moby)->state = 1;
+        ((volatile struct Moby *)moby)->unk30 = 0xff;
+        ((volatile struct Moby *)moby)->unk32 = 0xff;
         *(int *)(data + 0x6c) = -1;
         *(int *)(data + 0x7c) = FUN_L00_002124c0(D_L14_00161F5C);
         break;
