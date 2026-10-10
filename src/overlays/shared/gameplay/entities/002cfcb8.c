@@ -900,7 +900,111 @@ unsigned char *FUN_L00_002d3838(unsigned char *s, void *b, int c, void *d) {
 }
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002d3a10.s", FUN_L00_002d3a10);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002d4610.s", FUN_L00_002d4610);
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002d5160.s", FUN_L00_002d5160);
+#else
+extern s32 D_L00_0015F5C4_2d5160 __asm__("D_L00_0015F5C4");
+extern f32 D_0015ED6C_2d5160 __asm__("D_0015ED6C");
+extern f32 D_0015ED70_2d5160 __asm__("D_0015ED70");
+extern f32 D_L00_00161970_2d5160 __asm__("D_L00_00161970") __attribute__((sda));
+extern f32 D_L00_00161974_2d5160 __asm__("D_L00_00161974") __attribute__((sda));
+extern f32 D_L00_00161978_2d5160 __asm__("D_L00_00161978") __attribute__((sda));
+extern f32 D_L00_0016197C_2d5160 __asm__("D_L00_0016197C") __attribute__((sda));
+extern f32 D_L00_00161988_2d5160 __asm__("D_L00_00161988") __attribute__((sda));
+extern f32 D_L00_0016198C_2d5160 __asm__("D_L00_0016198C") __attribute__((sda));
+extern unsigned char D_0013F3D0_2d5160[] __asm__("D_0013F3D0");
+extern s32 D_001413D0_2d5160 __asm__("D_001413D0") __attribute__((section(".data")));
+extern unsigned char *D_L00_001B04B0_2d5160[] __asm__("D_L00_001B04B0");
+extern void *FUN_L00_0025a420_2d5160(void *, s32, s32) __asm__("FUN_L00_0025a420");
+extern void FUN_L00_0025a478_2d5160(void *, void *, void *, s32, s32 *, f32 *, s32, s32) __asm__("FUN_L00_0025a478");
+extern void FUN_L00_0025ab48_2d5160(void *, f32 *, void *, void *) __asm__("FUN_L00_0025ab48");
+extern void FUN_L00_0025c558_2d5160(f32, void *, void *, s32, s32, s32) __asm__("FUN_L00_0025c558");
+extern void FUN_L00_0025d458_2d5160(void *, void *) __asm__("FUN_L00_0025d458");
+extern void FUN_L00_0025d538_2d5160(void *, void *) __asm__("FUN_L00_0025d538");
+extern void FUN_L00_0025ff38_2d5160(f32, void *, void *, s32, s32, void *, s32) __asm__("FUN_L00_0025ff38");
+extern void FUN_L00_00257470_2d5160(void *, s32, s32) __asm__("FUN_L00_00257470");
+extern s32 FUN_L00_00257b50_2d5160(s32) __asm__("FUN_L00_00257b50");
+extern f32 FUN_L00_00257be8_2d5160(f32, f32) __asm__("FUN_L00_00257be8");
+extern void FUN_001fef98_2d5160(void *) __asm__("FUN_001f9770");
+extern s16 FUN_00200250_2d5160(f32) __asm__("FUN_001fa6d0");
+extern s32 FUN_001fef20_2d5160(s32) __asm__("FUN_001f96f8");
+extern void FUN_L00_00257880_2d5160(void *, s32, s32, s32) __asm__("FUN_L00_00257880");
+
+void FUN_L00_002d5160(unsigned char *m) {
+    unsigned char *v = *(unsigned char **)(m + 0x78);
+    unsigned char *hit;
+    s32 result;
+    f32 damage;
+    f32 angle;
+    f32 vec[4] __attribute__((aligned(16)));
+    f32 forceX, forceY, forceZ, forceW, health, duration;
+    unsigned char *row;
+
+    if (m[0x20] == 0)
+        return;
+    if (D_L00_0015F5C4_2d5160 == 2) {
+        m[0x31] = 0;
+        *(u16 *)(m + 0x34) |= 1;
+    } else {
+        m[0x31] = 1;
+        *(u16 *)(m + 0x34) &= ~1;
+    }
+    damage = 0.0f;
+    hit = FUN_L00_0025a420_2d5160(m, 0x330000, 0);
+    FUN_L00_0025a478_2d5160(m, hit, v + 0x20, 0, &result, &damage, 0, 4);
+    if (result != 1 && m[0x20] != 12 && damage != 0.0f) {
+        forceX = D_L00_00161970_2d5160 * D_0015ED70_2d5160;
+        forceY = D_L00_00161974_2d5160 * D_0015ED70_2d5160;
+        forceZ = D_L00_00161978_2d5160 * D_0015ED6C_2d5160;
+        forceW = D_L00_0016197C_2d5160 * D_0015ED6C_2d5160;
+        health = *(f32 *)(v + 0x20) - damage;
+        duration = D_0015ED6C_2d5160 + D_0015ED6C_2d5160;
+        v[0xAD] = 0;
+        *(f32 *)(v + 0x80) = forceX;
+        *(f32 *)(v + 0x84) = forceY;
+        *(f32 *)(v + 0x88) = forceZ;
+        *(f32 *)(v + 0x8C) = forceW;
+        *(f32 *)(v + 0x20) = health;
+        *(f32 *)(v + 0x98) = 0.75f;
+        *(f32 *)(v + 0xBC) = duration;
+        *(s32 *)(v + 0x94) = 0x29;
+        *(s32 *)(v + 0x90) = 0x200;
+        *(u16 *)(m + 0x34) &= ~0x1000;
+        *(OvlQuad *)vec = *(OvlQuad *)(hit + 0x10);
+        FUN_L00_0025ab48_2d5160(vec, &angle, v + 0x88, v + 0x8C);
+        FUN_L00_0025c558_2d5160(angle, m, v + 0x70, FUN_L00_00257b50_2d5160(2) + 6, 1, 0);
+        *(f32 *)(v + 0xC0) = D_L00_0016198C_2d5160;
+        *(f32 *)(v + 0xC4) = D_L00_00161988_2d5160;
+        m[0x20] = 12;
+        v[0x67] = 0x78;
+        FUN_L00_0025d458_2d5160(m, v + 0x60);
+        FUN_L00_00257470_2d5160(m, 0, -1);
+    }
+    m[0xA4] = 0xFF;
+    FUN_L00_0025d538_2d5160(m, v + 0x60);
+    if (m[0x20] == 3) {
+        row = D_L00_001B04B0_2d5160[*(s32 *)(v + 0x1E4)];
+        FUN_L00_0025ff38_2d5160(64.0f, m, v + 0x180, 0, 0, row + 0x10, *(s32 *)row);
+    } else {
+        row = D_L00_001B04B0_2d5160[*(s32 *)(v + 0x1E0)];
+        FUN_L00_0025ff38_2d5160(24.0f, m, v + 0x180, 0, 0, row + 0x10, *(s32 *)row);
+    }
+    if (*(s32 *)(v + 0x1C0) == 0) {
+        *(s32 *)(v + 0x1C0) = D_001413D0_2d5160;
+        *(OvlQuad *)(v + 0x180) = *(OvlQuad *)D_0013F3D0_2d5160;
+    }
+    FUN_001fef98_2d5160(v + 0x276);
+    if (*(s32 *)(v + 0x38) != 0) {
+        *(s16 *)(v + 0x276) = FUN_00200250_2d5160(FUN_L00_00257be8_2d5160(180.0f, 240.0f) * frame_scale_inv);
+    }
+    *(s32 *)(v + 0x38) = 0;
+    if ((m[0x20] == 5 || m[0x20] == 8) && *(s16 *)(v + 0x276) != 0) {
+        m[0x20] = 10;
+        if (m[0x53] != 4)
+            FUN_L00_00257880_2d5160(m, 4, 0, FUN_001fef20_2d5160(20));
+    }
+}
+#endif
 extern float D_0015ED6C_2d54c8 __asm__("D_0015ED6C");
 /* D_0015ED70 is declared sda above (FUN_L00_002d0538), but here retail loads it
    absolute: reach it as D_0015ED6C + 4, past whose size the assembler skips $gp. */
