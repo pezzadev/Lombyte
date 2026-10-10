@@ -257,7 +257,101 @@ char *FUN_L08_002d22e0(int arg, char *pos, char *vec) {
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d23f0.s", FUN_L08_002d23f0);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d42d8.s", FUN_L08_002d42d8);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d4ca0.s", FUN_L08_002d4ca0);
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d55c8.s", FUN_L08_002d55c8);
+#else
+extern int D_L08_001B0CB0[];
+extern float D_0015ED6C;
+extern float D_0015ED70;
+extern float fast_atan2_l08(float, float) __asm__("FUN_001f9e90");
+extern void approach_angle_l08(float *, float, float *, float, float, float) __asm__("FUN_L00_0025be00");
+extern void approach_float_l08(float *, float, float) __asm__("FUN_00213ed8");
+extern float fast_cos_l08(float) __asm__("FUN_001f9dc8");
+extern float fast_sin_l08(float) __asm__("FUN_001f9de0");
+extern void add_vector_l08(void *, void *, void *) __asm__("FUN_001f9a10");
+extern float approach_position_l08(void *, int, float) __asm__("FUN_00213508");
+extern float distance_vector_l08(void *, void *) __asm__("FUN_001f9b80");
+extern float length_vector_l08(void *) __asm__("FUN_001f9af0");
+extern int event_valid_l08(void *, int) __asm__("FUN_L00_0028d8c0");
+extern int create_event_l08(int, int, void *) __asm__("FUN_0022da68");
+extern void set_event_value_l08(int, int) __asm__("FUN_L01_002a1968");
+extern void end_event_l08(int) __asm__("FUN_0022d798");
+extern int scale_game_frames_l08(int) __asm__("FUN_001f96f8");
+extern char D_0013E550[];
+extern float D_L08_0014ED6C __attribute__((sda));
+extern float D_L08_001518A0 __attribute__((sda));
+
+void FUN_L08_002d55c8(struct Moby *moby, int path_id) {
+    char *vars = (char *)moby->pvars;
+    int *path = (int *)D_L08_001B0CB0[path_id];
+    float point[4];
+    float step[3];
+    float size;
+    float dist;
+    int event;
+    int value;
+    int increment;
+    char *linked;
+
+    *(u128 *)point = *(u128 *)(path + 4 + *(int *)(vars + 0x168) * 4);
+    approach_angle_l08(&moby->rot.z,
+        fast_atan2_l08(point[0] - moby->pos.x, point[1] - moby->pos.y),
+        (float *)(vars + 0x158),
+        D_0015ED70 * 4.712389f, D_0015ED70 * 4.712389f,
+        D_0015ED6C * 3.1415927f);
+    approach_float_l08((float *)(vars + 0x180), *(float *)(vars + 0x16c), D_0015ED70 + D_0015ED70);
+    step[0] = fast_cos_l08(moby->rot.z) * *(float *)(vars + 0x180);
+    step[1] = fast_sin_l08(moby->rot.z) * *(float *)(vars + 0x180);
+    step[2] = 0.0f;
+    add_vector_l08(&moby->pos, &moby->pos, step);
+    moby->pos.z = approach_position_l08(&moby->pos, 0, 0.5f);
+    dist = distance_vector_l08(&moby->pos, point);
+    if (dist < 0.5f) {
+        *(int *)(vars + 0x168) = (*(int *)(vars + 0x168) + 1) % *path;
+        size = D_0015ED6C;
+    } else {
+        size = D_L08_0014ED6C;
+    }
+    size = *(float *)(vars + 0x180) / (D_L08_001518A0 * size);
+    size = size > 2.0f ? 2.0f : size;
+    size = size < 0.0f ? 0.0f : size;
+    linked = *(char **)(vars + 0x160);
+    if (linked != 0) {
+        *(float *)(linked + 0x58) = size;
+        *(u128 *)(linked + 0x40) = *(u128 *)((char *)moby + 0x40);
+        *(u128 *)(linked + 0x10) = *(u128 *)&moby->pos;
+    }
+    linked = *(char **)(vars + 0x164);
+    if (linked != 0) {
+        *(float *)(linked + 0x58) = size;
+        *(u128 *)(linked + 0x40) = *(u128 *)((char *)moby + 0x40);
+        *(u128 *)(linked + 0x10) = *(u128 *)&moby->pos;
+    }
+    event = *(int *)(vars + 0x15c);
+    if (D_0015ED6C * 0.1f < length_vector_l08(vars + 0x40)) {
+        if (!event_valid_l08(moby, event)) {
+            event = create_event_l08(1, 4, moby);
+            *(int *)(vars + 0x15c) = event;
+            set_event_value_l08(event, 1);
+        } else {
+            value = *(int *)(D_0013E550 + event * 0x70 + 0x80);
+            if (value < 0x400) {
+                increment = 0x400 / scale_game_frames_l08(60);
+                set_event_value_l08(event, value + increment);
+            }
+        }
+    } else if (event_valid_l08(moby, event)) {
+        value = *(int *)(D_0013E550 + event * 0x70 + 0x80);
+        if (value < 0x100) {
+            end_event_l08(event);
+            *(int *)(vars + 0x15c) = -1;
+        } else {
+            increment = 0x400 / scale_game_frames_l08(60);
+            set_event_value_l08(event, value - increment);
+        }
+    }
+}
+#endif
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d5950.s", FUN_L08_002d5950);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d5d08.s", FUN_L08_002d5d08);
 #ifndef NON_MATCHING
