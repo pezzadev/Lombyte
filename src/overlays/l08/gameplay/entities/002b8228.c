@@ -265,7 +265,6 @@ INCLUDE_ASM("config/us/overlays/asm/FUN_L08_002d6450.s", FUN_L08_002d6450);
 #else
 extern char *D_L08_0015FFD8;
 extern short *D_L08_001AC040[];
-extern void mark_moby_for_removal(struct Moby *) __asm__("FUN_0020c828");
 
 /* Remove active mobys of the selected classes from this moby's linked group. */
 void FUN_L08_002d6450(struct Moby *moby) {
@@ -277,9 +276,9 @@ void FUN_L08_002d6450(struct Moby *moby) {
             if (other->state < 0x7f && other != moby) {
                 u16 class_id = (u16)other->oclass;
                 if ((u32)(class_id - 0x24c) < 0xb) {
-                    mark_moby_for_removal(other);
+                    DeleteMoby(other);
                 } else if ((s16)class_id == 0x1d8) {
-                    mark_moby_for_removal(other);
+                    DeleteMoby(other);
                 }
             }
             if (*list < -1)
