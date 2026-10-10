@@ -597,7 +597,6 @@ extern f32 D_L05_002169F8[] __asm__("D_L05_002169F8");
 extern f32 FUN_001f96b0(f32) __asm__("FUN_L05_0022dbc8");
 
 void FUN_L05_00254058(void) {
-    char *g = D_0013F350_c2;
     int i;
     int total;
     int step;
@@ -605,19 +604,18 @@ void FUN_L05_00254058(void) {
     f32 frames;
 
     if (D_0013D388 == 0) return;
-    if (*(s32 *)(g + 0x8A8) != 0) {
-        struct UsageStat *stat = &D_00141848.stat[30];
+    if (*(s32 *)((char *)&hero + 0x8A8) != 0) {
         s32 duration = D_0015EEA4_sda;
-        if (stat->count <= 0xFFFE) {
-            stat->count++;
+        if (D_00141848.stat[30].count <= 0xFFFE) {
+            D_00141848.stat[30].count++;
             duration = *(s32 *)0x0015EEA4;
         }
-        if (stat->unk2 < scale_game_frames(duration) / 600)
-            stat->unk2 = scale_game_frames(D_0015EEA4_sda) / 600;
-        stat->level_mask |= (1 << D_0015ED84) | 0x80000000;
+        if (D_00141848.stat[30].unk2 < scale_game_frames(duration) / 600)
+            D_00141848.stat[30].unk2 = scale_game_frames(D_0015EEA4_sda) / 600;
+        D_00141848.stat[30].level_mask |= (1 << D_0015ED84) | 0x80000000;
     }
     {
-        s32 *counter = (s32 *)(g + 0x700);
+        s32 *counter = (s32 *)((char *)&hero + 0x700);
         for (i = 2; i >= 0; i--, counter++) {
             if (absolute_float(*(f32 *)(counter - 12)) > 3.3161256f) {
                 f32 rotation = *(f32 *)(counter - 12);
@@ -629,31 +627,31 @@ void FUN_L05_00254058(void) {
             }
         }
     }
-    *(s32 *)(g + 0x70C) = 0;
+    *(s32 *)((char *)&hero + 0x70C) = 0;
     for (i = 0; i < 3; i++) {
-        if (*(s32 *)(g + 0x70C) < *(s32 *)(g + 0x700 + i * 4))
-            *(s32 *)(g + 0x70C) = *(s32 *)(g + 0x700 + i * 4);
+        if (*(s32 *)((char *)&hero + 0x70C) < *(s32 *)((char *)&hero + 0x700 + i * 4))
+            *(s32 *)((char *)&hero + 0x70C) = *(s32 *)((char *)&hero + 0x700 + i * 4);
     }
-    *(s32 *)(g + 0x710) = 0;
-    total = *(s32 *)(g + 0x70C);
+    *(s32 *)((char *)&hero + 0x710) = 0;
+    total = *(s32 *)((char *)&hero + 0x70C);
     if (total > 0) {
         step = 100;
         do {
-            *(s32 *)(g + 0x710) += step;
+            *(s32 *)((char *)&hero + 0x710) += step;
             step += 50;
         } while (--total != 0);
     }
-    *(s32 *)(g + 0x6F0) = 0;
+    *(s32 *)((char *)&hero + 0x6F0) = 0;
     for (i = 0; i < 4; i++) {
-        if (*(s32 *)(g + 0x6E0 + i * 4) != 0) (*(s32 *)(g + 0x6F0))++;
+        if (*(s32 *)((char *)&hero + 0x6E0 + i * 4) != 0) (*(s32 *)((char *)&hero + 0x6F0))++;
     }
     table = *(typeof(table) *)D_L05_002169F8;
-    *(f32 *)(g + 0x6F4) = table.values[*(s32 *)(g + 0x6F0)];
+    *(f32 *)((char *)&hero + 0x6F4) = table.values[*(s32 *)((char *)&hero + 0x6F0)];
     frames = FUN_001f96b0(1.0f);
-    *(s32 *)(g + 0x6FC) = truncate_float_to_s32((f32)((*(s32 *)(g + 0x6F8) * 100) / (s32)(frames * 60.0f)));
-    *(s32 *)(g + 0x6FC) += *(s32 *)(g + 0x6F0) * 25;
-    *(s32 *)(g + 0x6FC) = truncate_float_to_s32((f32)*(s32 *)(g + 0x6FC) * *(f32 *)(g + 0x6F4));
-    *(s32 *)(g + 0x714) = *(s32 *)(g + 0x710) + *(s32 *)(g + 0x6FC);
+    *(s32 *)((char *)&hero + 0x6FC) = truncate_float_to_s32((f32)((*(s32 *)((char *)&hero + 0x6F8) * 100) / (s32)(frames * 60.0f)));
+    *(s32 *)((char *)&hero + 0x6FC) += *(s32 *)((char *)&hero + 0x6F0) * 25;
+    *(s32 *)((char *)&hero + 0x6FC) = truncate_float_to_s32((f32)*(s32 *)((char *)&hero + 0x6FC) * *(f32 *)((char *)&hero + 0x6F4));
+    *(s32 *)((char *)&hero + 0x714) = *(s32 *)((char *)&hero + 0x710) + *(s32 *)((char *)&hero + 0x6FC);
 }
 #endif
 #ifndef NON_MATCHING
