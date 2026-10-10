@@ -305,10 +305,13 @@ s32 sound_update(void) {
             voice_flags[slot_index] = 0x20;
             continue;
         }
-        if ((D_0013E550.voices[slot_index].flags & 1) != 1) {
-            voice_flags[slot_index] |= 2;
-            if (!(D_0013E550.voices[slot_index].flags & 0x20)) {
-                voice_flags[slot_index] |= 4;
+        {
+            u8 slot_flags = D_0013E550.voices[slot_index].flags;
+            if (((slot_flags ^ 1) & 1) != 0) {
+                voice_flags[slot_index] |= 2;
+                if (!(D_0013E550.voices[slot_index].flags & 0x20)) {
+                    voice_flags[slot_index] |= 4;
+                }
             }
         }
     }
