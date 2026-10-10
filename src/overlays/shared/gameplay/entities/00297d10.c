@@ -5,7 +5,79 @@
 #include "rnc/math_consts.h"
 #include "asm.h"
 
-INCLUDE_ASM("config/us/overlays/asm/FUN_L06_002d8178.s", FUN_L06_002d8178);
+#include "qcopy.h"
+extern int allocate_voice_for_target_entry(int, int, int) __asm__("FUN_0022da68");
+extern unsigned char *FUN_L00_0026b790(void *, int, int, float, float, float, float, float);
+extern void subtract_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a28");
+extern float FUN_L00_00257c48(float, float);
+extern float random_float_between(float, float) __asm__("FUN_002132a8");
+extern float random_angle_radians(void) __asm__("FUN_00213308");
+extern float fast_cos(float) __asm__("FUN_001f9dc8");
+extern float fast_sin(float) __asm__("FUN_001f9de0");
+extern float FUN_001f9e90(float, float);
+extern int FUN_001f96f8(int);
+extern char *D_001413D0 __attribute__((section(".data")));
+extern float D_0015ED6C;
+extern unsigned char *FUN_L06_00300c60(char *, float *, float *);
+
+void FUN_L06_002d8178(void *moby_ptr, void *target_ptr) {
+    int i;
+    int j;
+    char *moby = moby_ptr;
+    char *target = target_ptr;
+    float origin[4];
+    float displacement[4];
+    float pos[4];
+    float vel[4];
+    float angle;
+    float direction_angle;
+    float speed;
+    unsigned char *fragment;
+
+    allocate_voice_for_target_entry(0, 0, (int)moby);
+    qcopy(origin, moby + 0x10);
+    origin[2] += 0.3f;
+    FUN_L00_0026b790(origin, 1, 0x40808080, 0.3f, 1.01f, 1.075f, 0.05f, 50000.0f);
+    for (i = 4; i >= 0; i--) {
+        FUN_L00_0026b790(origin, 1, 0x40808080, 0.3f, 1.01f, 1.07f, 0.05f, 50000.0f);
+    }
+    if (target != 0) {
+        qcopy(displacement, target + 0x10);
+    } else {
+        subtract_vector_xyz(displacement, moby + 0x10, D_001413D0 + 0x10);
+    }
+    for (j = 9; j >= 0; j--) {
+        qcopy(pos, moby + 0x10);
+        pos[0] += FUN_L00_00257c48(0.0f, 0.2f);
+        pos[1] += FUN_L00_00257c48(0.0f, 0.2f);
+        pos[2] += random_float_between(0.15f, 0.55f);
+        angle = random_angle_radians();
+        speed = random_float_between(2.0f, 4.5f) * D_0015ED6C;
+        vel[0] = fast_cos(angle) * speed;
+        vel[1] = fast_sin(angle) * speed;
+        vel[2] = 0.0f;
+        speed = random_float_between(D_0015ED6C * 0.7f, D_0015ED6C * 1.5f);
+        if (target != 0) {
+            direction_angle = FUN_001f9e90(*(float *)(target + 0x10), *(float *)(target + 0x14));
+            vel[0] += fast_cos(direction_angle) * speed;
+            vel[1] += fast_sin(FUN_001f9e90(*(float *)(target + 0x10), *(float *)(target + 0x14))) * speed;
+        } else {
+            direction_angle = FUN_001f9e90(*(float *)(moby + 0x10) - hero.motion.pos.f[0],
+                                  *(float *)(moby + 0x14) - hero.motion.pos.f[1]);
+            vel[0] += fast_cos(direction_angle) * speed;
+            vel[1] += fast_sin(direction_angle) * speed;
+        }
+        vel[2] = random_float_between(2.0f, 7.0f) * D_0015ED6C;
+        fragment = FUN_L06_00300c60(moby, pos, vel);
+        if (fragment != 0) {
+            *(float *)(fragment + 0x2c) *= 0.3f;
+        }
+    }
+    *(int *)(moby + 0x94) = 0;
+    moby[0x20] = 2;
+    *(unsigned short *)(moby + 0x34) |= 1;
+    moby[0xbc] = (unsigned char)FUN_001f96f8(15);
+}
 #define NOT_SDA
 
 #define MACRO_ADDR
