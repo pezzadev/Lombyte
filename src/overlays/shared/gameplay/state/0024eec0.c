@@ -266,10 +266,10 @@ void FUN_L00_0024f440(void *statePointer, int tableIndex, int frameIndex, int ou
     *(short *)(outputAddress + 10) = frameStart;
     *(unsigned short *)(outputAddress + 12) = (frameStart + baseCount) * 8;
     *(unsigned short *)(outputAddress + 14) = *(unsigned short *)(frame + 14);
-    copySource = frame + countBytes + 16;
+    copySource = frame + (countBytes + 16);
     copyBytes = *(short *)(frame + 6) * 16 - countBytes;
     if (copyBytes != 0) {
-        FUN_001f9838((void *)(outputAddress + baseBytes + 16), copySource, copyBytes);
+        FUN_001f9838((void *)(outputAddress + (baseBytes + 16)), copySource, copyBytes);
     }
     indices = (unsigned char *)(*(int *)(*(int *)((char *)statePointer + 0x18) + 0x1c) + 4);
     values = (unsigned long long *)(frame + 16);
