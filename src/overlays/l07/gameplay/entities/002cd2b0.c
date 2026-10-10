@@ -152,7 +152,7 @@ extern char *D_L07_0015FFE4;
 extern char D_0013E533[];
 extern int FUN_L07_0030e0e0_c() __asm__("FUN_L07_0030e0e0");
 extern s32 truncate_float_to_s32(f32) __asm__("FUN_001fa6d0");
-extern void FUN_L07_0030dcf0(void);
+extern void FUN_L07_0030dcf0(unsigned char *);
 void enqueue_callback_list_1(s32 arg0, s32 arg1) __asm__("FUN_001f4600");
 void delete_moby(struct Obj *obj) __asm__("FUN_0020c828");
 extern int func_001FA898_r(float) __asm__("FUN_001fa6d0");
@@ -1319,7 +1319,110 @@ unsigned char *FUN_L07_0030dbb0(int a, void *pos, int b, float f0, float f1, flo
     }
     return moby;
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L07_0030dcf0.s", FUN_L07_0030dcf0);
+#else
+extern unsigned long long get_effect_texture_l07(int) __asm__("FUN_001f44b8");
+extern float convert_integer_to_float_l07(int) __asm__("FUN_001fa6c0");
+extern float wrap_effect_phase_l07(float, void *) __asm__("FUN_L00_00200228");
+extern float fast_cos_l07(float) __asm__("FUN_001f9dc8");
+extern float fast_sin_l07(float) __asm__("FUN_001f9de0");
+extern void draw_effect_quad_l07(void *, int, int) __asm__("FUN_001f7d30");
+extern int D_L07_0015F5CC;
+
+void FUN_L07_0030dcf0(unsigned char *moby) {
+    char packet[0x90] __attribute__((aligned(16)));
+    char second[0x90] __attribute__((aligned(16)));
+    char phase_work[0x10] __attribute__((aligned(16)));
+    char *data = *(char **)(moby + 0x78);
+    float band = 0.0f;
+    unsigned int green = 0x80;
+    unsigned int alpha = moby[0x23] / 5;
+    unsigned int green_step = (green / 11) & 0xff;
+    int index = 0;
+    *(unsigned long long *)(packet + 0x78) = get_effect_texture_l07(*(int *)(data + 0x18));
+    *(unsigned long long *)(packet + 0x80) = 0xff9000000260ULL;
+    *(unsigned long long *)(packet + 0x70) = 4;
+    *(unsigned long long *)(packet + 0x88) = 0x8000000048ULL;
+    do {
+        float radius = *(float *)(data + 8);
+        float side;
+        float center;
+        float angle;
+        float inner_radius;
+        float width;
+        float phase;
+        int color = ((alpha & 0xff) << 24) | (green << 8) | 0x80 | (green << 16);
+        *(int *)(packet + 0x40) = color;
+        *(int *)(packet + 0x44) = color;
+        *(int *)(packet + 0x48) = color;
+        *(int *)(packet + 0x4c) = color;
+        if (radius < 0.9f) radius = radius * band;
+        else radius = radius - band * 0.9f;
+        side = (1.0f - band * 0.5f) * *(float *)(data + 0x10);
+        phase = wrap_effect_phase_l07(convert_integer_to_float_l07(D_L07_0015F5CC) /
+                                      (band * 40.0f + 40.0f), phase_work);
+        if ((index & 1) == 0) phase = -phase;
+        width = convert_integer_to_float_l07(index + 1 > 5 ? 5 : index + 1);
+        index++;
+        green = green - green_step;
+        center = *(float *)(moby + 0x10);
+        *(float *)(packet + 0x30) = center - radius;
+        *(float *)(packet + 0x34) = *(float *)(moby + 0x14);
+        *(float *)(packet + 0x38) = *(float *)(moby + 0x18);
+        *(float *)(packet + 0x10) = center - radius * (0.96f - band * 0.03f);
+        *(float *)(packet + 0x14) = *(float *)(moby + 0x14);
+        *(float *)(packet + 0x18) = side + *(float *)(moby + 0x18);
+        *(float *)(packet + 0x50) = phase;
+        *(float *)(packet + 0x58) = phase + width;
+        *(float *)(packet + 0x60) = phase;
+        *(float *)(packet + 0x68) = phase + width;
+        *(float *)(packet + 0x54) = 0.0f;
+        *(float *)(packet + 0x5c) = 0.0f;
+        *(float *)(packet + 0x64) = 1.0f;
+        *(float *)(packet + 0x6c) = 1.0f;
+        {
+            u128 *source = (u128 *)packet;
+            u128 *destination = (u128 *)second;
+            do {
+                destination[0] = source[0];
+                destination[1] = source[1];
+                source += 2;
+                destination += 2;
+            } while (source != (u128 *)(packet + 0x80));
+            destination[0] = source[0];
+        }
+        *(float *)(second + 8) = *(float *)(moby + 0x18) - 5.0f;
+        *(float *)(second + 0x18) = *(float *)(moby + 0x18) - 5.0f;
+        angle = -2.8274336f;
+        do {
+            float x, y;
+            *(u128 *)(packet + 0) = *(u128 *)(packet + 0x10);
+            *(u128 *)(packet + 0x20) = *(u128 *)(packet + 0x30);
+            x = fast_cos_l07(angle);
+            inner_radius = radius * (0.96f - band * 0.03f);
+            *(float *)(packet + 0x10) = center + inner_radius * x;
+            x = fast_cos_l07(angle);
+            *(float *)(packet + 0x30) = center + radius * x;
+            y = fast_sin_l07(angle);
+            *(float *)(packet + 0x14) = *(float *)(moby + 0x14) + inner_radius * y;
+            y = fast_sin_l07(angle);
+            *(float *)(packet + 0x34) = *(float *)(moby + 0x14) + radius * y;
+            draw_effect_quad_l07(packet, 0, 1);
+            *(u128 *)(second + 0) = *(u128 *)(second + 0x10);
+            *(u128 *)(second + 0x20) = *(u128 *)(second + 0x30);
+            *(float *)(second + 0x10) = *(float *)(packet + 0x30);
+            *(float *)(second + 0x14) = *(float *)(packet + 0x34);
+            *(float *)(second + 0x30) = *(float *)(packet + 0x10);
+            *(float *)(second + 0x34) = *(float *)(packet + 0x14);
+            draw_effect_quad_l07(second, 0, 1);
+            angle = angle + 0.31415927f;
+        } while (angle < 3.1415927f);
+        band = band + 0.1f;
+        green &= 0xff;
+    } while (band < 1.0f);
+}
+#endif
 
 #define NOT_SDA
 
