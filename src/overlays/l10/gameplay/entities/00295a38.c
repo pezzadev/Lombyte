@@ -998,7 +998,84 @@ void FUN_L10_002d9eb8(char *moby) {
 }
 INCLUDE_ASM("config/us/overlays/asm/FUN_L10_002da2c8.s", FUN_L10_002da2c8);
 INCLUDE_ASM("config/us/overlays/asm/FUN_L10_002da690.s", FUN_L10_002da690);
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L10_002dcc58.s", FUN_L10_002dcc58);
+#else
+extern unsigned char D_001413F4[];
+extern int D_L10_00161D64;
+extern int D_L10_00161D68;
+extern float D_L10_00161D54 __attribute__((sda));
+extern float D_L10_00161D58 __attribute__((sda));
+extern float D_L10_00161D5C __attribute__((sda));
+extern int FUN_001f25d0(void *) __asm__("FUN_001f9740");
+extern void FUN_001f28c8(void *) __asm__("FUN_001f99f8");
+extern void FUN_001f28e0(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void FUN_001f2968(float, void *, void *) __asm__("FUN_001f9a68");
+extern void FUN_L10_0024a7f0(float, float, void *) __asm__("FUN_L00_00257d78");
+
+void FUN_L10_002dcc58(struct Moby *moby) {
+    char *data = (char *)moby->pvars;
+    float scratch[0xC80 / 4];
+    int group, item, row;
+    float phase;
+
+    switch (moby->state) {
+    case 0:
+        if (current_level_index == 10 && D_001413F4[0] == 1) {
+            delete_moby(moby);
+        } else {
+            int value = 0;
+            D_L10_00161D68 = 0x16;
+            D_L10_00161D64 = 0x2d;
+            for (item = 0; item < 10; item++) {
+                int quotient = value / 10;
+                *(int *)(data + 0x12c00 + item * 4) = quotient;
+                *(int *)(data + 0x12c78 + item * 4) = quotient + 11;
+                *(int *)(data + 0x12cf0 + item * 4) = quotient + 23;
+                *(int *)(data + 0x12d68 + item * 4) = quotient + 34;
+                value += 45;
+            }
+            moby->state = 1;
+        }
+        break;
+    case 1:
+        phase = *(float *)(data + 0x12de0) + D_L10_00161D5C * frame_time;
+        *(float *)(data + 0x12de0) = phase;
+        if (phase > 1.0f) *(float *)(data + 0x12de0) = phase - 1.0f;
+        for (group = 0; group < 4; group++) {
+            for (item = 0; item < 10; item++) {
+                char *entry = data + 0x12c00 + group * 0x78 + item * 4;
+                char *base = data + group * 0x2580 + item * 0x10;
+                char *other = base + 0x9600;
+                char *buffer = (char *)scratch + item * 0x10;
+                if (FUN_001f25d0(entry) == 0) {
+                    for (row = 1; row < 19; row++) {
+                        char *dst = base + row * 0x140;
+                        FUN_001f28e0(dst, dst, other + row * 0x140);
+                    }
+                } else {
+                    for (row = 0; row < 20; row++) {
+                        char *dst = base + row * 0x140;
+                        FUN_001f28c8(dst);
+                        *(float *)(dst + 0xc) = 1.0f;
+                        *(float *)(dst + 4) = (float)row * (D_L10_00161D58 / 20.0f) - D_L10_00161D58 * 0.5f;
+                        FUN_L10_0024a7f0(0.0f, D_L10_00161D54 * frame_time, buffer + row * 0xa0);
+                    }
+                    for (row = 0; row < 18; row++) {
+                        char *dst = other + (row + 1) * 0x140;
+                        char *current = buffer + row * 0xa0;
+                        FUN_001f28e0(dst, current, current + 0xa0);
+                        FUN_001f28e0(dst, dst, buffer + 0x140 + row * 0xa0);
+                        FUN_001f2968(0.333f, dst, dst);
+                    }
+                    *(int *)entry = D_L10_00161D64;
+                }
+            }
+        }
+        break;
+    }
+}
+#endif
 
 /* Spawns a moby at a spot, fills its data block and starts its fade and sound. */
 extern float D_0015ED6C_dd __asm__("D_0015ED6C");
