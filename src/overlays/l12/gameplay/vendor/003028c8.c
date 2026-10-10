@@ -157,7 +157,103 @@ void FUN_L12_00302c58(struct Moby *moby) {
         enqueue_callback_list_1(FUN_L12_003028c8, moby);
 }
 #endif
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L12_00302f30.s", FUN_L12_00302f30);
+#else
+extern float FUN_001f9e90(float, float);
+extern float FUN_001f9b48(void *, void *);
+extern float FUN_001f9b80(void *, void *);
+extern float FUN_001f9de0(float);
+extern float FUN_001f99c0(float);
+extern float fast_add_rotations(float, float) __asm__("FUN_001fa580");
+extern void scale_vector_xyz_cf(float, void *, void *) __asm__("FUN_001f9a68");
+extern void FUN_L00_0025b6b8(float, void *, void *, void *);
+extern int FUN_001fa728(float, void *);
+extern int is_point_inside_clip_volume(void *, int) __asm__("FUN_00214720");
+extern void FUN_L00_00259888(void *, struct Moby *, int, float, void *);
+extern int FUN_001efa68(void *, void *, int, int, void *);
+extern char D_L12_0013F3D0[];
+
+void FUN_L12_00302f30(struct Moby *moby) {
+    char *data = (char *)moby->pvars;
+    struct Moby *other;
+    float angle;
+    float phase;
+    float step;
+    float distance;
+    float points[8] __attribute__((aligned(16)));
+    u128 hit[3];
+    int index;
+    int target_index = *(int *)(data + 0x2314);
+
+    if (target_index == -1) return;
+    switch (moby->state) {
+    case 0:
+        {
+            int initial_duration = 0x2d;
+            int final_duration = 0x16;
+            *(int *)0x00161e08 = final_duration;
+            *(int *)0x00161e04 = initial_duration;
+        }
+        *(int *)(data + 0x231c) = -1;
+        *(int *)(data + 0x2304) = 0xb;
+        *(int *)(data + 0x2308) = 0x17;
+        *(int *)(data + 0x230c) = 0x22;
+        *(int *)(data + 0x2300) = 0;
+        moby->state = 1;
+        return;
+    case 1:
+        break;
+    default:
+        return;
+    }
+    other = (struct Moby *)(((u32)target_index << 8) + (u32)D_L12_0015FFD8_p);
+    moby->rot.z = FUN_001f9e90(other->pos.x - moby->pos.x,
+                                other->pos.y - moby->pos.y);
+    other = (struct Moby *)(D_L12_0015FFD8_p + *(int *)(data + 0x2314) * 0x100);
+    distance = FUN_001f9b48(&moby->pos, &other->pos);
+    step = *(float *)(data + 0x2328) * 0.017453292f;
+    step = step * frame_time;
+    *(float *)(data + 0x2324) = distance;
+    angle = fast_add_rotations(*(float *)(data + 0x2318), step);
+    index = *(int *)(data + 0x2310);
+    *(float *)(data + 0x2318) = angle;
+    phase = FUN_001f9de0(angle);
+    if (1.5707964f < angle && angle < 3.1415927f) {
+        phase = 2.0f - phase;
+    }
+    if (-3.1415927f < angle && angle < -1.5707964f) {
+        phase = 2.0f - phase;
+    }
+    phase = phase * 0.5f + 0.5f;
+    if (1.0f < phase) phase -= 2.0f;
+    phase = FUN_001f99c0(phase);
+    *(u128 *)&points[0] = *(u128 *)(*(int *)(0x001b0930 + index * 4) + 0x10);
+    *(u128 *)&points[4] = *(u128 *)(*(int *)(0x001b0930 + index * 4) + 0x20);
+    FUN_L00_0025b6b8(phase, &moby->pos, points, points + 4);
+    if (FUN_001f9b80(&moby->pos, D_L12_0013F3D0) > 64.0f) return;
+
+    if (moby->unk31 == 0) {
+        other = (struct Moby *)(D_L12_0015FFD8_p + *(int *)(data + 0x2314) * 0x100);
+        if (other->unk31 == 0) {
+            FUN_001f9a10(points, &moby->pos, &other->pos);
+            scale_vector_xyz_cf(0.5f, points, points);
+            points[3] = 16.0f;
+            if (FUN_001fa728(32.0f, points) == -1) return;
+        }
+    }
+    if (*(int *)(data + 0x2330) != -1 &&
+        is_point_inside_clip_volume(D_L12_00167240, *(int *)(data + 0x2330))) return;
+    if (*(int *)(data + 0x2320) == 0) return;
+    FUN_L12_00302c58(moby);
+    if (*(int *)(data + 0x2314) == -1) return;
+    *(u128 *)&points[0] = *(u128 *)&moby->pos;
+    other = (struct Moby *)(D_L12_0015FFD8_p + *(int *)(data + 0x2314) * 0x100);
+    *(u128 *)&points[4] = *(u128 *)&other->pos;
+    FUN_L00_00259888(hit, moby, 0x10001, 1.0f, (void *)0x0015f580);
+    FUN_001efa68(points, points + 4, 0, 0, hit);
+}
+#endif
 #define NOT_SDA
 
 #define MACRO_ADDR
