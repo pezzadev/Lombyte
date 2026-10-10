@@ -1557,7 +1557,86 @@ void FUN_L00_002bf8b0(unsigned char *m, unsigned char *o, u128 *src) {
     F2BF(o, 0x14) = F2BF(o, 0x14) * (r / F2BF(o, 0x10));
 }
 #undef F2BF
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_002bf9f0.s", FUN_L00_002bf9f0);
+#else
+extern void FUN_001ff2a8_bf9f0(void *, void *, void *) __asm__("FUN_001f9a28");
+extern void FUN_001ff600_bf9f0(float, void *, void *) __asm__("FUN_L00_001ff600");
+extern void FUN_001ff278_bf9f0(void *, void *, void *) __asm__("FUN_001f9a10");
+extern void FUN_001ff300_bf9f0(float, void *, void *) __asm__("FUN_001f9a68");
+extern float FUN_001ff408_bf9f0(void *) __asm__("FUN_001f9b20");
+extern void FUN_001ff500_bf9f0(void *, void *, float) __asm__("FUN_001f9bf8");
+extern float FUN_001ff218_bf9f0(float) __asm__("FUN_001f99c0");
+extern int FUN_001efa68_bf9f0(void *, void *, int, void *, int) __asm__("FUN_001efa68");
+extern int FUN_L00_002beab0_bf9f0(void *, int, void *) __asm__("FUN_L00_002beab0");
+extern void FUN_L00_002bec00_bf9f0(void *) __asm__("FUN_L00_002bec00");
+extern void FUN_L00_002bec48_bf9f0(void *) __asm__("FUN_L00_002bec48");
+extern void FUN_L00_002bf8b0_bf9f0(void *, void *, void *) __asm__("FUN_L00_002bf8b0");
+extern void FUN_L00_002bf810_bf9f0(void *, void *, int, int, int, int, int, float) __asm__("FUN_L00_002bf810");
+extern float FUN_L00_00259468_bf9f0(void *, void *, void *, float) __asm__("FUN_L00_00259468");
+extern VU D_L00_00173E80_bf9f0 __asm__("D_L00_00173E80");
+
+int FUN_L00_002bf9f0(char *m, char *o, VU *target, int check) {
+    VU direction;
+    VU destination;
+    VU first;
+    VU second;
+    VU midpoint;
+    VU plane;
+    VU key;
+    float halfLength;
+    int canRecurse;
+    char *position = m + 0x10;
+
+    FUN_001ff2a8_bf9f0(&direction, target, position);
+    FUN_001ff600_bf9f0(*(float *)(m + 0x2c) * 5.2f / *(float *)(*(char **)(m + 0x24) + 0x24),
+                        &direction, &direction);
+    FUN_001ff278_bf9f0(&destination, position, &direction);
+    FUN_001ff300_bf9f0(0.5f, &midpoint, &direction);
+    halfLength = FUN_001ff408_bf9f0(&midpoint);
+    FUN_001ff278_bf9f0(&midpoint, position, &midpoint);
+    canRecurse = 1;
+    if (!(0.5f < halfLength)) canRecurse = 0;
+    destination.f[2] = FUN_L00_002bec80_c(&destination, m);
+    direction.f[2] = destination.f[2] - *(float *)(m + 0x18);
+    if (destination.f[2] == 0.0f) {
+        if (canRecurse) return FUN_L00_002bf9f0(m, o, &midpoint, 1);
+        return 0;
+    }
+    if (*(float *)(m + 0x2c) * 3.0f / *(float *)(*(char **)(m + 0x24) + 0x24) < direction.f[2]) goto fail;
+    qcopy(&plane, &D_L00_00173E80_bf9f0);
+    FUN_001ff500_bf9f0(&plane, &plane, 1.0f);
+    if (FUN_001ff218_bf9f0(plane.f[0]) + FUN_001ff218_bf9f0(plane.f[1]) >
+        FUN_001ff218_bf9f0(plane.f[2])) goto fail;
+    destination.f[2] += *(float *)(m + 0x2c) * 0.025f / *(float *)(*(char **)(m + 0x24) + 0x24);
+    if (FUN_L00_002beab0_bf9f0(m, 6, &destination) != 0) goto fail;
+    destination.f[2] -= *(float *)(m + 0x2c) * 0.025f / *(float *)(*(char **)(m + 0x24) + 0x24);
+    qcopy(&first, position);
+    first.f[2] += *(float *)(m + 0x2c) * 0.2f / *(float *)(*(char **)(m + 0x24) + 0x24);
+    qcopy(&second, &destination);
+    second.f[2] += *(float *)(m + 0x2c) * 0.2f / *(float *)(*(char **)(m + 0x24) + 0x24);
+    if (check != 0 && FUN_001efa68_bf9f0(&first, &second, 6, m, 0) == 0) goto fail;
+    FUN_L00_002bec00_bf9f0(o);
+    FUN_L00_002bf8b0_bf9f0(m, (void *)0x141260, &destination);
+    FUN_L00_002bec48_bf9f0(o);
+    FUN_001ff300_bf9f0(0.5f, &plane, &direction);
+    FUN_001ff278_bf9f0(&plane, &plane, position);
+    key.q = 0;
+    key.f[2] = *(float *)(o + 0x50);
+    plane.f[2] = FUN_L00_00259468_bf9f0(position, &key, 0, *(float *)0x14127c);
+    FUN_L00_002bf810_bf9f0(&first, &plane, 10, 0, 0x20, 0x20, 0x3c, 40000.0f);
+    FUN_L00_002bf810_bf9f0(&second, &plane, 10, 0, 0x20, 0x20, 0x3c, 40000.0f);
+    if (FUN_001efa68_bf9f0(&first, &plane, 6, m, 0) != 0 &&
+        D_L00_00173E58_bf != *(Hit **)(o + 0x38)) goto fail;
+    if (FUN_001efa68_bf9f0(&plane, &second, 6, m, 0) != 0 &&
+        D_L00_00173E58_bf != *(Hit **)(o + 0x38)) goto fail;
+    m[0xbc] = 0xd;
+    return 1;
+fail:
+    if (canRecurse) return FUN_L00_002bf9f0(m, o, &midpoint, 1);
+    return 0;
+}
+#endif
 #include "eetypes.h"
 #include "qcopy.h"
 unsigned char *FUN_0020c4f8(int);
