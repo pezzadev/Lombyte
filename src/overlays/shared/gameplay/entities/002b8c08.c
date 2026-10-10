@@ -26,7 +26,97 @@ void FUN_L01_002b8c08(f32 *pos) {
         y += D_L01_001CAD00[5];
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L01_002b8cb0.s", FUN_L01_002b8cb0);
+#else
+extern void subtract_vector_xyz(void *, void *, void *) __asm__("FUN_001f9a28");
+extern void scale_vector_xyz(void *, void *, f32) __asm__("FUN_001f9a68");
+extern void FUN_001f9d20(void *, void *, void *);
+extern u32 FUN_001f9958(void *);
+extern void FUN_L01_00262388(s32, s32);
+extern char D_L01_00167240[];
+
+void FUN_L01_002b8cb0(f32 *pos, s32 index, s32 mode) {
+    f32 corners[4][4];
+    f32 near_clip[4];
+    f32 far_clip[4];
+    f32 offsets[4][4];
+    f32 x_offset, y_offset, x_end, y_end;
+    f32 half_x, half_y;
+    f32 x, y;
+    u32 near_bits, far_bits;
+    s32 i, value, row, column;
+
+    if (mode != 0) {
+        row = index >> 2;
+        column = index & 3;
+        half_y = 0.5f * -D_L01_001CAD00[3];
+        half_x = 0.5f * -D_L01_001CAD00[2];
+        y_offset = half_y * (f32)row;
+        x_offset = half_x * (f32)column;
+        y_end = y_offset + half_y;
+        x_end = x_offset + half_x;
+        offsets[0][1] = y_offset;
+        offsets[0][0] = x_offset;
+        offsets[1][1] = y_offset;
+        offsets[1][0] = x_end;
+        offsets[2][1] = y_end;
+        offsets[2][0] = x_offset;
+        offsets[3][1] = y_end;
+        offsets[3][0] = x_end;
+        y = pos[1] + D_L01_001CAD00[3];
+        x = pos[0] + D_L01_001CAD00[2];
+        corners[0][1] = y + offsets[2][1];
+        corners[0][0] = x + offsets[2][0];
+        corners[0][2] = pos[2];
+        corners[0][3] = 1.0f;
+        corners[1][1] = y + offsets[1][1];
+        corners[1][0] = x + offsets[1][0];
+        corners[1][2] = pos[2];
+        corners[1][3] = 1.0f;
+        corners[2][0] = corners[0][0];
+        corners[2][1] = corners[1][1];
+        corners[2][2] = pos[2];
+        corners[2][3] = 1.0f;
+        corners[3][0] = corners[1][0];
+        corners[3][1] = corners[0][1];
+        corners[3][2] = pos[2];
+        corners[3][3] = 1.0f;
+        near_bits = 0;
+        far_bits = 0;
+        for (i = 0; i < 4; i++) {
+            subtract_vector_xyz(near_clip, corners[i], D_L01_00167240);
+            scale_vector_xyz(far_clip, near_clip, 1024.0f);
+            scale_vector_xyz(near_clip, near_clip, 1024.0f);
+            FUN_001f9d20(far_clip, far_clip, D_L01_00167240 - 0x80);
+            FUN_001f9d20(near_clip, near_clip, D_L01_00167240 - 0x40);
+            far_bits = (far_bits << 8) | FUN_001f9958(far_clip);
+            near_bits = (near_bits << 8) | FUN_001f9958(near_clip);
+        }
+        if (mode == 1) {
+            if ((near_bits & 0x01010101) == 0x01010101) return;
+            if ((near_bits & 0x02020202) == 0x02020202) return;
+            if ((near_bits & 0x04040404) == 0x04040404) return;
+            if ((near_bits & 0x08080808) == 0x08080808) return;
+            if (far_bits == 0) mode = 0;
+            if ((near_bits & 0x20202020) == 0x20202020) return;
+        } else {
+            if ((near_bits & 0x01010101) == 0x01010101) return;
+            if ((near_bits & 0x02020202) == 0x02020202) return;
+            if ((near_bits & 0x04040404) == 0x04040404) return;
+            if ((near_bits & 0x08080808) == 0x08080808) return;
+            if ((near_bits & 0x20202020) == 0x20202020) return;
+            mode = 0;
+        }
+    }
+    if (mode == 0) {
+        value = 0xc;
+    } else {
+        value = 0xe;
+    }
+    FUN_L01_00262388(value, (index & 3) * 4 + (index >> 2) * 0x44);
+}
+#endif
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L01_002b8f98.s", FUN_L01_002b8f98);
 #else
