@@ -3,7 +3,87 @@
 #include "rnc/gameplay/hero.h"
 #include "asm.h"
 
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L00_00229010.s", FUN_L00_00229010);
+#else
+#include "rnc/overlay/hero_tables.h"
+#include "rnc/globals.h"
+#include "qcopy.h"
+extern HeroTableEntry70 D_L00_00179890[];
+extern s32 D_L00_00179AB0;
+extern s32 FUN_L00_0020d498(s32);
+extern f32 FUN_001f96b0(f32);
+extern s32 scale_game_frames(s32) __asm__("FUN_001f96f8");
+extern f32 random_float_between(f32, f32) __asm__("FUN_002132a8");
+extern s32 FUN_001efa68(void *, void *, s32, void *, s32);
+
+s32 FUN_L00_00229010(s32 *index) {
+    s32 choices[20];
+    s32 count = 0;
+    s32 i;
+    f32 total;
+    f32 pick;
+    f32 end[4], start[4];
+
+    if (hero.unk1E8 != 0)
+        return 0;
+    if (hero.health.hp == 1) {
+        *index = 4;
+        if (D_L00_00179AB0 != 0)
+            return 0;
+        if (!(hero.unkA98 & 2))
+            return 0;
+        return random_float_between(0.0f, 1.0f) < 0.33f;
+    }
+    for (i = 0; i < 5; i++) {
+        HeroTableEntry70 *row = &D_L00_00179890[i];
+        s32 level;
+        if (row->duration_frames != 0 || *(f32 *)((u8 *)row + 0x58) == 0.0f)
+            continue;
+        level = FUN_L00_0020d498(0);
+        if (*(s32 *)((u8 *)row + 0x50) != -1 &&
+            *(s32 *)((u8 *)row + 0x50) != level)
+            continue;
+        if (row->use_state_40 != 0 && hero.ground_moby != 0)
+            continue;
+        if (i == 3) {
+            if (current_level_index != 12 || FUN_L00_0020d498(0) == 0x17)
+                continue;
+            qcopy(start, &hero.motion.unkD0);
+            qcopy(end, start);
+            end[2] += 8.0f;
+            if (FUN_001efa68(start, end, 2, hero.moby, 0))
+                continue;
+        }
+        if (i == 4) {
+            if (hero.state.prev_control_mode != 1 ||
+                scale_game_frames(0x32) < hero.state_timer ||
+                hero.health.hp > 1)
+                continue;
+        }
+        choices[count++] = i;
+    }
+    if (count == 0)
+        return 0;
+    total = 0.0f;
+    for (i = 0; i < count; i++) {
+        HeroTableEntry70 *row = &D_L00_00179890[choices[i]];
+        total += 1.0f / (s32)(FUN_001f96b0(*(f32 *)((u8 *)row + 0x58)) * 60.0f);
+    }
+    pick = random_float_between(0.0f, 1.0f);
+    if (pick < total) {
+        for (i = 0; i < count; i++) {
+            HeroTableEntry70 *row = &D_L00_00179890[choices[i]];
+            *index = choices[i];
+            total -= 1.0f / (s32)(FUN_001f96b0(*(f32 *)((u8 *)row + 0x58)) * 60.0f);
+            if (total < pick)
+                return 1;
+        }
+        return 1;
+    }
+    return 0;
+}
+#endif
 extern u8 D_0013F350_002293a8[] __asm__("D_0013F350");
 extern f32 D_0015ED6C_002293a8 __asm__("D_0015ED6C");
 extern s32 D_0013CAE0_002293a8 __asm__("D_0013CAE0") __attribute__((section(".data")));
