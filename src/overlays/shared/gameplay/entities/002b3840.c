@@ -350,7 +350,7 @@ extern float FUN_L00_00257c48(float lo, float hi);
 extern float random_angle_radians(void) __asm__("FUN_00213308");
 extern void FUN_L00_001fff28(void *, int, float);
 extern void FUN_L00_002502f0(void *, int, int, int);
-extern void FUN_L05_0030c220(void);
+extern void FUN_L05_0030c220(struct Moby *m);
 void attach_manipulator(void *arg0, s32 arg1, void *arg2) __asm__("FUN_0020cb10");
 void enqueue_callback_list_1(s32 arg0, s32 arg1) __asm__("FUN_001f4600");
 
@@ -388,7 +388,99 @@ void FUN_L05_0030c0a8(unsigned char *m) {
     }
     }
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L05_0030c220.s", FUN_L05_0030c220);
+#else
+extern void get_moby_position(struct Moby *, int, float *) __asm__("FUN_L00_0024f7c8");
+extern void clear_vector(float *) __asm__("FUN_001f99f8");
+extern void subtract_vector_xyz_30c220(float *, const float *, const float *) __asm__("FUN_001f9a28");
+extern void normalize_vector_xyz_30c220(float *, float *, float) __asm__("FUN_001f9bf8");
+extern void cross_vector_xyz_30c220(float *, float *, float *) __asm__("FUN_001f9ad8");
+extern void rotation_vector_30c220(float *, float *) __asm__("FUN_001fa050");
+extern u64 get_effect_texture_30c220(int) __asm__("FUN_001f44b8");
+extern void draw_quad_30c220(void *, float *, int) __asm__("FUN_001f7d30");
+extern float D_L05_001D67B0[];
+extern float D_L05_001D67D0[][4];
+extern float D_L05_001D6810[][4];
+extern float D_L05_001671C0_30c220[] __asm__("D_L05_001671C0");
+extern int D_L05_00161CF4 __attribute__((sda));
+extern int D_L05_00161CF8 __attribute__((sda));
+extern int D_L05_00161CFC __attribute__((sda));
+extern int D_L05_00161D00 __attribute__((sda));
+extern int D_L05_00161D04 __attribute__((sda));
+extern int D_L05_00161D08 __attribute__((sda));
+extern int D_L05_00161D0C __attribute__((sda));
+
+typedef struct {
+    float vertex[4][4];
+    int color[4];
+    float texcoord[8];
+    u64 control[4];
+} Quad_30c220;
+
+void FUN_L05_0030c220(struct Moby *m) {
+    Quad_30c220 a, b;
+    float rotation[4];
+    float position[4];
+    float direction[4];
+    float side[4];
+    float up[4];
+    float matrix[4];
+    u64 texture;
+    u64 flags;
+    float phase;
+    float sign;
+    float pass;
+    int i, j, color;
+    char *vars = (char *)m->pvars;
+
+    get_moby_position(m, 0, position);
+    clear_vector(rotation);
+    rotation[2] = m->rot.z;
+    rotation[1] = fast_sin(*(float *)(vars + 0x48)) * 0.5235988f + 0.5235988f;
+    rotation_vector_30c220(side, rotation);
+    subtract_vector_xyz_30c220(direction, D_L05_001671C0_30c220, position);
+    normalize_vector_xyz_30c220(direction, direction, 1.0f);
+    cross_vector_xyz_30c220(side, direction, up);
+    cross_vector_xyz_30c220(direction, up, side);
+    qcopy(matrix, position);
+
+    texture = get_effect_texture_30c220(D_L05_00161D0C);
+    flags = (u64)(s64)D_L05_00161CF4 |
+            ((u64)(s64)D_L05_00161CF8 << 2) |
+            ((u64)(s64)D_L05_00161CFC << 4) |
+            ((u64)(s64)D_L05_00161D00 << 6) |
+            0x8000000000ULL;
+    a.control[0] = b.control[0] = 0;
+    a.control[1] = b.control[1] = texture;
+    a.control[2] = b.control[2] = 0xff9000000260ULL;
+    a.control[3] = b.control[3] = flags;
+    j = 0;
+    do {
+        a.texcoord[j] = D_L05_001D67B0[j];
+        b.texcoord[j] = D_L05_001D67B0[j];
+    } while (++j < 8);
+    i = 0;
+    do {
+        pass = (float)i;
+        j = 0;
+        do {
+            qcopy(a.vertex[j], D_L05_001D67D0[j]);
+            qcopy(b.vertex[j], D_L05_001D6810[j]);
+            phase = (float)(i + (j & 1)) * 0.1f;
+            sign = j < 2 ? 1.0f : -1.0f;
+            color = fast_tween_color(D_L05_00161D04, D_L05_00161D08, phase);
+            a.color[j] = b.color[j] = color;
+            a.vertex[j][2] += pass * 10.0f;
+            a.vertex[j][0] += phase * 8.0f * sign;
+            b.vertex[j][0] += phase * 6.0f * sign;
+            b.vertex[j][2] += pass * 12.0f;
+        } while (++j < 4);
+        draw_quad_30c220(&a, matrix, 0);
+        draw_quad_30c220(&b, matrix, 0);
+    } while (++i < 10);
+}
+#endif
 #ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L05_0030c5b0.s", FUN_L05_0030c5b0);
 #else
