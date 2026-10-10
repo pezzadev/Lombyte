@@ -5,9 +5,6 @@
 #include "asm.h"
 
 INCLUDE_ASM("config/us/overlays/asm/FUN_L18_002f88e8.s", FUN_L18_002f88e8);
-#ifndef NON_MATCHING
-INCLUDE_ASM("config/us/overlays/asm/FUN_L18_002f9780.s", FUN_L18_002f9780);
-#else
 extern float D_L18_00162520_9780 __asm__("D_L18_00162520");
 extern float D_L18_00162550_9780 __asm__("D_L18_00162550");
 extern volatile float D_L18_00162554_9780 __asm__("D_L18_00162554");
@@ -66,8 +63,8 @@ void FUN_L18_002f9780(void) {
     pk.a = 0;
     gs_9780(0x4A, 0);
     gs_9780(0x47, 0x51001);
+    rot_9780(mat[3], &D_L18_00162550_9780, D_L18_001679D0_9780);
     target = D_L18_001679D0_9780;
-    rot_9780(mat[3], &D_L18_00162550_9780, target);
     target -= 0x210;
     add_9780(mat[3], mat[3], target);
     sub_9780(mat[0], mat[3], target);
@@ -112,7 +109,6 @@ void FUN_L18_002f9780(void) {
     }
     draw_9780(&pk, 0, 0);
 }
-#endif
 #include "sda.h"
 
 /* Ported from rac1-decomp (src/overlays/l18_veldin2/vendor_002F9D48.c: func_L18_002FAEF8), where it is exact; names translated to the US level program. */
