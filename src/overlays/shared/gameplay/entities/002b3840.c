@@ -389,7 +389,103 @@ void FUN_L05_0030c0a8(unsigned char *m) {
     }
 }
 INCLUDE_ASM("config/us/overlays/asm/FUN_L05_0030c220.s", FUN_L05_0030c220);
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L05_0030c5b0.s", FUN_L05_0030c5b0);
+#else
+extern int truncate_float_to_s32(float) __asm__("FUN_001fa6d0");
+extern void allocate_voice_for_target_entry(int, int, struct Moby *) __asm__("FUN_0022da68");
+extern char *D_L05_001B0930[];
+extern unsigned char D_L05_0015FC88[];
+extern unsigned char D_0014C050[][16];
+extern int D_0014C190[][64];
+
+typedef struct {
+    int table;
+    float key;
+    int active;
+    float angle;
+} KeyVars_30c5b0;
+typedef struct {
+    unsigned char pad[0x454];
+    unsigned char killed[1];
+} KillFlags_30c5b0;
+typedef struct {
+    int count;
+    unsigned char pad04[8];
+    float key;
+} KeyRow_30c5b0;
+extern KillFlags_30c5b0 D_L05_001BB6B0;
+extern KillFlags_30c5b0 D_L05_001BAA50;
+
+void FUN_L05_0030c5b0(struct Moby *m) {
+    KeyVars_30c5b0 *v = (KeyVars_30c5b0 *)m->pvars;
+    KeyRow_30c5b0 *row;
+    int i;
+    int intensity;
+
+    switch (m->state) {
+    case 0:
+        v->angle = random_angle_radians();
+        m->pos.z -= 0.35f;
+        if (D_L05_001BB6B0.killed[(short)m->save_id] == 0 &&
+            ((D_0014C190[current_level_index][(short)m->save_id >> 5] >> (m->save_id & 31)) & 1) == 0) {
+            if (v->active == 0) {
+                goto active_30c5b0;
+            }
+            if (D_0014C050[current_level_index][m->unkB0] != 0xFF) {
+                goto active_30c5b0;
+            }
+        }
+        {
+            m->unkBC = 2;
+            m->state = 2;
+            m->unk90 = 0x80208020;
+            if (v->table != -1) {
+                i = 0;
+                while (i < *(int *)D_L05_001B0930[v->table]) {
+                    row = (KeyRow_30c5b0 *)(D_L05_001B0930[v->table] + i * 16);
+                    if (row[1].key == v->key) {
+                        *(int *)&row[1].key = 0;
+                    }
+                    i++;
+                }
+            }
+        }
+        break;
+    active_30c5b0:
+        m->state = 1;
+        break;
+    case 1:
+        v->angle = fast_add_rotations(v->angle, frame_time * 6.2831855f);
+        intensity = truncate_float_to_s32((fast_sin(v->angle) * 4.0f - 3.0f) * 128.0f);
+        if (intensity > 0x80) intensity = 0x80;
+        else if (intensity < 0x20) intensity = 0x20;
+        m->unk90 = 0x80000000 | intensity << 16 | intensity << 8 | intensity;
+        if (hero.ground_moby == m && hero.air_frames.s == 0) {
+            D_L05_001BAA50.killed[(short)m->save_id] = m->unkB0 + 2;
+            if (m->unkB0 == 0xFF ||
+                (D_L05_0015FC88[m->unkB0] != 0xFF && D_0014C050[current_level_index][m->unkB0] == 0xFF)) {
+                D_L05_001BB6B0.killed[(short)m->save_id] = m->unkB0 + 2;
+            }
+            m->unkBC = 1;
+            m->state = 2;
+            m->unk90 = 0x80208020;
+            allocate_voice_for_target_entry(0, 0, m);
+            if (v->table != -1) {
+                i = 0;
+                while (i < *(int *)D_L05_001B0930[v->table]) {
+                    row = (KeyRow_30c5b0 *)(D_L05_001B0930[v->table] + i * 16);
+                    if (row[1].key == v->key) {
+                        *(int *)&row[1].key = 0;
+                    }
+                    i++;
+                }
+            }
+        }
+        break;
+    }
+}
+#endif
 typedef struct {
     char pad0[0x44];
     short count;
