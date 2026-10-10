@@ -2,41 +2,41 @@
   "schema": "rnc-public-progress-v3",
   "source": "scripts/generate_treemap.py",
   "units_total": 4550,
-  "matching_c": 3546,
+  "matching_c": 3581,
   "intentional_asm": 313,
-  "pending_c": 691,
+  "pending_c": 656,
   "bytes_total": 3668944,
-  "bytes_matching_c": 2426860,
+  "bytes_matching_c": 2480920,
   "bytes_intentional_asm": 121516,
-  "bytes_pending_c": 1120568,
-  "c_exact_percent_of_recoverable": 68.4118,
+  "bytes_pending_c": 1066508,
+  "c_exact_percent_of_recoverable": 69.9357,
   "c_fuzzy_percent_of_recoverable": null,
   "boot": {
     "units_total": 1475,
     "groups_total": 129,
-    "matching_c": 1147,
+    "matching_c": 1150,
     "intentional_asm": 251,
-    "pending_c": 77,
+    "pending_c": 74,
     "bytes_total": 448120,
-    "bytes_matching_c": 289080,
+    "bytes_matching_c": 290176,
     "bytes_intentional_asm": 94104,
-    "bytes_pending_c": 64936,
-    "c_exact_percent_of_recoverable": 81.6573,
+    "bytes_pending_c": 63840,
+    "c_exact_percent_of_recoverable": 81.9669,
     "c_fuzzy_percent_of_recoverable": null,
     "groups": [
       {
         "name": "game/unclassified",
         "logical_group": "unclassified",
         "category": "game",
-        "functions": 146,
+        "functions": 145,
         "matching_c": 19,
-        "pending_c": 28,
+        "pending_c": 27,
         "intentional_asm": 99,
-        "bytes_total": 102228,
-        "bytes_matching_c": 12888,
-        "bytes_pending_c": 24008,
+        "bytes_total": 102088,
+        "bytes_matching_c": 13252,
+        "bytes_pending_c": 23504,
         "bytes_intentional_asm": 65332,
-        "c_exact_percent_of_recoverable": 34.9306,
+        "c_exact_percent_of_recoverable": 36.054,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -44,14 +44,14 @@
         "logical_group": "sdk/library",
         "category": "sdk",
         "functions": 187,
-        "matching_c": 149,
-        "pending_c": 14,
+        "matching_c": 150,
+        "pending_c": 13,
         "intentional_asm": 24,
         "bytes_total": 65860,
-        "bytes_matching_c": 42768,
-        "bytes_pending_c": 8564,
+        "bytes_matching_c": 42904,
+        "bytes_pending_c": 8428,
         "bytes_intentional_asm": 14528,
-        "c_exact_percent_of_recoverable": 83.3164,
+        "c_exact_percent_of_recoverable": 83.5814,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -73,15 +73,15 @@
         "name": "game/rendering",
         "logical_group": "rendering",
         "category": "game",
-        "functions": 47,
-        "matching_c": 45,
+        "functions": 48,
+        "matching_c": 46,
         "pending_c": 2,
         "intentional_asm": 0,
-        "bytes_total": 22844,
-        "bytes_matching_c": 22648,
+        "bytes_total": 22984,
+        "bytes_matching_c": 22788,
         "bytes_pending_c": 196,
         "bytes_intentional_asm": 0,
-        "c_exact_percent_of_recoverable": 99.142,
+        "c_exact_percent_of_recoverable": 99.1472,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -929,15 +929,15 @@
         "logical_group": "math/vectors",
         "category": "game",
         "functions": 5,
-        "matching_c": 1,
-        "pending_c": 1,
+        "matching_c": 2,
+        "pending_c": 0,
         "intentional_asm": 3,
         "bytes_total": 732,
-        "bytes_matching_c": 188,
-        "bytes_pending_c": 456,
+        "bytes_matching_c": 644,
+        "bytes_pending_c": 0,
         "bytes_intentional_asm": 88,
-        "c_exact_percent_of_recoverable": 29.1925,
-        "c_fuzzy_percent_of_recoverable": null
+        "c_exact_percent_of_recoverable": 100.0,
+        "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
         "name": "game/ui/frames",
@@ -1963,12 +1963,12 @@
   },
   "overlays": {
     "functions_total": 3013,
-    "matching_c": 2399,
-    "pending_c": 614,
+    "matching_c": 2431,
+    "pending_c": 582,
     "bytes_total": 3193412,
-    "bytes_matching_c": 2137780,
-    "bytes_pending_c": 1055632,
-    "c_exact_percent_of_recoverable": 66.9434,
+    "bytes_matching_c": 2190744,
+    "bytes_pending_c": 1002668,
+    "c_exact_percent_of_recoverable": 68.602,
     "intentional_asm": 62,
     "bytes_intentional_asm": 27412,
     "shared": {
@@ -3620,12 +3620,12 @@
         "planet": "Kerwan",
         "description": "Metropolis: the city of towers and trains",
         "functions": 71,
-        "matching_c": 65,
-        "pending_c": 6,
+        "matching_c": 71,
+        "pending_c": 0,
         "bytes_total": 120576,
-        "bytes_matching_c": 108844,
-        "bytes_pending_c": 11732,
-        "c_exact_percent_of_recoverable": 90.27,
+        "bytes_matching_c": 120576,
+        "bytes_pending_c": 0,
+        "c_exact_percent_of_recoverable": 100.0,
         "files": [
           {
             "file": "src/overlays/l03/gameplay/hero/00205830.c",
@@ -3679,9 +3679,9 @@
           {
             "file": "src/overlays/l03/gameplay/entities/00292578.c",
             "functions": 22,
-            "matching_c": 19,
+            "matching_c": 22,
             "bytes_total": 31116,
-            "bytes_matching_c": 24864
+            "bytes_matching_c": 31116
           },
           {
             "file": "src/overlays/l03/gameplay/entities/0029c8a8.c",
@@ -3700,9 +3700,9 @@
           {
             "file": "src/overlays/l03/gameplay/entities/002c9eb8.c",
             "functions": 23,
-            "matching_c": 20,
+            "matching_c": 23,
             "bytes_total": 18952,
-            "bytes_matching_c": 13472
+            "bytes_matching_c": 18952
           },
           {
             "file": "src/overlays/l03/gameplay/vendor/002df520.c",
@@ -4300,12 +4300,12 @@
         "planet": "Pokitaru",
         "description": "Jowai Resort: the ocean and the Thruster-Pack",
         "functions": 101,
-        "matching_c": 75,
-        "pending_c": 26,
+        "matching_c": 101,
+        "pending_c": 0,
         "bytes_total": 129604,
-        "bytes_matching_c": 88372,
-        "bytes_pending_c": 41232,
-        "c_exact_percent_of_recoverable": 68.1862,
+        "bytes_matching_c": 129604,
+        "bytes_pending_c": 0,
+        "c_exact_percent_of_recoverable": 100.0,
         "files": [
           {
             "file": "src/overlays/l11/gameplay/hero/0023c7a0.c",
@@ -4338,16 +4338,16 @@
           {
             "file": "src/overlays/l11/gameplay/entities/002cb668.c",
             "functions": 26,
-            "matching_c": 18,
+            "matching_c": 26,
             "bytes_total": 17192,
-            "bytes_matching_c": 6500
+            "bytes_matching_c": 17192
           },
           {
             "file": "src/overlays/l11/gameplay/vendor/0030c788.c",
             "functions": 29,
-            "matching_c": 17,
+            "matching_c": 29,
             "bytes_total": 32376,
-            "bytes_matching_c": 8168
+            "bytes_matching_c": 32376
           },
           {
             "file": "src/overlays/shared/gameplay/vendor/0030e690.c",
@@ -4366,9 +4366,9 @@
           {
             "file": "src/overlays/l11/gameplay/vendor/00315968.c",
             "functions": 35,
-            "matching_c": 29,
+            "matching_c": 35,
             "bytes_total": 18756,
-            "bytes_matching_c": 12424
+            "bytes_matching_c": 18756
           }
         ]
       },
@@ -4999,14 +4999,14 @@
   },
   "total": {
     "units_total": 4550,
-    "matching_c": 3546,
+    "matching_c": 3581,
     "intentional_asm": 313,
-    "pending_c": 691,
+    "pending_c": 656,
     "bytes_total": 3668944,
-    "bytes_matching_c": 2426860,
+    "bytes_matching_c": 2480920,
     "bytes_intentional_asm": 121516,
-    "bytes_pending_c": 1120568,
-    "c_exact_percent_of_recoverable": 68.4118,
+    "bytes_pending_c": 1066508,
+    "c_exact_percent_of_recoverable": 69.9357,
     "c_fuzzy_percent_of_recoverable": null
   }
 }
