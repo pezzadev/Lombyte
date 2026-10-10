@@ -503,7 +503,8 @@ void FUN_L01_002c7530(char *moby) {
     *(float *)(moby + 0x40) = fast_add_rotations(*(float *)(moby + 0x40), *(float *)(data + 3));
     FUN_001f9a10(moby + 0x10, moby + 0x10, data + 8);
     state = (u8)moby[0x20];
-    if (state == 1) {
+    switch (state) {
+    case 1:
         FUN_L01_00280970(*(int *)((char *)&D_L01_001742C0_sda + 0x18), moby);
         FUN_001f9bf8(normal, data + 8, 1.0f);
         FUN_L00_00259888(hit, moby, 0, 0.0f, normal);
@@ -522,15 +523,15 @@ void FUN_L01_002c7530(char *moby) {
                 data[4] = 0;
         }
         return;
-    }
-    if (state < 2) return;
-    if (state != 2) return;
-    {
+    case 2:
         if (!FUN_001f9740(data)) {
             int duration = FUN_001f96f8(0x1e);
             moby[0x23] = truncate_float_to_s32((float)data[0] * (127.0f / (float)duration));
             return;
         }
+        break;
+    default:
+        return;
     }
 mark:
     FUN_0020c828(moby);
