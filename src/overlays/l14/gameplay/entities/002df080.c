@@ -1030,7 +1030,8 @@ void FUN_L14_002f1040(struct Moby *moby) {
 selected:
     moby->state = 1;
     {
-        int offset = entries[*(short *)(data + 0xB4)] << 7;
+        int *selected_entry = entries + *(short *)(data + 0xB4);
+        int offset = *selected_entry << 7;
         char *base = D_L14_001600EC_2f1040;
         qcopy(data + 0x60, base + offset + 0x30);
         qcopy(data + 0x70, base + offset + 0x70);
