@@ -978,7 +978,7 @@ void FUN_L00_002be650(void *o) {
     volatile int color;
     OvlVec4 * volatile vertexTarget;
     int i, j;
-    volatile int nextIndex;
+    int nextIndex;
 
     (void)o;
     quad.tex = tex_2be650(8);
@@ -1005,8 +1005,8 @@ void FUN_L00_002be650(void *o) {
             quad.color[1] = c;
             quad.color[2] = c;
             quad.color[3] = c;
-            *vertexTarget = *(OvlVec4 *)&D_L00_001DD0A0[i];
-            scaled = *(OvlVec4 *)&D_L00_001DD0D0[i];
+            qcopy(&scaled, &D_L00_001DD0D0[i]);
+            qcopy(vertexTarget, &D_L00_001DD0A0[i]);
             vmul_2be650(-1.0f, &negativeUp, &D_0013F5E0_2be650);
             cross_2be650(&axis, &scaled, &negativeUp);
             normalize_2be650(&axis, &axis, 1.0f);
