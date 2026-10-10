@@ -1270,13 +1270,14 @@ void FUN_L00_0029ad08(void) {
     char *moby;
     s32 index, item, offset;
     f32 *vec;
-    struct S16_29ab70 *state;
+    volatile struct S16_29ab70 *state;
+    volatile s32 *selected;
 
     f2eac18_29ad08(2);
     state = &D_001516D0_29ad08;
-    g = D_L00_001CA4C0_29ad08;
     if ((u16)(state->mode - 6) >= 2)
         state->mode = 5;
+    g = D_L00_001CA4C0_29ad08;
     D_L00_0015F5D8 = 1;
     moby = *(char * volatile *)(g + 0x1C);
     moby[0x20] = 1;
@@ -1296,7 +1297,8 @@ void FUN_L00_0029ad08(void) {
     f1f97e8_29ad08(D_L00_0017C340_298840, 0, 0x40);
     FUN_L00_002a09d8(1);
     FUN_002335a0();
-    index = *(s32 *)(g + 0x48);
+    selected = (volatile s32 *)(g + 0x48);
+    index = *selected;
     offset = D_L00_001611CC - 0x40000;
     D_L00_001611CC = offset;
     D_L00_0016C860_298840.x5c = D_L00_00173E00_298840.x8 + offset;
@@ -1306,9 +1308,11 @@ void FUN_L00_0029ad08(void) {
     D_L00_0015F400_29ad08 = 0;
     if (D_00140408 != 0 && index != D_00140408)
         FUN_L00_0020fca8(0, 0);
+    index = *selected;
     D_00141408 = index;
     if (index == 0x18)
         D_00141408 = 0;
+    index = *selected;
     f204a40_29ad08(*(s32 *)(D_L00_00179AC0_29ad08 + index * 0x4C + 0x10), -1);
     f2454c8_29ad08(item);
     *(s32 *)&state->pad[0x1C] = 0x2734;
