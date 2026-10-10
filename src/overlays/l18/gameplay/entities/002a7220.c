@@ -1890,7 +1890,7 @@ extern short D_L18_00161ED4_d __asm__("D_L18_00161ED4") __attribute__((sda));
 extern short D_L18_00161ED8_d __asm__("D_L18_00161ED8") __attribute__((sda));
 extern short D_L18_00161EE0_d __asm__("D_L18_00161EE0") __attribute__((sda));
 extern void FUN_L15_002d8710(char *);
-extern void FUN_L18_002ea1f8(void);
+extern void FUN_L18_002ea1f8(struct Moby *);
 extern void FUN_L18_002ea800(void *);
 void FUN_L18_002eacd8(struct Moby *m);
 extern void FUN_L18_002eaea0_u(void *) __asm__("FUN_L18_002eaea0");
@@ -1949,7 +1949,91 @@ void FUN_L18_002e9e70(struct Moby *moby) {
     }
     enqueue_callback_list_1(FUN_L18_002ea1f8, moby);
 }
+#ifndef NON_MATCHING
 INCLUDE_ASM("config/us/overlays/asm/FUN_L18_002ea1f8.s", FUN_L18_002ea1f8);
+#else
+typedef struct {
+    float x, y, z, w;
+} __attribute__((aligned(16))) L18FlareVector;
+typedef struct {
+    float u, v;
+} L18FlareUV;
+typedef struct {
+    L18FlareVector corner[4];
+    unsigned int color[4];
+    L18FlareUV uv[4];
+    unsigned long long zero, texture, state, flags;
+} L18FlarePacket;
+extern float D_L18_001677C0_flare[] __asm__("D_L18_001677C0");
+extern L18FlareUV D_L18_001D9B50_flare[] __asm__("D_L18_001D9B50");
+extern L18FlareVector D_L18_001D9B70_flare[] __asm__("D_L18_001D9B70");
+extern int D_L18_00161EE4_flare __asm__("D_L18_00161EE4") __attribute__((sda));
+extern int D_L18_00161EE8_flare __asm__("D_L18_00161EE8") __attribute__((sda));
+extern int D_L18_00161EEC_flare __asm__("D_L18_00161EEC") __attribute__((sda));
+extern int D_L18_00161EF0_flare __asm__("D_L18_00161EF0") __attribute__((sda));
+extern int D_L18_00161EF8_flare[] __asm__("D_L18_00161EF8") __attribute__((sda));
+extern int D_L18_00161F08_flare[] __asm__("D_L18_00161F08") __attribute__((sda));
+extern void clear_flare_vector(void *) __asm__("FUN_001f99f8");
+extern float flare_length(float, float) __asm__("FUN_001f9e90");
+extern float flare_dot(void *, void *) __asm__("FUN_001f9b80");
+extern void copy_flare_vector(void *, void *) __asm__("FUN_001fa050");
+extern int tween_flare_color(float, int, int) __asm__("FUN_001fa6e0");
+extern void draw_flare_packet(void *, void *, int) __asm__("FUN_001f7d30");
+
+void FUN_L18_002ea1f8(struct Moby *moby) {
+    L18FlarePacket packet[4];
+    L18FlareVector axis;
+    L18FlareVector basis[4][4];
+    char *data = (char *)moby->pvars;
+    int i, j;
+    unsigned int mask = 0xffffff;
+    float size;
+    clear_flare_vector(&axis);
+    axis.z = flare_length(D_L18_001677C0_flare[0] - moby->pos.x,
+                          D_L18_001677C0_flare[1] - moby->pos.y);
+    axis.y = -flare_length(flare_dot(&moby->pos, D_L18_001677C0_flare),
+                            D_L18_001677C0_flare[2] - moby->pos.z);
+    copy_flare_vector(&basis[0][0], &axis);
+    copy_flare_vector(&basis[1][0], &axis);
+    size = *(float *)(data + 0x24);
+    scale_vector_xyz(&basis[1][1], &basis[1][1], size);
+    scale_vector_xyz(&basis[1][2], &basis[1][2], size);
+    basis[0][3] = *(L18FlareVector *)&moby->pos;
+    basis[1][3] = *(L18FlareVector *)&moby->pos;
+    axis.x = *(float *)(data + 0x2c);
+    copy_flare_vector(&basis[2][0], &axis);
+    scale_vector_xyz(&basis[2][1], &basis[2][1], size);
+    scale_vector_xyz(&basis[2][2], &basis[2][2], size);
+    basis[2][3] = *(L18FlareVector *)&moby->pos;
+    axis.x = *(float *)(data + 0x30);
+    copy_flare_vector(&basis[3][0], &axis);
+    scale_vector_xyz(&basis[3][1], &basis[3][1], size);
+    scale_vector_xyz(&basis[3][2], &basis[3][2], size);
+    basis[3][3] = *(L18FlareVector *)&moby->pos;
+    for (i = 0; i < 4; i++) {
+        packet[i].texture = get_effect_texture(D_L18_00161F08_flare[i]);
+        packet[i].state = 0xff9000000260ULL;
+        packet[i].flags = 0x8000000000ULL | D_L18_00161EE4_flare |
+                          ((unsigned long long)D_L18_00161EE8_flare << 2) |
+                          ((unsigned long long)D_L18_00161EEC_flare << 4) |
+                          ((unsigned long long)D_L18_00161EF0_flare << 6);
+        packet[i].zero = 0;
+        for (j = 0; j < 4; j++) {
+            packet[i].uv[j] = D_L18_001D9B50_flare[j];
+            if (i == 0) {
+                packet[i].color[j] = tween_flare_color(size,
+                    D_L18_00161EF8_flare[i] & mask, D_L18_00161EF8_flare[i]);
+            } else {
+                packet[i].color[j] = D_L18_00161EF8_flare[i];
+            }
+            qcopy(&packet[i].corner[j], &D_L18_001D9B70_flare[i * 4 + j]);
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        draw_flare_packet(&packet[i], &basis[i][0], 0);
+    }
+}
+#endif
 /* Ported from rac1-decomp (src/overlays/l18_veldin2/vendor_002A8400.c: func_L18_002EB988), where it is exact; names translated to the US level program. */
 
 extern char *FUN_00218888(void *, void *, void *, int, int, int, int, int, int);
