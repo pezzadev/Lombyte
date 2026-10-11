@@ -2,14 +2,14 @@
   "schema": "rnc-public-progress-v3",
   "source": "scripts/generate_treemap.py",
   "units_total": 4551,
-  "matching_c": 3737,
+  "matching_c": 3739,
   "intentional_asm": 318,
-  "pending_c": 496,
+  "pending_c": 494,
   "bytes_total": 3669004,
-  "bytes_matching_c": 2719072,
+  "bytes_matching_c": 2722332,
   "bytes_intentional_asm": 122736,
-  "bytes_pending_c": 827196,
-  "c_exact_percent_of_recoverable": 76.6742,
+  "bytes_pending_c": 823936,
+  "c_exact_percent_of_recoverable": 76.7661,
   "c_fuzzy_percent_of_recoverable": null,
   "boot": {
     "units_total": 1476,
@@ -1963,12 +1963,12 @@
   },
   "overlays": {
     "functions_total": 3014,
-    "matching_c": 2581,
-    "pending_c": 433,
+    "matching_c": 2583,
+    "pending_c": 431,
     "bytes_total": 3193428,
-    "bytes_matching_c": 2423140,
-    "bytes_pending_c": 770288,
-    "c_exact_percent_of_recoverable": 75.879,
+    "bytes_matching_c": 2426400,
+    "bytes_pending_c": 767028,
+    "c_exact_percent_of_recoverable": 75.981,
     "intentional_asm": 61,
     "bytes_intentional_asm": 27396,
     "shared": {
@@ -1977,12 +1977,12 @@
       "planet": "Shared code",
       "description": "functions present in two or more levels",
       "functions": 1583,
-      "matching_c": 1331,
-      "pending_c": 252,
+      "matching_c": 1333,
+      "pending_c": 250,
       "bytes_total": 1130492,
-      "bytes_matching_c": 717296,
-      "bytes_pending_c": 413196,
-      "c_exact_percent_of_recoverable": 63.4499,
+      "bytes_matching_c": 720556,
+      "bytes_pending_c": 409936,
+      "c_exact_percent_of_recoverable": 63.7383,
       "files": [
         {
           "file": "src/overlays/shared/sdk/debug/001eb0b0.c",
@@ -2001,9 +2001,9 @@
         {
           "file": "src/overlays/shared/gameplay/vendor/002e9010.c",
           "functions": 41,
-          "matching_c": 37,
+          "matching_c": 39,
           "bytes_total": 19608,
-          "bytes_matching_c": 14096
+          "bytes_matching_c": 17356
         },
         {
           "file": "src/overlays/shared/rendering/effects/001edf60.c",
@@ -5027,14 +5027,14 @@
   },
   "total": {
     "units_total": 4551,
-    "matching_c": 3737,
+    "matching_c": 3739,
     "intentional_asm": 318,
-    "pending_c": 496,
+    "pending_c": 494,
     "bytes_total": 3669004,
-    "bytes_matching_c": 2719072,
+    "bytes_matching_c": 2722332,
     "bytes_intentional_asm": 122736,
-    "bytes_pending_c": 827196,
-    "c_exact_percent_of_recoverable": 76.6742,
+    "bytes_pending_c": 823936,
+    "c_exact_percent_of_recoverable": 76.7661,
     "c_fuzzy_percent_of_recoverable": null
   }
 }
