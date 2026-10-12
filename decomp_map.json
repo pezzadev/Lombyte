@@ -2,41 +2,41 @@
   "schema": "rnc-public-progress-v3",
   "source": "scripts/generate_treemap.py",
   "units_total": 4551,
-  "matching_c": 3753,
+  "matching_c": 3762,
   "intentional_asm": 318,
-  "pending_c": 480,
+  "pending_c": 471,
   "bytes_total": 3669004,
-  "bytes_matching_c": 2746188,
+  "bytes_matching_c": 2763884,
   "bytes_intentional_asm": 122736,
-  "bytes_pending_c": 800080,
-  "c_exact_percent_of_recoverable": 77.4388,
+  "bytes_pending_c": 782384,
+  "c_exact_percent_of_recoverable": 77.9378,
   "c_fuzzy_percent_of_recoverable": null,
   "boot": {
     "units_total": 1476,
     "groups_total": 129,
-    "matching_c": 1156,
+    "matching_c": 1157,
     "intentional_asm": 257,
-    "pending_c": 63,
+    "pending_c": 62,
     "bytes_total": 448180,
-    "bytes_matching_c": 295932,
+    "bytes_matching_c": 296312,
     "bytes_intentional_asm": 95340,
-    "bytes_pending_c": 56908,
-    "c_exact_percent_of_recoverable": 83.8714,
+    "bytes_pending_c": 56528,
+    "c_exact_percent_of_recoverable": 83.9791,
     "c_fuzzy_percent_of_recoverable": null,
     "groups": [
       {
         "name": "game/unclassified",
         "logical_group": "unclassified",
         "category": "game",
-        "functions": 142,
+        "functions": 141,
         "matching_c": 19,
-        "pending_c": 22,
+        "pending_c": 21,
         "intentional_asm": 101,
-        "bytes_total": 99608,
+        "bytes_total": 99228,
         "bytes_matching_c": 13252,
-        "bytes_pending_c": 20172,
+        "bytes_pending_c": 19792,
         "bytes_intentional_asm": 66184,
-        "c_exact_percent_of_recoverable": 39.6482,
+        "c_exact_percent_of_recoverable": 40.1041,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -565,6 +565,21 @@
         "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
+        "name": "game/audio",
+        "logical_group": "audio",
+        "category": "game",
+        "functions": 6,
+        "matching_c": 6,
+        "pending_c": 0,
+        "intentional_asm": 0,
+        "bytes_total": 1784,
+        "bytes_matching_c": 1784,
+        "bytes_pending_c": 0,
+        "bytes_intentional_asm": 0,
+        "c_exact_percent_of_recoverable": 100.0,
+        "c_fuzzy_percent_of_recoverable": 100.0
+      },
+      {
         "name": "sdk/input",
         "logical_group": "sdk/input",
         "category": "sdk",
@@ -664,21 +679,6 @@
         "intentional_asm": 0,
         "bytes_total": 1472,
         "bytes_matching_c": 1472,
-        "bytes_pending_c": 0,
-        "bytes_intentional_asm": 0,
-        "c_exact_percent_of_recoverable": 100.0,
-        "c_fuzzy_percent_of_recoverable": 100.0
-      },
-      {
-        "name": "game/audio",
-        "logical_group": "audio",
-        "category": "game",
-        "functions": 5,
-        "matching_c": 5,
-        "pending_c": 0,
-        "intentional_asm": 0,
-        "bytes_total": 1404,
-        "bytes_matching_c": 1404,
         "bytes_pending_c": 0,
         "bytes_intentional_asm": 0,
         "c_exact_percent_of_recoverable": 100.0,
@@ -1963,12 +1963,12 @@
   },
   "overlays": {
     "functions_total": 3014,
-    "matching_c": 2597,
-    "pending_c": 417,
+    "matching_c": 2605,
+    "pending_c": 409,
     "bytes_total": 3193428,
-    "bytes_matching_c": 2450256,
-    "bytes_pending_c": 743172,
-    "c_exact_percent_of_recoverable": 76.7281,
+    "bytes_matching_c": 2467572,
+    "bytes_pending_c": 725856,
+    "c_exact_percent_of_recoverable": 77.2703,
     "intentional_asm": 61,
     "bytes_intentional_asm": 27396,
     "shared": {
@@ -1977,12 +1977,12 @@
       "planet": "Shared code",
       "description": "functions present in two or more levels",
       "functions": 1583,
-      "matching_c": 1336,
-      "pending_c": 247,
+      "matching_c": 1340,
+      "pending_c": 243,
       "bytes_total": 1130492,
-      "bytes_matching_c": 725372,
-      "bytes_pending_c": 405120,
-      "c_exact_percent_of_recoverable": 64.1643,
+      "bytes_matching_c": 734980,
+      "bytes_pending_c": 395512,
+      "c_exact_percent_of_recoverable": 65.0142,
       "files": [
         {
           "file": "src/overlays/shared/sdk/debug/001eb0b0.c",
@@ -2022,9 +2022,9 @@
         {
           "file": "src/overlays/shared/rendering/debug/001f36f8.c",
           "functions": 6,
-          "matching_c": 3,
+          "matching_c": 4,
           "bytes_total": 13356,
-          "bytes_matching_c": 2916
+          "bytes_matching_c": 7800
         },
         {
           "file": "src/overlays/shared/rendering/view/001f6d70.c",
@@ -3128,9 +3128,9 @@
         {
           "file": "src/overlays/shared/gameplay/entities/002b7d50.c",
           "functions": 6,
-          "matching_c": 4,
+          "matching_c": 5,
           "bytes_total": 4664,
-          "bytes_matching_c": 1416
+          "bytes_matching_c": 3000
         },
         {
           "file": "src/overlays/shared/gameplay/vendor/002b7ef0.c",
@@ -3240,9 +3240,9 @@
         {
           "file": "src/overlays/shared/gameplay/entities/00297d10.c",
           "functions": 35,
-          "matching_c": 28,
+          "matching_c": 29,
           "bytes_total": 29548,
-          "bytes_matching_c": 18532
+          "bytes_matching_c": 19652
         },
         {
           "file": "src/overlays/shared/gameplay/vendor/002de370.c",
@@ -3373,9 +3373,9 @@
         {
           "file": "src/overlays/shared/gameplay/vendor/00307190.c",
           "functions": 7,
-          "matching_c": 5,
+          "matching_c": 6,
           "bytes_total": 4512,
-          "bytes_matching_c": 1844
+          "bytes_matching_c": 3864
         },
         {
           "file": "src/overlays/shared/gameplay/vendor/00307578.c",
@@ -3832,12 +3832,12 @@
         "planet": "Rilgar",
         "description": "Blackwater City: canals and the hoverboard race",
         "functions": 78,
-        "matching_c": 63,
-        "pending_c": 15,
+        "matching_c": 64,
+        "pending_c": 14,
         "bytes_total": 135164,
-        "bytes_matching_c": 104460,
-        "bytes_pending_c": 30704,
-        "c_exact_percent_of_recoverable": 77.2839,
+        "bytes_matching_c": 106368,
+        "bytes_pending_c": 28796,
+        "c_exact_percent_of_recoverable": 78.6955,
         "files": [
           {
             "file": "src/overlays/l05/gameplay/hero/00239fc0.c",
@@ -3884,9 +3884,9 @@
           {
             "file": "src/overlays/l05/gameplay/entities/002d1688.c",
             "functions": 33,
-            "matching_c": 23,
+            "matching_c": 24,
             "bytes_total": 32276,
-            "bytes_matching_c": 8708
+            "bytes_matching_c": 10616
           },
           {
             "file": "src/overlays/shared/gameplay/entities/002b3840.c",
@@ -4235,12 +4235,12 @@
         "planet": "Gaspar",
         "description": "Blarg Depot: lava fields and the Pilot's Helmet",
         "functions": 41,
-        "matching_c": 30,
-        "pending_c": 11,
+        "matching_c": 31,
+        "pending_c": 10,
         "bytes_total": 35716,
-        "bytes_matching_c": 17728,
-        "bytes_pending_c": 17988,
-        "c_exact_percent_of_recoverable": 49.636,
+        "bytes_matching_c": 19660,
+        "bytes_pending_c": 16056,
+        "c_exact_percent_of_recoverable": 55.0454,
         "files": [
           {
             "file": "src/overlays/l09/gameplay/entities/0021e538.c",
@@ -4259,9 +4259,9 @@
           {
             "file": "src/overlays/l09/gameplay/vendor/003033a0.c",
             "functions": 14,
-            "matching_c": 8,
+            "matching_c": 9,
             "bytes_total": 15768,
-            "bytes_matching_c": 5288
+            "bytes_matching_c": 7220
           },
           {
             "file": "src/overlays/l09/gameplay/vendor/0030a678.c",
@@ -4278,12 +4278,12 @@
         "planet": "Orxon",
         "description": "the toxic Blarg homeworld, first with Clank",
         "functions": 54,
-        "matching_c": 36,
-        "pending_c": 18,
+        "matching_c": 38,
+        "pending_c": 16,
         "bytes_total": 56384,
-        "bytes_matching_c": 26244,
-        "bytes_pending_c": 30140,
-        "c_exact_percent_of_recoverable": 46.5451,
+        "bytes_matching_c": 30112,
+        "bytes_pending_c": 26272,
+        "c_exact_percent_of_recoverable": 53.4052,
         "files": [
           {
             "file": "src/overlays/l10/runtime/startup/00230fd0.c",
@@ -4295,16 +4295,16 @@
           {
             "file": "src/overlays/l10/gameplay/entities/00295a38.c",
             "functions": 27,
-            "matching_c": 19,
+            "matching_c": 20,
             "bytes_total": 20084,
-            "bytes_matching_c": 9884
+            "bytes_matching_c": 11472
           },
           {
             "file": "src/overlays/l10/gameplay/vendor/002df270.c",
             "functions": 18,
-            "matching_c": 8,
+            "matching_c": 9,
             "bytes_total": 32588,
-            "bytes_matching_c": 12648
+            "bytes_matching_c": 14928
           },
           {
             "file": "src/overlays/l10/gameplay/vendor/002ea1f0.c",
@@ -5027,14 +5027,14 @@
   },
   "total": {
     "units_total": 4551,
-    "matching_c": 3753,
+    "matching_c": 3762,
     "intentional_asm": 318,
-    "pending_c": 480,
+    "pending_c": 471,
     "bytes_total": 3669004,
-    "bytes_matching_c": 2746188,
+    "bytes_matching_c": 2763884,
     "bytes_intentional_asm": 122736,
-    "bytes_pending_c": 800080,
-    "c_exact_percent_of_recoverable": 77.4388,
+    "bytes_pending_c": 782384,
+    "c_exact_percent_of_recoverable": 77.9378,
     "c_fuzzy_percent_of_recoverable": null
   }
 }
