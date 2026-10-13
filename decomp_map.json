@@ -2,14 +2,14 @@
   "schema": "rnc-public-progress-v3",
   "source": "scripts/generate_treemap.py",
   "units_total": 4551,
-  "matching_c": 3937,
+  "matching_c": 3942,
   "intentional_asm": 318,
-  "pending_c": 296,
+  "pending_c": 291,
   "bytes_total": 3669004,
-  "bytes_matching_c": 3075648,
+  "bytes_matching_c": 3081692,
   "bytes_intentional_asm": 122736,
-  "bytes_pending_c": 470620,
-  "c_exact_percent_of_recoverable": 86.7291,
+  "bytes_pending_c": 464576,
+  "c_exact_percent_of_recoverable": 86.8996,
   "c_fuzzy_percent_of_recoverable": null,
   "boot": {
     "units_total": 1476,
@@ -1963,12 +1963,12 @@
   },
   "overlays": {
     "functions_total": 3014,
-    "matching_c": 2778,
-    "pending_c": 236,
+    "matching_c": 2783,
+    "pending_c": 231,
     "bytes_total": 3193428,
-    "bytes_matching_c": 2776680,
-    "bytes_pending_c": 416748,
-    "c_exact_percent_of_recoverable": 86.9498,
+    "bytes_matching_c": 2782724,
+    "bytes_pending_c": 410704,
+    "c_exact_percent_of_recoverable": 87.1391,
     "intentional_asm": 61,
     "bytes_intentional_asm": 27396,
     "shared": {
@@ -1977,12 +1977,12 @@
       "planet": "Shared code",
       "description": "functions present in two or more levels",
       "functions": 1583,
-      "matching_c": 1428,
-      "pending_c": 155,
+      "matching_c": 1430,
+      "pending_c": 153,
       "bytes_total": 1130492,
-      "bytes_matching_c": 891052,
-      "bytes_pending_c": 239440,
-      "c_exact_percent_of_recoverable": 78.8198,
+      "bytes_matching_c": 892260,
+      "bytes_pending_c": 238232,
+      "c_exact_percent_of_recoverable": 78.9267,
       "files": [
         {
           "file": "src/overlays/shared/sdk/debug/001eb0b0.c",
@@ -2666,9 +2666,9 @@
         {
           "file": "src/overlays/shared/gameplay/state/00263a28.c",
           "functions": 1,
-          "matching_c": 0,
+          "matching_c": 1,
           "bytes_total": 652,
-          "bytes_matching_c": 0
+          "bytes_matching_c": 652
         },
         {
           "file": "src/overlays/shared/ui/help/002644e0.c",
@@ -3149,9 +3149,9 @@
         {
           "file": "src/overlays/shared/gameplay/entities/002b8c08.c",
           "functions": 31,
-          "matching_c": 24,
+          "matching_c": 25,
           "bytes_total": 31432,
-          "bytes_matching_c": 15844
+          "bytes_matching_c": 16400
         },
         {
           "file": "src/overlays/shared/gameplay/entities/002b94d0.c",
@@ -3761,12 +3761,12 @@
         "planet": "Eudora",
         "description": "Logging Site: forest and Blarg lumber mills",
         "functions": 53,
-        "matching_c": 49,
-        "pending_c": 4,
+        "matching_c": 50,
+        "pending_c": 3,
         "bytes_total": 60764,
-        "bytes_matching_c": 51956,
-        "bytes_pending_c": 8808,
-        "c_exact_percent_of_recoverable": 85.5046,
+        "bytes_matching_c": 53432,
+        "bytes_pending_c": 7332,
+        "c_exact_percent_of_recoverable": 87.9336,
         "files": [
           {
             "file": "src/overlays/l04/gameplay/entities/001f3038.c",
@@ -3799,9 +3799,9 @@
           {
             "file": "src/overlays/l04/gameplay/entities/0029eb20.c",
             "functions": 17,
-            "matching_c": 16,
+            "matching_c": 17,
             "bytes_total": 28928,
-            "bytes_matching_c": 27452
+            "bytes_matching_c": 28928
           },
           {
             "file": "src/overlays/l04/gameplay/entities/002c40d0.c",
@@ -3839,12 +3839,12 @@
         "planet": "Rilgar",
         "description": "Blackwater City: canals and the hoverboard race",
         "functions": 78,
-        "matching_c": 71,
-        "pending_c": 7,
+        "matching_c": 72,
+        "pending_c": 6,
         "bytes_total": 135164,
-        "bytes_matching_c": 119344,
-        "bytes_pending_c": 15820,
-        "c_exact_percent_of_recoverable": 88.2957,
+        "bytes_matching_c": 121804,
+        "bytes_pending_c": 13360,
+        "c_exact_percent_of_recoverable": 90.1157,
         "files": [
           {
             "file": "src/overlays/l05/gameplay/hero/00239fc0.c",
@@ -3926,9 +3926,9 @@
           {
             "file": "src/overlays/l05/gameplay/vendor/0031bf40.c",
             "functions": 2,
-            "matching_c": 1,
+            "matching_c": 2,
             "bytes_total": 2596,
-            "bytes_matching_c": 136
+            "bytes_matching_c": 2596
           }
         ]
       },
@@ -4136,12 +4136,12 @@
         "planet": "Batalia",
         "description": "Fort Krontos: a war zone with turrets and tanks",
         "functions": 84,
-        "matching_c": 73,
-        "pending_c": 11,
+        "matching_c": 74,
+        "pending_c": 10,
         "bytes_total": 156016,
-        "bytes_matching_c": 130904,
-        "bytes_pending_c": 25112,
-        "c_exact_percent_of_recoverable": 83.9042,
+        "bytes_matching_c": 131804,
+        "bytes_pending_c": 24212,
+        "c_exact_percent_of_recoverable": 84.4811,
         "files": [
           {
             "file": "src/overlays/l08/gameplay/hero/0021d9c0.c",
@@ -4188,9 +4188,9 @@
           {
             "file": "src/overlays/l08/gameplay/entities/002b8228.c",
             "functions": 26,
-            "matching_c": 19,
+            "matching_c": 20,
             "bytes_total": 29092,
-            "bytes_matching_c": 16188
+            "bytes_matching_c": 17088
           },
           {
             "file": "src/overlays/l08/gameplay/entities/002dc4a0.c",
@@ -5041,14 +5041,14 @@
   },
   "total": {
     "units_total": 4551,
-    "matching_c": 3937,
+    "matching_c": 3942,
     "intentional_asm": 318,
-    "pending_c": 296,
+    "pending_c": 291,
     "bytes_total": 3669004,
-    "bytes_matching_c": 3075648,
+    "bytes_matching_c": 3081692,
     "bytes_intentional_asm": 122736,
-    "bytes_pending_c": 470620,
-    "c_exact_percent_of_recoverable": 86.7291,
+    "bytes_pending_c": 464576,
+    "c_exact_percent_of_recoverable": 86.8996,
     "c_fuzzy_percent_of_recoverable": null
   }
 }
