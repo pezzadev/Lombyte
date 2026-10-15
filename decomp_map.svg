@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1034" viewBox="0 0 800 1034" role="img" aria-label="Decompilation progress of the boot ELF (SCUS_971.99) and the 19 level overlays">
 <title>Ratchet &amp; Clank - decompilation progress</title>
-<rect width="800" height="1034" fill="#0d1117"/>
+<defs><linearGradient id="card-face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a1c10"/><stop offset="0.55" stop-color="#0d1117"/></linearGradient></defs>
+<rect x="0.5" y="0.5" width="799" height="1033" rx="10" fill="url(#card-face)" stroke="#de812f" stroke-opacity="0.45"/>
 <defs><linearGradient id="progress-range" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3632"/><stop offset="1" stop-color="#d87620"/></linearGradient><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#de812f" stop-opacity="0.10"/><stop offset="0.5" stop-color="#de812f" stop-opacity="0.02"/><stop offset="1" stop-color="#000000" stop-opacity="0.08"/></linearGradient><linearGradient id="drawer-face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#231a12"/><stop offset="1" stop-color="#17110c"/></linearGradient><radialGradient id="drawer-halo"><stop offset="0" stop-color="#0d1117" stop-opacity="0.6"/><stop offset="1" stop-color="#0d1117" stop-opacity="0"/></radialGradient></defs>
 <defs><linearGradient id="panel-face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b2a1a"/><stop offset="1" stop-color="#17110c"/></linearGradient><radialGradient id="panel-glow"><stop offset="0" stop-color="#de812f" stop-opacity="0.28"/><stop offset="1" stop-color="#de812f" stop-opacity="0"/></radialGradient><pattern id="panel-hatch" width="10" height="86" patternUnits="userSpaceOnUse" patternTransform="skewX(33.07)"><rect width="3" height="86" fill="#de812f" fill-opacity="0.05"/></pattern><clipPath id="panel-clip"><polygon points="575.0,10 790,10 790,96 631.0,96"/></clipPath></defs>
 <polygon points="575.0,10 790,10 790,96 631.0,96" fill="url(#panel-face)"/>
@@ -9,9 +10,9 @@
 <g clip-path="url(#panel-clip)">
 <ellipse cx="696.5" cy="57.0" rx="91.9" ry="60.2" fill="url(#panel-glow)"/>
 </g>
-<text x="696.5" y="35" text-anchor="middle" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5"><tspan font-size="12" font-weight="800" fill="#c3cbd8">42.8%</tspan> data in C<title>Data in C: 5,317,823 of 12,433,372 B, of which 4,579,905 B are zeros (zero-initialised level data).</title></text>
-<text x="696.5" y="67" text-anchor="middle" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="30" font-weight="800" fill="#de812f">89.6%</text>
-<text x="696.5" y="83" text-anchor="middle" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">exe + overlays in C</text>
+<text x="696.5" y="35" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5"><tspan font-size="12" font-weight="800" fill="#c3cbd8">42.8%</tspan> data in C<title>Data in C: 5,317,823 of 12,433,372 B, of which 4,579,905 B are zeros (zero-initialised level data).</title></text>
+<text x="696.5" y="67" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="30" font-weight="800" fill="#de812f">89.6%</text>
+<text x="696.5" y="83" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">exe + overlays in C</text>
 <polygon points="10,10 567.0,10 623.0,96 10,96" fill="url(#drawer-face)"><title>Boot ELF SCUS_971.99: 302,280 of 352,904 recoverable bytes are matching C (85.7%); 1111 matching, 56 pending, 257 intentional asm units</title></polygon>
 <clipPath id="drawer-clip"><polygon points="10,10 567.0,10 623.0,96 10,96"/></clipPath>
 <g clip-path="url(#drawer-clip)" opacity="0.24">
@@ -150,16 +151,16 @@
 </g>
 <polygon points="10,10 567.0,10 623.0,96 10,96" fill="url(#sheen)" pointer-events="none"/>
 <g clip-path="url(#drawer-clip)" pointer-events="none"><ellipse cx="288.5" cy="53.0" rx="156.0" ry="51.6" fill="url(#drawer-halo)"/><ellipse cx="288.5" cy="57.0" rx="91.9" ry="60.2" fill="url(#panel-glow)"/></g>
-<text x="22" y="27" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#c3cbd8">BOOT ELF &#183; SCUS_971.99</text>
-<text x="288.5" y="60.0" text-anchor="middle" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="30" font-weight="800" fill="#de812f">85.7%</text>
-<text x="288.5" y="76.0" text-anchor="middle" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">executable in C</text>
-<text x="10" y="114" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#c3cbd8" fill-opacity="0.9">LEVEL OVERLAYS &#183; 2,875,628 of 3,193,428 B matching C (90.0%)</text>
+<text x="22" y="27" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#c3cbd8">BOOT ELF &#183; SCUS_971.99</text>
+<text x="288.5" y="60.0" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="30" font-weight="800" fill="#de812f">85.7%</text>
+<text x="288.5" y="76.0" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">executable in C</text>
+<text x="10" y="114" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#c3cbd8" fill-opacity="0.9">LEVEL OVERLAYS &#183; 2,875,628 of 3,193,428 B matching C (90.0%)</text>
 <line x1="24" y1="120" x2="24" y2="972" stroke="#3a3632" stroke-width="2"/>
 <path d="M 24 136 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="136" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="140" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8"></tspan><tspan fill="#e8edf5" font-weight="700">Shared code</tspan><tspan fill="#a6adc8"> &#183; functions present in two or more levels</tspan></text>
-<text x="790" y="140" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">82.3%</text>
-<text x="790" y="156" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">1454/1583 fn &#183; 1,130,492 B</text>
+<text x="44" y="140" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8"></tspan><tspan fill="#e8edf5" font-weight="700">Shared code</tspan><tspan fill="#a6adc8"> &#183; functions present in two or more levels</tspan></text>
+<text x="790" y="140" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">82.3%</text>
+<text x="790" y="156" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">1454/1583 fn &#183; 1,130,492 B</text>
 <rect x="44.00" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/sdk/debug/001eb0b0.c: 2/2 functions matching C, 116/116 B</title></rect>
 <rect x="45.04" y="148" width="0.73" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/camera/init_camera_system.c: 9/9 functions matching C, 1,960/1,960 B</title></rect>
 <rect x="46.78" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/effects/001edf60.c: 1/1 functions matching C, 220/220 B</title></rect>
@@ -368,17 +369,17 @@
 <rect x="669.13" y="148" width="2.87" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/hoverboard_ring.c: 11/11 functions matching C, 7,664/7,664 B</title></rect>
 <path d="M 24 180 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="180" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="184" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">00 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Veldin</tspan><tspan fill="#a6adc8"> &#183; Kyzil Plateau: the tutorial, Ratchet&#x27;s home</tspan></text>
-<text x="790" y="184" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="200" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">12/12 fn &#183; 8,820 B</text>
+<text x="44" y="184" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">00 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Veldin</tspan><tspan fill="#a6adc8"> &#183; Kyzil Plateau: the tutorial, Ratchet&#x27;s home</tspan></text>
+<text x="790" y="184" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="200" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">12/12 fn &#183; 8,820 B</text>
 <rect x="44.00" y="192" width="142.52" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l00/gameplay/entities/clank_cutscene_trigger.c: 4/4 functions matching C, 2,008/2,008 B</title></rect>
 <rect x="187.52" y="192" width="45.42" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/state/unlock_planet.c: 1/1 functions matching C, 640/640 B</title></rect>
 <rect x="233.94" y="192" width="438.06" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l00/gameplay/entities/veldin_robot_enemy.c: 7/7 functions matching C, 6,172/6,172 B</title></rect>
 <path d="M 24 224 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="224" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="228" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">01 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Novalis</tspan><tspan fill="#a6adc8"> &#183; Tobruk Crater: a village under Blarg attack</tspan></text>
-<text x="790" y="228" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="244" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">67/67 fn &#183; 114,728 B</text>
+<text x="44" y="228" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">01 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Novalis</tspan><tspan fill="#a6adc8"> &#183; Tobruk Crater: a village under Blarg attack</tspan></text>
+<text x="790" y="228" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="244" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">67/67 fn &#183; 114,728 B</text>
 <rect x="44.00" y="236" width="131.18" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l01/gameplay/hero/00233de0.c: 3/3 functions matching C, 24,352/24,352 B</title></rect>
 <rect x="176.18" y="236" width="89.05" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l01/gameplay/hero/hero_set_state.c: 2/2 functions matching C, 16,532/16,532 B</title></rect>
 <rect x="266.23" y="236" width="102.99" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l01/gameplay/hero/00242930.c: 1/1 functions matching C, 19,120/19,120 B</title></rect>
@@ -392,9 +393,9 @@
 <rect x="633.52" y="236" width="38.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l01/gameplay/entities/tall_shroom.c: 10/10 functions matching C, 7,144/7,144 B</title></rect>
 <path d="M 24 268 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="268" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="272" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">02 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Aridia</tspan><tspan fill="#a6adc8"> &#183; Outpost X11: sand, swamps and the Trespasser</tspan></text>
-<text x="790" y="272" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="288" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">62/62 fn &#183; 101,844 B</text>
+<text x="44" y="272" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">02 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Aridia</tspan><tspan fill="#a6adc8"> &#183; Outpost X11: sand, swamps and the Trespasser</tspan></text>
+<text x="790" y="272" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="288" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">62/62 fn &#183; 101,844 B</text>
 <rect x="44.00" y="280" width="149.05" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l02/gameplay/hero/0021b698.c: 6/6 functions matching C, 24,484/24,484 B</title></rect>
 <rect x="194.05" y="280" width="194.00" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l02/gameplay/hero/hero_set_state.c: 3/3 functions matching C, 31,868/31,868 B</title></rect>
 <rect x="389.06" y="280" width="6.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l02/ui/help/002360c8.c: 1/1 functions matching C, 1,112/1,112 B</title></rect>
@@ -406,9 +407,9 @@
 <rect x="670.49" y="280" width="1.51" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/background_ship_1.c: 1/1 functions matching C, 248/248 B</title></rect>
 <path d="M 24 312 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="312" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="316" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">03 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Kerwan</tspan><tspan fill="#a6adc8"> &#183; Metropolis: the city of towers and trains</tspan></text>
-<text x="790" y="316" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="332" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">71/71 fn &#183; 120,576 B</text>
+<text x="44" y="316" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">03 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Kerwan</tspan><tspan fill="#a6adc8"> &#183; Metropolis: the city of towers and trains</tspan></text>
+<text x="790" y="316" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="332" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">71/71 fn &#183; 120,576 B</text>
 <rect x="44.00" y="324" width="136.75" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l03/gameplay/hero/00205830.c: 2/2 functions matching C, 26,768/26,768 B</title></rect>
 <rect x="181.75" y="324" width="77.51" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l03/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 15,172/15,172 B</title></rect>
 <rect x="260.26" y="324" width="102.89" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l03/gameplay/hero/0021c668.c: 1/1 functions matching C, 20,140/20,140 B</title></rect>
@@ -424,9 +425,9 @@
 <rect x="670.73" y="324" width="1.27" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l03/gameplay/vendor/002e2948.c: 1/1 functions matching C, 248/248 B</title></rect>
 <path d="M 24 356 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="356" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="360" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">04 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Eudora</tspan><tspan fill="#a6adc8"> &#183; Logging Site: forest and Blarg lumber mills</tspan></text>
-<text x="790" y="360" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">91.8%</text>
-<text x="790" y="376" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">52/53 fn &#183; 60,764 B</text>
+<text x="44" y="360" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">04 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Eudora</tspan><tspan fill="#a6adc8"> &#183; Logging Site: forest and Blarg lumber mills</tspan></text>
+<text x="790" y="360" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">91.8%</text>
+<text x="790" y="376" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">52/53 fn &#183; 60,764 B</text>
 <rect x="44.00" y="368" width="30.04" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l04/gameplay/entities/001f3038.c: 3/3 functions matching C, 2,944/2,944 B</title></rect>
 <rect x="75.04" y="368" width="1.27" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l04/runtime/startup/00230f48.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="77.30" y="368" width="8.20" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l04/gameplay/entities/0024c4f0.c: 3/3 functions matching C, 804/804 B</title></rect>
@@ -438,9 +439,9 @@
 <rect x="669.47" y="368" width="2.53" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l04/gameplay/vendor/002e79a8.c: 1/1 functions matching C, 248/248 B</title></rect>
 <path d="M 24 400 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="400" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="404" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">05 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Rilgar</tspan><tspan fill="#a6adc8"> &#183; Blackwater City: canals and the hoverboard race</tspan></text>
-<text x="790" y="404" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">91.4%</text>
-<text x="790" y="420" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">74/78 fn &#183; 135,164 B</text>
+<text x="44" y="404" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">05 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Rilgar</tspan><tspan fill="#a6adc8"> &#183; Blackwater City: canals and the hoverboard race</tspan></text>
+<text x="790" y="404" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">91.4%</text>
+<text x="790" y="420" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">74/78 fn &#183; 135,164 B</text>
 <rect x="44.00" y="412" width="27.95" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l05/gameplay/hero/00239fc0.c: 4/4 functions matching C, 6,124/6,124 B</title></rect>
 <rect x="72.95" y="412" width="134.74" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l05/gameplay/hero/00244a70.c: 1/1 functions matching C, 29,516/29,516 B</title></rect>
 <rect x="208.69" y="412" width="79.01" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l05/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 17,308/17,308 B</title></rect>
@@ -455,9 +456,9 @@
 <rect x="660.15" y="412" width="11.85" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l05/gameplay/vendor/0031bf40.c: 2/2 functions matching C, 2,596/2,596 B</title></rect>
 <path d="M 24 444 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="444" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="448" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">06 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Nebula G34</tspan><tspan fill="#a6adc8"> &#183; Blarg Tactical Research Station: zero-gravity corridors</tspan></text>
-<text x="790" y="448" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">95.9%</text>
-<text x="790" y="464" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">84/87 fn &#183; 139,300 B</text>
+<text x="44" y="448" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">06 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Nebula G34</tspan><tspan fill="#a6adc8"> &#183; Blarg Tactical Research Station: zero-gravity corridors</tspan></text>
+<text x="790" y="448" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">95.9%</text>
+<text x="790" y="464" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">84/87 fn &#183; 139,300 B</text>
 <rect x="44.00" y="456" width="0.69" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/0021d0a0.c: 1/1 functions matching C, 156/156 B</title></rect>
 <rect x="45.69" y="456" width="143.28" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/hero/00222fb8.c: 7/7 functions matching C, 32,348/32,348 B</title></rect>
 <rect x="189.97" y="456" width="70.89" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 16,004/16,004 B</title></rect>
@@ -472,9 +473,9 @@
 <rect x="670.16" y="456" width="1.84" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/vendor/00309fa8.c: 1/1 functions matching C, 416/416 B</title></rect>
 <path d="M 24 488 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="488" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="492" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">07 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Umbris</tspan><tspan fill="#a6adc8"> &#183; Qwark&#x27;s headquarters and the Snagglebeast</tspan></text>
-<text x="790" y="492" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">59.4%</text>
-<text x="790" y="508" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">73/82 fn &#183; 77,488 B</text>
+<text x="44" y="492" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">07 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Umbris</tspan><tspan fill="#a6adc8"> &#183; Qwark&#x27;s headquarters and the Snagglebeast</tspan></text>
+<text x="790" y="492" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">59.4%</text>
+<text x="790" y="508" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">73/82 fn &#183; 77,488 B</text>
 <rect x="44.00" y="500" width="0.99" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/runtime/startup/00265b58.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="45.99" y="500" width="0.76" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/entities/00265bd8.c: 1/1 functions matching C, 96/96 B</title></rect>
 <rect x="47.75" y="500" width="33.92" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/world/loaders/0026b768.c: 1/1 functions matching C, 4,260/4,260 B</title></rect>
@@ -489,9 +490,9 @@
 <rect x="661.62" y="500" width="10.38" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/vendor/0031f3d8.c: 3/3 functions matching C, 1,304/1,304 B</title></rect>
 <path d="M 24 532 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="532" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="536" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">08 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Batalia</tspan><tspan fill="#a6adc8"> &#183; Fort Krontos: a war zone with turrets and tanks</tspan></text>
-<text x="790" y="536" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">86.4%</text>
-<text x="790" y="552" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">76/84 fn &#183; 156,016 B</text>
+<text x="44" y="536" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">08 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Batalia</tspan><tspan fill="#a6adc8"> &#183; Fort Krontos: a war zone with turrets and tanks</tspan></text>
+<text x="790" y="536" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">86.4%</text>
+<text x="790" y="552" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">76/84 fn &#183; 156,016 B</text>
 <rect x="44.00" y="544" width="122.65" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/hero/0021d9c0.c: 2/2 functions matching C, 31,064/31,064 B</title></rect>
 <rect x="167.65" y="544" width="65.56" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 16,604/16,604 B</title></rect>
 <rect x="234.21" y="544" width="95.90" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/hero/002370d8.c: 1/1 functions matching C, 24,288/24,288 B</title></rect>
@@ -507,9 +508,9 @@
 <rect x="667.69" y="544" width="4.31" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/vendor/00308db8.c: 4/4 functions matching C, 1,092/1,092 B</title></rect>
 <path d="M 24 576 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="576" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="580" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">09 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Gaspar</tspan><tspan fill="#a6adc8"> &#183; Blarg Depot: lava fields and the Pilot&#x27;s Helmet</tspan></text>
-<text x="790" y="580" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="596" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">41/41 fn &#183; 35,716 B</text>
+<text x="44" y="580" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">09 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Gaspar</tspan><tspan fill="#a6adc8"> &#183; Blarg Depot: lava fields and the Pilot&#x27;s Helmet</tspan></text>
+<text x="790" y="580" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="596" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">41/41 fn &#183; 35,716 B</text>
 <rect x="44.00" y="588" width="290.44" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l09/gameplay/entities/asteroid.c: 24/24 functions matching C, 16,624/16,624 B</title></rect>
 <rect x="335.44" y="588" width="2.17" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l09/runtime/startup/0025d648.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="338.61" y="588" width="51.57" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l09/gameplay/entities/airship_part.c: 1/1 functions matching C, 2,952/2,952 B</title></rect>
@@ -517,9 +518,9 @@
 <rect x="667.67" y="588" width="4.33" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l09/gameplay/vendor/0030a678.c: 1/1 functions matching C, 248/248 B</title></rect>
 <path d="M 24 620 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="620" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="624" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">10 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Orxon</tspan><tspan fill="#a6adc8"> &#183; the toxic Blarg homeworld, first with Clank</tspan></text>
-<text x="790" y="624" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">85.7%</text>
-<text x="790" y="640" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">50/54 fn &#183; 56,384 B</text>
+<text x="44" y="624" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">10 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Orxon</tspan><tspan fill="#a6adc8"> &#183; the toxic Blarg homeworld, first with Clank</tspan></text>
+<text x="790" y="624" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">85.7%</text>
+<text x="790" y="640" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">50/54 fn &#183; 56,384 B</text>
 <rect x="44.00" y="632" width="1.37" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l10/runtime/startup/00230fd0.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="46.37" y="632" width="222.27" height="10" rx="1" fill="#a96325" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l10/gameplay/entities/platform.c: 24/27 functions matching C, 15,832/20,084 B</title></rect>
 <rect x="269.64" y="632" width="360.65" height="10" rx="1" fill="#bd6b23" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l10/gameplay/entities/screamer.c: 17/18 functions matching C, 28,784/32,588 B</title></rect>
@@ -527,9 +528,9 @@
 <rect x="670.41" y="632" width="1.59" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l10/gameplay/vendor/002eb8c0.c: 1/1 functions matching C, 144/144 B</title></rect>
 <path d="M 24 664 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="664" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="668" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">11 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Pokitaru</tspan><tspan fill="#a6adc8"> &#183; Jowai Resort: the ocean and the Thruster-Pack</tspan></text>
-<text x="790" y="668" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="684" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">101/101 fn &#183; 129,604 B</text>
+<text x="44" y="668" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">11 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Pokitaru</tspan><tspan fill="#a6adc8"> &#183; Jowai Resort: the ocean and the Thruster-Pack</tspan></text>
+<text x="790" y="668" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="684" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">101/101 fn &#183; 129,604 B</text>
 <rect x="44.00" y="676" width="120.61" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l11/gameplay/hero/0023c7a0.c: 2/2 functions matching C, 25,212/25,212 B</title></rect>
 <rect x="165.61" y="676" width="71.05" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l11/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 14,852/14,852 B</title></rect>
 <rect x="237.66" y="676" width="94.76" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l11/gameplay/hero/00253a18.c: 1/1 functions matching C, 19,808/19,808 B</title></rect>
@@ -541,9 +542,9 @@
 <rect x="582.27" y="676" width="89.73" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l11/gameplay/entities/oil_tanker_front.c: 35/35 functions matching C, 18,756/18,756 B</title></rect>
 <path d="M 24 708 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="708" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="712" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">12 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Hoven</tspan><tspan fill="#a6adc8"> &#183; Bomb Factory: ice, magnetic walls and the Hologuise</tspan></text>
-<text x="790" y="712" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">89.7%</text>
-<text x="790" y="728" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">70/77 fn &#183; 127,460 B</text>
+<text x="44" y="712" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">12 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Hoven</tspan><tspan fill="#a6adc8"> &#183; Bomb Factory: ice, magnetic walls and the Hologuise</tspan></text>
+<text x="790" y="712" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">89.7%</text>
+<text x="790" y="728" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">70/77 fn &#183; 127,460 B</text>
 <rect x="44.00" y="720" width="144.00" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/hero/0022de30.c: 4/4 functions matching C, 29,748/29,748 B</title></rect>
 <rect x="189.00" y="720" width="74.59" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 15,408/15,408 B</title></rect>
 <rect x="264.59" y="720" width="103.82" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/hero/002461f0.c: 1/1 functions matching C, 21,448/21,448 B</title></rect>
@@ -558,9 +559,9 @@
 <rect x="670.80" y="720" width="1.20" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/vendor/0030b6c8.c: 1/1 functions matching C, 248/248 B</title></rect>
 <path d="M 24 752 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="752" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="756" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">13 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Oltanis Orbit</tspan><tspan fill="#a6adc8"> &#183; Gemlik Base: Qwark&#x27;s fighter and the ship dogfight</tspan></text>
-<text x="790" y="756" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">89.7%</text>
-<text x="790" y="772" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">105/109 fn &#183; 105,748 B</text>
+<text x="44" y="756" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">13 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Oltanis Orbit</tspan><tspan fill="#a6adc8"> &#183; Gemlik Base: Qwark&#x27;s fighter and the ship dogfight</tspan></text>
+<text x="790" y="756" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">89.7%</text>
+<text x="790" y="772" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">105/109 fn &#183; 105,748 B</text>
 <rect x="44.00" y="764" width="0.72" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/runtime/startup/002497d8.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="45.72" y="764" width="2.06" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/math/interpolation/00265170.c: 2/2 functions matching C, 352/352 B</title></rect>
 <rect x="48.78" y="764" width="3.74" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/rendering/view/0026bd00.c: 1/1 functions matching C, 640/640 B</title></rect>
@@ -574,9 +575,9 @@
 <rect x="663.23" y="764" width="8.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/gameplay/vendor/003098d0.c: 3/3 functions matching C, 1,500/1,500 B</title></rect>
 <path d="M 24 796 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="796" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="800" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">14 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Oltanis</tspan><tspan fill="#a6adc8"> &#183; Gorda City Ruins: a bombed city in a storm</tspan></text>
-<text x="790" y="800" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">98.9%</text>
-<text x="790" y="816" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">128/130 fn &#183; 151,084 B</text>
+<text x="44" y="800" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">14 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Oltanis</tspan><tspan fill="#a6adc8"> &#183; Gorda City Ruins: a bombed city in a storm</tspan></text>
+<text x="790" y="800" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">98.9%</text>
+<text x="790" y="816" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">128/130 fn &#183; 151,084 B</text>
 <rect x="44.00" y="808" width="111.52" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l14/gameplay/hero/0021dd30.c: 4/4 functions matching C, 27,264/27,264 B</title></rect>
 <rect x="156.52" y="808" width="58.12" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l14/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 14,208/14,208 B</title></rect>
 <rect x="215.64" y="808" width="94.54" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l14/gameplay/hero/00235600.c: 1/1 functions matching C, 23,112/23,112 B</title></rect>
@@ -590,9 +591,9 @@
 <rect x="670.23" y="808" width="1.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l14/gameplay/vendor/00303370.c: 3/3 functions matching C, 432/432 B</title></rect>
 <path d="M 24 840 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="840" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="844" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">15 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Quartu</tspan><tspan fill="#a6adc8"> &#183; Robot Factory: Clank&#x27;s birthplace and Giant Clank</tspan></text>
-<text x="790" y="844" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">93.5%</text>
-<text x="790" y="860" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">44/46 fn &#183; 110,104 B</text>
+<text x="44" y="844" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">15 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Quartu</tspan><tspan fill="#a6adc8"> &#183; Robot Factory: Clank&#x27;s birthplace and Giant Clank</tspan></text>
+<text x="790" y="844" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">93.5%</text>
+<text x="790" y="860" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">44/46 fn &#183; 110,104 B</text>
 <rect x="44.00" y="852" width="172.32" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/hero/002044c8.c: 3/3 functions matching C, 30,552/30,552 B</title></rect>
 <rect x="217.32" y="852" width="91.19" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 16,168/16,168 B</title></rect>
 <rect x="309.51" y="852" width="128.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/hero/0021d040.c: 1/1 functions matching C, 22,780/22,780 B</title></rect>
@@ -603,9 +604,9 @@
 <rect x="586.86" y="852" width="85.14" height="10" rx="1" fill="#b56824" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/entities/conveyor_belt.c: 23/24 functions matching C, 12,784/15,096 B</title></rect>
 <path d="M 24 884 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="884" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="888" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">16 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Kalebo III</tspan><tspan fill="#a6adc8"> &#183; Gadgetron headquarters and the hoverboard finals</tspan></text>
-<text x="790" y="888" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="904" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">96/96 fn &#183; 132,200 B</text>
+<text x="44" y="888" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">16 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Kalebo III</tspan><tspan fill="#a6adc8"> &#183; Gadgetron headquarters and the hoverboard finals</tspan></text>
+<text x="790" y="888" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="904" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">96/96 fn &#183; 132,200 B</text>
 <rect x="44.00" y="896" width="27.46" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l16/gameplay/hero/002097a0.c: 5/5 functions matching C, 5,856/5,856 B</title></rect>
 <rect x="72.46" y="896" width="169.08" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l16/gameplay/hero/00214598.c: 1/1 functions matching C, 36,052/36,052 B</title></rect>
 <rect x="242.54" y="896" width="84.46" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l16/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 18,008/18,008 B</title></rect>
@@ -617,9 +618,9 @@
 <rect x="664.91" y="896" width="7.09" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l16/gameplay/vendor/002e4b58.c: 7/7 functions matching C, 1,512/1,512 B</title></rect>
 <path d="M 24 928 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="928" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="932" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">17 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Veldin Orbit</tspan><tspan fill="#a6adc8"> &#183; Drek&#x27;s Fleet: the flagship boarding</tspan></text>
-<text x="790" y="932" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
-<text x="790" y="948" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">60/60 fn &#183; 140,376 B</text>
+<text x="44" y="932" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">17 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Veldin Orbit</tspan><tspan fill="#a6adc8"> &#183; Drek&#x27;s Fleet: the flagship boarding</tspan></text>
+<text x="790" y="932" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="948" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">60/60 fn &#183; 140,376 B</text>
 <rect x="44.00" y="940" width="9.10" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l17/ui/help/002020a8.c: 3/3 functions matching C, 2,068/2,068 B</title></rect>
 <rect x="54.10" y="940" width="159.23" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l17/gameplay/hero/00214760.c: 1/1 functions matching C, 36,168/36,168 B</title></rect>
 <rect x="214.33" y="940" width="88.24" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l17/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 20,044/20,044 B</title></rect>
@@ -633,9 +634,9 @@
 <rect x="630.83" y="940" width="41.17" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l17/gameplay/entities/blarg_ship.c: 12/12 functions matching C, 9,352/9,352 B</title></rect>
 <path d="M 24 972 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="972" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
-<text x="44" y="976" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">18 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Veldin</tspan><tspan fill="#a6adc8"> &#183; Kyzil Plateau again: the Deplanetizer and Drek</tspan></text>
-<text x="790" y="976" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">98.6%</text>
-<text x="790" y="992" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">119/121 fn &#183; 159,560 B</text>
+<text x="44" y="976" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">18 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Veldin</tspan><tspan fill="#a6adc8"> &#183; Kyzil Plateau again: the Deplanetizer and Drek</tspan></text>
+<text x="790" y="976" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">98.6%</text>
+<text x="790" y="992" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">119/121 fn &#183; 159,560 B</text>
 <rect x="44.00" y="984" width="9.17" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/hero/00213b40.c: 2/2 functions matching C, 2,372/2,372 B</title></rect>
 <rect x="54.17" y="984" width="129.12" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/hero/0021eac8.c: 1/1 functions matching C, 33,392/33,392 B</title></rect>
 <rect x="184.30" y="984" width="69.56" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 17,988/17,988 B</title></rect>
@@ -649,6 +650,6 @@
 <rect x="623.53" y="984" width="46.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/entities/deplanetizer_gun.c: 18/18 functions matching C, 12,096/12,096 B</title></rect>
 <rect x="671.30" y="984" width="0.70" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/vendor/002fcbb0.c: 2/2 functions matching C, 180/180 B</title></rect>
 <line x1="10" y1="1012.0" x2="790" y2="1012.0" stroke="#3a3632" stroke-width="1" opacity="0.8"/>
-<text x="10" y="1026" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="9" fill="#a6adc8" opacity="0.85">executable 85.7% &#183; overlays 90.0% &#183; 3,177,908 of 3,641,672 B in C</text>
-<text x="790" y="1026" text-anchor="end" font-family="ui-sans-serif, -apple-system, &#x27;Segoe UI&#x27;, Roboto, Helvetica, Arial, sans-serif" font-size="9" fill="#a6adc8" opacity="0.85">generated 2026-10-15 &#183; scripts/generate_treemap.py</text>
+<text x="10" y="1026" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="9" fill="#a6adc8" opacity="0.85">executable 85.7% &#183; overlays 90.0% &#183; 3,177,908 of 3,641,672 B in C</text>
+<text x="790" y="1026" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="9" fill="#a6adc8" opacity="0.85">generated 2026-10-15 &#183; scripts/generate_treemap.py</text>
 </svg>
