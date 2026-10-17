@@ -1683,7 +1683,7 @@ void FUN_L14_002b3bf0(char *moby) {
     float v70[4];
     float m80[16];
     float g0;
-    float t1, t2, t3, t4;
+    float t1, t2, sine_scale, target_heading;
     int r, rem, sel, c17, m52, d80;
     char *p16;
     char *p6;
@@ -1788,13 +1788,13 @@ void FUN_L14_002b3bf0(char *moby) {
         t2 = func_001FA748_2B4E40(t1, *(float *)(data + 0x84) * 0.01745329238474369f);
         d80 = *(int *)(data + 0x80);
         p16 = D_L14_001600EC + (d80 << 7) + 0x10;
-        t3 = func_001F9FA8_2B4E40(t2);
-        func_001F9C30_2B4E40(v20, p16, t3);
+        sine_scale = func_001F9FA8_2B4E40(t2);
+        func_001F9C30_2B4E40(v20, p16, sine_scale);
         d80 = *(int *)(data + 0x80);
         p6 = D_L14_001600EC + (d80 << 7) + 0x30;
         func_001F9BD8_2B4E40(v20, v20, p6);
-        t4 = func_L00_001FF860_2B4E40(v20[0] - *(float *)(moby + 0x10), v20[1] - *(float *)(moby + 0x14));
-        *(float *)(moby + 0x48) = t4;
+        target_heading = func_L00_001FF860_2B4E40(v20[0] - *(float *)(moby + 0x10), v20[1] - *(float *)(moby + 0x14));
+        *(float *)(moby + 0x48) = target_heading;
         func_001F9938_2B4E40(data + 0x9C);
         rem = D_L14_0015F5CC % D_L14_00161530;
         if (rem == 0) {
