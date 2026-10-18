@@ -2515,14 +2515,14 @@ extern void FUN_001f9a68_c4(void *, void *, float) __asm__("FUN_001f9a68");
 extern void fast_vec_cross(void *, void *, void *) __asm__("FUN_001f9ad8");
 float absolute_float(float input) __asm__("func_001F99C0");
 
-float FUN_L00_002e86b0(char *a0, float *a1, float lim) {
+float FUN_L00_002e86b0(char *camera, float *input_direction, float lim) {
     float b0[4];
     float b1[4];
     float b2[4];
     float b3[4];
     char *base = D_L00_00166E10;
     char *axis = base + 0x20;
-    char *d = *(char **)(a0 + 0x70);
+    char *d = *(char **)(camera + 0x70);
     char *q = d + 0x1A8;
     char *p = d + 0x130;
     float dot;
@@ -2533,8 +2533,8 @@ float FUN_L00_002e86b0(char *a0, float *a1, float lim) {
     float z2;
     float t;
 
-    FUN_001f9a68_c4(b0, axis, FUN_001f9ab0(a1, axis));
-    FUN_001f9a28(b1, a1, b0);
+    FUN_001f9a68_c4(b0, axis, FUN_001f9ab0(input_direction, axis));
+    FUN_001f9a28(b1, input_direction, b0);
     FUN_001f9a68_c4(b0, axis, FUN_001f9ab0(p, axis));
     FUN_001f9a28(b2, (float *)p, b0);
     dot = FUN_001f9ab0(b1, b2);
