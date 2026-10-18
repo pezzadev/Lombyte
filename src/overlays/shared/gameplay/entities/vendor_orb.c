@@ -1989,7 +1989,7 @@ extern int func_L00_002E5770_r(void *, int) __asm__("FUN_L00_002e42c0");
 extern short D_L00_00161D0C __attribute__((sda));
 extern short D_L00_00161D10 __attribute__((sda));
 extern short D_L00_00161D80 __attribute__((sda));
-void FUN_L00_002e4fe8(char *m, float *v2) {
+void FUN_L00_002e4fe8(char *m, float *out_focus_velocity) {
     float cam[4];
     float tmp[4];
     char *d;
@@ -2008,11 +2008,11 @@ void FUN_L00_002e4fe8(char *m, float *v2) {
     e = d + 0x40;
     if (pad->state.current == 0x77) {
         x = FUN_001f9ab0(e, g + 0x30);
-        FUN_001f9a68_c2(v2, g + 0x30, x);
-        FUN_001f9a28(e, e, v2);
+        FUN_001f9a68_c2(out_focus_velocity, g + 0x30, x);
+        FUN_001f9a28(e, e, out_focus_velocity);
         y = FUN_001f9ab0(g + 0x30, d + 0xA0);
-        FUN_001f9a68_c2(v2, g + 0x30, y);
-        qcopy(d + 0x50, v2);
+        FUN_001f9a68_c2(out_focus_velocity, g + 0x30, y);
+        qcopy(d + 0x50, out_focus_velocity);
         if (*(unsigned char *)(e + 0xC4) != 0xB) {
             *(unsigned char *)(e + 0xC4) = 0xB;
             qcopy(m + 0x40, m);
@@ -2053,10 +2053,10 @@ void FUN_L00_002e4fe8(char *m, float *v2) {
                 absolute_float(*(float *)(g + 0x34) - *(float *)(g + 0x44)) > 0.001f ||
                 absolute_float(*(float *)(g + 0x38) - *(float *)(g + 0x48)) > 0.001f) {
                 x = FUN_001f9ab0(cam, g + 0x30);
-                FUN_001f9a68_c2(v2, g + 0x30, x);
-                FUN_001f9a28(e, cam, v2);
+                FUN_001f9a68_c2(out_focus_velocity, g + 0x30, x);
+                FUN_001f9a28(e, cam, out_focus_velocity);
             } else {
-                qcopy(v2, e + 0x10);
+                qcopy(out_focus_velocity, e + 0x10);
                 x = FUN_001f9ab0(cam, g + 0x30);
                 FUN_001f9a68_c2(tmp, g + 0x30, x);
                 FUN_001f9a28(e, cam, tmp);
@@ -2064,8 +2064,8 @@ void FUN_L00_002e4fe8(char *m, float *v2) {
         } else {
             FUN_L00_002e42c0_c(tmp, 1);
             x = FUN_001f9ab0(tmp, g + 0x30);
-            FUN_001f9a68_c2(v2, g + 0x30, x);
-            FUN_001f9a28(e, tmp, v2);
+            FUN_001f9a68_c2(out_focus_velocity, g + 0x30, x);
+            FUN_001f9a28(e, tmp, out_focus_velocity);
         }
         break;
     case 3:
@@ -2080,7 +2080,7 @@ void FUN_L00_002e4fe8(char *m, float *v2) {
                 *(unsigned char *)(e + 0xD7) = 1;
             }
         }
-        qcopy(v2, e + 0x10);
+        qcopy(out_focus_velocity, e + 0x10);
         x = FUN_001f9ab0(cam, g + 0x30);
         FUN_001f9a68_c2(tmp, g + 0x30, x);
         FUN_001f9a28(e, cam, tmp);
@@ -2106,7 +2106,7 @@ void FUN_L00_002e4fe8(char *m, float *v2) {
         }
         break;
     case 8:
-        qcopy(v2, e + 0x10);
+        qcopy(out_focus_velocity, e + 0x10);
         x = FUN_001f9ab0(cam, g + 0x30);
         FUN_001f9a68_c2(tmp, g + 0x30, x);
         FUN_001f9a28(e, cam, tmp);
@@ -2114,15 +2114,15 @@ void FUN_L00_002e4fe8(char *m, float *v2) {
     case 9:
     case 10:
         x = FUN_001f9ab0(cam, g + 0x30);
-        FUN_001f9a68_c2(v2, g + 0x30, x);
-        FUN_001f9a28(e, cam, v2);
-        FUN_001f9a40(*(float *)&D_L00_00161D80, v2, v2, e + 0x20);
+        FUN_001f9a68_c2(out_focus_velocity, g + 0x30, x);
+        FUN_001f9a28(e, cam, out_focus_velocity);
+        FUN_001f9a40(*(float *)&D_L00_00161D80, out_focus_velocity, out_focus_velocity, e + 0x20);
         break;
     case 4:
     default:
         x = FUN_001f9ab0(cam, g + 0x30);
-        FUN_001f9a68_c2(v2, g + 0x30, x);
-        FUN_001f9a28(e, cam, v2);
+        FUN_001f9a68_c2(out_focus_velocity, g + 0x30, x);
+        FUN_001f9a28(e, cam, out_focus_velocity);
         break;
     }
 }
