@@ -2930,11 +2930,18 @@
           "bytes_matching_c": 184
         },
         {
+          "file": "src/overlays/shared/rendering/sky/sky_particle_effects.c",
+          "functions": 5,
+          "matching_c": 5,
+          "bytes_total": 4436,
+          "bytes_matching_c": 4436
+        },
+        {
           "file": "src/overlays/shared/rendering/sky/update_sky_shells_animated.c",
-          "functions": 20,
-          "matching_c": 20,
-          "bytes_total": 8548,
-          "bytes_matching_c": 8548
+          "functions": 15,
+          "matching_c": 15,
+          "bytes_total": 4112,
+          "bytes_matching_c": 4112
         },
         {
           "file": "src/overlays/shared/math/rotations/002899f8.c",
