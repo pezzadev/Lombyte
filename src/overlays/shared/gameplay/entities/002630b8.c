@@ -498,7 +498,7 @@ extern void random_vector(float *, float, float) __asm__("FUN_L00_00257d78");
 extern struct Moby *func_0020D348_m(int) __asm__("FUN_0020c4f8");
 extern int func_001FA898_r(float) __asm__("FUN_001fa6d0");
 
-void *FUN_L00_00263fd8(char *src, int cls, float *pos, void *mat, int a8, int a9, float *v10,
+void *FUN_L00_00263fd8(char *src, int cls, float *pos, void *mat, int a8, int a9, float *initial_velocity,
                        float *v11, float scale, float *v12) {
     char *m = (char *)func_0020D348_m(cls);
     char *d;
@@ -528,7 +528,7 @@ void *FUN_L00_00263fd8(char *src, int cls, float *pos, void *mat, int a8, int a9
             *(float *)(d + 0x38) = random_float_between_alt(10.0f, 15.0f) * frame_time_sq;
         else
             *(float *)(d + 0x38) = scale;
-        if (FUN_001f9af0(v10) == 0.0f) {
+        if (FUN_001f9af0(initial_velocity) == 0.0f) {
             f21 = random_angle_radians();
             k = random_float_between_alt(2.0f, 4.0f) * frame_time;
             t[0] = fast_cos(f21) * k;
@@ -537,7 +537,7 @@ void *FUN_L00_00263fd8(char *src, int cls, float *pos, void *mat, int a8, int a9
             t[2] = random_float_between_alt(5.0f, 8.0f) * frame_time;
             qcopy(d, t);
         } else {
-            qcopy(d, v10);
+            qcopy(d, initial_velocity);
         }
         if (FUN_001f9af0(v11) == 0.0f) {
             float g = D_0015ED6C_s[0];
