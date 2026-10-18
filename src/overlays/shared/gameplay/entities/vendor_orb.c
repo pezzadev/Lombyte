@@ -1599,23 +1599,23 @@ extern void FUN_001f9a68_c3(void *, void *, float) __asm__("FUN_001f9a68");
 extern void FUN_L00_002e4168_c2(char *, void *) __asm__("FUN_L00_002e4168");
 
 float FUN_L00_002e4580(char *a, float f) {
-    float v0[4], v1[4], v2[4], v3[4];
+    float hero_position[4], offset_target_position[4], angle_direction[4], axis_projection[4];
     float r, len;
     char *g = D_L00_00166E10;
-    FUN_L00_002e4168_c2(a, v0);
-    FUN_001f9a68_c3(v1, g + 0x20, f);
-    FUN_001f9a10_c2(v1, v1, v0);
-    FUN_001f9a28(v2, v1, (float *)(a + 0x30));
-    len = FUN_001f9ab0(v2, a + 0x10);
-    FUN_001f9a68_c3(v3, a + 0x10, len);
-    FUN_001f9a28(v2, v2, v3);
-    r = FUN_001f9ab0(v2, a);
-    len = FUN_001f9af0(v2);
+    FUN_L00_002e4168_c2(a, hero_position);
+    FUN_001f9a68_c3(offset_target_position, g + 0x20, f);
+    FUN_001f9a10_c2(offset_target_position, offset_target_position, hero_position);
+    FUN_001f9a28(angle_direction, offset_target_position, (float *)(a + 0x30));
+    len = FUN_001f9ab0(angle_direction, a + 0x10);
+    FUN_001f9a68_c3(axis_projection, a + 0x10, len);
+    FUN_001f9a28(angle_direction, angle_direction, axis_projection);
+    r = FUN_001f9ab0(angle_direction, a);
+    len = FUN_001f9af0(angle_direction);
     if (len == 0.0f) {
         return 0.0f;
     }
     r = 1.5707964f - fast_arc_sin(r / len);
-    if (FUN_001f9ab0(v2, a + 0x20) < 0.0f) {
+    if (FUN_001f9ab0(angle_direction, a + 0x20) < 0.0f) {
         r = -r;
     }
     return r;
