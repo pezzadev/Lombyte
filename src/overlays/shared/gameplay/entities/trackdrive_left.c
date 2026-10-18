@@ -1118,20 +1118,20 @@ typedef unsigned long long u64_t;
 
 void FUN_L02_002da938(void *unused, f32 a, f32 b, f32 c, s32 d) {
     u64_t m[4];
-    s32 a4[4];
+    s32 vertex_colors[4];
     s32 p4[4];
     s32 t;
     s32 off;
     s32 tex;
     f32 f24, f25, f26, f27, f28, f29, f30, f31;
-    f32 s0;
+    f32 trig_value;
 
     t = truncate_float_to_s32((f32)D_L02_0015F5CC * D_L02_00161B60);
     off = (t % 512) << 16;
-    a4[3] = d;
-    a4[2] = d;
-    a4[1] = d;
-    a4[0] = d;
+    vertex_colors[3] = d;
+    vertex_colors[2] = d;
+    vertex_colors[1] = d;
+    vertex_colors[0] = d;
     p4[0] = (s32)(D_L02_00161AEC + off);
     p4[1] = (s32)(D_L02_00161AF0 + off);
     p4[2] = (s32)(D_L02_00161AF4 + off);
@@ -1141,22 +1141,22 @@ void FUN_L02_002da938(void *unused, f32 a, f32 b, f32 c, s32 d) {
     f24 = FUN_001f9dc8(a) * b;
     f28 = FUN_001f9de0(a) * c;
     f27 = FUN_001f9dc8(a) * c;
-    s0 = FUN_001f9dc8(a);
-    f29 = f25 + s0 * 2.0f;
-    s0 = FUN_001f9dc8(a);
-    f25 = f25 - s0 * 2.0f;
-    s0 = FUN_001f9de0(a);
-    f26 = f24 - s0 * 2.0f;
-    s0 = FUN_001f9de0(a);
-    f24 = f24 + s0 * 2.0f;
-    s0 = FUN_001f9dc8(a);
-    f31 = f28 + s0 * 2.0f;
-    s0 = FUN_001f9dc8(a);
-    f28 = f28 - s0 * 2.0f;
-    s0 = FUN_001f9de0(a);
-    f30 = f27 - s0 * 2.0f;
-    s0 = FUN_001f9de0(a);
-    f27 = f27 + s0 * 2.0f;
+    trig_value = FUN_001f9dc8(a);
+    f29 = f25 + trig_value * 2.0f;
+    trig_value = FUN_001f9dc8(a);
+    f25 = f25 - trig_value * 2.0f;
+    trig_value = FUN_001f9de0(a);
+    f26 = f24 - trig_value * 2.0f;
+    trig_value = FUN_001f9de0(a);
+    f24 = f24 + trig_value * 2.0f;
+    trig_value = FUN_001f9dc8(a);
+    f31 = f28 + trig_value * 2.0f;
+    trig_value = FUN_001f9dc8(a);
+    f28 = f28 - trig_value * 2.0f;
+    trig_value = FUN_001f9de0(a);
+    f30 = f27 - trig_value * 2.0f;
+    trig_value = FUN_001f9de0(a);
+    f27 = f27 + trig_value * 2.0f;
 
     m[3] = 0xFFFFF000000000ULL;
     m[2] = 0xFFFFF000000000ULL;
@@ -1173,7 +1173,7 @@ void FUN_L02_002da938(void *unused, f32 a, f32 b, f32 c, s32 d) {
     LO4(m[3], truncate_float_to_s32(f28));
 
     tex = FUN_001f44b8(D_L02_00161B64);
-    FUN_L02_0020bc88_u(m, p4, a4, tex, 0);
+    FUN_L02_0020bc88_u(m, p4, vertex_colors, tex, 0);
 
     p4[0] = (s32)D_L02_00161AFC;
     p4[1] = (s32)D_L02_00161B00;
@@ -1184,22 +1184,22 @@ void FUN_L02_002da938(void *unused, f32 a, f32 b, f32 c, s32 d) {
     f24 = FUN_001f9dc8(a) * b;
     f28 = FUN_001f9de0(a) * c;
     f27 = FUN_001f9dc8(a) * c;
-    s0 = FUN_001f9dc8(a);
-    f29 = f25 + s0 * 5.0f;
-    s0 = FUN_001f9dc8(a);
-    f25 = f25 - s0 * 5.0f;
-    s0 = FUN_001f9de0(a);
-    f26 = f24 - s0 * 5.0f;
-    s0 = FUN_001f9de0(a);
-    f24 = f24 + s0 * 5.0f;
-    s0 = FUN_001f9dc8(a);
-    f31 = f28 + s0 * 5.0f;
-    s0 = FUN_001f9dc8(a);
-    f28 = f28 - s0 * 5.0f;
-    s0 = FUN_001f9de0(a);
-    f30 = f27 - s0 * 5.0f;
-    s0 = FUN_001f9de0(a);
-    f27 = f27 + s0 * 5.0f;
+    trig_value = FUN_001f9dc8(a);
+    f29 = f25 + trig_value * 5.0f;
+    trig_value = FUN_001f9dc8(a);
+    f25 = f25 - trig_value * 5.0f;
+    trig_value = FUN_001f9de0(a);
+    f26 = f24 - trig_value * 5.0f;
+    trig_value = FUN_001f9de0(a);
+    f24 = f24 + trig_value * 5.0f;
+    trig_value = FUN_001f9dc8(a);
+    f31 = f28 + trig_value * 5.0f;
+    trig_value = FUN_001f9dc8(a);
+    f28 = f28 - trig_value * 5.0f;
+    trig_value = FUN_001f9de0(a);
+    f30 = f27 - trig_value * 5.0f;
+    trig_value = FUN_001f9de0(a);
+    f27 = f27 + trig_value * 5.0f;
 
     m[3] = 0xFFFFF000000000ULL;
     m[2] = 0xFFFFF000000000ULL;
@@ -1215,7 +1215,7 @@ void FUN_L02_002da938(void *unused, f32 a, f32 b, f32 c, s32 d) {
     NEG20(m[3], truncate_float_to_s32(f27));
     LO4(m[3], truncate_float_to_s32(f28));
 
-    FUN_L02_0020bc88_u(m, p4, a4, tex, 0);
+    FUN_L02_0020bc88_u(m, p4, vertex_colors, tex, 0);
 }
 
 typedef struct { long a, b, c, d; } Q_2dae88;
