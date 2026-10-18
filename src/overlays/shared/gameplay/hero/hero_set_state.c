@@ -3052,8 +3052,8 @@ int FUN_L00_002279b0(void) {
     struct Hero *q;
     struct Hero *u;
     int r;
-    float v1[4];
-    float v2[4];
+    float ray_start[4];
+    float ray_end[4];
     float t;
     float scale;
     if (p->state.current == 0x6A) {
@@ -3109,13 +3109,13 @@ int FUN_L00_002279b0(void) {
         if ((D_L00_0015F5CC & 0x3F) == 0) {
             scale = 16.0f;
         }
-        hero_get_collision_ray_endpoints(v1, v2, 0, scale, 1.3f);
-        if (func_L00_001EFFF0(v1, v2, 2, *(int *)&u->moby, 0) != 0) {
+        hero_get_collision_ray_endpoints(ray_start, ray_end, 0, scale, 1.3f);
+        if (func_L00_001EFFF0(ray_start, ray_end, 2, *(int *)&u->moby, 0) != 0) {
             int s = collision_hit_material();
             u->ground_type = s;
             if ((short)s == 0) {
-                v1[2] = D_L00_00173E68 - 0.01f;
-                if (func_L00_001EFFF0(v1, v2, 2, *(int *)&u->moby, 0) == 0) {
+                ray_start[2] = D_L00_00173E68 - 0.01f;
+                if (func_L00_001EFFF0(ray_start, ray_end, 2, *(int *)&u->moby, 0) == 0) {
                     hero_set_state(0x34, 1);
                     return 1;
                 }
