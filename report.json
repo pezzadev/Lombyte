@@ -10632,7 +10632,7 @@
           }
         },
         {
-          "name": "FUN_00221d68",
+          "name": "handle_cyclic_menu_selection_input",
           "size": "228",
           "fuzzy_match_percent": 100.0,
           "address": "105192",
@@ -10650,7 +10650,7 @@
           }
         },
         {
-          "name": "FUN_00221f58",
+          "name": "draw_menu_side_indicator",
           "size": "408",
           "fuzzy_match_percent": 100.0,
           "address": "105688",
@@ -10902,7 +10902,7 @@
           }
         },
         {
-          "name": "FUN_00227140",
+          "name": "emit_selected_graphics_dma_packets",
           "size": "144",
           "fuzzy_match_percent": 100.0,
           "address": "126656",
@@ -11479,7 +11479,7 @@
           }
         },
         {
-          "name": "FUN_0020be68",
+          "name": "is_item_available",
           "size": "24",
           "fuzzy_match_percent": 100.0,
           "address": "1304",
