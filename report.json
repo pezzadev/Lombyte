@@ -5332,7 +5332,7 @@
           }
         },
         {
-          "name": "FUN_001e9b10",
+          "name": "initialize_level_render_state",
           "size": "3356",
           "fuzzy_match_percent": 100.0,
           "address": "770584",
@@ -10884,7 +10884,7 @@
           }
         },
         {
-          "name": "FUN_00226e58",
+          "name": "update_skill_point_and_gold_weapon_menu_entries",
           "size": "236",
           "fuzzy_match_percent": 100.0,
           "address": "125912",
