@@ -3079,7 +3079,7 @@
           }
         },
         {
-          "name": "FUN_0011bbb8",
+          "name": "sif_file_server_changed",
           "size": "140",
           "fuzzy_match_percent": 100.0,
           "address": "6032",
@@ -10110,7 +10110,7 @@
           }
         },
         {
-          "name": "fun_00216c48",
+          "name": "process_menu_entry",
           "size": "984",
           "fuzzy_match_percent": 100.0,
           "address": "59848",
@@ -10668,7 +10668,7 @@
           }
         },
         {
-          "name": "FUN_002223f0",
+          "name": "update_timed_menu_sequence",
           "size": "888",
           "fuzzy_match_percent": 100.0,
           "address": "106864",
