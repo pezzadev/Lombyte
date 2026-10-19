@@ -5,12 +5,12 @@
 <rect width="800" height="1104" rx="10" fill="url(#card-face)"/>
 <defs><linearGradient id="progress-range" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3632"/><stop offset="1" stop-color="#d87620"/></linearGradient><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#de812f" stop-opacity="0.10"/><stop offset="0.5" stop-color="#de812f" stop-opacity="0.02"/><stop offset="1" stop-color="#000000" stop-opacity="0.08"/></linearGradient><linearGradient id="drawer-face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#231a12"/><stop offset="1" stop-color="#17110c"/></linearGradient><radialGradient id="drawer-halo"><stop offset="0" stop-color="#0d1117" stop-opacity="0.6"/><stop offset="1" stop-color="#0d1117" stop-opacity="0"/></radialGradient></defs>
 <defs><radialGradient id="panel-glow"><stop offset="0" stop-color="#de812f" stop-opacity="0.28"/><stop offset="1" stop-color="#de812f" stop-opacity="0"/></radialGradient></defs>
-<polygon points="10,10 790,10 790,96 10,96" fill="url(#drawer-face)"><title>Executable and level overlays: 3,362,972 of 3,547,940 recoverable bytes are matching C (94.8%)</title></polygon>
+<polygon points="10,10 790,10 790,96 10,96" fill="url(#drawer-face)"><title>Executable and level overlays: 3,446,444 of 3,547,932 recoverable bytes are matching C (97.1%)</title></polygon>
 <clipPath id="drawer-clip"><polygon points="10,10 790,10 790,96 10,96"/></clipPath>
 <g clip-path="url(#drawer-clip)" opacity="0.24">
-<rect x="10.00" y="10.00" width="138.49" height="21.50" rx="1" fill="#b76924" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Dma · pending · 45 functions · 11,136 B · C_EXACT 85.54% · 36 matching C · 2 pending · 7 intentional asm</title></rect>
-<rect x="148.49" y="10.00" width="65.61" height="21.50" rx="1" fill="#bb6a23" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Rpc · pending · 28 functions · 5,276 B · C_EXACT 87.38% · 24 matching C · 1 pending · 3 intentional asm</title></rect>
-<rect x="214.10" y="10.00" width="62.98" height="21.50" rx="1" fill="#cf7221" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Debug · pending · 30 functions · 5,064 B · C_EXACT 96.04% · 27 matching C · 2 pending · 1 intentional asm</title></rect>
+<rect x="10.00" y="10.00" width="138.49" height="21.50" rx="1" fill="#c56e22" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Dma · pending · 45 functions · 11,136 B · C_EXACT 91.65% · 37 matching C · 1 pending · 7 intentional asm</title></rect>
+<rect x="148.49" y="10.00" width="65.61" height="21.50" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Rpc · exact · 28 functions · 5,276 B · C_EXACT 100.00% · C_FUZZY 100.00% · 25 matching C · 0 pending · 3 intentional asm</title></rect>
+<rect x="214.10" y="10.00" width="62.98" height="21.50" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Debug · exact · 30 functions · 5,064 B · C_EXACT 100.00% · C_FUZZY 100.00% · 29 matching C · 0 pending · 1 intentional asm</title></rect>
 <rect x="277.08" y="10.00" width="50.29" height="21.50" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Storage / Memory Card · exact · 17 functions · 4,044 B · C_EXACT 100.00% · C_FUZZY 100.00% · 17 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="327.37" y="10.00" width="22.04" height="21.50" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Input · exact · 10 functions · 1,772 B · C_EXACT 100.00% · C_FUZZY 100.00% · 10 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="349.41" y="10.00" width="19.85" height="11.59" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Callbacks · exact · 14 functions · 860 B · C_EXACT 100.00% · C_FUZZY 100.00% · 14 matching C · 0 pending · 0 intentional asm</title></rect>
@@ -24,8 +24,8 @@
 <rect x="389.42" y="25.43" width="7.05" height="6.07" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Time · exact · 4 functions · 160 B · C_EXACT 100.00% · C_FUZZY 100.00% · 4 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="396.47" y="25.43" width="3.53" height="3.64" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Display · asm · 3 functions · 48 B · intentional asm only · 0 matching C · 0 pending · 3 intentional asm</title></rect>
 <rect x="396.47" y="29.07" width="3.53" height="2.43" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Memory / Cache · asm · 2 functions · 32 B · intentional asm only · 0 matching C · 0 pending · 2 intentional asm</title></rect>
-<rect x="400.00" y="10.00" width="390.00" height="21.50" rx="1" fill="#c16d23" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Library · pending · 189 functions · 66,424 B · C_EXACT 89.96% · 157 matching C · 8 pending · 24 intentional asm</title></rect>
-<rect x="10.00" y="31.50" width="49.36" height="64.50" rx="1" fill="#925a28" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>UI / Map · pending · 26 functions · 18,864 B · C_EXACT 67.51% · 23 matching C · 3 pending · 0 intentional asm</title></rect>
+<rect x="400.00" y="10.00" width="390.00" height="21.50" rx="1" fill="#ca7022" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>SDK / Library · pending · 190 functions · 66,416 B · C_EXACT 93.92% · 162 matching C · 4 pending · 24 intentional asm</title></rect>
+<rect x="10.00" y="31.50" width="49.36" height="64.50" rx="1" fill="#c97022" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>UI / Map · pending · 26 functions · 18,864 B · C_EXACT 93.58% · 25 matching C · 1 pending · 0 intentional asm</title></rect>
 <rect x="59.36" y="31.50" width="41.42" height="32.71" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Gameplay · exact · 3 functions · 8,028 B · C_EXACT 100.00% · C_FUZZY 100.00% · 3 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="59.36" y="64.21" width="41.42" height="31.79" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Storage / Memory Card · exact · 9 functions · 7,800 B · C_EXACT 100.00% · C_FUZZY 100.00% · 9 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="100.78" y="31.50" width="32.56" height="34.98" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Video / Decoder · exact · 42 functions · 6,748 B · C_EXACT 100.00% · C_FUZZY 100.00% · 42 matching C · 0 pending · 0 intentional asm</title></rect>
@@ -89,7 +89,7 @@
 <rect x="365.36" y="68.65" width="7.50" height="7.02" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Runtime / State · exact · 15 functions · 312 B · C_EXACT 100.00% · C_FUZZY 100.00% · 15 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="365.36" y="75.67" width="7.50" height="6.93" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Rendering / Debug · exact · 3 functions · 308 B · C_EXACT 100.00% · C_FUZZY 100.00% · 3 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="365.36" y="82.59" width="7.50" height="6.84" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>World / Transforms · exact · 1 functions · 304 B · C_EXACT 100.00% · C_FUZZY 100.00% · 1 matching C · 0 pending · 0 intentional asm</title></rect>
-<rect x="365.36" y="89.43" width="7.50" height="6.57" rx="1" fill="#965b28" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Math · pending · 13 functions · 292 B · C_EXACT 69.57% · 2 matching C · 1 pending · 10 intentional asm</title></rect>
+<rect x="365.36" y="89.43" width="7.50" height="6.57" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Math · exact · 13 functions · 292 B · C_EXACT 100.00% · C_FUZZY 100.00% · 3 matching C · 0 pending · 10 intentional asm</title></rect>
 <rect x="372.86" y="61.45" width="7.02" height="6.44" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Audio / Movie · exact · 6 functions · 268 B · C_EXACT 100.00% · C_FUZZY 100.00% · 6 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="379.88" y="61.45" width="6.81" height="6.44" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Rendering / Shrubs · exact · 1 functions · 260 B · C_EXACT 100.00% · C_FUZZY 100.00% · 1 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="386.69" y="61.45" width="6.71" height="6.44" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Rendering / Vu1 · exact · 3 functions · 256 B · C_EXACT 100.00% · C_FUZZY 100.00% · 3 matching C · 0 pending · 0 intentional asm</title></rect>
@@ -129,8 +129,8 @@
 <rect x="398.25" y="92.04" width="1.75" height="2.70" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Runtime / Threads · exact · 1 functions · 28 B · C_EXACT 100.00% · C_FUZZY 100.00% · 1 matching C · 0 pending · 0 intentional asm</title></rect>
 <rect x="396.25" y="94.74" width="2.15" height="1.26" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Runtime / Exceptions · asm · 1 functions · 16 B · intentional asm only · 0 matching C · 0 pending · 1 intentional asm</title></rect>
 <rect x="398.39" y="94.74" width="1.61" height="1.26" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Runtime / Queues · exact · 1 functions · 12 B · C_EXACT 100.00% · C_FUZZY 100.00% · 1 matching C · 0 pending · 0 intentional asm</title></rect>
-<rect x="400.00" y="31.50" width="95.61" height="64.50" rx="1" fill="#b86924" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>UI / Menus · pending · 98 functions · 36,540 B · C_EXACT 86.22% · 95 matching C · 3 pending · 0 intentional asm</title></rect>
-<rect x="495.61" y="31.50" width="73.80" height="64.50" rx="1" fill="#af6625" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Rendering · pending · 56 functions · 28,204 B · C_EXACT 82.08% · 47 matching C · 7 pending · 2 intentional asm</title></rect>
+<rect x="400.00" y="31.50" width="95.61" height="64.50" rx="1" fill="#be6b23" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>UI / Menus · pending · 98 functions · 36,540 B · C_EXACT 88.66% · 96 matching C · 2 pending · 0 intentional asm</title></rect>
+<rect x="495.61" y="31.50" width="73.80" height="64.50" rx="1" fill="#b36724" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Rendering · pending · 56 functions · 28,204 B · C_EXACT 83.59% · 48 matching C · 6 pending · 2 intentional asm</title></rect>
 <rect x="569.41" y="31.50" width="45.27" height="64.50" rx="1" fill="#bd6b23" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Gameplay / State · pending · 21 functions · 17,300 B · C_EXACT 88.37% · 20 matching C · 1 pending · 0 intentional asm</title></rect>
 <rect x="614.68" y="31.50" width="42.87" height="64.50" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Unclassified functions · exact · 72 functions · 68,724 B · C_EXACT 100.00% · C_FUZZY 100.00% · 10 matching C · 0 pending · 62 intentional asm · map area capped at 16,384 B; statistics use actual size</title></rect>
 <rect x="657.55" y="31.50" width="50.33" height="32.59" rx="1" fill="#d27321" stroke="#0d1117" stroke-width="0.6" shape-rendering="geometricPrecision"><title>Gameplay / Entities · pending · 33 functions · 9,720 B · C_EXACT 97.28% · 28 matching C · 1 pending · 4 intentional asm</title></rect>
@@ -143,89 +143,89 @@
 </g>
 <polygon points="10,10 790,10 790,96 10,96" fill="url(#sheen)" pointer-events="none"/>
 <g clip-path="url(#drawer-clip)" pointer-events="none"><ellipse cx="400.0" cy="53.0" rx="156.0" ry="51.6" fill="url(#drawer-halo)"/><ellipse cx="400.0" cy="57.0" rx="109.2" ry="60.2" fill="url(#panel-glow)"/></g>
-<text x="400.0" y="35" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5"><tspan font-size="12" font-weight="800" fill="#c3cbd8">43.6%</tspan> data in C<title>Data in C: 5,418,157 of 12,433,372 B, of which 4,595,735 B are zeros (zero-initialised level data).</title></text>
-<text x="400.0" y="67" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="30" font-weight="800" fill="#de812f">94.8%</text>
+<text x="400.0" y="35" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5"><tspan font-size="12" font-weight="800" fill="#c3cbd8">43.6%</tspan> data in C<title>Data in C: 5,418,185 of 12,433,372 B, of which 4,595,735 B are zeros (zero-initialised level data).</title></text>
+<text x="400.0" y="67" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="30" font-weight="800" fill="#de812f">97.1%</text>
 <text x="400.0" y="83" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">exe + overlays in C</text>
 <linearGradient id="legend-shade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#0d1117" stop-opacity="0"/><stop offset="0.4" stop-color="#0d1117" stop-opacity="0.5"/><stop offset="1" stop-color="#0d1117" stop-opacity="0.5"/></linearGradient>
 <rect x="565" y="10" width="225" height="86" fill="url(#legend-shade)" clip-path="url(#drawer-clip)" pointer-events="none"/>
 <rect x="635" y="29.0" width="10" height="10" rx="2" fill="#de812f"></rect>
-<text x="650" y="38.0" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">matching C &#183; 3,362,972 B</text>
+<text x="650" y="38.0" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">matching C &#183; 3,446,444 B</text>
 <rect x="635" y="48.0" width="10" height="10" rx="2" fill="#c3cbd8"></rect>
 <text x="650" y="57.0" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">intentional asm &#183; 93,704 B</text>
 <rect x="635" y="67.0" width="10" height="10" rx="2" fill="url(#progress-range)"><title>Pending C: dark plate to copper shows C_EXACT coverage; bolt orange marks 100% exact.</title></rect>
-<text x="650" y="76.0" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">pending C &#183; 184,968 B</text>
+<text x="650" y="76.0" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" fill="#e8edf5">pending C &#183; 101,488 B</text>
 <text x="10" y="114" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#c3cbd8" fill-opacity="0.9">EXECUTABLE</text>
-<text x="10" y="184" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#c3cbd8" fill-opacity="0.9">LEVEL OVERLAYS &#183; 3,047,116 of 3,193,428 B matching C (95.4%)</text>
+<text x="10" y="184" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#c3cbd8" fill-opacity="0.9">LEVEL OVERLAYS &#183; 3,120,788 of 3,193,428 B matching C (97.7%)</text>
 <line x1="24" y1="120" x2="24" y2="136" stroke="#3a3632" stroke-width="2"/>
 <line x1="24" y1="190" x2="24" y2="1042" stroke="#3a3632" stroke-width="2"/>
 <path d="M 24 136 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="136" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="140" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8"></tspan><tspan fill="#e8edf5" font-weight="700">BOOT ELF</tspan><tspan fill="#a6adc8"> &#183; Game executable, SCUS_971.99</tspan></text>
-<text x="790" y="140" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">89.1%</text>
-<text x="790" y="156" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">1138/1424 units &#183; 448,216 B</text>
+<text x="790" y="140" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">91.9%</text>
+<text x="790" y="156" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">1152/1425 units &#183; 448,208 B</text>
 <rect x="44.00" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / State: 15/15 units matching C, 312/312 B</title></rect>
-<rect x="45.35" y="148" width="73.65" height="10" rx="1" fill="#c16d23" stroke="#0d1117" stroke-width="0.4"><title>SDK / Library: 157/189 units matching C, 46,772/66,424 B</title></rect>
-<rect x="120.00" y="148" width="6.62" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Newlib: 7/7 units matching C, 5,972/5,972 B</title></rect>
-<rect x="127.62" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Resources: 7/7 units matching C, 252/252 B</title></rect>
-<rect x="128.90" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Encoding: 1/1 units matching C, 60/60 B</title></rect>
-<rect x="129.97" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Callbacks: 7/7 units matching C, 112/112 B</title></rect>
-<rect x="131.09" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Containers: 1/1 units matching C, 44/44 B</title></rect>
-<rect x="132.14" y="148" width="5.62" height="10" rx="1" fill="#cf7221" stroke="#0d1117" stroke-width="0.4"><title>SDK / Debug: 27/30 units matching C, 4,848/5,064 B</title></rect>
-<rect x="138.76" y="148" width="0.40" height="10" rx="1" fill="#965b28" stroke="#0d1117" stroke-width="0.4"><title>Math: 2/13 units matching C, 64/292 B</title></rect>
-<rect x="140.08" y="148" width="0.72" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Syscalls: 4/39 units matching C, 88/648 B</title></rect>
-<rect x="141.80" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>SDK / Display: 0/3 units matching C, 0/48 B</title></rect>
-<rect x="142.85" y="148" width="0.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / System: 6/12 units matching C, 340/436 B</title></rect>
+<rect x="45.35" y="148" width="73.65" height="10" rx="1" fill="#ca7022" stroke="#0d1117" stroke-width="0.4"><title>SDK / Library: 162/190 units matching C, 48,824/66,416 B</title></rect>
+<rect x="119.99" y="148" width="6.62" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Newlib: 7/7 units matching C, 5,972/5,972 B</title></rect>
+<rect x="127.61" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Resources: 7/7 units matching C, 252/252 B</title></rect>
+<rect x="128.89" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Encoding: 1/1 units matching C, 60/60 B</title></rect>
+<rect x="129.96" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Callbacks: 7/7 units matching C, 112/112 B</title></rect>
+<rect x="131.08" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Containers: 1/1 units matching C, 44/44 B</title></rect>
+<rect x="132.13" y="148" width="5.62" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Debug: 29/30 units matching C, 5,048/5,064 B</title></rect>
+<rect x="138.75" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math: 3/13 units matching C, 92/292 B</title></rect>
+<rect x="140.07" y="148" width="0.72" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Syscalls: 4/39 units matching C, 88/648 B</title></rect>
+<rect x="141.79" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>SDK / Display: 0/3 units matching C, 0/48 B</title></rect>
+<rect x="142.84" y="148" width="0.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / System: 6/12 units matching C, 340/436 B</title></rect>
 <rect x="144.33" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Interrupts: 1/13 units matching C, 24/216 B</title></rect>
 <rect x="145.57" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>SDK / Threads: 0/18 units matching C, 0/288 B</title></rect>
 <rect x="146.89" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>SDK / Memory / Cache: 0/2 units matching C, 0/32 B</title></rect>
-<rect x="147.93" y="148" width="12.35" height="10" rx="1" fill="#b76924" stroke="#0d1117" stroke-width="0.4"><title>SDK / Dma: 36/45 units matching C, 9,060/11,136 B</title></rect>
-<rect x="161.28" y="148" width="5.85" height="10" rx="1" fill="#bb6a23" stroke="#0d1117" stroke-width="0.4"><title>SDK / Rpc: 24/28 units matching C, 4,432/5,276 B</title></rect>
-<rect x="168.13" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Status: 4/4 units matching C, 32/32 B</title></rect>
+<rect x="147.92" y="148" width="12.35" height="10" rx="1" fill="#c56e22" stroke="#0d1117" stroke-width="0.4"><title>SDK / Dma: 37/45 units matching C, 9,708/11,136 B</title></rect>
+<rect x="161.27" y="148" width="5.85" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Rpc: 25/28 units matching C, 5,072/5,276 B</title></rect>
+<rect x="168.12" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Status: 4/4 units matching C, 32/32 B</title></rect>
 <rect x="169.16" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Objects: 5/5 units matching C, 72/72 B</title></rect>
 <rect x="170.24" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Cache: 1/1 units matching C, 124/124 B</title></rect>
-<rect x="171.38" y="148" width="0.63" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Interrupts: 2/3 units matching C, 208/568 B</title></rect>
-<rect x="173.01" y="148" width="0.63" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Dma: 8/10 units matching C, 488/568 B</title></rect>
-<rect x="174.64" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Debug: 2/2 units matching C, 88/88 B</title></rect>
-<rect x="175.74" y="148" width="3.71" height="10" rx="1" fill="#53402f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Memory: 6/10 units matching C, 916/3,348 B</title></rect>
-<rect x="180.45" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Sio: 4/4 units matching C, 320/320 B</title></rect>
+<rect x="171.37" y="148" width="0.63" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Interrupts: 2/3 units matching C, 208/568 B</title></rect>
+<rect x="173.00" y="148" width="0.63" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Dma: 8/10 units matching C, 488/568 B</title></rect>
+<rect x="174.63" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Debug: 2/2 units matching C, 88/88 B</title></rect>
+<rect x="175.73" y="148" width="3.71" height="10" rx="1" fill="#53402f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Memory: 6/10 units matching C, 916/3,348 B</title></rect>
+<rect x="180.44" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Sio: 4/4 units matching C, 320/320 B</title></rect>
 <rect x="181.80" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Data: 3/3 units matching C, 48/48 B</title></rect>
-<rect x="182.86" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Rpc: 4/4 units matching C, 352/352 B</title></rect>
-<rect x="184.25" y="148" width="4.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Storage / Memory Card: 17/17 units matching C, 4,044/4,044 B</title></rect>
+<rect x="182.85" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Rpc: 4/4 units matching C, 352/352 B</title></rect>
+<rect x="184.24" y="148" width="4.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Storage / Memory Card: 17/17 units matching C, 4,044/4,044 B</title></rect>
 <rect x="189.73" y="148" width="0.95" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Callbacks: 14/14 units matching C, 860/860 B</title></rect>
-<rect x="191.69" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Queues: 1/1 units matching C, 12/12 B</title></rect>
-<rect x="192.70" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Iop: 2/2 units matching C, 208/208 B</title></rect>
-<rect x="193.93" y="148" width="1.27" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Startup: 2/2 units matching C, 1,148/1,148 B</title></rect>
-<rect x="196.20" y="148" width="76.20" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Unclassified functions: 10/72 units matching C, 6,884/68,724 B</title></rect>
-<rect x="273.41" y="148" width="31.27" height="10" rx="1" fill="#af6625" stroke="#0d1117" stroke-width="0.4"><title>Rendering: 47/56 units matching C, 22,988/28,204 B</title></rect>
+<rect x="191.68" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Queues: 1/1 units matching C, 12/12 B</title></rect>
+<rect x="192.69" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Iop: 2/2 units matching C, 208/208 B</title></rect>
+<rect x="193.92" y="148" width="1.27" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Startup: 2/2 units matching C, 1,148/1,148 B</title></rect>
+<rect x="196.20" y="148" width="76.21" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Unclassified functions: 10/72 units matching C, 6,884/68,724 B</title></rect>
+<rect x="273.40" y="148" width="31.27" height="10" rx="1" fill="#b36724" stroke="#0d1117" stroke-width="0.4"><title>Rendering: 48/56 units matching C, 23,412/28,204 B</title></rect>
 <rect x="305.68" y="148" width="0.60" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Storage / Cd: 3/3 units matching C, 540/540 B</title></rect>
-<rect x="307.28" y="148" width="0.82" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Storage: 2/2 units matching C, 736/736 B</title></rect>
-<rect x="309.10" y="148" width="1.96" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Input: 10/10 units matching C, 1,772/1,772 B</title></rect>
+<rect x="307.27" y="148" width="0.82" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Storage: 2/2 units matching C, 736/736 B</title></rect>
+<rect x="309.09" y="148" width="1.96" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Input: 10/10 units matching C, 1,772/1,772 B</title></rect>
 <rect x="312.06" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>SDK / Math / Rotations: 0/2 units matching C, 0/336 B</title></rect>
 <rect x="313.43" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Video / Ipu: 5/5 units matching C, 308/308 B</title></rect>
 <rect x="314.77" y="148" width="8.65" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Storage / Memory Card: 9/9 units matching C, 7,800/7,800 B</title></rect>
 <rect x="324.42" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Image: 3/3 units matching C, 92/92 B</title></rect>
-<rect x="325.53" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Time: 4/4 units matching C, 160/160 B</title></rect>
+<rect x="325.52" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>SDK / Time: 4/4 units matching C, 160/160 B</title></rect>
 <rect x="326.70" y="148" width="0.65" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Time: 3/5 units matching C, 496/584 B</title></rect>
 <rect x="328.35" y="148" width="19.18" height="10" rx="1" fill="#bd6b23" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / State: 20/21 units matching C, 15,288/17,300 B</title></rect>
 <rect x="348.53" y="148" width="1.80" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio: 5/5 units matching C, 1,620/1,620 B</title></rect>
 <rect x="351.33" y="148" width="1.81" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Rpc: 6/6 units matching C, 1,636/1,636 B</title></rect>
 <rect x="354.14" y="148" width="0.93" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Banks: 5/5 units matching C, 836/836 B</title></rect>
 <rect x="356.07" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Mixer: 4/4 units matching C, 212/212 B</title></rect>
-<rect x="357.31" y="148" width="6.07" height="10" rx="1" fill="#63472d" stroke="#0d1117" stroke-width="0.4"><title>Audio / Voices: 15/16 units matching C, 2,224/5,476 B</title></rect>
-<rect x="364.38" y="148" width="3.47" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Streaming: 32/32 units matching C, 3,128/3,128 B</title></rect>
-<rect x="368.85" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Effects: 3/3 units matching C, 176/176 B</title></rect>
+<rect x="357.30" y="148" width="6.07" height="10" rx="1" fill="#63472d" stroke="#0d1117" stroke-width="0.4"><title>Audio / Voices: 15/16 units matching C, 2,224/5,476 B</title></rect>
+<rect x="364.37" y="148" width="3.47" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Streaming: 32/32 units matching C, 3,128/3,128 B</title></rect>
+<rect x="368.84" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Effects: 3/3 units matching C, 176/176 B</title></rect>
 <rect x="370.04" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Movie: 6/6 units matching C, 268/268 B</title></rect>
-<rect x="371.34" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Storage / Wad: 1/1 units matching C, 172/172 B</title></rect>
+<rect x="371.33" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Storage / Wad: 1/1 units matching C, 172/172 B</title></rect>
 <rect x="372.53" y="148" width="3.96" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Input / Pad: 6/6 units matching C, 3,572/3,572 B</title></rect>
 <rect x="377.49" y="148" width="4.96" height="10" rx="1" fill="#a16026" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Texture: 13/14 units matching C, 3,368/4,472 B</title></rect>
-<rect x="383.45" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>UI / Fonts: 2/2 units matching C, 164/164 B</title></rect>
+<rect x="383.44" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>UI / Fonts: 2/2 units matching C, 164/164 B</title></rect>
 <rect x="384.63" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Callbacks: 20/20 units matching C, 160/160 B</title></rect>
-<rect x="385.81" y="148" width="1.33" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World: 2/2 units matching C, 1,196/1,196 B</title></rect>
+<rect x="385.80" y="148" width="1.33" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World: 2/2 units matching C, 1,196/1,196 B</title></rect>
 <rect x="388.13" y="148" width="10.55" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / Camera: 26/27 units matching C, 9,208/9,516 B</title></rect>
-<rect x="399.69" y="148" width="6.58" height="10" rx="1" fill="#ab6425" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Effects: 10/11 units matching C, 4,744/5,932 B</title></rect>
+<rect x="399.68" y="148" width="6.58" height="10" rx="1" fill="#ab6425" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Effects: 10/11 units matching C, 4,744/5,932 B</title></rect>
 <rect x="407.26" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>World / Collision: 0/1 units matching C, 0/48 B</title></rect>
-<rect x="408.32" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Debug: 3/3 units matching C, 308/308 B</title></rect>
-<rect x="409.66" y="148" width="3.84" height="10" rx="1" fill="#c46e22" stroke="#0d1117" stroke-width="0.4"><title>Rendering / View: 5/6 units matching C, 3,156/3,460 B</title></rect>
+<rect x="408.31" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Debug: 3/3 units matching C, 308/308 B</title></rect>
+<rect x="409.65" y="148" width="3.84" height="10" rx="1" fill="#c46e22" stroke="#0d1117" stroke-width="0.4"><title>Rendering / View: 5/6 units matching C, 3,156/3,460 B</title></rect>
 <rect x="414.49" y="148" width="0.62" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / State: 4/4 units matching C, 556/556 B</title></rect>
 <rect x="416.11" y="148" width="1.54" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Video / Display: 5/5 units matching C, 1,388/1,388 B</title></rect>
 <rect x="418.65" y="148" width="0.71" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / Callbacks: 6/6 units matching C, 640/640 B</title></rect>
@@ -237,34 +237,34 @@
 <rect x="439.93" y="148" width="1.80" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Geometry: 1/2 units matching C, 160/1,620 B</title></rect>
 <rect x="442.73" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Commands: 1/3 units matching C, 32/224 B</title></rect>
 <rect x="443.98" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Exceptions: 0/1 units matching C, 0/16 B</title></rect>
-<rect x="445.00" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Scheduling: 0/1 units matching C, 0/40 B</title></rect>
+<rect x="444.99" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Scheduling: 0/1 units matching C, 0/40 B</title></rect>
 <rect x="446.04" y="148" width="0.86" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Vectors: 1/15 units matching C, 188/772 B</title></rect>
-<rect x="447.90" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Geometry: 1/2 units matching C, 36/108 B</title></rect>
-<rect x="449.02" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>Math / Trigonometry: 0/3 units matching C, 0/200 B</title></rect>
+<rect x="447.89" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Geometry: 1/2 units matching C, 36/108 B</title></rect>
+<rect x="449.01" y="148" width="0.40" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>Math / Trigonometry: 0/3 units matching C, 0/200 B</title></rect>
 <rect x="450.24" y="148" width="0.51" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>Math / Matrices: 0/9 units matching C, 0/464 B</title></rect>
 <rect x="451.75" y="148" width="0.50" height="10" rx="1" fill="#c3cbd8" stroke="#0d1117" stroke-width="0.4"><title>Math / Quaternions: 0/4 units matching C, 0/448 B</title></rect>
 <rect x="453.25" y="148" width="1.73" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Rotations: 5/9 units matching C, 1,236/1,556 B</title></rect>
-<rect x="455.98" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Conversion: 1/2 units matching C, 124/140 B</title></rect>
+<rect x="455.97" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Conversion: 1/2 units matching C, 124/140 B</title></rect>
 <rect x="457.13" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Color: 1/2 units matching C, 40/112 B</title></rect>
 <rect x="458.25" y="148" width="3.15" height="10" rx="1" fill="#473b31" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Buffers: 3/4 units matching C, 536/2,844 B</title></rect>
 <rect x="462.41" y="148" width="6.91" height="10" rx="1" fill="#905928" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / Vendor: 10/12 units matching C, 4,148/6,228 B</title></rect>
 <rect x="470.31" y="148" width="0.50" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Framebuffer: 1/1 units matching C, 448/448 B</title></rect>
-<rect x="471.81" y="148" width="20.92" height="10" rx="1" fill="#925a28" stroke="#0d1117" stroke-width="0.4"><title>UI / Map: 23/26 units matching C, 12,736/18,864 B</title></rect>
+<rect x="471.81" y="148" width="20.92" height="10" rx="1" fill="#c97022" stroke="#0d1117" stroke-width="0.4"><title>UI / Map: 25/26 units matching C, 17,652/18,864 B</title></rect>
 <rect x="493.73" y="148" width="5.07" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>UI / Help: 10/10 units matching C, 4,568/4,568 B</title></rect>
 <rect x="499.79" y="148" width="8.44" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>UI / Hud: 21/21 units matching C, 7,612/7,612 B</title></rect>
 <rect x="509.23" y="148" width="3.49" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / Animation: 9/11 units matching C, 2,176/3,144 B</title></rect>
 <rect x="513.72" y="148" width="1.49" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World / Loaders: 4/4 units matching C, 1,344/1,344 B</title></rect>
 <rect x="516.21" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Runtime / Relocation: 1/1 units matching C, 88/88 B</title></rect>
 <rect x="517.31" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World / Streaming: 2/2 units matching C, 224/224 B</title></rect>
-<rect x="518.56" y="148" width="0.66" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World / Animation: 1/1 units matching C, 596/596 B</title></rect>
+<rect x="518.55" y="148" width="0.66" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World / Animation: 1/1 units matching C, 596/596 B</title></rect>
 <rect x="520.22" y="148" width="1.19" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World / Data: 4/4 units matching C, 1,076/1,076 B</title></rect>
-<rect x="522.41" y="148" width="40.52" height="10" rx="1" fill="#b86924" stroke="#0d1117" stroke-width="0.4"><title>UI / Menus: 95/98 units matching C, 31,504/36,540 B</title></rect>
+<rect x="522.41" y="148" width="40.52" height="10" rx="1" fill="#be6b23" stroke="#0d1117" stroke-width="0.4"><title>UI / Menus: 96/98 units matching C, 32,396/36,540 B</title></rect>
 <rect x="563.93" y="148" width="6.25" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>UI / Menus / Save Data: 33/33 units matching C, 5,640/5,640 B</title></rect>
 <rect x="571.18" y="148" width="1.32" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Storage / Memory Card / Data: 5/5 units matching C, 1,192/1,192 B</title></rect>
 <rect x="573.50" y="148" width="1.75" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / Missions: 17/17 units matching C, 1,576/1,576 B</title></rect>
 <rect x="576.25" y="148" width="10.78" height="10" rx="1" fill="#d27321" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / Entities: 28/33 units matching C, 5,296/9,720 B</title></rect>
 <rect x="588.03" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Random: 3/3 units matching C, 232/232 B</title></rect>
-<rect x="589.29" y="148" width="0.76" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Interpolation: 3/3 units matching C, 688/688 B</title></rect>
+<rect x="589.28" y="148" width="0.76" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Math / Interpolation: 3/3 units matching C, 688/688 B</title></rect>
 <rect x="591.05" y="148" width="8.90" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Gameplay: 3/3 units matching C, 8,028/8,028 B</title></rect>
 <rect x="600.95" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Culling: 1/1 units matching C, 216/216 B</title></rect>
 <rect x="602.19" y="148" width="1.27" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>UI / Menus / Pause: 3/3 units matching C, 1,148/1,148 B</title></rect>
@@ -275,7 +275,7 @@
 <rect x="618.51" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>UI / Menus / Weapons: 1/1 units matching C, 336/336 B</title></rect>
 <rect x="619.89" y="148" width="2.26" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Gameplay / Gadgets: 1/1 units matching C, 2,040/2,040 B</title></rect>
 <rect x="623.15" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Entities: 2/2 units matching C, 124/124 B</title></rect>
-<rect x="624.29" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Shrubs: 1/1 units matching C, 260/260 B</title></rect>
+<rect x="624.28" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Shrubs: 1/1 units matching C, 260/260 B</title></rect>
 <rect x="625.57" y="148" width="5.34" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Rendering / Sky: 8/9 units matching C, 4,008/4,812 B</title></rect>
 <rect x="631.91" y="148" width="1.21" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>Audio / Sound: 9/9 units matching C, 1,092/1,092 B</title></rect>
 <rect x="634.12" y="148" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>World / Transforms: 1/1 units matching C, 304/304 B</title></rect>
@@ -298,8 +298,8 @@
 <path d="M 24 206 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="206" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="210" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8"></tspan><tspan fill="#e8edf5" font-weight="700">Shared code</tspan><tspan fill="#a6adc8"> &#183; Functions present in two or more levels</tspan></text>
-<text x="790" y="210" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">91.3%</text>
-<text x="790" y="226" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">1531/1583 fn &#183; 1,130,492 B</text>
+<text x="790" y="210" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">94.7%</text>
+<text x="790" y="226" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">1555/1583 fn &#183; 1,130,492 B</text>
 <rect x="44.00" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/sdk/debug/001eb0b0.c: 2/2 functions matching C, 116/116 B</title></rect>
 <rect x="45.04" y="218" width="0.73" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/camera/init_camera_system.c: 9/9 functions matching C, 1,960/1,960 B</title></rect>
 <rect x="46.77" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/effects/001edf60.c: 1/1 functions matching C, 220/220 B</title></rect>
@@ -321,17 +321,17 @@
 <rect x="72.16" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/framebuffer/00201720.c: 1/1 functions matching C, 12/12 B</title></rect>
 <rect x="73.16" y="218" width="1.70" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/runtime/memory/002018c8.c: 1/1 functions matching C, 4,564/4,564 B</title></rect>
 <rect x="75.86" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/help_request.c: 3/3 functions matching C, 344/344 B</title></rect>
-<rect x="76.99" y="218" width="11.42" height="10" rx="1" fill="#cf7221" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/hero_idle_sequence.c: 60/61 functions matching C, 29,360/30,592 B</title></rect>
+<rect x="76.99" y="218" width="11.42" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/hero_idle_sequence.c: 61/61 functions matching C, 30,592/30,592 B</title></rect>
 <rect x="89.41" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/00204c60.c: 1/1 functions matching C, 796/796 B</title></rect>
 <rect x="90.71" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/0020a1f8.c: 4/4 functions matching C, 80/80 B</title></rect>
 <rect x="91.74" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/commands/0020bc88.c: 1/1 functions matching C, 260/260 B</title></rect>
-<rect x="92.84" y="218" width="12.32" height="10" rx="1" fill="#b26724" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/hero_check_damage.c: 63/68 functions matching C, 27,432/32,996 B</title></rect>
+<rect x="92.84" y="218" width="12.32" height="10" rx="1" fill="#c06c23" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/hero_check_damage.c: 66/68 functions matching C, 29,572/32,996 B</title></rect>
 <rect x="106.15" y="218" width="4.08" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/00214658.c: 20/20 functions matching C, 10,936/10,936 B</title></rect>
 <rect x="111.24" y="218" width="0.78" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/00215340.c: 1/1 functions matching C, 2,084/2,084 B</title></rect>
 <rect x="113.01" y="218" width="14.68" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/hero_update_movement.c: 1/1 functions matching C, 39,324/39,324 B</title></rect>
 <rect x="128.69" y="218" width="2.18" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/0021d0a0.c: 6/6 functions matching C, 5,844/5,844 B</title></rect>
 <rect x="131.87" y="218" width="2.36" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/00220b80.c: 4/4 functions matching C, 6,312/6,312 B</title></rect>
-<rect x="135.23" y="218" width="11.72" height="10" rx="1" fill="#d17321" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/hero_set_state.c: 15/16 functions matching C, 30,484/31,396 B</title></rect>
+<rect x="135.23" y="218" width="11.72" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/hero_set_state.c: 16/16 functions matching C, 31,396/31,396 B</title></rect>
 <rect x="147.95" y="218" width="0.41" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/00222800.c: 1/1 functions matching C, 1,100/1,100 B</title></rect>
 <rect x="149.36" y="218" width="5.35" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/air_accel.c: 21/21 functions matching C, 14,328/14,328 B</title></rect>
 <rect x="155.71" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/00227778.c: 1/1 functions matching C, 564/564 B</title></rect>
@@ -341,7 +341,7 @@
 <rect x="174.21" y="218" width="4.18" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/hero/set_hero_animation.c: 48/48 functions matching C, 11,188/11,188 B</title></rect>
 <rect x="179.38" y="218" width="0.49" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/00232670.c: 1/1 functions matching C, 1,312/1,312 B</title></rect>
 <rect x="180.87" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/hud/00234fd0.c: 3/3 functions matching C, 1,008/1,008 B</title></rect>
-<rect x="182.25" y="218" width="2.19" height="10" rx="1" fill="#79502b" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/hud/hud_keep_visible.c: 12/14 functions matching C, 3,188/5,872 B</title></rect>
+<rect x="182.25" y="218" width="2.19" height="10" rx="1" fill="#a76226" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/hud/hud_keep_visible.c: 13/14 functions matching C, 4,572/5,872 B</title></rect>
 <rect x="185.44" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/animation/00235ea0.c: 1/1 functions matching C, 644/644 B</title></rect>
 <rect x="186.68" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/animation/00237190.c: 1/1 functions matching C, 76/76 B</title></rect>
 <rect x="187.71" y="218" width="6.09" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/00237488.c: 15/15 functions matching C, 16,320/16,320 B</title></rect>
@@ -349,7 +349,7 @@
 <rect x="200.36" y="218" width="0.71" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/text/0023a7a8.c: 5/5 functions matching C, 1,900/1,900 B</title></rect>
 <rect x="202.07" y="218" width="0.55" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/hud/hud_frame.c: 4/4 functions matching C, 1,476/1,476 B</title></rect>
 <rect x="203.62" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/frames/0023d028.c: 3/3 functions matching C, 1,072/1,072 B</title></rect>
-<rect x="205.02" y="218" width="0.94" height="10" rx="1" fill="#744d2b" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/effects/0023db30.c: 4/5 functions matching C, 1,292/2,528 B</title></rect>
+<rect x="205.02" y="218" width="0.94" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/effects/0023db30.c: 5/5 functions matching C, 2,528/2,528 B</title></rect>
 <rect x="206.96" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/0023f0d8.c: 2/2 functions matching C, 256/256 B</title></rect>
 <rect x="208.06" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/world/loaders/0023fa00.c: 1/1 functions matching C, 1,040/1,040 B</title></rect>
 <rect x="209.45" y="218" width="5.29" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/world/loaders/load_level_gameplay.c: 5/5 functions matching C, 14,180/14,180 B</title></rect>
@@ -377,7 +377,7 @@
 <rect x="242.48" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/math/vectors/random_vector.c: 2/2 functions matching C, 224/224 B</title></rect>
 <rect x="243.56" y="218" width="1.87" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/math/interpolation/spring_turn.c: 16/16 functions matching C, 5,012/5,012 B</title></rect>
 <rect x="246.43" y="218" width="0.55" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/text/00261630.c: 2/2 functions matching C, 1,468/1,468 B</title></rect>
-<rect x="247.98" y="218" width="2.18" height="10" rx="1" fill="#8b5729" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/find_moby_hit.c: 20/22 functions matching C, 3,748/5,836 B</title></rect>
+<rect x="247.98" y="218" width="2.18" height="10" rx="1" fill="#905928" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/find_moby_hit.c: 21/22 functions matching C, 3,900/5,836 B</title></rect>
 <rect x="251.16" y="218" width="7.60" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/002712b8.c: 56/56 functions matching C, 20,372/20,372 B</title></rect>
 <rect x="259.76" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/math/interpolation/0025b8c0.c: 1/1 functions matching C, 172/172 B</title></rect>
 <rect x="260.83" y="218" width="0.59" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/math/interpolation/0025bb38.c: 7/7 functions matching C, 1,568/1,568 B</title></rect>
@@ -387,12 +387,12 @@
 <rect x="266.61" y="218" width="3.61" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/math/rotations/0025d238.c: 21/21 functions matching C, 9,672/9,672 B</title></rect>
 <rect x="271.22" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/0025e2c0.c: 2/2 functions matching C, 616/616 B</title></rect>
 <rect x="272.45" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/culling/0025fa38.c: 2/2 functions matching C, 316/316 B</title></rect>
-<rect x="273.57" y="218" width="1.89" height="10" rx="1" fill="#7c512b" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/state/unlock_planet.c: 7/8 functions matching C, 2,824/5,076 B</title></rect>
+<rect x="273.57" y="218" width="1.89" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/state/unlock_planet.c: 8/8 functions matching C, 5,076/5,076 B</title></rect>
 <rect x="276.47" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/00260130.c: 1/1 functions matching C, 224/224 B</title></rect>
 <rect x="277.55" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/view/002603d0.c: 1/1 functions matching C, 48/48 B</title></rect>
 <rect x="278.57" y="218" width="1.68" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/state/00261968.c: 12/12 functions matching C, 4,488/4,488 B</title></rect>
 <rect x="281.24" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/view/00261c80.c: 1/1 functions matching C, 640/640 B</title></rect>
-<rect x="282.48" y="218" width="1.06" height="10" rx="1" fill="#3d3732" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/text/00262ae8.c: 2/4 functions matching C, 188/2,832 B</title></rect>
+<rect x="282.48" y="218" width="1.06" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/text/00262ae8.c: 4/4 functions matching C, 2,832/2,832 B</title></rect>
 <rect x="284.54" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/camera/00262cf0.c: 2/2 functions matching C, 332/332 B</title></rect>
 <rect x="285.66" y="218" width="1.79" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/002630b8.c: 13/13 functions matching C, 4,804/4,804 B</title></rect>
 <rect x="288.46" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/state/00263a28.c: 1/1 functions matching C, 652/652 B</title></rect>
@@ -412,7 +412,7 @@
 <rect x="318.19" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/effects/00258090.c: 1/1 functions matching C, 512/512 B</title></rect>
 <rect x="319.38" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/view/00274b78.c: 1/1 functions matching C, 640/640 B</title></rect>
 <rect x="320.62" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/view/00275690.c: 1/1 functions matching C, 64/64 B</title></rect>
-<rect x="321.65" y="218" width="2.18" height="10" rx="1" fill="#6a492d" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/audio/voices/00276368.c: 3/5 functions matching C, 2,620/5,832 B</title></rect>
+<rect x="321.65" y="218" width="2.18" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/audio/voices/00276368.c: 5/5 functions matching C, 5,832/5,832 B</title></rect>
 <rect x="324.82" y="218" width="0.46" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/state/00276a48.c: 3/3 functions matching C, 1,244/1,244 B</title></rect>
 <rect x="326.29" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/math/random/00277688.c: 1/1 functions matching C, 88/88 B</title></rect>
 <rect x="327.32" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/00277758.c: 1/1 functions matching C, 112/112 B</title></rect>
@@ -445,7 +445,7 @@
 <rect x="389.90" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/00298c68.c: 2/2 functions matching C, 228/228 B</title></rect>
 <rect x="390.98" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/0029a2a0.c: 2/2 functions matching C, 560/560 B</title></rect>
 <rect x="392.19" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/state/0029b0a0.c: 1/1 functions matching C, 288/288 B</title></rect>
-<rect x="393.30" y="218" width="1.05" height="10" rx="1" fill="#81532a" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/0029ead8.c: 1/2 functions matching C, 1,636/2,800 B</title></rect>
+<rect x="393.30" y="218" width="1.05" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/0029ead8.c: 2/2 functions matching C, 2,800/2,800 B</title></rect>
 <rect x="395.34" y="218" width="1.28" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/0029f990.c: 4/4 functions matching C, 3,424/3,424 B</title></rect>
 <rect x="397.62" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/buffers/002a08c8.c: 2/2 functions matching C, 400/400 B</title></rect>
 <rect x="398.77" y="218" width="3.49" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/blarg_elite_commando.c: 13/13 functions matching C, 9,348/9,348 B</title></rect>
@@ -464,25 +464,25 @@
 <rect x="464.29" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/runtime/dma/002b7a48.c: 2/2 functions matching C, 736/736 B</title></rect>
 <rect x="465.56" y="218" width="1.74" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/ammocrate.c: 6/6 functions matching C, 4,664/4,664 B</title></rect>
 <rect x="468.30" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/002b7ef0.c: 5/5 functions matching C, 932/932 B</title></rect>
-<rect x="469.65" y="218" width="11.73" height="10" rx="1" fill="#a05f26" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/novalis_elevator.c: 28/31 functions matching C, 23,480/31,432 B</title></rect>
-<rect x="482.38" y="218" width="10.19" height="10" rx="1" fill="#9d5e27" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/walloper.c: 28/31 functions matching C, 19,948/27,300 B</title></rect>
+<rect x="469.65" y="218" width="11.73" height="10" rx="1" fill="#bb6a23" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/novalis_elevator.c: 30/31 functions matching C, 27,448/31,432 B</title></rect>
+<rect x="482.38" y="218" width="10.19" height="10" rx="1" fill="#a16026" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/walloper.c: 29/31 functions matching C, 20,524/27,300 B</title></rect>
 <rect x="493.58" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/effects/002bc210.c: 2/2 functions matching C, 560/560 B</title></rect>
 <rect x="494.78" y="218" width="12.17" height="10" rx="1" fill="#ae6525" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/trespasser.c: 26/27 functions matching C, 26,596/32,592 B</title></rect>
 <rect x="507.95" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/002c31c0.c: 4/4 functions matching C, 812/812 B</title></rect>
 <rect x="509.25" y="218" width="3.61" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/seeker.c: 3/3 functions matching C, 9,664/9,664 B</title></rect>
-<rect x="513.86" y="218" width="11.46" height="10" rx="1" fill="#875529" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/bomb.c: 21/24 functions matching C, 19,032/30,696 B</title></rect>
+<rect x="513.86" y="218" width="11.46" height="10" rx="1" fill="#bc6b23" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/bomb.c: 23/24 functions matching C, 26,920/30,696 B</title></rect>
 <rect x="526.32" y="218" width="3.19" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/ocean_pokitaru.c: 9/9 functions matching C, 8,556/8,556 B</title></rect>
 <rect x="530.51" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/002cbd88.c: 2/2 functions matching C, 368/368 B</title></rect>
 <rect x="531.65" y="218" width="12.15" height="10" rx="1" fill="#c36e22" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/veldin_ship.c: 27/29 functions matching C, 29,632/32,552 B</title></rect>
 <rect x="544.80" y="218" width="6.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/scoutbot.c: 16/16 functions matching C, 17,360/17,360 B</title></rect>
 <rect x="552.28" y="218" width="2.75" height="10" rx="1" fill="#bc6b23" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/hydrodisplacer_faucet.c: 16/17 functions matching C, 6,472/7,380 B</title></rect>
-<rect x="556.04" y="218" width="3.68" height="10" rx="1" fill="#82532a" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/002d6810.c: 8/9 functions matching C, 5,848/9,860 B</title></rect>
-<rect x="560.72" y="218" width="11.11" height="10" rx="1" fill="#ad6525" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/nanotech_ball.c: 35/37 functions matching C, 24,072/29,756 B</title></rect>
+<rect x="556.04" y="218" width="3.68" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/002d6810.c: 9/9 functions matching C, 9,860/9,860 B</title></rect>
+<rect x="560.72" y="218" width="11.11" height="10" rx="1" fill="#b86924" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/nanotech_ball.c: 36/37 functions matching C, 25,536/29,756 B</title></rect>
 <rect x="572.83" y="218" width="11.03" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/gadgebot_spawn_container.c: 35/35 functions matching C, 29,548/29,548 B</title></rect>
 <rect x="584.86" y="218" width="0.41" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/002de370.c: 5/5 functions matching C, 1,104/1,104 B</title></rect>
 <rect x="586.27" y="218" width="7.95" height="10" rx="1" fill="#c46e22" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/vendor_orb.c: 48/49 functions matching C, 19,496/21,288 B</title></rect>
 <rect x="595.21" y="218" width="2.01" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/armed_transport.c: 10/10 functions matching C, 5,380/5,380 B</title></rect>
-<rect x="598.22" y="218" width="1.86" height="10" rx="1" fill="#ad6425" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/002e3de8.c: 7/8 functions matching C, 4,028/4,988 B</title></rect>
+<rect x="598.22" y="218" width="1.86" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/002e3de8.c: 8/8 functions matching C, 4,988/4,988 B</title></rect>
 <rect x="601.08" y="218" width="0.99" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/underwater_ring.c: 4/4 functions matching C, 2,648/2,648 B</title></rect>
 <rect x="603.07" y="218" width="3.54" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/camera/follow_camera_setup.c: 13/13 functions matching C, 9,496/9,496 B</title></rect>
 <rect x="607.62" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/002e8540.c: 3/3 functions matching C, 196/196 B</title></rect>
@@ -497,7 +497,7 @@
 <rect x="635.22" y="218" width="1.51" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/timed_activation_pads.c: 4/4 functions matching C, 4,040/4,040 B</title></rect>
 <rect x="637.72" y="218" width="3.32" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/blarg_space_commando.c: 8/8 functions matching C, 8,892/8,892 B</title></rect>
 <rect x="642.04" y="218" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/002ffc08.c: 1/1 functions matching C, 12/12 B</title></rect>
-<rect x="643.05" y="218" width="1.99" height="10" rx="1" fill="#69492d" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/003015d0.c: 4/6 functions matching C, 2,388/5,328 B</title></rect>
+<rect x="643.05" y="218" width="1.99" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/003015d0.c: 6/6 functions matching C, 5,328/5,328 B</title></rect>
 <rect x="646.04" y="218" width="1.68" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/vendor/00307190.c: 7/7 functions matching C, 4,512/4,512 B</title></rect>
 <rect x="648.72" y="218" width="1.67" height="10" rx="1" fill="#865529" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/bot_door_lock.c: 6/7 functions matching C, 2,740/4,480 B</title></rect>
 <rect x="651.39" y="218" width="2.62" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/spawner.c: 9/9 functions matching C, 7,032/7,032 B</title></rect>
@@ -595,27 +595,27 @@
 <rect x="647.04" y="482" width="12.11" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l05/hoverboard_girl.c: 2/2 functions matching C, 2,652/2,652 B</title></rect>
 <rect x="660.15" y="482" width="11.85" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l05/gameplay/vendor/0031bf40.c: 2/2 functions matching C, 2,596/2,596 B</title></rect>
 <path d="M 24 514 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
-<circle cx="24" cy="514" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
+<circle cx="24" cy="514" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="518" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">06 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Nebula G34</tspan><tspan fill="#a6adc8"> &#183; Blarg Tactical Research Station: zero-gravity corridors</tspan></text>
-<text x="790" y="518" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">98.3%</text>
-<text x="790" y="534" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">86/87 fn &#183; 139,300 B</text>
+<text x="790" y="518" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="534" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">87/87 fn &#183; 139,300 B</text>
 <rect x="44.00" y="526" width="0.69" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/ui/help/0021d0a0.c: 1/1 functions matching C, 156/156 B</title></rect>
 <rect x="45.69" y="526" width="143.28" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/hero/00222fb8.c: 7/7 functions matching C, 32,348/32,348 B</title></rect>
 <rect x="189.97" y="526" width="70.89" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 16,004/16,004 B</title></rect>
 <rect x="261.86" y="526" width="116.24" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/hero/0023b440.c: 1/1 functions matching C, 26,244/26,244 B</title></rect>
 <rect x="379.10" y="526" width="0.55" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/runtime/startup/0024d218.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="380.65" y="526" width="18.98" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/world/loaders/00252dd0.c: 3/3 functions matching C, 4,284/4,284 B</title></rect>
-<rect x="400.62" y="526" width="144.50" height="10" rx="1" fill="#c76f22" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/entities/hangar_door.c: 37/38 functions matching C, 30,228/32,624 B</title></rect>
+<rect x="400.62" y="526" width="144.50" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/entities/hangar_door.c: 38/38 functions matching C, 32,624/32,624 B</title></rect>
 <rect x="546.12" y="526" width="99.89" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/entities/fred.c: 27/27 functions matching C, 22,552/22,552 B</title></rect>
 <rect x="647.01" y="526" width="2.44" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/blarg_space_commando.c: 1/1 functions matching C, 552/552 B</title></rect>
 <rect x="650.46" y="526" width="15.66" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/vendor/003083b0.c: 5/5 functions matching C, 3,536/3,536 B</title></rect>
 <rect x="667.12" y="526" width="2.04" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/gameplay/entities/bot_door_lock.c: 1/1 functions matching C, 460/460 B</title></rect>
 <rect x="670.16" y="526" width="1.84" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l06/gameplay/vendor/00309fa8.c: 1/1 functions matching C, 416/416 B</title></rect>
 <path d="M 24 558 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
-<circle cx="24" cy="558" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
+<circle cx="24" cy="558" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="562" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">07 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Umbris</tspan><tspan fill="#a6adc8"> &#183; Qwark&#x27;s headquarters and the Snagglebeast</tspan></text>
-<text x="790" y="562" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">74.9%</text>
-<text x="790" y="578" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">79/82 fn &#183; 77,488 B</text>
+<text x="790" y="562" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="578" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">82/82 fn &#183; 77,488 B</text>
 <rect x="44.00" y="570" width="0.99" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/runtime/startup/00265b58.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="45.99" y="570" width="0.76" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/entities/00265bd8.c: 1/1 functions matching C, 96/96 B</title></rect>
 <rect x="47.75" y="570" width="33.92" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/world/loaders/0026b768.c: 1/1 functions matching C, 4,260/4,260 B</title></rect>
@@ -625,21 +625,21 @@
 <rect x="93.60" y="570" width="9.11" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/rendering/0029c4e8.c: 2/2 functions matching C, 1,144/1,144 B</title></rect>
 <rect x="103.71" y="570" width="260.85" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/entities/taxi_platform.c: 42/42 functions matching C, 32,760/32,760 B</title></rect>
 <rect x="365.56" y="570" width="14.43" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/entities/0030cd20.c: 3/3 functions matching C, 1,812/1,812 B</title></rect>
-<rect x="380.99" y="570" width="260.82" height="10" rx="1" fill="#63472d" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/entities/snagglebeast.c: 20/23 functions matching C, 13,296/32,756 B</title></rect>
+<rect x="380.99" y="570" width="260.82" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/entities/snagglebeast.c: 23/23 functions matching C, 32,756/32,756 B</title></rect>
 <rect x="642.81" y="570" width="17.80" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/vendor/0031d2e0.c: 3/3 functions matching C, 2,236/2,236 B</title></rect>
 <rect x="661.62" y="570" width="10.38" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l07/gameplay/vendor/0031f3d8.c: 3/3 functions matching C, 1,304/1,304 B</title></rect>
 <path d="M 24 602 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="602" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="606" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">08 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Batalia</tspan><tspan fill="#a6adc8"> &#183; Fort Krontos: a war zone with turrets and tanks</tspan></text>
-<text x="790" y="606" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">95.4%</text>
-<text x="790" y="622" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">82/84 fn &#183; 156,016 B</text>
+<text x="790" y="606" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">97.0%</text>
+<text x="790" y="622" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">83/84 fn &#183; 156,016 B</text>
 <rect x="44.00" y="614" width="122.65" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/hero/0021d9c0.c: 2/2 functions matching C, 31,064/31,064 B</title></rect>
 <rect x="167.65" y="614" width="65.56" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 16,604/16,604 B</title></rect>
 <rect x="234.21" y="614" width="95.90" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/hero/002370d8.c: 1/1 functions matching C, 24,288/24,288 B</title></rect>
 <rect x="331.10" y="614" width="0.49" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/runtime/startup/00248148.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="332.59" y="614" width="1.61" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/rendering/culling/0026a0f8.c: 1/1 functions matching C, 408/408 B</title></rect>
 <rect x="335.21" y="614" width="3.03" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/rendering/00279f00.c: 3/3 functions matching C, 768/768 B</title></rect>
-<rect x="339.24" y="614" width="114.86" height="10" rx="1" fill="#c46e22" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/entities/bomb.c: 25/26 functions matching C, 26,588/29,092 B</title></rect>
+<rect x="339.24" y="614" width="114.86" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/entities/bomb.c: 26/26 functions matching C, 29,092/29,092 B</title></rect>
 <rect x="455.10" y="614" width="1.66" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/entities/002dc4a0.c: 1/1 functions matching C, 420/420 B</title></rect>
 <rect x="457.76" y="614" width="124.01" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/entities/bolt_thief.c: 23/23 functions matching C, 31,408/31,408 B</title></rect>
 <rect x="582.77" y="614" width="53.22" height="10" rx="1" fill="#8d5828" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l08/gameplay/entities/commando.c: 9/10 functions matching C, 8,804/13,480 B</title></rect>
@@ -681,10 +681,10 @@
 <rect x="577.85" y="746" width="3.43" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l11/gameplay/vendor/0030e708.c: 4/4 functions matching C, 716/716 B</title></rect>
 <rect x="582.27" y="746" width="89.73" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l11/gameplay/entities/oil_tanker_front.c: 35/35 functions matching C, 18,756/18,756 B</title></rect>
 <path d="M 24 778 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
-<circle cx="24" cy="778" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
+<circle cx="24" cy="778" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="782" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">12 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Hoven</tspan><tspan fill="#a6adc8"> &#183; Bomb Factory: ice, magnetic walls and the Hologuise</tspan></text>
-<text x="790" y="782" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">99.3%</text>
-<text x="790" y="798" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">75/77 fn &#183; 127,460 B</text>
+<text x="790" y="782" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="798" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">77/77 fn &#183; 127,460 B</text>
 <rect x="44.00" y="790" width="143.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/hero/0022de30.c: 4/4 functions matching C, 29,748/29,748 B</title></rect>
 <rect x="188.77" y="790" width="74.47" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 15,408/15,408 B</title></rect>
 <rect x="264.23" y="790" width="103.66" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/hero/002461f0.c: 1/1 functions matching C, 21,448/21,448 B</title></rect>
@@ -696,13 +696,13 @@
 <rect x="533.12" y="790" width="0.41" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/shared/rendering/effects/002bc210.c: 1/1 functions matching C, 84/84 B</title></rect>
 <rect x="534.53" y="790" width="17.80" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/entities/water_reservoir.c: 5/5 functions matching C, 3,684/3,684 B</title></rect>
 <rect x="553.33" y="790" width="54.19" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/entities/hoven_turret.c: 9/9 functions matching C, 11,212/11,212 B</title></rect>
-<rect x="608.52" y="790" width="61.28" height="10" rx="1" fill="#c76f22" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/entities/003054b0.c: 12/14 functions matching C, 11,728/12,680 B</title></rect>
+<rect x="608.52" y="790" width="61.28" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/entities/003054b0.c: 14/14 functions matching C, 12,680/12,680 B</title></rect>
 <rect x="670.80" y="790" width="1.20" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l12/gameplay/vendor/0030b6c8.c: 1/1 functions matching C, 248/248 B</title></rect>
 <path d="M 24 822 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="822" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="826" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">13 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Oltanis Orbit</tspan><tspan fill="#a6adc8"> &#183; Gemlik Base: Qwark&#x27;s fighter and the ship dogfight</tspan></text>
-<text x="790" y="826" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">94.6%</text>
-<text x="790" y="842" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">107/109 fn &#183; 105,748 B</text>
+<text x="790" y="826" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">96.4%</text>
+<text x="790" y="842" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">108/109 fn &#183; 105,748 B</text>
 <rect x="44.00" y="834" width="0.72" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/runtime/startup/002497d8.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="45.72" y="834" width="2.06" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/math/interpolation/00265170.c: 2/2 functions matching C, 352/352 B</title></rect>
 <rect x="48.78" y="834" width="3.74" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/rendering/view/0026bd00.c: 1/1 functions matching C, 640/640 B</title></rect>
@@ -712,7 +712,7 @@
 <rect x="248.25" y="834" width="2.64" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/rendering/002b8320.c: 1/1 functions matching C, 452/452 B</title></rect>
 <rect x="251.90" y="834" width="190.24" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/gameplay/entities/blarg_space_fighter.c: 38/38 functions matching C, 32,552/32,552 B</title></rect>
 <rect x="443.13" y="834" width="79.43" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/gameplay/entities/qwarks_starfighter_part.c: 11/11 functions matching C, 13,592/13,592 B</title></rect>
-<rect x="523.57" y="834" width="138.67" height="10" rx="1" fill="#c66f22" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/gameplay/entities/rocket.c: 27/28 functions matching C, 21,868/23,728 B</title></rect>
+<rect x="523.57" y="834" width="138.67" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/gameplay/entities/rocket.c: 28/28 functions matching C, 23,728/23,728 B</title></rect>
 <rect x="663.23" y="834" width="8.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l13/gameplay/vendor/003098d0.c: 3/3 functions matching C, 1,500/1,500 B</title></rect>
 <path d="M 24 866 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="866" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
@@ -731,18 +731,18 @@
 <rect x="604.13" y="878" width="65.10" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l14/gameplay/entities/morphoray.c: 24/24 functions matching C, 15,916/15,916 B</title></rect>
 <rect x="670.23" y="878" width="1.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l14/gameplay/vendor/00303370.c: 3/3 functions matching C, 432/432 B</title></rect>
 <path d="M 24 910 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
-<circle cx="24" cy="910" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
+<circle cx="24" cy="910" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="914" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">15 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Quartu</tspan><tspan fill="#a6adc8"> &#183; Robot Factory: Clank&#x27;s birthplace and Giant Clank</tspan></text>
-<text x="790" y="914" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">93.5%</text>
-<text x="790" y="930" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">44/46 fn &#183; 110,104 B</text>
+<text x="790" y="914" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="930" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">46/46 fn &#183; 110,104 B</text>
 <rect x="44.00" y="922" width="172.32" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/hero/002044c8.c: 3/3 functions matching C, 30,552/30,552 B</title></rect>
 <rect x="217.32" y="922" width="91.19" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 16,168/16,168 B</title></rect>
 <rect x="309.51" y="922" width="128.48" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/hero/0021d040.c: 1/1 functions matching C, 22,780/22,780 B</title></rect>
 <rect x="438.99" y="922" width="0.70" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/runtime/startup/0022dad0.c: 1/1 functions matching C, 124/124 B</title></rect>
 <rect x="440.69" y="922" width="0.79" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/entities/0022db50.c: 1/1 functions matching C, 140/140 B</title></rect>
 <rect x="442.48" y="922" width="1.99" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/math/interpolation/00247e90.c: 1/1 functions matching C, 352/352 B</title></rect>
-<rect x="445.46" y="922" width="140.39" height="10" rx="1" fill="#ac6425" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/entities/gate.c: 13/14 functions matching C, 20,076/24,892 B</title></rect>
-<rect x="586.86" y="922" width="85.14" height="10" rx="1" fill="#b56824" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/entities/conveyor_belt.c: 23/24 functions matching C, 12,784/15,096 B</title></rect>
+<rect x="445.46" y="922" width="140.39" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/entities/gate.c: 14/14 functions matching C, 24,892/24,892 B</title></rect>
+<rect x="586.86" y="922" width="85.14" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l15/gameplay/entities/conveyor_belt.c: 24/24 functions matching C, 15,096/15,096 B</title></rect>
 <path d="M 24 954 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
 <circle cx="24" cy="954" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="958" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">16 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Kalebo III</tspan><tspan fill="#a6adc8"> &#183; Gadgetron headquarters and the hoverboard finals</tspan></text>
@@ -774,10 +774,10 @@
 <rect x="627.05" y="1010" width="2.78" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l17/gameplay/vendor/002ea418.c: 3/3 functions matching C, 632/632 B</title></rect>
 <rect x="630.83" y="1010" width="41.17" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l17/gameplay/entities/blarg_ship.c: 12/12 functions matching C, 9,352/9,352 B</title></rect>
 <path d="M 24 1042 h 12" stroke="#3a3632" stroke-width="2" fill="none"/>
-<circle cx="24" cy="1042" r="3.5" fill="#d87620" stroke="#0d1117" stroke-width="1"/>
+<circle cx="24" cy="1042" r="3.5" fill="#de812f" stroke="#0d1117" stroke-width="1"/>
 <text x="44" y="1046" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="11"><tspan fill="#a6adc8">18 &#183; </tspan><tspan fill="#e8edf5" font-weight="700">Veldin</tspan><tspan fill="#a6adc8"> &#183; Kyzil Plateau again: the Deplanetizer and Drek</tspan></text>
-<text x="790" y="1046" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#d87620">99.2%</text>
-<text x="790" y="1062" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">120/121 fn &#183; 159,560 B</text>
+<text x="790" y="1046" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#de812f">100.0%</text>
+<text x="790" y="1062" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="8.5" fill="#a6adc8">121/121 fn &#183; 159,560 B</text>
 <rect x="44.00" y="1054" width="9.17" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/hero/00213b40.c: 2/2 functions matching C, 2,372/2,372 B</title></rect>
 <rect x="54.17" y="1054" width="129.12" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/hero/0021eac8.c: 1/1 functions matching C, 33,392/33,392 B</title></rect>
 <rect x="184.30" y="1054" width="69.56" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/hero/hero_set_state.c: 1/1 functions matching C, 17,988/17,988 B</title></rect>
@@ -786,11 +786,11 @@
 <rect x="362.43" y="1054" width="18.72" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/world/loaders/002463f8.c: 3/3 functions matching C, 4,840/4,840 B</title></rect>
 <rect x="382.15" y="1054" width="0.57" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/entities/00265ff8.c: 1/1 functions matching C, 148/148 B</title></rect>
 <rect x="383.72" y="1054" width="0.40" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/state/00281fa8.c: 1/1 functions matching C, 48/48 B</title></rect>
-<rect x="384.91" y="1054" width="110.65" height="10" rx="1" fill="#ce7221" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/entities/rocket.c: 51/52 functions matching C, 27,380/28,616 B</title></rect>
+<rect x="384.91" y="1054" width="110.65" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/entities/rocket.c: 52/52 functions matching C, 28,616/28,616 B</title></rect>
 <rect x="496.56" y="1054" width="125.97" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/entities/drek_fight_missile.c: 38/38 functions matching C, 32,576/32,576 B</title></rect>
 <rect x="623.53" y="1054" width="46.77" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/entities/deplanetizer_gun.c: 18/18 functions matching C, 12,096/12,096 B</title></rect>
 <rect x="671.30" y="1054" width="0.70" height="10" rx="1" fill="#de812f" stroke="#0d1117" stroke-width="0.4"><title>src/overlays/l18/gameplay/vendor/002fcbb0.c: 2/2 functions matching C, 180/180 B</title></rect>
 <line x1="10" y1="1082.0" x2="790" y2="1082.0" stroke="#3a3632" stroke-width="1" opacity="0.8"/>
-<text x="10" y="1096" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="9" fill="#a6adc8" opacity="0.85">executable 89.1% &#183; overlays 95.4% &#183; 3,362,972 of 3,641,644 B in C</text>
+<text x="10" y="1096" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="9" fill="#a6adc8" opacity="0.85">executable 91.9% &#183; overlays 97.7% &#183; 3,446,444 of 3,641,636 B in C</text>
 <text x="790" y="1096" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Noto Sans&#x27;, Helvetica, Arial, sans-serif" font-size="9" fill="#a6adc8" opacity="0.85">generated 2026-10-19 &#183; scripts/generate_treemap.py</text>
 </svg>

@@ -1,33 +1,33 @@
 {
   "schema": "rnc-public-progress-v3",
   "source": "scripts/generate_treemap.py",
-  "units_total": 4499,
-  "matching_c": 4084,
+  "units_total": 4500,
+  "matching_c": 4133,
   "intentional_asm": 309,
-  "pending_c": 106,
-  "bytes_total": 3669040,
-  "bytes_matching_c": 3362972,
+  "pending_c": 58,
+  "bytes_total": 3669032,
+  "bytes_matching_c": 3446444,
   "bytes_intentional_asm": 121100,
-  "bytes_pending_c": 184968,
-  "c_exact_percent_of_recoverable": 94.7866,
+  "bytes_pending_c": 101488,
+  "c_exact_percent_of_recoverable": 97.1395,
   "c_fuzzy_percent_of_recoverable": null,
   "data": {
     "bytes_total": 12433372,
-    "bytes_matching_c": 5418157,
-    "c_exact_percent": 43.5775,
+    "bytes_matching_c": 5418185,
+    "c_exact_percent": 43.5778,
     "bytes_matching_c_zero": 4595735
   },
   "boot": {
-    "units_total": 1424,
+    "units_total": 1425,
     "groups_total": 132,
-    "matching_c": 1138,
+    "matching_c": 1152,
     "intentional_asm": 248,
-    "pending_c": 38,
-    "bytes_total": 448216,
-    "bytes_matching_c": 315856,
+    "pending_c": 25,
+    "bytes_total": 448208,
+    "bytes_matching_c": 325656,
     "bytes_intentional_asm": 93704,
-    "bytes_pending_c": 38656,
-    "c_exact_percent_of_recoverable": 89.096,
+    "bytes_pending_c": 28848,
+    "c_exact_percent_of_recoverable": 91.8624,
     "c_fuzzy_percent_of_recoverable": null,
     "groups": [
       {
@@ -49,15 +49,15 @@
         "name": "sdk/library",
         "logical_group": "sdk/library",
         "category": "sdk",
-        "functions": 189,
-        "matching_c": 157,
-        "pending_c": 8,
+        "functions": 190,
+        "matching_c": 162,
+        "pending_c": 4,
         "intentional_asm": 24,
-        "bytes_total": 66424,
-        "bytes_matching_c": 46772,
-        "bytes_pending_c": 5220,
+        "bytes_total": 66416,
+        "bytes_matching_c": 48824,
+        "bytes_pending_c": 3160,
         "bytes_intentional_asm": 14432,
-        "c_exact_percent_of_recoverable": 89.96,
+        "c_exact_percent_of_recoverable": 93.9212,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -65,14 +65,14 @@
         "logical_group": "ui/menus",
         "category": "game",
         "functions": 98,
-        "matching_c": 95,
-        "pending_c": 3,
+        "matching_c": 96,
+        "pending_c": 2,
         "intentional_asm": 0,
         "bytes_total": 36540,
-        "bytes_matching_c": 31504,
-        "bytes_pending_c": 5036,
+        "bytes_matching_c": 32396,
+        "bytes_pending_c": 4144,
         "bytes_intentional_asm": 0,
-        "c_exact_percent_of_recoverable": 86.2178,
+        "c_exact_percent_of_recoverable": 88.659,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -80,14 +80,14 @@
         "logical_group": "rendering",
         "category": "game",
         "functions": 56,
-        "matching_c": 47,
-        "pending_c": 7,
+        "matching_c": 48,
+        "pending_c": 6,
         "intentional_asm": 2,
         "bytes_total": 28204,
-        "bytes_matching_c": 22988,
-        "bytes_pending_c": 5020,
+        "bytes_matching_c": 23412,
+        "bytes_pending_c": 4596,
         "bytes_intentional_asm": 196,
-        "c_exact_percent_of_recoverable": 82.0765,
+        "c_exact_percent_of_recoverable": 83.5904,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -95,14 +95,14 @@
         "logical_group": "ui/map",
         "category": "game",
         "functions": 26,
-        "matching_c": 23,
-        "pending_c": 3,
+        "matching_c": 25,
+        "pending_c": 1,
         "intentional_asm": 0,
         "bytes_total": 18864,
-        "bytes_matching_c": 12736,
-        "bytes_pending_c": 6128,
+        "bytes_matching_c": 17652,
+        "bytes_pending_c": 1212,
         "bytes_intentional_asm": 0,
-        "c_exact_percent_of_recoverable": 67.5148,
+        "c_exact_percent_of_recoverable": 93.5751,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -125,14 +125,14 @@
         "logical_group": "sdk/dma",
         "category": "sdk",
         "functions": 45,
-        "matching_c": 36,
-        "pending_c": 2,
+        "matching_c": 37,
+        "pending_c": 1,
         "intentional_asm": 7,
         "bytes_total": 11136,
-        "bytes_matching_c": 9060,
-        "bytes_pending_c": 1532,
+        "bytes_matching_c": 9708,
+        "bytes_pending_c": 884,
         "bytes_intentional_asm": 544,
-        "c_exact_percent_of_recoverable": 85.5363,
+        "c_exact_percent_of_recoverable": 91.6541,
         "c_fuzzy_percent_of_recoverable": null
       },
       {
@@ -335,30 +335,30 @@
         "logical_group": "sdk/rpc",
         "category": "sdk",
         "functions": 28,
-        "matching_c": 24,
-        "pending_c": 1,
+        "matching_c": 25,
+        "pending_c": 0,
         "intentional_asm": 3,
         "bytes_total": 5276,
-        "bytes_matching_c": 4432,
-        "bytes_pending_c": 640,
+        "bytes_matching_c": 5072,
+        "bytes_pending_c": 0,
         "bytes_intentional_asm": 204,
-        "c_exact_percent_of_recoverable": 87.3817,
-        "c_fuzzy_percent_of_recoverable": null
+        "c_exact_percent_of_recoverable": 100.0,
+        "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
         "name": "sdk/debug",
         "logical_group": "sdk/debug",
         "category": "sdk",
         "functions": 30,
-        "matching_c": 27,
-        "pending_c": 2,
+        "matching_c": 29,
+        "pending_c": 0,
         "intentional_asm": 1,
         "bytes_total": 5064,
-        "bytes_matching_c": 4848,
-        "bytes_pending_c": 200,
+        "bytes_matching_c": 5048,
+        "bytes_pending_c": 0,
         "bytes_intentional_asm": 16,
-        "c_exact_percent_of_recoverable": 96.038,
-        "c_fuzzy_percent_of_recoverable": null
+        "c_exact_percent_of_recoverable": 100.0,
+        "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
         "name": "game/rendering/sky",
@@ -1340,15 +1340,15 @@
         "logical_group": "math",
         "category": "game",
         "functions": 13,
-        "matching_c": 2,
-        "pending_c": 1,
+        "matching_c": 3,
+        "pending_c": 0,
         "intentional_asm": 10,
         "bytes_total": 292,
-        "bytes_matching_c": 64,
-        "bytes_pending_c": 28,
+        "bytes_matching_c": 92,
+        "bytes_pending_c": 0,
         "bytes_intentional_asm": 200,
-        "c_exact_percent_of_recoverable": 69.5652,
-        "c_fuzzy_percent_of_recoverable": null
+        "c_exact_percent_of_recoverable": 100.0,
+        "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
         "name": "sdk/threads",
@@ -2013,18 +2013,18 @@
     ],
     "data": {
       "bytes_total": 699136,
-      "bytes_matching_c": 16062,
-      "c_exact_percent": 2.2974
+      "bytes_matching_c": 16090,
+      "c_exact_percent": 2.3014
     }
   },
   "overlays": {
     "functions_total": 3014,
-    "matching_c": 2946,
-    "pending_c": 68,
+    "matching_c": 2981,
+    "pending_c": 33,
     "bytes_total": 3193428,
-    "bytes_matching_c": 3047116,
-    "bytes_pending_c": 146312,
-    "c_exact_percent_of_recoverable": 95.4183,
+    "bytes_matching_c": 3120788,
+    "bytes_pending_c": 72640,
+    "c_exact_percent_of_recoverable": 97.7253,
     "intentional_asm": 61,
     "bytes_intentional_asm": 27396,
     "shared": {
@@ -2033,12 +2033,12 @@
       "planet": "Shared code",
       "description": "Functions present in two or more levels",
       "functions": 1583,
-      "matching_c": 1531,
-      "pending_c": 52,
+      "matching_c": 1555,
+      "pending_c": 28,
       "bytes_total": 1130492,
-      "bytes_matching_c": 1031988,
-      "bytes_pending_c": 98504,
-      "c_exact_percent_of_recoverable": 91.2866,
+      "bytes_matching_c": 1070124,
+      "bytes_pending_c": 60368,
+      "c_exact_percent_of_recoverable": 94.66,
       "files": [
         {
           "file": "src/overlays/shared/sdk/debug/001eb0b0.c",
@@ -2190,9 +2190,9 @@
         {
           "file": "src/overlays/shared/gameplay/hero/hero_idle_sequence.c",
           "functions": 61,
-          "matching_c": 60,
+          "matching_c": 61,
           "bytes_total": 30592,
-          "bytes_matching_c": 29360
+          "bytes_matching_c": 30592
         },
         {
           "file": "src/overlays/shared/ui/help/00204c60.c",
@@ -2218,9 +2218,9 @@
         {
           "file": "src/overlays/shared/gameplay/hero/hero_check_damage.c",
           "functions": 68,
-          "matching_c": 63,
+          "matching_c": 66,
           "bytes_total": 32996,
-          "bytes_matching_c": 27432
+          "bytes_matching_c": 29572
         },
         {
           "file": "src/overlays/shared/ui/help/00214658.c",
@@ -2260,9 +2260,9 @@
         {
           "file": "src/overlays/shared/gameplay/hero/hero_set_state.c",
           "functions": 16,
-          "matching_c": 15,
+          "matching_c": 16,
           "bytes_total": 31396,
-          "bytes_matching_c": 30484
+          "bytes_matching_c": 31396
         },
         {
           "file": "src/overlays/shared/ui/help/00222800.c",
@@ -2330,9 +2330,9 @@
         {
           "file": "src/overlays/shared/ui/hud/hud_keep_visible.c",
           "functions": 14,
-          "matching_c": 12,
+          "matching_c": 13,
           "bytes_total": 5872,
-          "bytes_matching_c": 3188
+          "bytes_matching_c": 4572
         },
         {
           "file": "src/overlays/shared/gameplay/animation/00235ea0.c",
@@ -2386,9 +2386,9 @@
         {
           "file": "src/overlays/shared/rendering/effects/0023db30.c",
           "functions": 5,
-          "matching_c": 4,
+          "matching_c": 5,
           "bytes_total": 2528,
-          "bytes_matching_c": 1292
+          "bytes_matching_c": 2528
         },
         {
           "file": "src/overlays/shared/rendering/0023f0d8.c",
@@ -2582,9 +2582,9 @@
         {
           "file": "src/overlays/shared/gameplay/entities/find_moby_hit.c",
           "functions": 22,
-          "matching_c": 20,
+          "matching_c": 21,
           "bytes_total": 5836,
-          "bytes_matching_c": 3748
+          "bytes_matching_c": 3900
         },
         {
           "file": "src/overlays/shared/rendering/002712b8.c",
@@ -2652,9 +2652,9 @@
         {
           "file": "src/overlays/shared/gameplay/state/unlock_planet.c",
           "functions": 8,
-          "matching_c": 7,
+          "matching_c": 8,
           "bytes_total": 5076,
-          "bytes_matching_c": 2824
+          "bytes_matching_c": 5076
         },
         {
           "file": "src/overlays/shared/rendering/00260130.c",
@@ -2687,9 +2687,9 @@
         {
           "file": "src/overlays/shared/ui/text/00262ae8.c",
           "functions": 4,
-          "matching_c": 2,
+          "matching_c": 4,
           "bytes_total": 2832,
-          "bytes_matching_c": 188
+          "bytes_matching_c": 2832
         },
         {
           "file": "src/overlays/shared/gameplay/camera/00262cf0.c",
@@ -2827,9 +2827,9 @@
         {
           "file": "src/overlays/shared/audio/voices/00276368.c",
           "functions": 5,
-          "matching_c": 3,
+          "matching_c": 5,
           "bytes_total": 5832,
-          "bytes_matching_c": 2620
+          "bytes_matching_c": 5832
         },
         {
           "file": "src/overlays/shared/gameplay/state/00276a48.c",
@@ -3058,9 +3058,9 @@
         {
           "file": "src/overlays/shared/gameplay/vendor/0029ead8.c",
           "functions": 2,
-          "matching_c": 1,
+          "matching_c": 2,
           "bytes_total": 2800,
-          "bytes_matching_c": 1636
+          "bytes_matching_c": 2800
         },
         {
           "file": "src/overlays/shared/gameplay/entities/0029f990.c",
@@ -3191,16 +3191,16 @@
         {
           "file": "src/overlays/shared/gameplay/entities/novalis_elevator.c",
           "functions": 31,
-          "matching_c": 28,
+          "matching_c": 30,
           "bytes_total": 31432,
-          "bytes_matching_c": 23480
+          "bytes_matching_c": 27448
         },
         {
           "file": "src/overlays/shared/gameplay/entities/walloper.c",
           "functions": 31,
-          "matching_c": 28,
+          "matching_c": 29,
           "bytes_total": 27300,
-          "bytes_matching_c": 19948
+          "bytes_matching_c": 20524
         },
         {
           "file": "src/overlays/shared/rendering/effects/002bc210.c",
@@ -3233,9 +3233,9 @@
         {
           "file": "src/overlays/shared/gameplay/entities/bomb.c",
           "functions": 24,
-          "matching_c": 21,
+          "matching_c": 23,
           "bytes_total": 30696,
-          "bytes_matching_c": 19032
+          "bytes_matching_c": 26920
         },
         {
           "file": "src/overlays/shared/gameplay/entities/ocean_pokitaru.c",
@@ -3275,16 +3275,16 @@
         {
           "file": "src/overlays/shared/gameplay/entities/002d6810.c",
           "functions": 9,
-          "matching_c": 8,
+          "matching_c": 9,
           "bytes_total": 9860,
-          "bytes_matching_c": 5848
+          "bytes_matching_c": 9860
         },
         {
           "file": "src/overlays/shared/gameplay/entities/nanotech_ball.c",
           "functions": 37,
-          "matching_c": 35,
+          "matching_c": 36,
           "bytes_total": 29756,
-          "bytes_matching_c": 24072
+          "bytes_matching_c": 25536
         },
         {
           "file": "src/overlays/shared/gameplay/entities/gadgebot_spawn_container.c",
@@ -3317,9 +3317,9 @@
         {
           "file": "src/overlays/shared/gameplay/vendor/002e3de8.c",
           "functions": 8,
-          "matching_c": 7,
+          "matching_c": 8,
           "bytes_total": 4988,
-          "bytes_matching_c": 4028
+          "bytes_matching_c": 4988
         },
         {
           "file": "src/overlays/shared/gameplay/entities/underwater_ring.c",
@@ -3422,9 +3422,9 @@
         {
           "file": "src/overlays/shared/gameplay/vendor/003015d0.c",
           "functions": 6,
-          "matching_c": 4,
+          "matching_c": 6,
           "bytes_total": 5328,
-          "bytes_matching_c": 2388
+          "bytes_matching_c": 5328
         },
         {
           "file": "src/overlays/shared/gameplay/vendor/00307190.c",
@@ -3987,12 +3987,12 @@
         "planet": "Nebula G34",
         "description": "Blarg Tactical Research Station: zero-gravity corridors",
         "functions": 87,
-        "matching_c": 86,
-        "pending_c": 1,
+        "matching_c": 87,
+        "pending_c": 0,
         "bytes_total": 139300,
-        "bytes_matching_c": 136904,
-        "bytes_pending_c": 2396,
-        "c_exact_percent_of_recoverable": 98.28,
+        "bytes_matching_c": 139300,
+        "bytes_pending_c": 0,
+        "c_exact_percent_of_recoverable": 100.0,
         "files": [
           {
             "file": "src/overlays/shared/ui/help/0021d0a0.c",
@@ -4039,9 +4039,9 @@
           {
             "file": "src/overlays/l06/gameplay/entities/hangar_door.c",
             "functions": 38,
-            "matching_c": 37,
+            "matching_c": 38,
             "bytes_total": 32624,
-            "bytes_matching_c": 30228
+            "bytes_matching_c": 32624
           },
           {
             "file": "src/overlays/l06/gameplay/entities/fred.c",
@@ -4086,12 +4086,12 @@
         "planet": "Umbris",
         "description": "Qwark's headquarters and the Snagglebeast",
         "functions": 82,
-        "matching_c": 79,
-        "pending_c": 3,
+        "matching_c": 82,
+        "pending_c": 0,
         "bytes_total": 77488,
-        "bytes_matching_c": 58028,
-        "bytes_pending_c": 19460,
-        "c_exact_percent_of_recoverable": 74.8864,
+        "bytes_matching_c": 77488,
+        "bytes_pending_c": 0,
+        "c_exact_percent_of_recoverable": 100.0,
         "files": [
           {
             "file": "src/overlays/l07/runtime/startup/00265b58.c",
@@ -4159,9 +4159,9 @@
           {
             "file": "src/overlays/l07/gameplay/entities/snagglebeast.c",
             "functions": 23,
-            "matching_c": 20,
+            "matching_c": 23,
             "bytes_total": 32756,
-            "bytes_matching_c": 13296
+            "bytes_matching_c": 32756
           },
           {
             "file": "src/overlays/l07/gameplay/vendor/0031d2e0.c",
@@ -4185,12 +4185,12 @@
         "planet": "Batalia",
         "description": "Fort Krontos: a war zone with turrets and tanks",
         "functions": 84,
-        "matching_c": 82,
-        "pending_c": 2,
+        "matching_c": 83,
+        "pending_c": 1,
         "bytes_total": 156016,
-        "bytes_matching_c": 148836,
-        "bytes_pending_c": 7180,
-        "c_exact_percent_of_recoverable": 95.3979,
+        "bytes_matching_c": 151340,
+        "bytes_pending_c": 4676,
+        "c_exact_percent_of_recoverable": 97.0029,
         "files": [
           {
             "file": "src/overlays/l08/gameplay/hero/0021d9c0.c",
@@ -4237,9 +4237,9 @@
           {
             "file": "src/overlays/l08/gameplay/entities/bomb.c",
             "functions": 26,
-            "matching_c": 25,
+            "matching_c": 26,
             "bytes_total": 29092,
-            "bytes_matching_c": 26588
+            "bytes_matching_c": 29092
           },
           {
             "file": "src/overlays/l08/gameplay/entities/002dc4a0.c",
@@ -4469,12 +4469,12 @@
         "planet": "Hoven",
         "description": "Bomb Factory: ice, magnetic walls and the Hologuise",
         "functions": 77,
-        "matching_c": 75,
-        "pending_c": 2,
+        "matching_c": 77,
+        "pending_c": 0,
         "bytes_total": 127460,
-        "bytes_matching_c": 126508,
-        "bytes_pending_c": 952,
-        "c_exact_percent_of_recoverable": 99.2531,
+        "bytes_matching_c": 127460,
+        "bytes_pending_c": 0,
+        "c_exact_percent_of_recoverable": 100.0,
         "files": [
           {
             "file": "src/overlays/l12/gameplay/hero/0022de30.c",
@@ -4556,9 +4556,9 @@
           {
             "file": "src/overlays/l12/gameplay/entities/003054b0.c",
             "functions": 14,
-            "matching_c": 12,
+            "matching_c": 14,
             "bytes_total": 12680,
-            "bytes_matching_c": 11728
+            "bytes_matching_c": 12680
           },
           {
             "file": "src/overlays/l12/gameplay/vendor/0030b6c8.c",
@@ -4575,12 +4575,12 @@
         "planet": "Oltanis Orbit",
         "description": "Gemlik Base: Qwark's fighter and the ship dogfight",
         "functions": 109,
-        "matching_c": 107,
-        "pending_c": 2,
+        "matching_c": 108,
+        "pending_c": 1,
         "bytes_total": 105748,
-        "bytes_matching_c": 100068,
-        "bytes_pending_c": 5680,
-        "c_exact_percent_of_recoverable": 94.6287,
+        "bytes_matching_c": 101928,
+        "bytes_pending_c": 3820,
+        "c_exact_percent_of_recoverable": 96.3876,
         "files": [
           {
             "file": "src/overlays/l13/runtime/startup/002497d8.c",
@@ -4648,9 +4648,9 @@
           {
             "file": "src/overlays/l13/gameplay/entities/rocket.c",
             "functions": 28,
-            "matching_c": 27,
+            "matching_c": 28,
             "bytes_total": 23728,
-            "bytes_matching_c": 21868
+            "bytes_matching_c": 23728
           },
           {
             "file": "src/overlays/l13/gameplay/vendor/003098d0.c",
@@ -4759,12 +4759,12 @@
         "planet": "Quartu",
         "description": "Robot Factory: Clank's birthplace and Giant Clank",
         "functions": 46,
-        "matching_c": 44,
-        "pending_c": 2,
+        "matching_c": 46,
+        "pending_c": 0,
         "bytes_total": 110104,
-        "bytes_matching_c": 102976,
-        "bytes_pending_c": 7128,
-        "c_exact_percent_of_recoverable": 93.5261,
+        "bytes_matching_c": 110104,
+        "bytes_pending_c": 0,
+        "c_exact_percent_of_recoverable": 100.0,
         "files": [
           {
             "file": "src/overlays/l15/gameplay/hero/002044c8.c",
@@ -4811,16 +4811,16 @@
           {
             "file": "src/overlays/l15/gameplay/entities/gate.c",
             "functions": 14,
-            "matching_c": 13,
+            "matching_c": 14,
             "bytes_total": 24892,
-            "bytes_matching_c": 20076
+            "bytes_matching_c": 24892
           },
           {
             "file": "src/overlays/l15/gameplay/entities/conveyor_belt.c",
             "functions": 24,
-            "matching_c": 23,
+            "matching_c": 24,
             "bytes_total": 15096,
-            "bytes_matching_c": 12784
+            "bytes_matching_c": 15096
           }
         ]
       },
@@ -5000,12 +5000,12 @@
         "planet": "Veldin",
         "description": "Kyzil Plateau again: the Deplanetizer and Drek",
         "functions": 121,
-        "matching_c": 120,
-        "pending_c": 1,
+        "matching_c": 121,
+        "pending_c": 0,
         "bytes_total": 159560,
-        "bytes_matching_c": 158324,
-        "bytes_pending_c": 1236,
-        "c_exact_percent_of_recoverable": 99.2254,
+        "bytes_matching_c": 159560,
+        "bytes_pending_c": 0,
+        "c_exact_percent_of_recoverable": 100.0,
         "files": [
           {
             "file": "src/overlays/l18/gameplay/hero/00213b40.c",
@@ -5066,9 +5066,9 @@
           {
             "file": "src/overlays/l18/gameplay/entities/rocket.c",
             "functions": 52,
-            "matching_c": 51,
+            "matching_c": 52,
             "bytes_total": 28616,
-            "bytes_matching_c": 27380
+            "bytes_matching_c": 28616
           },
           {
             "file": "src/overlays/l18/gameplay/entities/drek_fight_missile.c",
@@ -5102,20 +5102,20 @@
     }
   },
   "total": {
-    "units_total": 4499,
-    "matching_c": 4084,
+    "units_total": 4500,
+    "matching_c": 4133,
     "intentional_asm": 309,
-    "pending_c": 106,
-    "bytes_total": 3669040,
-    "bytes_matching_c": 3362972,
+    "pending_c": 58,
+    "bytes_total": 3669032,
+    "bytes_matching_c": 3446444,
     "bytes_intentional_asm": 121100,
-    "bytes_pending_c": 184968,
-    "c_exact_percent_of_recoverable": 94.7866,
+    "bytes_pending_c": 101488,
+    "c_exact_percent_of_recoverable": 97.1395,
     "c_fuzzy_percent_of_recoverable": null,
     "data": {
       "bytes_total": 12433372,
-      "bytes_matching_c": 5418157,
-      "c_exact_percent": 43.5775,
+      "bytes_matching_c": 5418185,
+      "c_exact_percent": 43.5778,
       "bytes_matching_c_zero": 4595735
     }
   }
