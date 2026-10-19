@@ -2,14 +2,14 @@
   "schema": "rnc-public-progress-v3",
   "source": "scripts/generate_treemap.py",
   "units_total": 4499,
-  "matching_c": 4072,
+  "matching_c": 4084,
   "intentional_asm": 309,
-  "pending_c": 118,
+  "pending_c": 106,
   "bytes_total": 3669040,
-  "bytes_matching_c": 3349524,
+  "bytes_matching_c": 3362972,
   "bytes_intentional_asm": 121100,
-  "bytes_pending_c": 198416,
-  "c_exact_percent_of_recoverable": 94.4076,
+  "bytes_pending_c": 184968,
+  "c_exact_percent_of_recoverable": 94.7866,
   "c_fuzzy_percent_of_recoverable": null,
   "data": {
     "bytes_total": 12433372,
@@ -2019,12 +2019,12 @@
   },
   "overlays": {
     "functions_total": 3014,
-    "matching_c": 2934,
-    "pending_c": 80,
+    "matching_c": 2946,
+    "pending_c": 68,
     "bytes_total": 3193428,
-    "bytes_matching_c": 3033668,
-    "bytes_pending_c": 159760,
-    "c_exact_percent_of_recoverable": 94.9972,
+    "bytes_matching_c": 3047116,
+    "bytes_pending_c": 146312,
+    "c_exact_percent_of_recoverable": 95.4183,
     "intentional_asm": 61,
     "bytes_intentional_asm": 27396,
     "shared": {
@@ -2033,12 +2033,12 @@
       "planet": "Shared code",
       "description": "Functions present in two or more levels",
       "functions": 1583,
-      "matching_c": 1519,
-      "pending_c": 64,
+      "matching_c": 1531,
+      "pending_c": 52,
       "bytes_total": 1130492,
-      "bytes_matching_c": 1018540,
-      "bytes_pending_c": 111952,
-      "c_exact_percent_of_recoverable": 90.0971,
+      "bytes_matching_c": 1031988,
+      "bytes_pending_c": 98504,
+      "c_exact_percent_of_recoverable": 91.2866,
       "files": [
         {
           "file": "src/overlays/shared/sdk/debug/001eb0b0.c",
@@ -2127,9 +2127,9 @@
         {
           "file": "src/overlays/shared/rendering/texture/001fcb28.c",
           "functions": 2,
-          "matching_c": 1,
+          "matching_c": 2,
           "bytes_total": 1120,
-          "bytes_matching_c": 372
+          "bytes_matching_c": 1120
         },
         {
           "file": "src/overlays/shared/ui/help/001fe778.c",
@@ -2218,9 +2218,9 @@
         {
           "file": "src/overlays/shared/gameplay/hero/hero_check_damage.c",
           "functions": 68,
-          "matching_c": 62,
+          "matching_c": 63,
           "bytes_total": 32996,
-          "bytes_matching_c": 26952
+          "bytes_matching_c": 27432
         },
         {
           "file": "src/overlays/shared/ui/help/00214658.c",
@@ -2330,9 +2330,9 @@
         {
           "file": "src/overlays/shared/ui/hud/hud_keep_visible.c",
           "functions": 14,
-          "matching_c": 11,
+          "matching_c": 12,
           "bytes_total": 5872,
-          "bytes_matching_c": 2356
+          "bytes_matching_c": 3188
         },
         {
           "file": "src/overlays/shared/gameplay/animation/00235ea0.c",
@@ -2351,9 +2351,9 @@
         {
           "file": "src/overlays/shared/ui/help/00237488.c",
           "functions": 15,
-          "matching_c": 14,
+          "matching_c": 15,
           "bytes_total": 16320,
-          "bytes_matching_c": 15552
+          "bytes_matching_c": 16320
         },
         {
           "file": "src/overlays/shared/ui/text/002377b8.c",
@@ -2407,9 +2407,9 @@
         {
           "file": "src/overlays/shared/world/loaders/load_level_gameplay.c",
           "functions": 5,
-          "matching_c": 4,
+          "matching_c": 5,
           "bytes_total": 14180,
-          "bytes_matching_c": 13748
+          "bytes_matching_c": 14180
         },
         {
           "file": "src/overlays/shared/gameplay/state/002418b0.c",
@@ -2589,9 +2589,9 @@
         {
           "file": "src/overlays/shared/rendering/002712b8.c",
           "functions": 56,
-          "matching_c": 55,
+          "matching_c": 56,
           "bytes_total": 20372,
-          "bytes_matching_c": 19796
+          "bytes_matching_c": 20372
         },
         {
           "file": "src/overlays/shared/math/interpolation/0025b8c0.c",
@@ -3135,9 +3135,9 @@
         {
           "file": "src/overlays/shared/gameplay/entities/mine.c",
           "functions": 18,
-          "matching_c": 16,
+          "matching_c": 17,
           "bytes_total": 31328,
-          "bytes_matching_c": 28432
+          "bytes_matching_c": 30252
         },
         {
           "file": "src/overlays/shared/gameplay/vendor/002aea70.c",
@@ -3163,9 +3163,9 @@
         {
           "file": "src/overlays/shared/gameplay/entities/devastator.c",
           "functions": 26,
-          "matching_c": 23,
+          "matching_c": 25,
           "bytes_total": 29580,
-          "bytes_matching_c": 22752
+          "bytes_matching_c": 26956
         },
         {
           "file": "src/overlays/shared/runtime/dma/002b7a48.c",
@@ -3254,23 +3254,23 @@
         {
           "file": "src/overlays/shared/gameplay/entities/veldin_ship.c",
           "functions": 29,
-          "matching_c": 26,
+          "matching_c": 27,
           "bytes_total": 32552,
-          "bytes_matching_c": 28404
+          "bytes_matching_c": 29632
         },
         {
           "file": "src/overlays/shared/gameplay/entities/scoutbot.c",
           "functions": 16,
-          "matching_c": 15,
+          "matching_c": 16,
           "bytes_total": 17360,
-          "bytes_matching_c": 15920
+          "bytes_matching_c": 17360
         },
         {
           "file": "src/overlays/shared/gameplay/entities/hydrodisplacer_faucet.c",
           "functions": 17,
-          "matching_c": 15,
+          "matching_c": 16,
           "bytes_total": 7380,
-          "bytes_matching_c": 5552
+          "bytes_matching_c": 6472
         },
         {
           "file": "src/overlays/shared/gameplay/entities/002d6810.c",
@@ -5103,14 +5103,14 @@
   },
   "total": {
     "units_total": 4499,
-    "matching_c": 4072,
+    "matching_c": 4084,
     "intentional_asm": 309,
-    "pending_c": 118,
+    "pending_c": 106,
     "bytes_total": 3669040,
-    "bytes_matching_c": 3349524,
+    "bytes_matching_c": 3362972,
     "bytes_intentional_asm": 121100,
-    "bytes_pending_c": 198416,
-    "c_exact_percent_of_recoverable": 94.4076,
+    "bytes_pending_c": 184968,
+    "c_exact_percent_of_recoverable": 94.7866,
     "c_fuzzy_percent_of_recoverable": null,
     "data": {
       "bytes_total": 12433372,
