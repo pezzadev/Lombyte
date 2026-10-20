@@ -5786,13 +5786,13 @@
       "name": "game/audio/voices",
       "measures": {
         "fuzzy_match_percent": 100.0,
-        "total_code": "5476",
-        "matched_code": "5476",
+        "total_code": "5640",
+        "matched_code": "5640",
         "matched_code_percent": 100.0,
-        "total_functions": 16,
-        "matched_functions": 16,
+        "total_functions": 17,
+        "matched_functions": 17,
         "matched_functions_percent": 100.0,
-        "complete_code": "5476",
+        "complete_code": "5640",
         "complete_code_percent": 100.0,
         "total_units": 1,
         "complete_units": 1
@@ -5904,6 +5904,15 @@
           "address": "1045736",
           "metadata": {
             "virtual_address": "1238896"
+          }
+        },
+        {
+          "name": "allocate_voice_for_target_entry",
+          "size": "164",
+          "fuzzy_match_percent": 100.0,
+          "address": "1046368",
+          "metadata": {
+            "virtual_address": "1239528"
           }
         },
         {
@@ -12819,13 +12828,13 @@
       "name": "game/audio/sound",
       "measures": {
         "fuzzy_match_percent": 100.0,
-        "total_code": "1092",
-        "matched_code": "1092",
+        "total_code": "928",
+        "matched_code": "928",
         "matched_code_percent": 100.0,
-        "total_functions": 9,
-        "matched_functions": 9,
+        "total_functions": 8,
+        "matched_functions": 8,
         "matched_functions_percent": 100.0,
-        "complete_code": "1092",
+        "complete_code": "928",
         "complete_code_percent": 100.0,
         "total_units": 1,
         "complete_units": 1
@@ -12874,15 +12883,6 @@
           "address": "648",
           "metadata": {
             "virtual_address": "1234864"
-          }
-        },
-        {
-          "name": "allocate_voice_for_target_entry",
-          "size": "164",
-          "fuzzy_match_percent": 100.0,
-          "address": "5312",
-          "metadata": {
-            "virtual_address": "1239528"
           }
         },
         {

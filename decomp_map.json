@@ -286,6 +286,21 @@
         "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
+        "name": "game/audio/voices",
+        "logical_group": "audio/voices",
+        "category": "game",
+        "functions": 17,
+        "matching_c": 17,
+        "pending_c": 0,
+        "intentional_asm": 0,
+        "bytes_total": 5640,
+        "bytes_matching_c": 5640,
+        "bytes_pending_c": 0,
+        "bytes_intentional_asm": 0,
+        "c_exact_percent_of_recoverable": 100.0,
+        "c_fuzzy_percent_of_recoverable": 100.0
+      },
+      {
         "name": "game/ui/menus/save_data",
         "logical_group": "ui/menus/save_data",
         "category": "game",
@@ -314,21 +329,6 @@
         "bytes_intentional_asm": 0,
         "c_exact_percent_of_recoverable": 95.9479,
         "c_fuzzy_percent_of_recoverable": null
-      },
-      {
-        "name": "game/audio/voices",
-        "logical_group": "audio/voices",
-        "category": "game",
-        "functions": 16,
-        "matching_c": 16,
-        "pending_c": 0,
-        "intentional_asm": 0,
-        "bytes_total": 5476,
-        "bytes_matching_c": 5476,
-        "bytes_pending_c": 0,
-        "bytes_intentional_asm": 0,
-        "c_exact_percent_of_recoverable": 100.0,
-        "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
         "name": "sdk/rpc",
@@ -826,21 +826,6 @@
         "c_fuzzy_percent_of_recoverable": 100.0
       },
       {
-        "name": "game/audio/sound",
-        "logical_group": "audio/sound",
-        "category": "game",
-        "functions": 9,
-        "matching_c": 9,
-        "pending_c": 0,
-        "intentional_asm": 0,
-        "bytes_total": 1092,
-        "bytes_matching_c": 1092,
-        "bytes_pending_c": 0,
-        "bytes_intentional_asm": 0,
-        "c_exact_percent_of_recoverable": 100.0,
-        "c_fuzzy_percent_of_recoverable": 100.0
-      },
-      {
         "name": "game/world/data",
         "logical_group": "world/data",
         "category": "game",
@@ -865,6 +850,21 @@
         "intentional_asm": 0,
         "bytes_total": 1024,
         "bytes_matching_c": 1024,
+        "bytes_pending_c": 0,
+        "bytes_intentional_asm": 0,
+        "c_exact_percent_of_recoverable": 100.0,
+        "c_fuzzy_percent_of_recoverable": 100.0
+      },
+      {
+        "name": "game/audio/sound",
+        "logical_group": "audio/sound",
+        "category": "game",
+        "functions": 8,
+        "matching_c": 8,
+        "pending_c": 0,
+        "intentional_asm": 0,
+        "bytes_total": 928,
+        "bytes_matching_c": 928,
         "bytes_pending_c": 0,
         "bytes_intentional_asm": 0,
         "c_exact_percent_of_recoverable": 100.0,
