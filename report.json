@@ -1789,13 +1789,13 @@
       "name": "game/runtime/resources",
       "measures": {
         "fuzzy_match_percent": 100.0,
-        "total_code": "252",
-        "matched_code": "252",
+        "total_code": "212",
+        "matched_code": "212",
         "matched_code_percent": 100.0,
-        "total_functions": 7,
-        "matched_functions": 7,
+        "total_functions": 6,
+        "matched_functions": 6,
         "matched_functions_percent": 100.0,
-        "complete_code": "252",
+        "complete_code": "212",
         "complete_code_percent": 100.0,
         "total_units": 1,
         "complete_units": 1
@@ -1853,15 +1853,6 @@
           "address": "963216",
           "metadata": {
             "virtual_address": "1050344"
-          }
-        },
-        {
-          "name": "LookupResourceEntry",
-          "size": "40",
-          "fuzzy_match_percent": 100.0,
-          "address": "1174368",
-          "metadata": {
-            "virtual_address": "1261496"
           }
         }
       ],
@@ -10000,13 +9991,13 @@
       "name": "game/world/data",
       "measures": {
         "fuzzy_match_percent": 100.0,
-        "total_code": "1076",
-        "matched_code": "1076",
+        "total_code": "852",
+        "matched_code": "852",
         "matched_code_percent": 100.0,
-        "total_functions": 4,
-        "matched_functions": 4,
+        "total_functions": 3,
+        "matched_functions": 3,
         "matched_functions_percent": 100.0,
-        "complete_code": "1076",
+        "complete_code": "852",
         "complete_code_percent": 100.0,
         "total_units": 1,
         "complete_units": 1
@@ -10037,15 +10028,6 @@
           "address": "140968",
           "metadata": {
             "virtual_address": "1212520"
-          }
-        },
-        {
-          "name": "stash_send_data",
-          "size": "224",
-          "fuzzy_match_percent": 100.0,
-          "address": "189440",
-          "metadata": {
-            "virtual_address": "1260992"
           }
         }
       ],
@@ -13072,13 +13054,13 @@
       "name": "game/storage/stash",
       "measures": {
         "fuzzy_match_percent": 100.0,
-        "total_code": "596",
-        "matched_code": "596",
+        "total_code": "860",
+        "matched_code": "860",
         "matched_code_percent": 100.0,
-        "total_functions": 2,
-        "matched_functions": 2,
+        "total_functions": 4,
+        "matched_functions": 4,
         "matched_functions_percent": 100.0,
-        "complete_code": "596",
+        "complete_code": "860",
         "complete_code_percent": 100.0,
         "total_units": 1,
         "complete_units": 1
@@ -13094,12 +13076,30 @@
           }
         },
         {
+          "name": "stash_send_data",
+          "size": "224",
+          "fuzzy_match_percent": 100.0,
+          "address": "320",
+          "metadata": {
+            "virtual_address": "1260992"
+          }
+        },
+        {
           "name": "stash_receive_data",
           "size": "280",
           "fuzzy_match_percent": 100.0,
           "address": "544",
           "metadata": {
             "virtual_address": "1261216"
+          }
+        },
+        {
+          "name": "stash_get_reserved_qwords",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "address": "824",
+          "metadata": {
+            "virtual_address": "1261496"
           }
         }
       ],
