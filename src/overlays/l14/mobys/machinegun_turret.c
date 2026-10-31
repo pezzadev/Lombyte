@@ -487,6 +487,9 @@ void process_machinegun_turret_hit_reactions(struct Moby *moby) {
         HIT_REACTION_LOW_RED_FLASH_AND_HIT_ANIMATION = 10,
         HIT_REACTION_NONE = 11
     };
+    enum {
+        TURRET_STATE_DESTROY = 6
+    };
     unsigned char *moby_vars = moby->pvars;
     int            loc0;
     float          damage_amount = 0.0f;
@@ -502,7 +505,7 @@ void process_machinegun_turret_hit_reactions(struct Moby *moby) {
         }
     }
     k = hit_reaction(moby, hit_record, moby_vars + 0x20, 0, &loc0, &damage_amount, 0, 4);
-    if (loc0 != 1 && moby->state != 6) {
+    if (loc0 != 1 && moby->state != TURRET_STATE_DESTROY) {
         remaining_health = *(float *)(moby_vars + 0x20) - damage_amount;
         *(float *)(moby_vars + 0x20) = remaining_health;
         if (remaining_health <= 0.0f)
@@ -525,7 +528,7 @@ void process_machinegun_turret_hit_reactions(struct Moby *moby) {
             break;
         case HIT_REACTION_LETHAL:
         case HIT_REACTION_DESTROY:
-            moby->state = 6;
+            moby->state = TURRET_STATE_DESTROY;
             moby->flags &= 0xEFFF;
             moby_vars[0x67] = 0xF0;
             FUN_L00_00257470(moby, 0, -1);
