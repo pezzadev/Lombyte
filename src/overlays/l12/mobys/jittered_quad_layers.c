@@ -34,6 +34,9 @@ void update_jittered_quad_layers(struct Moby *moby) {
         CHECK_PERSISTENT_REMOVAL = 0,
         QUEUE_DRAW_AND_MONITOR_LINKED_MOBY = 1
     };
+    enum {
+        DRAW_AND_MONITOR_DISABLED = 2
+    };
     int  moby_state_snapshot = moby->state;
     int  vis;
     int *moby_data = (int *)moby->pvars;
@@ -44,7 +47,7 @@ void update_jittered_quad_layers(struct Moby *moby) {
             mark_moby_for_removal(moby);
             break;
         }
-        moby->state = 1;
+        moby->state = QUEUE_DRAW_AND_MONITOR_LINKED_MOBY;
         break;
     case QUEUE_DRAW_AND_MONITOR_LINKED_MOBY:
         vis = 1;
@@ -73,7 +76,7 @@ void update_jittered_quad_layers(struct Moby *moby) {
                 }
                 FUN_0022da68(1, 0, moby);
                 moby->collision = 0;
-                moby->state = 2;
+                moby->state = DRAW_AND_MONITOR_DISABLED;
             }
         }
         break;
