@@ -40,13 +40,17 @@ extern void FUN_L14_002de2b8_call(struct Moby *, f32, f32) __asm__("FUN_L14_002d
 void update_tilting_platform(struct Moby *moby) __asm__("FUN_L14_002de1f8");
 
 void update_tilting_platform(struct Moby *moby) {
+    enum {
+        TILTING_PLATFORM_STATE_UNINITIALIZED = 0,
+        TILTING_PLATFORM_STATE_INITIALIZED = 1
+    };
     char *tilting_platform_state = (char *)moby->pvars;
     void *rotation;
     u128  old_rotation;
     qcopy(&old_rotation, &moby->rot);
 
-    if (moby->state == 0) {
-        moby->state = 1;
+    if (moby->state == TILTING_PLATFORM_STATE_UNINITIALIZED) {
+        moby->state = TILTING_PLATFORM_STATE_INITIALIZED;
         moby->command = 0;
         moby->flags |= 0x100;
         moby->pos.z += 0.35f;
