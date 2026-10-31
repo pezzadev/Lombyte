@@ -39,7 +39,7 @@ void update_timed_effect_emitter(struct Moby *moby) {
         *(int *)(emitter_vars + 0x10) = -1;
         if (fast_dec_timer((int *)(emitter_vars + 0xC))) {
             *(int *)(emitter_vars + 0xC) = *(int *)(emitter_vars + 4);
-            moby->state = 1;
+            moby->state = MOBY_STATE_ACTIVE_WITH_SOUND;
         }
         break;
     case MOBY_STATE_ACTIVE_WITH_SOUND:
@@ -63,7 +63,7 @@ void update_timed_effect_emitter(struct Moby *moby) {
         if (fast_dec_timer((int *)(emitter_vars + 0xC))) {
             int k;
             *(int *)(emitter_vars + 0xC) = *(int *)(emitter_vars + 8);
-            moby->state = 0;
+            moby->state = MOBY_STATE_WAIT_FOR_ACTIVATION;
             k = *(int *)(emitter_vars + 0x10);
             if (k != -1) {
                 unsigned char *voice_entry = (unsigned char *)&voice_pool + k * 0x70;
