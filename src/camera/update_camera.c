@@ -32,6 +32,9 @@ void update_camera(void) __asm__("FUN_001edaa8");
 extern s32 game_mode_macro __asm__("D_0015F604") MACRO_ADDR;
 
 void update_camera(void) {
+    enum {
+        CAMERA_TRANSITION_PHASE_IDLE = 0
+    };
     char *preview_camera_state;
     char *target;
     char *camera_shake_base;
@@ -41,7 +44,7 @@ void update_camera(void) {
         if (text_screen_active[0] != 0) {
             return;
         }
-        *(short *)cam_trans_state = 0;
+        *(short *)cam_trans_state = CAMERA_TRANSITION_PHASE_IDLE;
         cam_trans_state[2] = 0;
     }
     preview_camera_state = (char *)&preview_camera;
