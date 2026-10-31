@@ -499,7 +499,7 @@ void update_racer_path_and_weapon(struct Moby *racer_moby) {
 extern void
 sample_path(int a, char *pos, char *b, char *c, int d, float f) __asm__("FUN_L00_0025d808");
 
-extern float D_L14_00161A30 __attribute__((sda));
+extern float l14_racer_path_follow_speed __asm__("D_L14_00161A30") __attribute__((sda));
 void         advance_moby_along_path(struct Moby *moby) __asm__("FUN_L14_002d7198");
 
 void advance_moby_along_path(struct Moby *moby) {
@@ -510,7 +510,7 @@ void advance_moby_along_path(struct Moby *moby) {
                 path_tracking_state + 0x64,
                 path_tracking_state + 0x68,
                 0,
-                D_L14_00161A30 * frame_time);
+                l14_racer_path_follow_speed * frame_time);
 }
 
 /* Draws the racer's two glow quads, at its lamp (0xE0) and its tail (0x200), turned to face the camera. */
