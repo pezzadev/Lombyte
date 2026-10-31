@@ -169,7 +169,7 @@ void refueling_station_update(struct Moby *moby) {
             return;
         }
         *(int *)(station_vars + 0x7C) = -1;
-        moby->state = 1;
+        moby->state = REFUELING_STATION_STATE_WAIT_COMMAND;
         break;
     case REFUELING_STATION_STATE_WAIT_COMMAND:
         if ((D_L09_0015F5CC & 7) == (((int)moby >> 8) & 7)) {
@@ -196,7 +196,7 @@ void refueling_station_update(struct Moby *moby) {
             }
             *(int *)(station_vars + 0x7C) = -1;
             moby->update_dist = 0xFF;
-            moby->state = 2;
+            moby->state = REFUELING_STATION_STATE_EXPLOSION_DELAY;
         }
         break;
     case REFUELING_STATION_STATE_EXPLOSION_DELAY:
@@ -211,7 +211,7 @@ void refueling_station_update(struct Moby *moby) {
                     o[0xBC] = 1;
                 }
             }
-            moby->state = 3;
+            moby->state = REFUELING_STATION_STATE_EXPLODE;
         }
         break;
     case REFUELING_STATION_STATE_EXPLODE:
