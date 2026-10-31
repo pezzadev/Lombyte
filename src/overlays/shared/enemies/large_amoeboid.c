@@ -41,7 +41,7 @@ typedef struct {
     char           pA8[0x58];
 } Ent;
 
-extern char D_L01_00167240[];
+extern char camera_pos[] __asm__("D_L01_00167240");
 float       absolute_float(float input) __asm__("func_001F99C0");
 extern void FUN_0020c828(void *);
 extern int  func_L00_001EFFF0_t(void *, void *, int, void *, void *) __asm__("FUN_001efa68");
@@ -194,7 +194,7 @@ void large_amoeboid_update(unsigned char *moby) {
         return;
     }
     FUN_L00_00263ac8(2.9f, moby, 0, large_amoeboid_vars + 0x270);
-    if (moby[0x31] != 0 && fast_vec_dist(moby + 0x10, D_L01_00167240) < 28.0f) {
+    if (moby[0x31] != 0 && fast_vec_dist(moby + 0x10, camera_pos) < 28.0f) {
         FUN_L00_0025a120(moby);
         moby[0x7f] = 0x16;
     }
