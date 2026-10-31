@@ -104,6 +104,10 @@ void update_attached_rocket(struct Moby *moby) {
     enum {
         ATTACHED_ROCKET_STATE_ATTACHED = 1
     };
+    enum {
+        MOBY_STATE_REMOVAL_BELOW_INSTANCE_END = 0xfd,
+        MOBY_STATE_REMOVAL_AT_OR_ABOVE_INSTANCE_END = 0xfe
+    };
     char        *attached_rocket_vars = (char *)moby->pvars;
     struct Moby *source;
     struct Moby *target;
@@ -123,7 +127,7 @@ void update_attached_rocket(struct Moby *moby) {
     qcopy(&work.old_pos, &moby->pos);
     if (moby->state == ATTACHED_ROCKET_STATE_ATTACHED) {
         source = *(struct Moby **)(attached_rocket_vars + 0x20);
-        if (source == 0 || source->oclass != 0x65 || source->state == 0xfe || source->state == 0xfd)
+        if (source == 0 || source->oclass != 0x65 || source->state == MOBY_STATE_REMOVAL_AT_OR_ABOVE_INSTANCE_END || source->state == MOBY_STATE_REMOVAL_BELOW_INSTANCE_END)
             goto remove;
         qcopy(&moby->rot, &source->rot);
         *(OvlQuad *)&moby->rot_row0 = *(OvlQuad *)&source->rot_row0;
@@ -135,7 +139,7 @@ void update_attached_rocket(struct Moby *moby) {
         qcopy(attached_rocket_vars + 0x10, &moby->pos);
         {
             struct Moby *source = *(struct Moby **)(attached_rocket_vars + 0x20);
-            if (source != 0 && source->state != 0xfe && source->state != 0xfd &&
+            if (source != 0 && source->state != MOBY_STATE_REMOVAL_AT_OR_ABOVE_INSTANCE_END && source->state != MOBY_STATE_REMOVAL_BELOW_INSTANCE_END &&
                 (source->flags & 1))
                 moby->flags |= 1;
             else
