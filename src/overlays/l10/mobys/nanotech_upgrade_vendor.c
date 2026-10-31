@@ -30,6 +30,10 @@ extern int D_L10_0013F640 __asm__("D_L10_0013F640") MACRO_ADDR;
 void nanotech_upgrade_vendor_update(struct Moby *moby) __asm__("FUN_L10_002e8358");
 
 void nanotech_upgrade_vendor_update(struct Moby *moby) {
+    enum {
+        NANOTECH_VENDOR_STATE_READY = 0,
+        NANOTECH_VENDOR_STATE_FINALIZE_PURCHASE = 1
+    };
     int  *timer;
     float angle;
     int   purchase;
@@ -37,8 +41,8 @@ void nanotech_upgrade_vendor_update(struct Moby *moby) {
 
     timer = (int *)moby->pvars;
     fast_dec_timer(timer + 1);
-    if (moby->state != 0) {
-        if (moby->state == 1)
+    if (moby->state != NANOTECH_VENDOR_STATE_READY) {
+        if (moby->state == NANOTECH_VENDOR_STATE_FINALIZE_PURCHASE)
             goto state_one;
         return;
     }
@@ -62,7 +66,7 @@ void nanotech_upgrade_vendor_update(struct Moby *moby) {
                     current_bolt_count = D_0013ED98 - 4000;
                     purchased_nanotech_health_gp = upgrade_level;
                     start_scene(0);
-                    moby->state = 1;
+                    moby->state = NANOTECH_VENDOR_STATE_FINALIZE_PURCHASE;
                 } else {
                     try_set_help_message(1, 0x2720);
                     return;
@@ -82,7 +86,7 @@ void nanotech_upgrade_vendor_update(struct Moby *moby) {
                     current_bolt_count = D_0013ED98 - 30000;
                     purchased_nanotech_health_gp = upgrade_level;
                     start_scene(1);
-                    moby->state = 1;
+                    moby->state = NANOTECH_VENDOR_STATE_FINALIZE_PURCHASE;
                 } else {
                     try_set_help_message(1, 0x2721);
                     return;
@@ -108,6 +112,6 @@ state_one:
         queue_dialogue_message(purchase, -1);
         D_L10_0013F640 = 0xb4;
         timer[1] = scale_game_frames(0xf0);
-        moby->state = 0;
+        moby->state = NANOTECH_VENDOR_STATE_READY;
     }
 }
