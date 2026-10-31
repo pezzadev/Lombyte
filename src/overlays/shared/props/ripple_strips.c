@@ -11,9 +11,13 @@ extern void draw_moby_radial_ripple_mesh_buffers(void) __asm__("FUN_L15_002eac90
 void ripple_strips_moby_update(struct Moby *moby) __asm__("FUN_L15_002eb0a0");
 
 void ripple_strips_moby_update(struct Moby *moby) {
-    if (moby->state == 0) {
+    enum {
+        RIPPLE_STRIPS_STATE_INITIALIZE = 0,
+        RIPPLE_STRIPS_STATE_DRAW_READY = 1
+    };
+    if (moby->state == RIPPLE_STRIPS_STATE_INITIALIZE) {
         set_moby_color(moby, 0x40, 0x40, 0x40);
-        moby->state = 1;
+        moby->state = RIPPLE_STRIPS_STATE_DRAW_READY;
     } else {
         add_draw_callback((void *)draw_moby_radial_ripple_mesh_buffers, moby);
         moby->draw_dist = 0;
