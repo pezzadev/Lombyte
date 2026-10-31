@@ -15,7 +15,7 @@ void FUN_L00_002ea7a0();
 void FUN_L00_002ed230();
 void FUN_L01_002f8718();
 void FUN_L10_002cc2e8();
-void FUN_L10_002f5f18();
+void update_path_flythrough_camera() __asm__("FUN_L10_002f5f18");
 void update_exploding_prop() __asm__("FUN_L15_002aa280");
 void FUN_L15_002c5630();
 void update_help_hints() __asm__("FUN_L15_002ed398");
@@ -364,7 +364,7 @@ struct CameraType level_camera_types[10] __asm__("D_L15_001E3F00") __attribute__
     {17,               FUN_L00_002ed230,                noop_main_callback,   noop_main_callback,                          noop_main_callback},
     {19,
      evaluate_descriptor_eligibility,            initialize_path_camera,
-     FUN_L10_002f5f18,                          noop_main_callback                                                                           },
+     update_path_flythrough_camera,                          noop_main_callback                                                                           },
     {22,
      dispatch_moby_follow_camera_update,                noop_main_callback,
      noop_main_callback,                          noop_main_callback                                                                         },

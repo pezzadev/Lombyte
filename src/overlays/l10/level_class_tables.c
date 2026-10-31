@@ -18,7 +18,7 @@ void update_moby_suck_cannon_storage_state() __asm__("FUN_L06_002ea6a8");
 void FUN_L10_002be858();
 void FUN_L10_002cc2e8();
 void FUN_L10_002d92b8();
-void FUN_L10_002f5f18();
+void update_path_flythrough_camera() __asm__("FUN_L10_002f5f18");
 void background_ship_2_update() __asm__("FUN_L02_002ece18");
 void blarg_ship_update() __asm__("FUN_L10_002e4a88");
 void blarg_space_commando_update() __asm__("FUN_L06_002fdbd0");
@@ -369,7 +369,7 @@ struct CameraType level_camera_types[9] __asm__("D_L10_001DDE80") __attribute__(
     {17,            FUN_L00_002ed230,                noop_main_callback,   noop_main_callback,                          noop_main_callback},
     {19,
      evaluate_descriptor_eligibility,            initialize_path_camera,
-     FUN_L10_002f5f18,                          noop_main_callback                                                                        },
+     update_path_flythrough_camera,                          noop_main_callback                                                                        },
     {23,         volume_camera_check,                noop_main_callback,   noop_main_callback,                          noop_main_callback},
     {-1,                           0,                                 0,                    0,                                           0},
 };

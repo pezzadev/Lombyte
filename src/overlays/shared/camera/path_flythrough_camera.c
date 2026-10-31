@@ -197,7 +197,9 @@ extern int sample_path(char *path, float *out, void *seg, void *t, int dir, floa
 extern void FUN_L00_002223f8(s32, s32);
 extern void debug_point_5f18(void *, float) __asm__("FUN_001e93e8");
 
-void FUN_L10_002f5f18(struct UpdateCam *cam) {
+void update_path_flythrough_camera(struct UpdateCam *cam) __asm__("FUN_L10_002f5f18");
+
+void update_path_flythrough_camera(struct UpdateCam *cam) {
     float                dir[4];
     float                offset[4];
     float                point[4];
