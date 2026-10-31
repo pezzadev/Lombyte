@@ -41,7 +41,7 @@ void update_cutscene_effects(struct Moby *moby) {
     switch (state) {
     case MOBY_STATE_INITIALIZE:
         moby->update_dist = 0xFF;
-        moby->state = 1;
+        moby->state = MOBY_STATE_UPDATE;
         break;
     case MOBY_STATE_UPDATE:
         current_scene_state = scene_state;
