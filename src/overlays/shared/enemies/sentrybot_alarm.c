@@ -92,8 +92,15 @@ void sentrybot_alarm_update(unsigned char *moby) {
     enum {
         SENTRYBOT_ALARM_STATE_INITIALIZE = 0,
         SENTRYBOT_ALARM_STATE_STANDBY_PULSE = 1,
+        SENTRYBOT_ALARM_STATE_STANDBY_RETURN_TRANSITION = 2,
+        SENTRYBOT_ALARM_STATE_WAIT_FOR_ALARM_TRIGGER = 3,
+        SENTRYBOT_ALARM_STATE_ALARM_START_TRANSITION = 4,
         SENTRYBOT_ALARM_STATE_ACTIVE_PULSE = 5,
-        SENTRYBOT_ALARM_STATE_RELEASE_GROUP_MOBYS = 8
+        SENTRYBOT_ALARM_STATE_WAIT_FOR_GROUP_RELEASE_TRIGGER = 6,
+        SENTRYBOT_ALARM_STATE_GROUP_RELEASE_START_TRANSITION = 7,
+        SENTRYBOT_ALARM_STATE_RELEASE_GROUP_MOBYS = 8,
+        SENTRYBOT_ALARM_STATE_GROUP_RELEASE_STOP_TRANSITION = 9,
+        SENTRYBOT_ALARM_STATE_ALARM_STOP_TRANSITION = 10
     };
     float position[4];
     float step;
@@ -134,14 +141,14 @@ void sentrybot_alarm_update(unsigned char *moby) {
             }
         }
         break;
-    case 2:
+    case SENTRYBOT_ALARM_STATE_STANDBY_RETURN_TRANSITION:
         if (moby[0x70] & 2) {
             moby[0x20] = 3;
             if (moby[0x53] != 2)
                 blend_moby_animation(moby, 2, 0, scale_game_frames(10));
         }
         break;
-    case 3:
+    case SENTRYBOT_ALARM_STATE_WAIT_FOR_ALARM_TRIGGER:
         if (alarm_state[2] == 0)
             goto update;
         if (D_L15_0015F5C4 != 2) {
@@ -150,7 +157,7 @@ void sentrybot_alarm_update(unsigned char *moby) {
                 blend_moby_animation(moby, 3, 0, scale_game_frames(10));
         }
         break;
-    case 4:
+    case SENTRYBOT_ALARM_STATE_ALARM_START_TRANSITION:
         if (moby[0x70] & 2) {
             if (alarm_state[2] == 0 || D_L15_0015F5C4 == 2)
                 goto stop_animation;
@@ -186,14 +193,14 @@ void sentrybot_alarm_update(unsigned char *moby) {
             moby[0x20] = 10;
         }
         break;
-    case 6:
+    case SENTRYBOT_ALARM_STATE_WAIT_FOR_GROUP_RELEASE_TRIGGER:
         if (alarm_state[2] == 0)
             goto update;
         moby[0x20] = 7;
         if (moby[0x53] != 5)
             blend_moby_animation(moby, 5, 0, scale_game_frames(10));
         break;
-    case 7:
+    case SENTRYBOT_ALARM_STATE_GROUP_RELEASE_START_TRANSITION:
         if (moby[0x70] & 2) {
             moby[0x20] = 8;
             if (moby[0x53] != 6)
@@ -220,7 +227,7 @@ void sentrybot_alarm_update(unsigned char *moby) {
         }
         break;
     }
-    case 9:
+    case SENTRYBOT_ALARM_STATE_GROUP_RELEASE_STOP_TRANSITION:
         if (moby[0x70] & 2) {
             if (alarm_state[0] == 2) {
                 moby[0x20] = 6;
@@ -233,7 +240,7 @@ void sentrybot_alarm_update(unsigned char *moby) {
             }
         }
         break;
-    case 10:
+    case SENTRYBOT_ALARM_STATE_ALARM_STOP_TRANSITION:
         if (moby[0x70] & 2) {
             moby[0x20] = 2;
             if (moby[0x53] != 1)
