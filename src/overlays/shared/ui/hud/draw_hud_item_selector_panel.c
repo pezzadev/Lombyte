@@ -218,7 +218,7 @@ typedef struct {
 extern G_t                D_0013C940;
 extern int D_L00_0017E504 NOT_SDA;
 extern int                D_L00_0015FA90;
-extern int                D_L00_0015F780_gp __asm__("D_L00_0015F780") __attribute__((sda));
+extern int                l00_hud_selector_fade_counter_limit_gp __asm__("D_L00_0015F780") __attribute__((sda));
 extern int   saved_hud_selector_slot_index_gp __asm__("D_L00_0015FA9C") __attribute__((sda));
 extern Ent **D_L00_0015FAC0_c __asm__("D_L00_0015FAC0");
 extern int D_L00_0017DC38 NOT_SDA;
@@ -355,7 +355,7 @@ void update_hud_item_selector_selection_and_visibility(Obj *hud_element) {
     }
     if (hud_element->w74 != previous_selected_slot_index)
         counters[1] = 0;
-    else if (counters[1] < D_L00_0015F780_gp)
+    else if (counters[1] < l00_hud_selector_fade_counter_limit_gp)
         counters[1]++;
     if (!(D_0013C940.w1C0 & 0x10)) {
         int sel = hud_element->w74;
@@ -380,7 +380,7 @@ void update_hud_item_selector_selection_and_visibility(Obj *hud_element) {
         }
         if (counters[0])
             counters[0]--;
-    } else if (counters[0] < D_L00_0015F780_gp)
+    } else if (counters[0] < l00_hud_selector_fade_counter_limit_gp)
         counters[0]++;
     if (counters[0] == 0) {
         {
@@ -448,12 +448,12 @@ int draw_hud_item_selector_panel(HudElem *rec) {
     unsigned char *counters = rec->cnt;
     char           formatted[80];
 
-    open = convert_integer_to_float(counters[0]) / convert_integer_to_float(D_L00_0015F780_gp);
+    open = convert_integer_to_float(counters[0]) / convert_integer_to_float(l00_hud_selector_fade_counter_limit_gp);
     if (1.0f < open)
         open = 1.0f;
     else if (open < 0.0f)
         open = 0.0f;
-    fade = convert_integer_to_float(counters[1]) / convert_integer_to_float(D_L00_0015F780_gp);
+    fade = convert_integer_to_float(counters[1]) / convert_integer_to_float(l00_hud_selector_fade_counter_limit_gp);
     if (1.0f < fade)
         fade = 1.0f;
     else if (fade < 0.0f)
@@ -696,7 +696,7 @@ void update_hud_radial_selector_selection_and_visibility(Obj *hud_element) {
     }
     if (hud_element->w74 != previous_slot_index) {
         counters[1] = 0;
-    } else if (counters[1] < D_L00_0015F780_gp) {
+    } else if (counters[1] < l00_hud_selector_fade_counter_limit_gp) {
         counters[1]++;
     }
     if (!(D_0013C940.w1C0 & 0x10)) {
@@ -706,7 +706,7 @@ void update_hud_radial_selector_selection_and_visibility(Obj *hud_element) {
             D_00141610[0] = D_L00_0015FAC0_c[D_L00_0015F72C][hud_element->w74].unk18;
         if (counters[0] != 0)
             counters[0]--;
-    } else if (counters[0] < D_L00_0015F780_gp) {
+    } else if (counters[0] < l00_hud_selector_fade_counter_limit_gp) {
         counters[0]++;
     }
     if (counters[0] == 0) {
@@ -801,7 +801,7 @@ int draw_hud_radial_selector_panel(Elem *element) {
     counters = element->cnt;
     {
         float frames = convert_integer_to_float(element->cnt[0]);
-        open_fade = frames / convert_integer_to_float(D_L00_0015F780_gp);
+        open_fade = frames / convert_integer_to_float(l00_hud_selector_fade_counter_limit_gp);
     }
     if (1.0f < open_fade) {
         open_fade = 1.0f;
@@ -810,7 +810,7 @@ int draw_hud_radial_selector_panel(Elem *element) {
     }
     {
         float frames = convert_integer_to_float(counters[1]);
-        text_fade = frames / convert_integer_to_float(D_L00_0015F780_gp);
+        text_fade = frames / convert_integer_to_float(l00_hud_selector_fade_counter_limit_gp);
     }
     if (1.0f < text_fade) {
         text_fade = 1.0f;
