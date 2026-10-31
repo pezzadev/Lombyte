@@ -15,7 +15,7 @@ void moby_update_draw_only(struct Moby *moby) {
     };
     switch (moby->state) {
     case MOBY_DRAW_ONLY_STATE_INITIALIZE:
-        moby->state = 1;
+        moby->state = MOBY_DRAW_ONLY_STATE_ENQUEUE_DRAW_CALLBACK;
         break;
     case MOBY_DRAW_ONLY_STATE_ENQUEUE_DRAW_CALLBACK:
         add_draw_callback((int)draw_level16_reflection_mesh_batch, (int)moby);
