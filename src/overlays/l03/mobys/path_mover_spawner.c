@@ -74,12 +74,16 @@ extern int  FUN_L00_0028dc90(int, int, struct RailSpawnerMoby *, int);
 void update_path_mover_spawner(struct RailSpawnerMoby *moby) __asm__("FUN_L03_002db280");
 
 void update_path_mover_spawner(struct RailSpawnerMoby *moby) {
+    enum {
+        PATH_MOVER_SPAWNER_STATE_UNINITIALIZED = 0,
+        PATH_MOVER_SPAWNER_STATE_INITIALIZED = 1
+    };
     struct RailSpawnerVars *vars = moby->vars;
     LevelPath              *path;
     float                   spawn_distance;
     int                     i;
 
-    if (moby->state == 0) {
+    if (moby->state == PATH_MOVER_SPAWNER_STATE_UNINITIALIZED) {
         if (vars->path == -1) {
             debug_print(path_mover_spawner_bad_path_format, moby->uid);
             mark_moby_for_removal((char *)moby);
@@ -90,7 +94,7 @@ void update_path_mover_spawner(struct RailSpawnerMoby *moby) {
         for (i = 0; i < path->count - 2; i++)
             path->points[i].f[3] = fast_vec_dist(&path->points[i], &path->points[i + 1]);
         vars->timer = 0;
-        moby->state = 1;
+        moby->state = PATH_MOVER_SPAWNER_STATE_INITIALIZED;
         vars->voice = -1;
         for (spawn_distance = 2.9f; spawn_distance < path->count * path->points[0].f[3];
              spawn_distance += 2.9f)
