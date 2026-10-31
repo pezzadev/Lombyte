@@ -948,11 +948,14 @@ int update_moby_suck_cannon_storage_state(unsigned char *moby) {
 s32 cancel_moby_suction_and_save_state(unsigned char *moby) __asm__("FUN_L06_002ea7c8");
 
 s32 cancel_moby_suction_and_save_state(unsigned char *moby) {
+    enum {
+        FROG_STATE_SUCK_CANNON_HELD = 0x10
+    };
     u8  previous_state;
     s32 helper_result;
     helper_result = cancel_suck_cannon_suction(moby);
     previous_state = moby[0x20];
-    if (previous_state != 0x10) {
+    if (previous_state != FROG_STATE_SUCK_CANNON_HELD) {
         moby[0xBC] = previous_state;
         moby[0x20] = 0x10;
     }
