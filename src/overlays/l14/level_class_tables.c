@@ -14,7 +14,7 @@ void FUN_L00_002ea7a0();
 void FUN_L00_002ed230();
 void FUN_L01_0030df40();
 void FUN_L03_002bef68();
-void FUN_L03_002c4718();
+void update_spawner_bomb() __asm__("FUN_L03_002c4718");
 void update_path_flythrough_camera() __asm__("FUN_L10_002f5f18");
 void FUN_L14_002f0538();
 void FUN_L14_002fdbb8();
@@ -262,7 +262,7 @@ struct MobyClassUpdate moby_classes[154] __asm__("D_L14_001FD280")
         {0x1f9,                              crate_update, default_moby_methods},
         {0x1ff,                              crate_update, default_moby_methods},
         {0x213,                        noop_main_callback, default_moby_methods},
-        {0x221,                          FUN_L03_002c4718, default_moby_methods},
+        {0x221,                          update_spawner_bomb, default_moby_methods},
         {0x22d,                            shuttle_update, default_moby_methods},
         {0x232,                        decoy_glove_update, default_moby_methods},
         {0x249,                     metal_detector_update, default_moby_methods},

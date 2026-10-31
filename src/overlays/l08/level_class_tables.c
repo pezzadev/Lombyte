@@ -14,7 +14,7 @@ void FUN_L00_002ea7a0();
 void FUN_L01_002e0c68();
 void FUN_L01_0030df40();
 void FUN_L03_002bef68();
-void FUN_L03_002c4718();
+void update_spawner_bomb() __asm__("FUN_L03_002c4718");
 void FUN_L08_002dbdb0();
 void batalia_deserter_update() __asm__("FUN_L08_00305270");
 void blarg_bombthrower_update() __asm__("FUN_L08_002dabf0");
@@ -274,7 +274,7 @@ struct MobyClassUpdate moby_classes[190] __asm__("D_L08_001FC900")
         {0x1f5,                              crate_update, default_moby_methods},
         {0x1f9,                              crate_update, default_moby_methods},
         {0x1ff,                              crate_update, default_moby_methods},
-        {0x221,                          FUN_L03_002c4718, default_moby_methods},
+        {0x221,                          update_spawner_bomb, default_moby_methods},
         {0x223,                          blarg_gun_update, default_moby_methods},
         {0x224,                          blarg_gun_update, default_moby_methods},
         {0x225,                          blarg_gun_update, default_moby_methods},

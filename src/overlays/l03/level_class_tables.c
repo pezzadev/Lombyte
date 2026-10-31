@@ -17,7 +17,7 @@ void FUN_L01_0030df40();
 void FUN_L03_00292e98();
 void FUN_L03_00294c08();
 void FUN_L03_002bef68();
-void FUN_L03_002c4718();
+void update_spawner_bomb() __asm__("FUN_L03_002c4718");
 void FUN_L03_002c5bb8();
 void FUN_L03_002cbea8();
 void FUN_L03_002d3198();
@@ -230,7 +230,7 @@ struct MobyClassUpdate moby_classes[181] __asm__("D_L03_001E3880")
         {0x1f5,                              crate_update, default_moby_methods},
         {0x1f9,                              crate_update, default_moby_methods},
         {0x1ff,                              crate_update, default_moby_methods},
-        {0x221,                          FUN_L03_002c4718, default_moby_methods},
+        {0x221,                          update_spawner_bomb, default_moby_methods},
         {0x232,                        decoy_glove_update, default_moby_methods},
         {0x23d,                          FUN_L03_002c5bb8, default_moby_methods},
         {0x23e,                  update_kerwan_path_enemy, default_moby_methods},
