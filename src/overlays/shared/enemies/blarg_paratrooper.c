@@ -573,6 +573,7 @@ void update_blarg_paratrooper_damage_and_state(char *moby) {
     enum {
         PARATROOPER_HIT_REACTION_LETHAL = 1,
         PARATROOPER_HIT_REACTION_DEATH_KNOCKBACK = 2,
+        PARATROOPER_HIT_REACTION_RECOVERY_KNOCKBACK = 3,
         PARATROOPER_HIT_REACTION_NONE = 11
     };
     char *paratrooper_instance_state, *target, *child, *attached, *chased;
@@ -644,7 +645,7 @@ void update_blarg_paratrooper_damage_and_state(char *moby) {
             case 10:
                 *(unsigned char *)(paratrooper_instance_state + 0x67) = 0xfa;
                 break;
-            case 3:
+            case PARATROOPER_HIT_REACTION_RECOVERY_KNOCKBACK:
             case 4:
             case 5:
             case 6:
