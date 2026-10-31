@@ -858,6 +858,9 @@ void update_player_ship_flight(struct Moby   *ship_moby,
                                ShipVars_2838 *ship_vars) __asm__("FUN_L11_00312838");
 
 void update_player_ship_flight(struct Moby *ship_moby, ShipVars_2838 *ship_vars) {
+    enum {
+        JET_FIGHTER_STATE_WAIT_FOR_RESPAWN = 7
+    };
     W4_2838          ship_position_before_movement;
     W4_2838          death_explosion_velocity;
     UQ_2838          up;
@@ -1105,7 +1108,7 @@ void update_player_ship_flight(struct Moby *ship_moby, ShipVars_2838 *ship_vars)
                             -1,
                             0);
             ship_moby->visible = 0;
-            ship_moby->state = 7;
+            ship_moby->state = JET_FIGHTER_STATE_WAIT_FOR_RESPAWN;
             ship_moby->flags |= 1;
             ship_vars->iF8 = scale_game_frames(0x5A);
         } else {
@@ -1158,7 +1161,7 @@ void update_player_ship_flight(struct Moby *ship_moby, ShipVars_2838 *ship_vars)
                                         1,
                                         -1,
                                         0);
-                        ship_moby->state = 7;
+                        ship_moby->state = JET_FIGHTER_STATE_WAIT_FOR_RESPAWN;
                     }
                     ship_vars->iDC = D_L11_0016214C;
                 }
