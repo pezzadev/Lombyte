@@ -23,7 +23,7 @@ void update_cutscene_camera_target(struct Moby *moby) {
     switch (moby->state) {
     case MOBY_UPDATE_DISTANCE_INITIALIZE:
         moby->update_dist = 0xFF;
-        moby->state = 1;
+        moby->state = MOBY_GUARDED_TABLE_CALL;
         break;
     case MOBY_GUARDED_TABLE_CALL:
         if (D_L17_0015F5C4 == 2) {
