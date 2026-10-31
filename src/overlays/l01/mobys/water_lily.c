@@ -71,7 +71,7 @@ extern f32  water_lily_hero_separation_radius_gp __asm__("D_L01_00161BF8") __att
 extern f32  water_lily_max_horizontal_speed_gp __asm__("D_L01_00161BFC") __attribute__((sda));
 extern f32  water_lily_collision_radius_gp __asm__("D_L01_00161C00") __attribute__((sda));
 extern f32  spring_axis_to(f32 *, f32, f32 *, f32, f32, f32) __asm__("FUN_L01_002f81c8");
-extern void FUN_L00_00258490(void *, void *, void *, s32, f32, f32, f32, f32);
+extern void move_moby_xy_with_collision_constraints(void *, void *, void *, s32, f32, f32, f32, f32) __asm__("FUN_L00_00258490");
 extern f32  resolve_camera_surface_height(void *, s32) __asm__("FUN_002135f0");
 
 void water_lily_update(HoverMoby *m) __asm__("FUN_L01_002f8268");
@@ -128,7 +128,7 @@ void water_lily_update(HoverMoby *water_lily) {
                 water_lily->pos.v.y += hero.motion.pos.f[1];
             }
         }
-        FUN_L00_00258490(water_lily,
+        move_moby_xy_with_collision_constraints(water_lily,
                          &collision_adjusted_position,
                          &water_lily->pos,
                          3,
