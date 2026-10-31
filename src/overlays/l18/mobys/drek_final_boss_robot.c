@@ -1,5 +1,6 @@
 /* Level 18 drek_final_boss_robot: the final boss fight. */
 #include "types.h"
+#include "rnc/overlay/l18/drek_boss_states.h"
 #include "rnc/overlay/level_camera.h"
 #include "rnc/audio/voice_pool.h"
 
@@ -329,7 +330,8 @@ extern int   launch_first_idle_group_class_0772_moby(int    idx,
 extern int   count_group_gadgebots_not_in_state_8(int idx) __asm__("FUN_L18_002fc7e0");
 extern int   random_integer_below(int) __asm__("FUN_00213260");
 extern s32   allocate_voice_for_target_entry(s32, s32, void *) __asm__("func_0022DA68");
-extern short l18_drek_boss_hero_follow_default_radius __asm__("D_L18_00162378") __attribute__((sda));
+extern short l18_drek_boss_hero_follow_default_radius __asm__("D_L18_00162378")
+    __attribute__((sda));
 extern short l18_drek_boss_scene_2_started_gp __asm__("D_L18_00162360") __attribute__((sda));
 extern short D_L18_00162390 __attribute__((sda));
 extern short l18_drek_boss_paired_transition_duration_frames_gp __asm__("D_L18_00162394")
@@ -426,31 +428,6 @@ void drek_final_boss_robot_update(BossMoby *moby) __asm__("FUN_L18_002f2bf0");
 void spawn_drek_boss_firing_effects(char *moby, void *effect_position) __asm__("FUN_L18_002f76a0");
 
 void drek_final_boss_robot_update(BossMoby *moby) {
-    enum {
-        DREK_BOSS_INITIALIZE = 0,
-        DREK_BOSS_WAIT_FOR_ENCOUNTER_TRIGGER = 1,
-        DREK_BOSS_CIRCLE_AND_FIRE_AT_HERO = 2,
-        DREK_BOSS_WAIT_TO_RESTORE_SAVED_TRANSFORM = 3,
-        DREK_BOSS_WAIT_FOR_GROUNDED_HERO_TO_START_SCENE = 4,
-        DREK_BOSS_INITIALIZE_PAIRED_TRANSFORM_TRANSITION = 5,
-        DREK_BOSS_WAIT_FOR_SCENE = 7,
-        DREK_BOSS_WAIT_FOR_PAIRED_TRANSFORM_TRANSITION = 8,
-        DREK_BOSS_APPROACH_PATH_START = 9,
-        DREK_BOSS_FOLLOW_PATH_AND_FIRE_AT_MOBYS = 10,
-        DREK_BOSS_FINISH_PATH_AND_WAIT_FOR_HERO = 0xB,
-        DREK_BOSS_SELECT_NEXT_ACTION = 0xC,
-        DREK_BOSS_LAUNCH_FORWARD_WITH_LATERAL_OFFSET = 0xD,
-        DREK_BOSS_ACTION_REPOSITION_AND_AIM = 0xE,
-        DREK_BOSS_TARGET_GROUND_POINTS = 0xF,
-        DREK_BOSS_TARGET_RANDOM_ARENA_POINTS = 0x10,
-        DREK_BOSS_TARGET_SIDE_GROUND_POINTS = 0x11,
-        DREK_BOSS_APPROACH_AIM_NODE = 0x12,
-        DREK_BOSS_FOLLOW_HERO = 0x13,
-        DREK_BOSS_ACTIVATE_MISSILE_GROUP = 0x14,
-        DREK_BOSS_APPROACH_SELECTED_MOBY = 0x15,
-        DREK_BOSS_DEATH_EXPLOSIONS = 0x1A,
-        DREK_BOSS_RUN_ENDING_SEQUENCE = 0x1B
-    };
     enum {
         DREK_BOSS_PHASE_FIRST_ARENA_PATH = 0,
         DREK_BOSS_PHASE_SECOND_ARENA_PATH = 1,
@@ -1822,7 +1799,8 @@ extern int resolve_moby_hit_response(void *, void *, void *, int, void *, void *
 extern void  trooper_anim_update(void *m, short *p) __asm__("FUN_L00_0025d458");
 extern void  trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
 extern char *create_moby(int) __asm__("FUN_0020c4f8");
-extern int   follow_5968(float a, char *m, char *b, int c, int d, int *e, int f) __asm__("FUN_L00_0025ff38");
+extern int
+follow_5968(float a, char *m, char *b, int c, int d, int *e, int f) __asm__("FUN_L00_0025ff38");
 extern int   poll_moby_state_and_rearm(char *) __asm__("FUN_L18_002d8050");
 extern char *create_class_274_ring_effect(void *, void *, float) __asm__("FUN_L18_002dc3e0");
 extern void  FUN_L18_002f1cc8_5e80(void *) __asm__("FUN_L18_002f1cc8");
@@ -1890,7 +1868,7 @@ void update_drek_boss_damage_and_phase_transitions(char *moby) {
             }
             if (step != 0.0f) {
                 float unclamped_health;
-                if (MOBY(moby)->state == 2) {
+                if (MOBY(moby)->state == DREK_BOSS_CIRCLE_AND_FIRE_AT_HERO) {
                     if (hit_record != 0 && (*(int *)(hit_record + 0x24) & 0x80000) &&
                         MOBY(moby)->prev_seq != 0xE) {
                         blend_moby_animation(moby, 0xE, 5, 1);
@@ -2157,11 +2135,12 @@ int advance_drek_boss_planar_position_toward_target(char *moby,
 /* Moves a moby's follow distance toward a target, clamped to a range, then applies it. */
 /* Ported from rac1-decomp (src/overlays/l18_veldin2/vendor_002F2AE0.c: func_L18_002F7DC0), where it is exact; names translated to the US level program. */
 
-extern short l18_drek_boss_hero_follow_target_distance __asm__("D_L18_0016234C") __attribute__((sda));
-extern void  FUN_L00_0025f730(void *a, float x);
-int          advance_drek_boss_planar_position_toward_target(char *moby,
-                                                             float arg,
-                                                             void *x) __asm__("FUN_L18_002f6878");
+extern short l18_drek_boss_hero_follow_target_distance __asm__("D_L18_0016234C")
+    __attribute__((sda));
+extern void FUN_L00_0025f730(void *a, float x);
+int         advance_drek_boss_planar_position_toward_target(char *moby,
+                                                            float arg,
+                                                            void *x) __asm__("FUN_L18_002f6878");
 
 extern short drek_boss_hero_follow_mode_0f_radius_gp __asm__("D_L18_0016237C") __attribute__((sda));
 
@@ -2179,15 +2158,17 @@ void update_drek_boss_hero_follow_movement(struct Moby *moby) {
         FUN_L00_0025f730(follow_target_position,
                          *(float *)&drek_boss_hero_follow_mode_0f_radius_gp);
     } else {
-        FUN_L00_0025f730(follow_target_position, *(float *)&l18_drek_boss_hero_follow_default_radius);
+        FUN_L00_0025f730(follow_target_position,
+                         *(float *)&l18_drek_boss_hero_follow_default_radius);
     }
     fast_vec_add(follow_target_position,
                  follow_target_position,
                  D_L18_001600EC + (*(int *)(moby_vars + 0x344) << 7) + 0x30);
     follow_speed_limit = hero.motion.speed_xy;
-    follow_speed_limit +=
-        (vector_distance_xy(&moby->pos, follow_target_position) - *(float *)&l18_drek_boss_hero_follow_target_distance) /
-        *(float *)&l18_drek_boss_hero_follow_target_distance * (frame_time * 4.75f);
+    follow_speed_limit += (vector_distance_xy(&moby->pos, follow_target_position) -
+                           *(float *)&l18_drek_boss_hero_follow_target_distance) /
+                          *(float *)&l18_drek_boss_hero_follow_target_distance *
+                          (frame_time * 4.75f);
     hi = frame_time * 20.0f;
     lo = frame_time * 4.75f;
     if (follow_speed_limit > hi) {
@@ -2245,7 +2226,7 @@ void update_drek_boss_arena_circling_movement(struct Moby *moby) {
     else if (circling_goal_angle < -0.17453292f)
         circling_goal_angle = -0.17453292f;
     circling_goal_angle = fast_add_rotations(circling_goal_angle, self_ang);
-    if (moby->state == 2) {
+    if (moby->state == DREK_BOSS_CIRCLE_AND_FIRE_AT_HERO) {
         goal.f[0] = fast_cos(circling_goal_angle) * drek_boss_circle_and_fire_radius_gp;
         goal.f[1] = fast_sin(circling_goal_angle) * drek_boss_circle_and_fire_radius_gp;
         goal.f[2] = 0.0f;
@@ -2264,12 +2245,12 @@ void update_drek_boss_arena_circling_movement(struct Moby *moby) {
         far = drek_boss_circling_base_far_hero_distance_gp;
         slow = drek_boss_circling_default_far_hero_speed_gp;
         fast = drek_boss_circling_default_near_hero_speed_gp;
-        if (moby->state == 0xD) {
+        if (moby->state == DREK_BOSS_LAUNCH_FORWARD_WITH_LATERAL_OFFSET) {
             slow = 2.0f;
             fast = 5.5f;
             near *= 0.5f;
             far *= 0.5f;
-        } else if (moby->state == 0xF) {
+        } else if (moby->state == DREK_BOSS_TARGET_GROUND_POINTS) {
             slow = 6.0f;
             near *= 1.5f;
             fast = 10.0f;
@@ -2491,7 +2472,8 @@ extern short l18_drek_boss_scalar_acceleration_and_braking_gp __asm__("D_L18_001
 
 #include "rnc/overlay/l18/mobys/drek_final_boss_robot_data/update_drek_boss_state_dependent_scalars_3.h"
 
-extern float l18_drek_boss_second_scalar_near_node_follow_target_gp __asm__("D_L18_001623DC") __attribute__((sda));
+extern float l18_drek_boss_second_scalar_near_node_follow_target_gp __asm__("D_L18_001623DC")
+    __attribute__((sda));
 
 #include "rnc/overlay/l18/mobys/drek_final_boss_robot_data/update_drek_boss_state_dependent_scalars_2.h"
 
@@ -2597,7 +2579,7 @@ void update_drek_boss_state_dependent_scalars(char *moby) {
                         set_animation_parameter(*(int *)(boss_data + 0x368), 0);
                         *(int *)(boss_data + 0x368) = -1;
                     }
-                    if (MOBY(moby)->state >= 2) {
+                    if (MOBY(moby)->state >= DREK_BOSS_CIRCLE_AND_FIRE_AT_HERO) {
                         if (*(int *)(boss_data + 0x3ec) != 0 || D_L18_001623A0_gp != 0) {
                             char *follow_camera_gate_record;
                             follow_camera_gate_source = (char *)&l18_camera;

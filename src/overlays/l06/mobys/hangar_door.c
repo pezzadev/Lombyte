@@ -11,9 +11,10 @@
 /* Ported from rac1-decomp (src/overlays/l06_blarg/vendor_002B5990.c: func_L06_002B5990), where it is exact; names translated to the US level program. */
 #include "rnc/overlay/cuboid.h"
 
-extern float FUN_L00_0025be00(float *, float *, float, float, float, float);
-extern int   D_L06_0015F5C4;
-void         hangar_door_update(char *m) __asm__("FUN_L06_002b4770");
+extern float
+           approach_angle(float *, float *, float, float, float, float) __asm__("FUN_L00_0025be00");
+extern int D_L06_0015F5C4;
+void       hangar_door_update(char *m) __asm__("FUN_L06_002b4770");
 
 #include "sda.h"
 
@@ -47,12 +48,12 @@ void hangar_door_update(char *door_moby) {
         *(int *)(door_data + 0x10) = 0;
     }
     if (*(float *)(door_data + 0x18) != *(float *)(door_data + 0x14)) {
-        FUN_L00_0025be00((float *)(door_data + 0x18),
-                         (float *)(door_data + 8),
-                         *(float *)(door_data + 0x14),
-                         frame_time_sq * 1.5707964f,
-                         frame_time_sq * 1.5707964f,
-                         frame_time * 1.5707964f);
+        approach_angle((float *)(door_data + 0x18),
+                       (float *)(door_data + 8),
+                       *(float *)(door_data + 0x14),
+                       frame_time_sq * 1.5707964f,
+                       frame_time_sq * 1.5707964f,
+                       frame_time * 1.5707964f);
     }
     switch (((unsigned char *)door_moby)[0x20]) {
     case HANGAR_DOOR_INITIALIZE:

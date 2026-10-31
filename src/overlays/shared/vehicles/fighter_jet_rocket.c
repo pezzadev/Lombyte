@@ -111,10 +111,9 @@ typedef struct Tex {
     unsigned char *p5C;
 } Tex;
 
-extern float D_0015ED6C;
-extern int   collision_line() __asm__("FUN_001efa68");
-extern int   FUN_L00_0024f7c8();
-float FUN_L00_0025be00(float *cur, float *vel, float target, float lim, float accel, float maxv);
+extern float          D_0015ED6C;
+extern int            collision_line() __asm__("FUN_001efa68");
+extern int            FUN_L00_0024f7c8();
 unsigned char        *spawn_particle(void  *pos,
                                      float *vec,
                                      int    s,

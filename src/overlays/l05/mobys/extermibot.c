@@ -20,9 +20,10 @@ extern float random_angle_radians(void) __asm__("FUN_00213308");
 extern float D_0015ED6C;
 extern float D_0015ED70;
 float        absolute_float(float input) __asm__("func_001F99C0");
-extern float FUN_L00_0025be00(float *, float *, float, float, float, float);
-extern int   FUN_L00_00258b50(void *, void *, void *, void *, float);
-extern void  FUN_L01_0026d930(char *p);
+extern float
+           approach_angle(float *, float *, float, float, float, float) __asm__("FUN_L00_0025be00");
+extern int FUN_L00_00258b50(void *, void *, void *, void *, float);
+extern void FUN_L01_0026d930(char *p);
 /* Extermibot update: wakes from its dormant pose, walks its path, closes in on the target and strikes it, bursts into sparks between strikes, and dies on a hit. */
 /* Ported from rac1-decomp (src/overlays/l05_rilgar/vendor_002D28D0.c: func_L05_003033A0), where it is exact; names translated to the US level program. */
 
@@ -213,12 +214,12 @@ void extermibot_update(unsigned char *moby) {
         moby_position = moby + 0x10;
         yaw = fast_arc_tan(*(float *)(moby_data + 0x280) - MOBY(moby)->pos.x,
                            *(float *)(moby_data + 0x284) - MOBY(moby)->pos.y);
-        FUN_L00_0025be00(moby_yaw_ptr,
-                         (float *)(moby_data + 0x290),
-                         yaw,
-                         D_0015ED70 * 6.2831855f,
-                         D_0015ED70 * 6.2831855f,
-                         D_0015ED6C * 6.2831855f);
+        approach_angle(moby_yaw_ptr,
+                       (float *)(moby_data + 0x290),
+                       yaw,
+                       D_0015ED70 * 6.2831855f,
+                       D_0015ED70 * 6.2831855f,
+                       D_0015ED6C * 6.2831855f);
         if (fast_difference_between_rotations(
                 MOBY(moby)->rot.z,
                 fast_arc_tan(*(float *)(moby_data + 0x280) - MOBY(moby)->pos.x,
@@ -250,12 +251,12 @@ void extermibot_update(unsigned char *moby) {
         approach_value((float *)(moby_data + 0xF4), D_0015ED6C * 6.0f, D_0015ED70 * 6.0f);
         yaw = fast_arc_tan(MOBY(target_moby)->pos.x - MOBY(moby)->pos.x,
                            MOBY(target_moby)->pos.y - MOBY(moby)->pos.y);
-        FUN_L00_0025be00(moby_yaw_ptr,
-                         (float *)(moby_data + 0x290),
-                         yaw,
-                         D_0015ED70 * 6.2831855f,
-                         D_0015ED70 * 6.2831855f,
-                         D_0015ED6C * 6.2831855f);
+        approach_angle(moby_yaw_ptr,
+                       (float *)(moby_data + 0x290),
+                       yaw,
+                       D_0015ED70 * 6.2831855f,
+                       D_0015ED70 * 6.2831855f,
+                       D_0015ED6C * 6.2831855f);
         if (fast_difference_between_rotations(
                 MOBY(moby)->rot.z,
                 fast_arc_tan(MOBY(target_moby)->pos.x - MOBY(moby)->pos.x,
@@ -356,12 +357,12 @@ void extermibot_update(unsigned char *moby) {
         moby_yaw_ptr = (float *)&MOBY(moby)->rot.z;
         yaw = fast_arc_tan(MOBY(target_moby)->pos.x - MOBY(moby)->pos.x,
                            MOBY(target_moby)->pos.y - MOBY(moby)->pos.y);
-        FUN_L00_0025be00(moby_yaw_ptr,
-                         (float *)(moby_data + 0x290),
-                         yaw,
-                         D_0015ED70 * 12.566371f,
-                         D_0015ED70 * 12.566371f,
-                         D_0015ED6C * 25.132742f);
+        approach_angle(moby_yaw_ptr,
+                       (float *)(moby_data + 0x290),
+                       yaw,
+                       D_0015ED70 * 12.566371f,
+                       D_0015ED70 * 12.566371f,
+                       D_0015ED6C * 25.132742f);
         if ((moby[0x70] & 2) && moby[0x53] == 2) {
             blend_moby_animation(moby, 7, 0, scale_game_frames(5));
         }
@@ -907,7 +908,10 @@ extern f32 D_L05_00161A98_gp __asm__("D_L05_00161A98") __attribute__((sda));
 extern f32 fast_difference_between_rotations(f32, f32) __asm__("FUN_001fa688");
 extern f32 approach_value(f32 *, f32, f32) __asm__("FUN_00213ed8");
 extern f32
-approach_angle(f32 *angle, f32 target, f32 *vel, f32, f32, f32) __asm__("FUN_L00_0025be00");
+approach_angle(f32 *angle, f32 *vel, f32 target, f32, f32, f32) __asm__("FUN_L00_0025be00");
+
+/* This handler uses the retail target-before-velocity C call view. */
+typedef f32 (*ApproachAngleTargetFirst)(f32 *, f32, f32 *, f32, f32, f32);
 
 extern s32
 test_extermibot_offset_path_clearance(char *moby, float *goal, float s) __asm__("FUN_L05_00303e50");
@@ -941,19 +945,20 @@ void move_extermibot_along_path(struct Moby *moby, s32 destination_position, f32
             (char *)moby, (float *)&goal, D_L05_00161A98_gp * 0.4f)) {
         offset_heading =
             fast_add_rotations(fast_arc_tan(goal.x - moby->pos.x, goal.y - moby->pos.y), side);
-        approach_angle(&moby->rot.z,
-                       offset_heading,
-                       &walker_vars->yaw_vel,
-                       frame_time_sq * 12.566371f,
-                       frame_time_sq * 12.566371f,
-                       frame_time * 25.132742f);
+        ((ApproachAngleTargetFirst)approach_angle)(&moby->rot.z,
+                                                   offset_heading,
+                                                   &walker_vars->yaw_vel,
+                                                   frame_time_sq * 12.566371f,
+                                                   frame_time_sq * 12.566371f,
+                                                   frame_time * 25.132742f);
     } else {
-        approach_angle(&moby->rot.z,
-                       fast_arc_tan(goal.x - moby->pos.x, goal.y - moby->pos.y),
-                       &walker_vars->yaw_vel,
-                       frame_time_sq * 12.566371f,
-                       frame_time_sq * 12.566371f,
-                       frame_time * 25.132742f);
+        ((ApproachAngleTargetFirst)approach_angle)(
+            &moby->rot.z,
+            fast_arc_tan(goal.x - moby->pos.x, goal.y - moby->pos.y),
+            &walker_vars->yaw_vel,
+            frame_time_sq * 12.566371f,
+            frame_time_sq * 12.566371f,
+            frame_time * 25.132742f);
     }
     if (fast_difference_between_rotations(
             moby->rot.z, fast_arc_tan(goal.x - moby->pos.x, goal.y - moby->pos.y)) < 1.5707964f &&
@@ -1078,11 +1083,13 @@ f32 push_point_from_path(s32 path_index, void *input, void *output, f32 distance
     qcopy_nc(&working, point);
     for (i = 0; i < ((SegmentPath *)l05_paths[path_index])->count - 1; i++) {
         path_table_slot = ((SegmentPath **)&l05_paths[path_index]);
-        if ((*path_table_slot)->points[i].f[3] == 0.0f && (*path_table_slot)->points[i + 1].f[3] == 0.0f)
+        if ((*path_table_slot)->points[i].f[3] == 0.0f &&
+            (*path_table_slot)->points[i + 1].f[3] == 0.0f)
             continue;
         func_001F9BF0_3054B0(&difference, &working, &(*path_table_slot)->points[i]);
         difference.i[2] = 0;
-        func_001F9BF0_3054B0(&segment, &(*path_table_slot)->points[i + 1], &(*path_table_slot)->points[i]);
+        func_001F9BF0_3054B0(
+            &segment, &(*path_table_slot)->points[i + 1], &(*path_table_slot)->points[i]);
         segment.i[2] = 0;
         func_L00_001FF4B0_3054B0(&scaled_segment, &segment, 1.0f);
         func_001F9CA0_3054B0(&cross, &difference, &scaled_segment);
