@@ -71,7 +71,7 @@ void update_fog_zone(struct Moby *moby) {
             *(int *)(fog_zone_vars + 0x34) = 0x40408070;
             *(int *)(fog_zone_vars + 0x30) = saved_volume_blend_color;
         }
-        moby->state = 1;
+        moby->state = FOG_ZONE_WAIT_TO_APPLY_PRESET;
         break;
     case FOG_ZONE_WAIT_TO_APPLY_PRESET:
         if (is_point_inside_clip_volume(&hero.motion.pos, *(int *)(fog_zone_vars + 0x2C))) {
@@ -88,7 +88,7 @@ void update_fog_zone(struct Moby *moby) {
                 D_L05_0015F450 = f2;
                 D_L05_0015F454 = f3;
             }
-            moby->state = 2;
+            moby->state = FOG_ZONE_WAIT_TO_RESTORE_SAVED_SETTINGS;
         }
         break;
     case FOG_ZONE_WAIT_TO_RESTORE_SAVED_SETTINGS:
@@ -106,7 +106,7 @@ void update_fog_zone(struct Moby *moby) {
                 D_L05_0015F450 = f2;
                 D_L05_0015F454 = f3;
             }
-            moby->state = 1;
+            moby->state = FOG_ZONE_WAIT_TO_APPLY_PRESET;
         }
         break;
     }
