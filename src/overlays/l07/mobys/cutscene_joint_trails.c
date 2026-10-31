@@ -26,7 +26,7 @@ void update_cutscene_joint_trails(struct Moby *moby) {
     switch (moby->state) {
     case TRAIL_STATE_INITIALIZE:
         moby->update_dist = 0xFF;
-        moby->state = 1;
+        moby->state = TRAIL_STATE_UPDATE;
         break;
     case TRAIL_STATE_UPDATE:
         if (scene_state == 2) {
