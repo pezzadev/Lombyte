@@ -59,20 +59,20 @@ void update_quartu_cutscene_trigger(struct Moby *moby) {
         if (((unsigned char *)l15_moby_array)[(*(int *)(trigger_data + 8) << 8) + 0x20] != 3)
             break;
         start_scene(3);
-        moby->state = 2;
+        moby->state = CUTSCENE_TRIGGER_WAIT_FOR_FIRST_SCENE;
         jet_clear_persistent(moby->mission);
         FUN_L00_00232fe8_v();
         break;
     case CUTSCENE_TRIGGER_WAIT_FOR_FIRST_SCENE:
         if (D_L15_0015F5C4 != 2) {
             queue_scene_movie_with_game_language(0x11);
-            moby->state = 1;
+            moby->state = CUTSCENE_TRIGGER_START_SECOND_SCENE;
         }
         break;
     case CUTSCENE_TRIGGER_START_SECOND_SCENE:
         if (D_L15_0015F5C4 != 2) {
             start_scene(4);
-            moby->state = 3;
+            moby->state = CUTSCENE_TRIGGER_FINALIZE_AND_SAVE;
             FUN_L00_002330d0_v();
             if (*(int *)(trigger_data + 4) != -1) {
                 char *o = D_L15_001600EC + (*(int *)(trigger_data + 4) << 7);
@@ -89,7 +89,7 @@ void update_quartu_cutscene_trigger(struct Moby *moby) {
             }
             queue_planet_unlock_message(0x11);
             memcard_save_data(0, -1);
-            moby->state = 4;
+            moby->state = CUTSCENE_TRIGGER_COMPLETED;
         }
         break;
     case CUTSCENE_TRIGGER_COMPLETED:
