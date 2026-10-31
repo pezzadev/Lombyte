@@ -19,6 +19,9 @@ extern s32  sceGsSyncV(s32);
 s32 check_memory_card(void) __asm__("FUN_00209168");
 
 s32 check_memory_card(void) {
+    enum {
+        MEMCARD_TYPE_SUPPORTED_FOR_STARTUP = 2
+    };
     s32              card_type;
     s32              free_blocks;
     s32              format;
@@ -43,7 +46,7 @@ s32 check_memory_card(void) {
     if (card_state->unkBC == -2) {
         return 0;
     }
-    if (card_type != 2) {
+    if (card_type != MEMCARD_TYPE_SUPPORTED_FOR_STARTUP) {
         return 1;
     }
     if (format == 0) {
