@@ -127,7 +127,7 @@ void shuttle_update(struct Moby *moby) {
             shuttle_vars->unk100 = -1;
             shuttle_vars->unkE0 = -1;
             select_shuttle_route_for_hero((char *)moby);
-            moby->state = 2;
+            moby->state = SHUTTLE_STATE_WAIT_FOR_DEPARTURE;
             moby->update_dist = 0xFF;
         }
         break;
@@ -140,7 +140,7 @@ void shuttle_update(struct Moby *moby) {
                 if (fast_vec_dist(&hero.motion.pos, &hero_position_probe) < 0.001f) {
                     try_set_shuttle_departure_help_message((char *)moby);
                     if ((D_0013CAE4[0] & 0x10) && hero.air_frames.s == 0 && D_L08_0015F594 == 10)
-                        moby->state = 3;
+                        moby->state = SHUTTLE_STATE_TRAVEL;
                 }
             }
         } else {
@@ -153,7 +153,7 @@ void shuttle_update(struct Moby *moby) {
         hero.path_constrain_pending = shuttle_vars->stop;
         if (advance_shuttle_path_travel((char *)moby)) {
             select_shuttle_route_for_hero((char *)moby);
-            moby->state = 2;
+            moby->state = SHUTTLE_STATE_WAIT_FOR_DEPARTURE;
         }
         break;
     }
