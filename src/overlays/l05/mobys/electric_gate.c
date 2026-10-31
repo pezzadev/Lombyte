@@ -39,7 +39,7 @@ void electric_gate_update(char *gate_moby) {
     switch (state) {
     case ELECTRIC_GATE_INITIALIZE:
         MOBY(gate_moby)->flags |= 1;
-        MOBY(gate_moby)->state = 1;
+        MOBY(gate_moby)->state = ELECTRIC_GATE_WAIT_FOR_TRIGGER;
         MOBY(gate_moby)->visible = 0;
         **(int **)(electric_gate_vars + 4) = -1;
         break;
@@ -82,7 +82,7 @@ void electric_gate_update(char *gate_moby) {
                 0) {
                 allocate_voice_for_target_entry(1, 0, gate_moby);
                 MOBY(gate_moby)->collision = 0;
-                MOBY(gate_moby)->state = 2;
+                MOBY(gate_moby)->state = ELECTRIC_GATE_TRIGGERED;
             }
         }
         break;
