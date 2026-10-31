@@ -25,7 +25,7 @@ void update_cutscene_camera_target(struct Moby *moby) {
     switch (moby->state) {
     case INITIALIZE_UPDATE_DISTANCE:
         moby->update_dist = 0xFF;
-        moby->state = 1;
+        moby->state = UPDATE_CUTSCENE_CAMERA_TARGET;
         break;
     case UPDATE_CUTSCENE_CAMERA_TARGET:
         if (D_L13_0015F5C4 == 2 && l13_cutscene_target_effect_controller.state == 2) {
