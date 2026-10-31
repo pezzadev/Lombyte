@@ -96,13 +96,13 @@ void homing_mine_spawner_update(struct Moby *spawner) {
                 }
             }
         }
-        spawner->state = 1;
+        spawner->state = HOMING_MINE_SPAWNER_WAIT_FOR_PROXIMITY;
         break;
     case HOMING_MINE_SPAWNER_WAIT_FOR_PROXIMITY:
         if (*(int *)(spawner_data + 0xB4) != 2) {
             if (vector_distance_xy(&spawner->pos, spawner_data + 0x70) <
                 *(float *)(spawner_data + 0xF8)) {
-                spawner->state = 2;
+                spawner->state = HOMING_MINE_SPAWNER_WAIT_FOR_PRESPAWN_ANIMATION;
             }
         }
         break;
@@ -114,7 +114,7 @@ void homing_mine_spawner_update(struct Moby *spawner) {
             if (spawner->prev_seq != 2) {
                 blend_moby_animation(spawner, 2, 0, scale_game_frames(2));
             }
-            spawner->state = 3;
+            spawner->state = HOMING_MINE_SPAWNER_SPAWN_LINKED_MOBYS;
         }
         break;
     case HOMING_MINE_SPAWNER_SPAWN_LINKED_MOBYS:
@@ -127,7 +127,7 @@ void homing_mine_spawner_update(struct Moby *spawner) {
             *(int *)(spawner_data + 0xF0) += 1;
         }
         if (*(int *)(spawner_data + 0xF0) == 12 || slots[*(int *)(spawner_data + 0xF0)] == -1) {
-            spawner->state = 4;
+            spawner->state = HOMING_MINE_SPAWNER_WAIT_FOR_POSTSPAWN_ANIMATION;
         }
         break;
     case HOMING_MINE_SPAWNER_WAIT_FOR_POSTSPAWN_ANIMATION:
@@ -139,7 +139,7 @@ void homing_mine_spawner_update(struct Moby *spawner) {
             if (spawner->prev_seq != 0) {
                 blend_moby_animation(spawner, 0, 0, scale_game_frames(2));
             }
-            spawner->state = 5;
+            spawner->state = HOMING_MINE_SPAWNER_SPAWN_SEQUENCE_COMPLETE;
         }
         break;
     case HOMING_MINE_SPAWNER_SPAWN_SEQUENCE_COMPLETE:
