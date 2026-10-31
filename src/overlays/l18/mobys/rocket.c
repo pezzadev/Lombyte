@@ -45,6 +45,9 @@ void         draw_rocket_target_pulse_quad(struct Moby *m) __asm__("FUN_L18_002d
 void update_rocket_moby(struct Moby *moby) __asm__("FUN_L18_002d5050");
 
 void update_rocket_moby(struct Moby *moby) {
+    enum {
+        ROCKET_STATE_FLYING = 0
+    };
     L18D *moby_vars = (L18D *)moby->pvars;
     float target_movement_step[4];
     float movement_step[4];
@@ -57,7 +60,7 @@ void update_rocket_moby(struct Moby *moby) {
     int   movement_collision_result;
     if (hero.state.current == 0x72 || D_L18_0015F5C4 == 2) {
         mark_moby_for_removal(moby);
-    } else if (moby->state == 0) {
+    } else if (moby->state == ROCKET_STATE_FLYING) {
         qcopy(previous_position, &moby->pos);
         movement_blend_weight = convert_integer_to_float(moby_vars->c);
         movement_blend_weight = movement_blend_weight / convert_integer_to_float(moby_vars->lim);
