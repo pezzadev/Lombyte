@@ -35,6 +35,9 @@ int try_start_kerwan_path_enemy_heading_turn(float        desired_heading,
                                              struct Moby *moby,
 
                                              struct Moby *target) {
+    enum {
+        ENEMY_TURN_TO_HEADING = 0xC
+    };
     char         *enemy_pvars = (char *)moby->pvars;
     int           linked_moby_index;
     float         heading_delta;
@@ -64,7 +67,7 @@ int try_start_kerwan_path_enemy_heading_turn(float        desired_heading,
                 }
                 *(float *)(enemy_pvars + 0x28C) = desired_heading;
                 previous_state = moby->state;
-                moby->state = 0xC;
+                moby->state = ENEMY_TURN_TO_HEADING;
                 moby->command = previous_state;
                 return 1;
             }
