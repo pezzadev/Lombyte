@@ -765,8 +765,12 @@ extern int follow_5968(float a, char *m, char *b, int c, int d, int *e, int f) _
 void update_minibomber_target(struct Moby *moby) __asm__("FUN_L14_002b5530");
 
 void update_minibomber_target(struct Moby *moby) {
+    enum {
+        MINIBOMBER_STATE_INITIALIZE = 0,
+        MINIBOMBER_STATE_DESTROY = 9
+    };
     char *minibomber_private_vars = (char *)moby->pvars;
-    if (moby->state != 0 && moby->state != 9) {
+    if (moby->state != MINIBOMBER_STATE_INITIALIZE && moby->state != MINIBOMBER_STATE_DESTROY) {
         int *bound_path = ((int *)l14_paths[*(int *)(minibomber_private_vars + 0xD4)]);
         follow_5968(
             255.0f, moby, minibomber_private_vars + 0x70, 0, 0, bound_path + 4, *bound_path);
