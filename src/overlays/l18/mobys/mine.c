@@ -42,6 +42,9 @@ void update_mine(struct Moby *moby) {
         STATE_APPROACH_NEARBY_TARGET = 3,
         STATE_WAIT_TO_RESUME_APPROACH = 4
     };
+    enum {
+        STATE_INACTIVE = 5
+    };
     char *class_238_update_private_vars = (char *)moby->pvars;
     float settling_displacement_or_steering_increment[4];
     update_mine_detonation(moby);
@@ -51,14 +54,14 @@ void update_mine(struct Moby *moby) {
         moby->flags = (moby->flags | 0x41) & 0xEFFF;
         *(void **)(class_238_update_private_vars + 0xD0) = &D_L18_00161988;
         *(float *)(class_238_update_private_vars + 0x30) = 0.05f;
-        moby->state = 5;
+        moby->state = STATE_INACTIVE;
         break;
     case STATE_BALLISTIC_FLIGHT:
         fast_vec_add(&moby->pos, &moby->pos, class_238_update_private_vars + 0x180);
         *(float *)(class_238_update_private_vars + 0x188) -= frame_time_sq * 10.0f;
         if (moby->pos.z < *(float *)(class_238_update_private_vars + 0x178)) {
             moby->pos.z = *(float *)(class_238_update_private_vars + 0x178);
-            moby->state = 2;
+            moby->state = STATE_POST_FLIGHT_SETTLING;
             *(float *)(class_238_update_private_vars + 0x188) =
                 -(D_L18_00161994 * 2.0f * frame_time);
         }
@@ -79,7 +82,7 @@ void update_mine(struct Moby *moby) {
             if (moby->prev_seq != 1) {
                 blend_moby_animation(moby, 1, 0, scale_game_frames(12));
             }
-            moby->state = 3;
+            moby->state = STATE_APPROACH_NEARBY_TARGET;
             moby->hit_slot = 0xFF;
         }
         break;
@@ -140,7 +143,7 @@ void update_mine(struct Moby *moby) {
         break;
     case STATE_WAIT_TO_RESUME_APPROACH:
         if (FUN_L00_002dc9f0(moby, class_238_update_private_vars + 0x110)) {
-            moby->state = 3;
+            moby->state = STATE_APPROACH_NEARBY_TARGET;
             *(short *)(class_238_update_private_vars + 0xC8) = 0;
         }
         break;
