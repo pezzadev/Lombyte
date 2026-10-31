@@ -178,7 +178,7 @@ s32 random_integer_below(s32) __asm__("FUN_00213260");
 
 extern int  D_15F5C4_2d6cd0 __asm__("D_L00_0015F5C4");
 extern int  fast_tween_color(int, int, float) __asm__("FUN_001fa6e0");
-extern void FUN_L00_00272f68(void *, int, int, int, int, int, int, float);
+extern void spawn_timed_hero_relative_particle(void *, int, int, int, int, int, int, float) __asm__("FUN_L00_00272f68");
 
 void update_infobot_slot_path_motion(Obj         *moby,
                                      Path_2d5988 *path,
@@ -699,7 +699,7 @@ void update_infobot_particle_effect(char *moby) {
         f = f / (float)scale_game_frames(0xFF);
         col = fast_tween_color(0x4040FFFF, 0x1040FFFF, absolute_float(0.5f - f));
         if (D_15F5C4_2d6cd0 != 2) {
-            FUN_L00_00272f68(d,
+            spawn_timed_hero_relative_particle(d,
                              col,
                              truncate_float_to_s32(infobot_particle_state->a[i]) & 0xFF,
                              0x35,

@@ -89,7 +89,7 @@ typedef struct {
 } L16SpriteData;
 
 extern char           D_L16_001671C0[];
-extern unsigned char *FUN_L00_00272f68(void *, int, unsigned char, int, int, int, int, float);
+extern unsigned char *spawn_timed_hero_relative_particle(void *, int, unsigned char, int, int, int, int, float) __asm__("FUN_L00_00272f68");
 extern int            fast_tween_color(int, int, float) __asm__("FUN_001fa6e0");
 
 void draw_spinning_sprite_effect_sprites(struct Moby *moby) __asm__("FUN_L16_002c9650");
@@ -123,7 +123,7 @@ void draw_spinning_sprite_effect_sprites(struct Moby *moby) {
         elapsed_cycle_fraction = elapsed_cycle_fraction / (float)scale_game_frames(0xFF);
         col =
             fast_tween_color(0x4040FFFF, 0x1040FFFF, absolute_float(0.5f - elapsed_cycle_fraction));
-        FUN_L00_00272f68(d,
+        spawn_timed_hero_relative_particle(d,
                          col,
                          truncate_float_to_s32(sprite_data->a[i]) & 0xFF,
                          0x35,

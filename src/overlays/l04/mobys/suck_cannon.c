@@ -107,7 +107,7 @@ typedef struct {
 } L10SpriteData;
 
 extern int            fast_tween_color(int, int, float) __asm__("FUN_001fa6e0");
-extern unsigned char *func_L00_00273E08_298940(
+extern unsigned char *spawn_timed_hero_relative_particle(
     void *, int, unsigned char, int, int, int, int, float) __asm__("FUN_L00_00272f68");
 extern char D_L10_00167240_298940[] __asm__("D_L04_00166F40");
 extern int  D_L04_0015F5C4;
@@ -141,7 +141,7 @@ void update_suck_cannon_particles(char *moby) {
         timer_progress = timer_progress / (float)scale_game_frames(0xFF);
         col = fast_tween_color(0x4040FFFF, 0x1040FFFF, absolute_float(0.5f - timer_progress));
         if (D_L04_0015F5C4 != 2)
-            func_L00_00273E08_298940(d,
+            spawn_timed_hero_relative_particle(d,
                                      col,
                                      truncate_float_to_s32(sprite_data->a[i]) & 0xFF,
                                      0x35,
