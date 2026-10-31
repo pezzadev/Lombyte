@@ -8,7 +8,10 @@ extern s32 sceCdDelayThread();
 extern s32 scePrintf();
 
 s32 sceCdSyncS(s32 mode) {
-    if (mode == 0) {
+    enum {
+        CD_SYNC_S_WAIT = 0
+    };
+    if (mode == CD_SYNC_S_WAIT) {
         if (cd_debug > 0) {
             scePrintf(cd_s_command_wait_message);
         }
