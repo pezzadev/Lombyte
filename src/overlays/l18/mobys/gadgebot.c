@@ -78,7 +78,8 @@ void gadgebot_update(unsigned char *moby) {
         GADGEBOT_APPROACH_TARGET = 3,
         GADGEBOT_FACE_TARGET = 4,
         GADGEBOT_DEATH_FALL = 5,
-        GADGEBOT_EXPLODE = 6
+        GADGEBOT_EXPLODE = 6,
+        GADGEBOT_SUCK_CANNON_SUCTION = 7
     };
     char           position_scratch[16];
     unsigned char *moby_vars = ((unsigned char *)MOBY(moby)->pvars);
@@ -131,7 +132,7 @@ void gadgebot_update(unsigned char *moby) {
         }
         break;
     }
-    case 7:
+    case GADGEBOT_SUCK_CANNON_SUCTION:
         if (FUN_L00_002dc9f0(moby, moby_vars + 0x70)) {
             moby[0x20] = 2;
             *(short *)(moby_vars + 0x138) = 0;
