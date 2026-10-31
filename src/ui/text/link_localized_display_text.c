@@ -27,6 +27,9 @@ extern void font_print_window_small(void *, u64, void *, s32) __asm__("func_001F
 void link_localized_display_text(void) __asm__("FUN_001fdd58");
 
 void link_localized_display_text(void) {
+    enum {
+        HELP_STATE_DISPLAY_START_DELAY = 1
+    };
     /* win is unsigned (lhu) but w/h are signed: the narrowing gives the
        sll 16 / sra 17 shift-by-one retail has instead of a plain sra. */
     u16        win[16];
@@ -37,7 +40,7 @@ void link_localized_display_text(void) {
     short      measured_text_width, rendered_text_height;
     s32        hHalf5;
 
-    D_001996D0.state = 1;
+    D_001996D0.state = HELP_STATE_DISPLAY_START_DELAY;
     D_001996D0.x04 = 0;
     if (D_0015EE1D != 0 || D_0015EE1C != 0) {
         allocate_voice_for_bank_entry(0, 1, 0);
