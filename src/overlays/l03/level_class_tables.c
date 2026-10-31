@@ -8,7 +8,7 @@
 
 void FUN_L00_002b6140();
 void FUN_L00_002c89e8();
-void FUN_L00_002caf40();
+void get_morphoray_chicken_slot_record() __asm__("FUN_L00_002caf40");
 void FUN_L00_002cc608();
 void FUN_L00_002ea7a0();
 void FUN_L00_002ed230();
@@ -147,7 +147,7 @@ void *D_L03_001E4114[6]
                                             moby_set_state_from_check,
                                             launch_suck_cannon_projectile_and_update_moby_state,
                                             cancel_suck_cannon_suction_and_set_moby_state_5,
-                                            FUN_L00_002caf40,
+                                            get_morphoray_chicken_slot_record,
                                             mine_blend_color};
 
 struct MobyClassUpdate moby_classes[181] __asm__("D_L03_001E3880")
