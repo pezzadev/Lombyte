@@ -346,6 +346,7 @@ void alien_queen_update(unsigned char *moby) {
         ALIEN_QUEEN_STATE_APPROACH_TARGET = 8,
         ALIEN_QUEEN_STATE_ATTACK_WINDUP = 9,
         ALIEN_QUEEN_STATE_ATTACK_HIT_QUERIES = 10,
+        ALIEN_QUEEN_STATE_WAIT_FOR_ORBIT_ANIMATION_END = 11,
         ALIEN_QUEEN_STATE_TIMED_ORBIT = 12,
         ALIEN_QUEEN_STATE_RETURN_HOME = 13,
         ALIEN_QUEEN_STATE_DEATH = 14,
@@ -613,7 +614,7 @@ void alien_queen_update(unsigned char *moby) {
         }
         return;
     }
-    case 11:
+    case ALIEN_QUEEN_STATE_WAIT_FOR_ORBIT_ANIMATION_END:
         if (moby[0x70] & 2) {
             moby[0x20] = moby[0xBC];
             if ((unsigned char)moby[0x53] != 1) {
@@ -701,12 +702,12 @@ void alien_queen_update(unsigned char *moby) {
     }
     case ALIEN_QUEEN_STATE_POST_DEATH: {
         int   i;
-        char *other = 0;
+        char *post_death_scan_record = 0;
         for (i = 0; i < 0x30; i++) {
             if (D_L06_0016A010[i] != 0) {
-                other = D_L06_001678D0 + i * 0xA0;
-                if (*(short *)(other + 0x86) == 0x12) {
-                    func_L06_00317770_q(other);
+                post_death_scan_record = D_L06_001678D0 + i * 0xA0;
+                if (*(short *)(post_death_scan_record + 0x86) == 0x12) {
+                    func_L06_00317770_q(post_death_scan_record);
                     break;
                 }
             }
