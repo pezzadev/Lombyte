@@ -64,12 +64,12 @@ void update_fog_zone(struct Moby *moby) {
         *(int *)(fog_zone_vars + 0x10) = 0;
         *(int *)(fog_zone_vars + 0x1C) = 0;
         {
-            int c = l05_volume_blended_color_low_byte +
+            int saved_volume_blend_color = l05_volume_blended_color_low_byte +
                     (l05_volume_blended_color_lower_middle_byte << 8) +
                     (l05_volume_blended_color_upper_middle_byte << 16) +
                     (l05_volume_blended_color_high_byte << 24);
             *(int *)(fog_zone_vars + 0x34) = 0x40408070;
-            *(int *)(fog_zone_vars + 0x30) = c;
+            *(int *)(fog_zone_vars + 0x30) = saved_volume_blend_color;
         }
         moby->state = 1;
         break;
