@@ -10,7 +10,7 @@
 #include "rnc/overlay/shared/math/random/random_int_between.h"
 #include "qcopy.h"
 
-extern char D_L01_00167240[];
+extern char camera_pos[] __asm__("D_L01_00167240");
 
 extern char *spawn_burst(void *, void *, int, int, int, int, float) __asm__("FUN_L00_0026cbb0");
 extern char  D_L01_001742E0[];
@@ -37,7 +37,7 @@ void spawn_collision_particle_bursts(void) {
     float spawn_position[4];
     float base_angle, b;
     int   i;
-    fast_vec_sub(offset_vector, D_L01_00167240, D_L01_001742E0);
+    fast_vec_sub(offset_vector, camera_pos, D_L01_001742E0);
     base_angle = -fast_arc_tan(vector_length_xy(offset_vector), offset_vector[2]);
     fast_arc_tan(offset_vector[0], offset_vector[1]);
     for (i = 19; i >= 0; i--) {
@@ -76,7 +76,7 @@ void update_billboard_projectile(char *moby) {
         TIMED_REMOVAL = 2
     };
     int  *motion_lifetime_vars = ((int *)MOBY(moby)->pvars);
-    char *camera = D_L01_00167240;
+    char *camera = camera_pos;
     char  hit[0x30];
     float normal[4];
     float distance;
