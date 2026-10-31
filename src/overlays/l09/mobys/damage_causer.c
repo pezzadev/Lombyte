@@ -31,6 +31,10 @@ void                  update_damage_causer(struct Moby *moby) __asm__("FUN_L09_0
 extern s32 D_L09_0015F5CC NOT_SDA;
 
 void update_damage_causer(struct Moby *moby) {
+    enum {
+        DAMAGE_CAUSER_STATE_UNINITIALIZED = 0,
+        DAMAGE_CAUSER_STATE_INITIALIZED = 1
+    };
     char *damage_causer_vars = (char *)moby->pvars;
     float sphere_query_workspace[24];
     int   i;
@@ -38,8 +42,8 @@ void update_damage_causer(struct Moby *moby) {
     float start;
     float end;
 
-    if (moby->state == 0) {
-        moby->state = 1;
+    if (moby->state == DAMAGE_CAUSER_STATE_UNINITIALIZED) {
+        moby->state = DAMAGE_CAUSER_STATE_INITIALIZED;
         *(s32 *)(damage_causer_vars + 0x14) = -1;
     }
     if ((D_L09_0015F5CC & 7) == (((int)moby >> 8) & 7)) {
