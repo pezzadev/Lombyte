@@ -13,6 +13,9 @@ extern void update_entity_matrix(char *, void *, void *, void *) __asm__("FUN_L0
 void metropolis_train_carriage_update(struct Moby *moby) __asm__("FUN_L03_002953f8");
 
 void metropolis_train_carriage_update(struct Moby *moby) {
+    enum {
+        METROPOLIS_TRAIN_CARRIAGE_STATE_INITIALIZE = 0
+    };
     float position_delta[4];
     float joint_zero_world_position[4];
     char *carriage_pvars;
@@ -26,7 +29,7 @@ void metropolis_train_carriage_update(struct Moby *moby) {
         previous_position = carriage_pvars + 0xA0;
         previous_rotation = carriage_pvars + 0xB0;
         current_rotation = &moby->rot;
-        if (moby->state == 0) {
+        if (moby->state == METROPOLIS_TRAIN_CARRIAGE_STATE_INITIALIZE) {
             *(int *)(carriage_pvars + 0x60) = 0;
             *(short *)(carriage_pvars + 0x64) = 0;
             carriage_pvars[0x68] = 4;
