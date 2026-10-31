@@ -60,7 +60,7 @@ void update_cutscene_joint_trails(struct Moby *moby) {
     switch (moby->state) {
     case JOINT_TRAIL_INITIALIZE:
         moby->update_dist = 0xFF;
-        moby->state = 1;
+        moby->state = JOINT_TRAIL_EMIT;
         break;
     case JOINT_TRAIL_EMIT:
         if (D_L16_0015F5C4 == 2) {
