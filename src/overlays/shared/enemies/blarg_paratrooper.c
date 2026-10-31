@@ -572,6 +572,7 @@ void blarg_paratrooper_update(char *moby) {
 void update_blarg_paratrooper_damage_and_state(char *moby) {
     enum {
         PARATROOPER_HIT_REACTION_LETHAL = 1,
+        PARATROOPER_HIT_REACTION_DEATH_KNOCKBACK = 2,
         PARATROOPER_HIT_REACTION_NONE = 11
     };
     char *paratrooper_instance_state, *target, *child, *attached, *chased;
@@ -671,7 +672,7 @@ void update_blarg_paratrooper_damage_and_state(char *moby) {
                 *(unsigned char *)(paratrooper_instance_state + 0x67) = 0x78;
                 break;
             case PARATROOPER_HIT_REACTION_LETHAL:
-            case 2: {
+            case PARATROOPER_HIT_REACTION_DEATH_KNOCKBACK: {
                 float push_limit = 16.0f;
                 float pose_rate = D_L08_00162184;
                 float timer_rate = l08_paratrooper_death_knockback_xy_speed;
