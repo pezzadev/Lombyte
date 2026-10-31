@@ -6,7 +6,8 @@ void update_unfolding_column_piece(void *updated_moby) __asm__("FUN_L14_003061d8
 
 void update_unfolding_column_piece(void *updated_moby) {
     enum {
-        MOBY_PVARS_INITIALIZE = 0
+        MOBY_PVARS_INITIALIZE = 0,
+        UNFOLDING_COLUMN_PIECE_RELEASE = 2
     };
     struct Moby *moby = updated_moby;
     char        *moby_pvars;
@@ -19,7 +20,7 @@ void update_unfolding_column_piece(void *updated_moby) {
         *(short *)(moby_pvars + 0x3E) = 0;
         moby->state = 1;
         break;
-    case 2:
+    case UNFOLDING_COLUMN_PIECE_RELEASE:
         *(short *)(((char *)moby->pvars) + 0x3E) = 5;
         moby->state = 3;
         break;
