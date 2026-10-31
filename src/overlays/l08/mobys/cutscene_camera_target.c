@@ -35,7 +35,7 @@ void update_cutscene_camera_target(struct Moby *moby) {
     switch (moby->state) {
     case MOBY_INITIALIZE:
         moby->update_dist = 0xFF;
-        moby->state = 1;
+        moby->state = MOBY_ACTIVE;
         break;
     case MOBY_ACTIVE:
         if (level_game_mode == 2) {
