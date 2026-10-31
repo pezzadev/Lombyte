@@ -318,6 +318,9 @@ float bolt_thief_default_path_sample_rate_gp __asm__("D_L14_00161FB8") = 25.0f;
 extern void FUN_L00_00258278(char *, float, float *, float, float, float);
 
 int update_bolt_thief_path_movement(struct Moby *moby) {
+    enum {
+        BOLT_THIEF_STATE_FOLLOW_SECONDARY_PATH = 5
+    };
     float pos[4];
     float delta[4];
     char *bolt_thief_state = (char *)moby->pvars;
@@ -328,7 +331,7 @@ int update_bolt_thief_path_movement(struct Moby *moby) {
         path_sample_step = frame_time * 20.0f;
     if (*(float *)(bolt_thief_state + 0xF8) != 0.0f)
         path_sample_step = *(float *)(bolt_thief_state + 0xF8) * frame_time;
-    if (moby->state == 5)
+    if (moby->state == BOLT_THIEF_STATE_FOLLOW_SECONDARY_PATH)
         path = ((char *)l14_paths[*(int *)(bolt_thief_state + 0xDC)]);
     else
         path = ((char *)l14_paths[*(int *)(bolt_thief_state + 0xD8)]);
