@@ -48,7 +48,7 @@ void update_ribbon_effect_moby(struct Moby *moby) {
             return;
         }
         initialize_ribbon_effect_state(moby);
-        moby->state = 1;
+        moby->state = MOBY_STATE_UPDATE;
         *(int *)(ribbon_effect_state + 0x204) = -1;
         break;
     case MOBY_STATE_UPDATE:
