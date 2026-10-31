@@ -106,10 +106,10 @@ void update_linked_spark_emitter(unsigned char *moby) {
             visited52[(unsigned char)moby[0xB0] + (D_0015ED84 << 4)] == 0xFF) {
             func_L15_002A47B8_2A3DD0(moby);
         } else {
-            Voice *e = (Voice *)((unsigned char *)&voice_pool + moby[0xBC] * 0x70);
+            Voice *emitter_voice_slot = (Voice *)((unsigned char *)&voice_pool + moby[0xBC] * 0x70);
             float  lo, hi, z, one;
             int    i;
-            if (e->owner != (char *)moby || e->active == 0) {
+            if (emitter_voice_slot->owner != (char *)moby || emitter_voice_slot->active == 0) {
                 moby[0xBC] = allocate_voice_for_target_entry(0, 4, moby);
             }
             fast_vec_sub(V, D_0013F420, moby + 0x10);
