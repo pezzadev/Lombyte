@@ -70,6 +70,9 @@ extern s32  _pack_header(SysBit *bs, PackHdr *pack);
 extern s32  _PES_packet(MpegSys *sys, SysBit *bs, PesHdr *pes);
 
 int sceMpegDemuxPssRing(sceMpeg *mp, u8 *start, int size, u8 *bufstart, int bufsize) {
+    enum {
+        MPEG_CALLBACK_PES_PACKET = 6
+    };
     SysBit           bs;
     PssHdr           hdr;
     SysBit          *bitstream;
@@ -117,7 +120,7 @@ int sceMpegDemuxPssRing(sceMpeg *mp, u8 *start, int size, u8 *bufstart, int bufs
             for (i = 0; i < sys->n; i++) {
                 if (tbl[i].id == (pss_header->pes.id & tbl[i].mask)) {
                     headerpos = pss_header->pes.header;
-                    cb.type = 6;
+                    cb.type = MPEG_CALLBACK_PES_PACKET;
                     cb.header = GetSysbitPointer(bitstream, headerpos);
                     cb.data = GetSysbitPointer(bitstream, pss_header->pes.data);
                     cb.len = pss_header->pes.datalen;
@@ -129,7 +132,7 @@ int sceMpegDemuxPssRing(sceMpeg *mp, u8 *start, int size, u8 *bufstart, int bufs
             }
             if (i == sys->n && cbfunc != 0) {
                 headerpos = pss_header->pes.header;
-                cb.type = 6;
+                cb.type = MPEG_CALLBACK_PES_PACKET;
                 cb.header = GetSysbitPointer(bitstream, headerpos);
                 cb.data = GetSysbitPointer(bitstream, pss_header->pes.data);
                 cb.len = pss_header->pes.datalen;
