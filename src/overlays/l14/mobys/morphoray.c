@@ -72,7 +72,7 @@ void morphoray_update(struct Moby *moby) {
         moby->rot.y = -1.5707964f;
         moby->pos.z = D_L14_00174568[0] + morphoray_ground_height_offset_gp;
         qcopy(morphoray_pvars, moby_bytes + 0x10);
-        moby->state = 1;
+        moby->state = MORPHORAY_WAIT_FOR_HERO;
         break;
     case MORPHORAY_WAIT_FOR_HERO:
         *(f32 *)(moby_bytes + 0x48) =
@@ -93,7 +93,7 @@ void morphoray_update(struct Moby *moby) {
             *(s32 *)(morphoray_pvars + 0x18) = 0;
         grant_inventory_item(0x15, 1);
         start_scene(6);
-        moby->state = 2;
+        moby->state = MORPHORAY_WAIT_TO_REMOVE;
         break;
     case MORPHORAY_WAIT_TO_REMOVE:
         if (D_L14_0015F5C4 != state) {
