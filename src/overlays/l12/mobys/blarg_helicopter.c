@@ -602,6 +602,10 @@ extern void trooper_anim_update(void *m, short *p) __asm__("FUN_L00_0025d458");
 extern void trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
 
 void process_blarg_helicopter_hits(struct Moby *moby) {
+    enum {
+        BLARG_HELICOPTER_KNOCKBACK = 5,
+        BLARG_HELICOPTER_EXPLODE_AND_REMOVE_OR_RESET = 6
+    };
     int   hit_processing_status;
     float fv;
     int   hit_reaction_code;
@@ -613,7 +617,7 @@ void process_blarg_helicopter_hits(struct Moby *moby) {
     hit_record = find_moby_hit(moby, 0x330000, 0);
     hit_reaction_code = hit_reaction(
         moby, hit_record, blarg_helicopter_hit_vars + 0x20, 0, &hit_processing_status, &fv, 0, 4);
-    if (hit_processing_status != 1 && moby->state != 6 &&
+    if (hit_processing_status != 1 && moby->state != BLARG_HELICOPTER_EXPLODE_AND_REMOVE_OR_RESET &&
         *(short *)(*(char **)(hit_record + 0x20) + 0xA6) != 0xB8 &&
         *(short *)(*(char **)(hit_record + 0x20) + 0xA6) != 0x199) {
         float remaining_health;
@@ -623,11 +627,11 @@ void process_blarg_helicopter_hits(struct Moby *moby) {
         *(float *)(blarg_helicopter_hit_vars + 0x20) = remaining_health;
         if (hit_reaction_code == 1 || remaining_health <= 0.0f) {
             allocate_voice_for_target_entry(2, 0, moby);
-            moby->state = 6;
+            moby->state = BLARG_HELICOPTER_EXPLODE_AND_REMOVE_OR_RESET;
         } else if (hit_reaction_code != 0xB) {
             *(unsigned char *)(blarg_helicopter_hit_vars + 0x67) = 0xB4;
             trooper_anim_update(moby, (short *)(blarg_helicopter_hit_vars + 0x60));
-            if (*(float *)(hit_record + 0x1C) == 5627.925f && moby->state != 5) {
+            if (*(float *)(hit_record + 0x1C) == 5627.925f && moby->state != BLARG_HELICOPTER_KNOCKBACK) {
                 hit_to_moby_angle = fast_arc_tan(moby->pos.x - *(float *)(hit_record + 0),
                                                  moby->pos.y - *(float *)(hit_record + 4));
                 hit_yaw_offset = fast_subtract_rotations(hit_to_moby_angle, moby->rot.z);
@@ -644,7 +648,7 @@ void process_blarg_helicopter_hits(struct Moby *moby) {
                 *(float *)(blarg_helicopter_hit_vars + 0x94) = frame_time * 4.0f;
                 *(short *)(blarg_helicopter_hit_vars + 0x8E) = scale_game_frames(0x3C);
                 moby->command = moby->state;
-                moby->state = 5;
+                moby->state = BLARG_HELICOPTER_KNOCKBACK;
                 allocate_voice_for_target_entry(1, 0, moby);
             }
         }
