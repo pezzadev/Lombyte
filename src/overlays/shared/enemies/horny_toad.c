@@ -616,9 +616,12 @@ extern int process_moby_suck_cannon_suction(void *) __asm__("FUN_L00_002db8f8");
 int process_suck_cannon_suction_and_update_moby_state(char *a) __asm__("FUN_L00_002d56e0");
 
 int process_suck_cannon_suction_and_update_moby_state(char *moby) {
+    enum {
+        MOBY_STATE_SUCK_CANNON_ACTIVE = 0x9
+    };
     int suction_result = process_moby_suck_cannon_suction(moby);
     if (suction_result == 0) {
-        if (MOBY(moby)->state == 0x9)
+        if (MOBY(moby)->state == MOBY_STATE_SUCK_CANNON_ACTIVE)
             moby[0x20] = 0x5;
     } else {
         moby[0x20] = 0x9;
