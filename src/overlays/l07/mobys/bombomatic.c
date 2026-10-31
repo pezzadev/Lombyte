@@ -81,7 +81,7 @@ extern int D_L07_0015F5CC MACRO_ADDR;
 extern int                FUN_L00_00257b90(int, int);
 extern void *
 FUN_L00_00263fd8(char *, int, float *, void *, int, int, float, float *, float *, float *);
-extern void  FUN_L00_001fff28(void *, int, float);
+extern void  build_axis_rotation_quaternion(void *, int, float) __asm__("FUN_L00_001fff28");
 extern void  FUN_L00_0024f7c8(void *, int, void *);
 extern void  FUN_L00_00257470(void *, int, int);
 extern void  FUN_L00_0025a120(void *);
@@ -404,6 +404,6 @@ eb20:
         float f = D_0015ED6C_gp * 17.80235863f;
         float g = fast_add_rotations(*(float *)(moby_data + 0xC0), f);
         *(float *)(moby_data + 0xC0) = g;
-        FUN_L00_001fff28(moby_data + 0x80, 2, g);
+        build_axis_rotation_quaternion(moby_data + 0x80, 2, g);
     }
 }

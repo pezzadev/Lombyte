@@ -14,7 +14,7 @@ extern float
 advance_accelerated_scalar(float, float, float, float, float *, float *) __asm__("FUN_00213f38");
 extern float FUN_L00_0025be00(float *, float *, float, float, float, float);
 
-extern void  FUN_L00_001fff28(void *, int, float);
+extern void  build_axis_rotation_quaternion(void *, int, float) __asm__("FUN_L00_001fff28");
 extern char *D_001413D0_lui __asm__("D_001413D0") NOT_SDA;
 
 void update_triggered_moby_motion_and_manipulator_angle(char *moby) __asm__("FUN_L05_00316258");
@@ -53,7 +53,7 @@ void update_triggered_moby_motion_and_manipulator_angle(char *moby) {
         } else {
             MOBY(moby)->state = 1;
             *(float *)(motion_and_manipulator_vars + 0x60) = 0.5934119f;
-            FUN_L00_001fff28(motion_and_manipulator_vars + 0x20, 0, 0.5934119f);
+            build_axis_rotation_quaternion(motion_and_manipulator_vars + 0x20, 0, 0.5934119f);
         }
         *(long long *)(moby + 0x38) = *(long long *)(D_001413D0_lui + 0x38);
         break;
@@ -106,7 +106,7 @@ void update_triggered_moby_motion_and_manipulator_angle(char *moby) {
                     MOBY(moby)->state = 3;
             }
         }
-        FUN_L00_001fff28(
+        build_axis_rotation_quaternion(
             motion_and_manipulator_vars + 0x20, 0, *(float *)(motion_and_manipulator_vars + 0x60));
     } break;
     case MOBY_MOVE_TO_OFFSET_POSITION:

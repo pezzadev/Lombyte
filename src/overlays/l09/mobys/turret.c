@@ -28,7 +28,7 @@
    and while idle swings toward the hero with its beam light on. */
 typedef struct {
     u8   pad0[0x10];
-    Vec4 aim; /* 0x10: FUN_L00_001fff28 target */
+    Vec4 aim; /* 0x10: axis rotation quaternion */
     u8   pad20[0x20];
     s16  unk40;
     s16  mount_delay; /* 0x42: frames before the hero can mount again */
@@ -84,7 +84,7 @@ extern void FUN_L00_0026dd20(void *, void *, int, int, float);
 extern void divide_vector_xyz(void *, void *, float) __asm__("FUN_L00_001ff378");
 extern void suck_draw_reticle(void *, int, void *, int, int, int, float, float, float) __asm__("FUN_L00_001edf60");
 extern float compute_interpolated_record_value(void *) __asm__("FUN_0020c9e0");
-extern void  FUN_L00_001fff28(void *, int, float);
+extern void  build_axis_rotation_quaternion(void *, int, float) __asm__("FUN_L00_001fff28");
 void         turret_update(struct Moby *moby) __asm__("FUN_L09_00304c80");
 
 void turret_update(struct Moby *moby) {
@@ -247,7 +247,7 @@ void turret_update(struct Moby *moby) {
         }
         turret_vars->yaw_speed *= 0.97f;
         turret_vars->pitch_speed *= 0.97f;
-        FUN_L00_001fff28(&turret_vars->aim, 1, -turret_vars->pitch);
+        build_axis_rotation_quaternion(&turret_vars->aim, 1, -turret_vars->pitch);
         if (controller_state.held & 0x20) {
             if (controller_state.pressed & 0x20) {
                 blend_moby_animation(moby, turret_vars->barrel == 0 ? 4 : 3, 0, 1);

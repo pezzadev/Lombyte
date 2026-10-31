@@ -78,7 +78,7 @@ extern float extermitank_secondary_particle_vector_a_spread_degrees_gp __asm__("
     __attribute__((sda));
 extern short D_L05_00161B78 __attribute__((sda));
 extern float D_L05_00161B7C __attribute__((sda));
-extern void  FUN_L00_001fff28(void *, int, float);
+extern void  build_axis_rotation_quaternion(void *, int, float) __asm__("FUN_L00_001fff28");
 extern void  mark_moby_for_removal_c3(void *) __asm__("func_0020C828");
 void         handle_extermitank_hits_and_sync_children(char *moby) __asm__("FUN_L05_00305178");
 void         process_extermitank_particle_hits(char *m) __asm__("FUN_L05_00305898");
@@ -203,9 +203,9 @@ void extermitank_update(unsigned char *moby) {
             last = n - 1;
         idx = (*(int *)(extermitank_vars + 0xC0) + n + dir) % n;
         step_mover_2e3f20((char *)moby,
-                         extermitank_vars + 0x70,
-                         (float *)(path + (idx * 16 + 0x10)),
-                         extermitank_vars + 0x40);
+                          extermitank_vars + 0x70,
+                          (float *)(path + (idx * 16 + 0x10)),
+                          extermitank_vars + 0x40);
         if (vector_distance_xy(moby + 0x10, *(char **)(pp + 0x10) + (idx * 16 + 0x10)) < 1.0f) {
             if (idx == last) {
                 char *q = *(char **)(pp + 0x10);
@@ -249,8 +249,9 @@ void extermitank_update(unsigned char *moby) {
             step_angle_toward_target(
                 (float *)(extermitank_vars + 0x198), 0, 0.0f, D_0015ED6C_gp * 1.5707964f);
         }
-        FUN_L00_001fff28(extermitank_vars + 0x140, 1, *(float *)(extermitank_vars + 0x198));
-        FUN_L00_001fff28(
+        build_axis_rotation_quaternion(
+            extermitank_vars + 0x140, 1, *(float *)(extermitank_vars + 0x198));
+        build_axis_rotation_quaternion(
             extermitank_vars + 0x100,
             2,
             fast_subtract_rotations(*(float *)(extermitank_vars + 0x194), MOBY(moby)->rot.z));
@@ -270,9 +271,9 @@ void extermitank_update(unsigned char *moby) {
             last = n - 1;
         idx = (*(int *)(extermitank_vars + 0xC0) + n + dir) % n;
         step_mover_2e3f20((char *)moby,
-                         extermitank_vars + 0x70,
-                         (float *)(path + (idx * 16 + 0x10)),
-                         extermitank_vars + 0x40);
+                          extermitank_vars + 0x70,
+                          (float *)(path + (idx * 16 + 0x10)),
+                          extermitank_vars + 0x40);
         if (vector_distance_xy(moby + 0x10, *(char **)(pp + 0x10) + (idx * 16 + 0x10)) < 1.0f) {
             if (idx == last) {
                 char *q = *(char **)(pp + 0x10);
@@ -424,8 +425,9 @@ void extermitank_update(unsigned char *moby) {
             step_angle_toward_target(
                 (float *)(extermitank_vars + 0x198), 0, 0.08726646f, D_0015ED6C_gp * 1.5707964f);
         }
-        FUN_L00_001fff28(extermitank_vars + 0x140, 1, *(float *)(extermitank_vars + 0x198));
-        FUN_L00_001fff28(
+        build_axis_rotation_quaternion(
+            extermitank_vars + 0x140, 1, *(float *)(extermitank_vars + 0x198));
+        build_axis_rotation_quaternion(
             extermitank_vars + 0x100,
             2,
             fast_subtract_rotations(*(float *)(extermitank_vars + 0x194), MOBY(moby)->rot.z));
