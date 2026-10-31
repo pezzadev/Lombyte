@@ -172,9 +172,9 @@ extern char D_L14_0015F580[] MACRO_ADDR;
 
 #include "rnc/overlay/l14/mobys/blarg_heavy_interceptor_data/update_blarg_heavy_interceptor.h"
 
-extern f32 D_L14_001613A0_gp __asm__("D_L14_001613A0") __attribute__((sda));
+extern f32 l14_blarg_heavy_interceptor_path_easing_error_gain __asm__("D_L14_001613A0") __attribute__((sda));
 
-extern f32 D_L14_001613A4_gp __asm__("D_L14_001613A4") __attribute__((sda));
+extern f32 l14_blarg_heavy_interceptor_path_easing_damping_coefficient __asm__("D_L14_001613A4") __attribute__((sda));
 
 extern Vec4 D_L14_00174560;
 
@@ -495,19 +495,19 @@ void update_blarg_heavy_interceptor(struct Moby *moby) {
                   vector_scratch[0],
                   (f32 *)(moby_vars + 0x194),
                   0.005f,
-                  D_L14_001613A4_gp,
+                  l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                   0.0f);
         ease_c618(&moby->pos.y,
                   vector_scratch[1],
                   (f32 *)(moby_vars + 0x198),
                   0.005f,
-                  D_L14_001613A4_gp,
+                  l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                   0.0f);
         ease_c618(&moby->pos.z,
                   vector_scratch[2],
                   (f32 *)(moby_vars + 0x19C),
                   0.005f,
-                  D_L14_001613A4_gp,
+                  l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                   0.0f);
         update_blarg_heavy_interceptor_aim_transforms(moby, 0);
         if (fast_vec_dist(&moby->pos, vector_scratch) < 0.5f) {
@@ -522,20 +522,20 @@ void update_blarg_heavy_interceptor(struct Moby *moby) {
         ease_c618((f32 *)(moby_vars + 0x170),
                   vector_scratch[0],
                   (f32 *)(moby_vars + 0x180),
-                  D_L14_001613A0_gp,
-                  D_L14_001613A4_gp,
+                  l14_blarg_heavy_interceptor_path_easing_error_gain,
+                  l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                   0.0f);
         ease_c618((f32 *)(moby_vars + 0x174),
                   vector_scratch[1],
                   (f32 *)(moby_vars + 0x184),
-                  D_L14_001613A0_gp,
-                  D_L14_001613A4_gp,
+                  l14_blarg_heavy_interceptor_path_easing_error_gain,
+                  l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                   0.0f);
         ease_c618((f32 *)(moby_vars + 0x178),
                   vector_scratch[2],
                   (f32 *)(moby_vars + 0x188),
-                  D_L14_001613A0_gp,
-                  D_L14_001613A4_gp,
+                  l14_blarg_heavy_interceptor_path_easing_error_gain,
+                  l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                   0.0f);
         break;
     }
@@ -1486,20 +1486,20 @@ void update_blarg_heavy_interceptor_patrol_aim_point(struct Moby *moby) {
     FUN_L00_0025b8c0_c((float *)(interceptor_instance_vars + 0x170),
                        (float *)(interceptor_instance_vars + 0x180),
                        path_target_position[0],
-                       *(float *)&D_L14_001613A0_gp,
-                       *(float *)&D_L14_001613A4_gp,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_error_gain,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                        0.0f);
     FUN_L00_0025b8c0_c((float *)(interceptor_instance_vars + 0x174),
                        (float *)(interceptor_instance_vars + 0x184),
                        path_target_position[1],
-                       *(float *)&D_L14_001613A0_gp,
-                       *(float *)&D_L14_001613A4_gp,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_error_gain,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                        0.0f);
     FUN_L00_0025b8c0_c((float *)(interceptor_instance_vars + 0x178),
                        (float *)(interceptor_instance_vars + 0x188),
                        path_target_position[2],
-                       *(float *)&D_L14_001613A0_gp,
-                       *(float *)&D_L14_001613A4_gp,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_error_gain,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                        0.0f);
     if (*(short *)(interceptor_instance_vars + 0x8A) == 0) {
         if (r != 0) {
@@ -1543,20 +1543,20 @@ void update_blarg_heavy_interceptor_patrol_path_position(struct Moby *moby) {
     FUN_L00_0025b8c0_c(&moby->pos.x,
                        (float *)(heavy_interceptor_vars + 0x194),
                        destination_path_target_position[0],
-                       *(float *)&D_L14_001613A0_gp,
-                       *(float *)&D_L14_001613A4_gp,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_error_gain,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                        0.0f);
     FUN_L00_0025b8c0_c(&moby->pos.y,
                        (float *)(heavy_interceptor_vars + 0x198),
                        destination_path_target_position[1],
-                       *(float *)&D_L14_001613A0_gp,
-                       *(float *)&D_L14_001613A4_gp,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_error_gain,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                        0.0f);
     FUN_L00_0025b8c0_c(&moby->pos.z,
                        (float *)(heavy_interceptor_vars + 0x19C),
                        destination_path_target_position[2],
-                       *(float *)&D_L14_001613A0_gp,
-                       *(float *)&D_L14_001613A4_gp,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_error_gain,
+                       *(float *)&l14_blarg_heavy_interceptor_path_easing_damping_coefficient,
                        0.0f);
 }
 
