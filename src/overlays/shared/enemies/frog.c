@@ -197,6 +197,7 @@ void frog_update(unsigned char *moby) {
         FROG_STATE_WAIT_TO_FOLLOW_PATH = 3,
         FROG_STATE_FOLLOW_PATH = 4,
         FROG_STATE_JUMP_TO_HOME = 5,
+        FROG_STATE_AIRBORNE_MOTION = 6,
         FROG_STATE_LANDING_ANIMATION = 7,
         FROG_STATE_WANDER = 8,
         FROG_STATE_APPROACH_TARGET = 9,
@@ -379,7 +380,7 @@ void frog_update(unsigned char *moby) {
             MOBY(moby)->pos.z = probe_ground_height(moby + 0x10, 0, 0.5f);
         }
         break;
-    case 6: {
+    case FROG_STATE_AIRBORNE_MOTION: {
         int hit = step_moby_motion(moby, frog_instance_vars + 0x120);
         if (hit & 1) {
             moby[0x20] = 7;
