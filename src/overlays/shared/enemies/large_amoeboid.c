@@ -91,8 +91,8 @@ extern void
 trooper_start_knockback(void *, void *, float, int, int, int) __asm__("FUN_L00_0025c558");
 extern float       D_0013F420[];
 extern int         D_001413D0[];
-extern const float D_L01_001619A0_gp __asm__("D_L01_001619A0") __attribute__((sda));
-extern const float D_L01_001619A4_gp __asm__("D_L01_001619A4") __attribute__((sda));
+extern const float l01_smaller_amoeboid_knockback_xy_scale __asm__("D_L01_001619A0") __attribute__((sda));
+extern const float l01_smaller_amoeboid_knockback_z_scale __asm__("D_L01_001619A4") __attribute__((sda));
 extern const float frame_time_macro __asm__("D_0015ED6C");
 
 extern short *l01_moby_index_lists_by_group[] __asm__("D_L01_001ABCC0");
@@ -686,8 +686,8 @@ void process_amoeboid_hits_and_update_targeting(char *moby) {
                 k = frame_time_macro;
                 seven = 7.0f;
                 *(float *)(q + 0x88) = *(float *)(moby_vars + 0x250) * size_multiplier;
-                *(float *)(q + 0x78) = D_L01_001619A0_gp * k;
-                *(float *)(q + 0x7C) = D_L01_001619A4_gp * k;
+                *(float *)(q + 0x78) = l01_smaller_amoeboid_knockback_xy_scale * k;
+                *(float *)(q + 0x7C) = l01_smaller_amoeboid_knockback_z_scale * k;
                 *(int *)(q + 0x84) = *(int *)(q + 0x84) | 4;
                 *(float *)(q + 0xB0) = seven;
                 *(float *)(q + 0xB4) = 13.0f;
@@ -709,8 +709,8 @@ void process_amoeboid_hits_and_update_targeting(char *moby) {
                 k = frame_time_macro;
                 seven = 7.0f;
                 *(float *)(q + 0x88) = *(float *)(moby_vars + 0x250) * size_multiplier;
-                *(float *)(q + 0x78) = D_L01_001619A0_gp * k;
-                *(float *)(q + 0x7C) = D_L01_001619A4_gp * k;
+                *(float *)(q + 0x78) = l01_smaller_amoeboid_knockback_xy_scale * k;
+                *(float *)(q + 0x7C) = l01_smaller_amoeboid_knockback_z_scale * k;
                 *(int *)(q + 0x84) = *(int *)(q + 0x84) | 4;
                 *(float *)(q + 0xB0) = seven;
                 *(float *)(q + 0xB4) = 13.0f;
