@@ -1232,7 +1232,7 @@ typedef struct {
 extern int  *D_L02_001B0AB0_5c88[] __asm__("D_L02_001B0AB0");
 extern float FUN_00213508(void *, int, float);
 extern void  trooper_knockback_arc(void *, float *, void *, void *) __asm__("FUN_L00_0025ab48");
-extern int   FUN_L00_0025ff38(float, void *, void *, int, int, void *, int);
+extern int   follow_5968(float, void *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 extern int   select_group_class_29c_moby(void *argp) __asm__("FUN_L02_002d5658");
 extern void  extend_group_sand_shark_timers(char *arg) __asm__("FUN_L02_002d5728");
 extern int resolve_moby_hit_response(void *, void *, void *, int, int *, float *, int, int) __asm__("FUN_00213928");
@@ -1334,7 +1334,7 @@ void handle_sand_shark_damage_and_targeting(unsigned char *moby) {
     moby[0xA4] = 0xFF;
     trooper_anim_finish(moby, moby_vars->anim);
     path = D_L02_001B0AB0_5c88[moby_vars->i290];
-    if (FUN_L00_0025ff38(moby_vars->f250, moby, moby_vars->tgt, 0, 0, path + 4, *path) != 2 &&
+    if (follow_5968(moby_vars->f250, moby, moby_vars->tgt, 0, 0, path + 4, *path) != 2 &&
         (moby_vars->f250 < vector_distance_xy(moby_vars->home, moby_vars->tgt) ||
          absolute_float(MOBY(moby)->pos.z - moby_vars->tgt[2]) > 3.0f)) {
         moby_vars->i214 = 2;

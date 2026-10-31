@@ -250,7 +250,7 @@ trooper_start_knockback(void *, void *, int, int, int, float) __asm__("FUN_L00_0
 extern void trooper_anim_update(void *, void *) __asm__("FUN_L00_0025d458");
 extern void trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
 extern int
-FUN_L00_0025ff38_c100(float, void *, void *, int, int, int *, int) __asm__("FUN_L00_0025ff38");
+follow_5968(float, void *, void *, int, int, int *, int) __asm__("FUN_L00_0025ff38");
 
 typedef struct {
     char          pad0[0x20];
@@ -378,7 +378,7 @@ void update_gadgebot_damage_target_and_glow(struct Moby *moby) {
     trooper_anim_finish(moby, sentry_vars->anim);
     fall_setup_value_or_path_slot_address = (int)&D_L18_001B0EB0[sentry_vars->path];
     reaction_value_or_path_address = *(int *)fall_setup_value_or_path_slot_address;
-    FUN_L00_0025ff38_c100(512.0f,
+    follow_5968(512.0f,
                           moby,
                           &sentry_vars->target,
                           0,

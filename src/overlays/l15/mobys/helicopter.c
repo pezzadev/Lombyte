@@ -365,7 +365,7 @@ void process_helicopter_hits(struct Moby *m) __asm__("FUN_L15_002c6900");
 
 extern void select_moby_target_goal(void *, float *, float) __asm__("FUN_L02_00261c80");
 
-extern int FUN_L00_0025ff38(float, void *, void *, int, int, void *, int);
+extern int follow_5968(float, void *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 
 extern void FUN_L00_0025df68(void *, void *, void *, int *, float *, int, float, float, float);
 
@@ -445,7 +445,7 @@ void helicopter_update(struct Moby *moby) {
         LevelPath *path;
         helicopter_instance_vars->range = helicopter_instance_vars->chase_range;
         path = D_L15_001B0AB0[helicopter_instance_vars->area_path];
-        FUN_L00_0025ff38(
+        follow_5968(
             helicopter_instance_vars->chase_range, moby, &goal, 0, 0, path->points, path->count);
     }
     if (helicopter_instance_vars->range < fast_vec_dist(&moby->pos, &goal))

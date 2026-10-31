@@ -97,7 +97,7 @@ extern float test_dummy_bomb_horizontal_launch_speed_gp __asm__("D_L16_001619CC"
 
 #include "rnc/overlay/l16/mobys/test_dummy_data/test_dummy_update.h"
 
-extern int FUN_L00_0025ff38(float, char *, void *, int, int, void *, int);
+extern int follow_5968(float, char *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 int        move_test_dummy_toward_position_and_heading(char *moby,
                                                        void *target_position,
                                                        float angle) __asm__("FUN_L16_002ced20");
@@ -228,7 +228,7 @@ void test_dummy_update(unsigned char *moby) {
                 }
                 if (random_integer_below(2)) {
                     char *p = D_L16_001B0930[dummy_data->sound_path];
-                    FUN_L00_0025ff38(
+                    follow_5968(
                         12.0f, (char *)moby, dummy_data->target, 0, 0, p + 16, *(int *)p);
                 } else {
                     dummy_data->mode = 2;
@@ -347,7 +347,7 @@ void test_dummy_update(unsigned char *moby) {
                 }
                 if (random_integer_below(2)) {
                     char *p = D_L16_001B0930[dummy_data->sound_path];
-                    FUN_L00_0025ff38(
+                    follow_5968(
                         12.0f, (char *)moby, dummy_data->target, 0, 0, p + 16, *(int *)p);
                 } else {
                     dummy_data->mode = 2;

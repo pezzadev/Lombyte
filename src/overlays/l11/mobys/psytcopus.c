@@ -101,7 +101,7 @@ extern void FUN_L00_002371e0_p(void *) __asm__("FUN_L00_002371e0");
 extern void FUN_L00_0025d458_p(struct Moby *, void *) __asm__("FUN_L00_0025d458");
 extern void FUN_L00_0025d538_p(struct Moby *, void *) __asm__("FUN_L00_0025d538");
 extern int
-FUN_L00_0025ff38_p(struct Moby *, void *, int, int, void *, int, float) __asm__("FUN_L00_0025ff38");
+follow_5968(struct Moby *, void *, int, int, void *, int, float) __asm__("FUN_L00_0025ff38");
 
 /* Path moby update: hit handling first, then a state machine that turns toward the player or its target,
    spawns and fires a projectile (pvars 0x160) and dies by explosion or by reaching the end of its path. */
@@ -383,7 +383,7 @@ void handle_psytcopus_hits(struct Moby *psytcopus) {
     FUN_L00_0025d538_p(psytcopus, psytcopus_vars->unk60);
     psytcopus_vars->unk140 = 24.0f;
     path = (s32 *)l11_paths[psytcopus_vars->unk13C];
-    if (FUN_L00_0025ff38_p(
+    if (follow_5968(
             psytcopus, &psytcopus_vars->unkD0, 0, 0, path + 4, *path, psytcopus_vars->unk140) !=
             2 &&
         (psytcopus_vars->unk140 < vector_distance_xy(&psytcopus->pos, &psytcopus_vars->unkD0) ||

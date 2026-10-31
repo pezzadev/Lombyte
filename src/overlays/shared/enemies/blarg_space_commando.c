@@ -557,7 +557,7 @@ extern char *FUN_L06_00300c60_c(int unused, char *pa, char *pb) __asm__("FUN_L06
 extern f32   D_0015ED6C;
 extern float FUN_L04_001f1978(float);
 extern float randf_sym(float lo, float hi) __asm__("FUN_L00_00257c48");
-extern int   FUN_L00_0025ff38(float, char *, void *, int, int, void *, int);
+extern int   follow_5968(float, char *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 extern int   resolve_moby_hit_response(void *, void *, void *, int, int *, float *, int, int);
 extern int  *D_L06_001B0C30[];
 extern int   current_level_index_gp __asm__("D_0015ED84") __attribute__((sda));
@@ -736,7 +736,7 @@ void process_blarg_space_commando_hits(char *moby) {
     {
         char *q = commando_state + 0x120;
         route_record = D_L06_001B0C30[*(int *)(commando_state + 0x180)];
-        if (FUN_L00_0025ff38(*(float *)(commando_state + 0x198),
+        if (follow_5968(*(float *)(commando_state + 0x198),
                              moby,
                              q,
                              0,

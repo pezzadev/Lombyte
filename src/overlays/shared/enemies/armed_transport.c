@@ -106,7 +106,7 @@ extern int
 hit_reaction(void *, char *, void *, int, int *, float *, int, int) __asm__("FUN_L00_0025a478");
 extern void trooper_anim_update(void *, void *) __asm__("FUN_L00_0025d458");
 extern void trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
-extern void FUN_L00_0025ff38(float, void *, void *, int, int, void *, int);
+extern void follow_5968(float, void *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 
 extern float D_L16_00161D78_gp __asm__("D_L16_00161D78") __attribute__((sda));
 
@@ -466,7 +466,7 @@ void update_armed_transport_damage_and_targeting(struct Moby *transport_moby) {
     trooper_anim_finish(transport_moby, transport_data + 0x60);
     if (*(int *)(transport_data + 0xD0) != -1 && D_001413DC[0] != 22) {
         char *path = D_L16_001B0930[*(int *)(transport_data + 0xD0)];
-        FUN_L00_0025ff38(
+        follow_5968(
             128.0f, transport_moby, transport_data + 0x70, 0, 0, path + 0x10, *(int *)path);
     } else
         *(int *)(transport_data + 0xB4) = 2;

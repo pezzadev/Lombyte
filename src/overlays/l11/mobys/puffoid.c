@@ -731,7 +731,7 @@ extern void  trooper_anim_update(void *, void *) __asm__("FUN_L00_0025d458");
 extern void  trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
 extern void  FUN_00212f90(void *, s32, s32, s32);
 extern float scale_time(float) __asm__("FUN_001f96b0");
-extern s32   FUN_L00_0025ff38(void *, void *, s32, s32, void *, s32, float);
+extern s32   follow_5968(void *, void *, s32, s32, void *, s32, float) __asm__("FUN_L00_0025ff38");
 
 /* Path patroller update: rides its carrier moby until dropped, takes hits (hit and death states), and follows its l11_paths path toward the hero. */
 void       update_puffoid_damage_and_path_goal(struct Moby *moby) __asm__("FUN_L11_00315968");
@@ -882,7 +882,7 @@ void update_puffoid_damage_and_path_goal(struct Moby *moby) {
         patrol_vars->reach = patrol_vars->range;
     }
     path = (char *)l11_paths[patrol_vars->path_index];
-    if (FUN_L00_0025ff38(
+    if (follow_5968(
             moby, &patrol_vars->goal, 0, 0, path + 0x10, *(s32 *)path, patrol_vars->reach) != 2) {
         Vec4f *goal_check_position;
         if (moby->state == 1) {

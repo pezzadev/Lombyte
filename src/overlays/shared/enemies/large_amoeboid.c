@@ -81,7 +81,7 @@ extern char *find_nearest_class_26f_moby_in_list(char *, int) __asm__("FUN_L01_0
 
 extern float fast_vec_dist(void *, void *);
 extern char *D_L01_0015FFD8;
-extern int   FUN_L00_0025ff38(float, char *, void *, int, int, void *, int);
+extern int   follow_5968(float, char *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 extern int   fast_tween_color(f32, s32, s32) __asm__("FUN_001fa6e0");
 extern int   resolve_moby_hit_response(void *, void *, void *, int, int *, float *, int, int);
 extern short amoeboid_color_cycle_start_gp __asm__("D_L01_00161998") __attribute__((sda));
@@ -760,7 +760,7 @@ void process_amoeboid_hits_and_update_targeting(char *moby) {
             0) {
         search_path = ((char *)l01_paths[*(int *)(moby_vars + 0x24C)]);
         path_search_position = moby_vars + 0x1C0;
-        if (FUN_L00_0025ff38(*(float *)(moby_vars + 0x228),
+        if (follow_5968(*(float *)(moby_vars + 0x228),
                              moby,
                              path_search_position,
                              0,

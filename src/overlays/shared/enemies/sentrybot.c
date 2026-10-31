@@ -150,7 +150,7 @@ extern void
 trooper_start_knockback(void *, void *, int, int, int, float) __asm__("FUN_L00_0025c558");
 extern void trooper_anim_update(void *, void *) __asm__("FUN_L00_0025d458");
 extern void trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
-extern int  FUN_L00_0025ff38(void *, void *, float, int, int, void *, int);
+extern int  follow_5968(void *, void *, float, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 
 extern void draw_offset_textured_effect_quad(void *, int, float, float) __asm__("FUN_L00_00263618");
 
@@ -1634,7 +1634,7 @@ void update_sentrybot_hit_response_and_target_visibility(void *sentrybot_moby, i
         sentrybot_data[0x15A] = 0;
     }
     path = D_L15_001B0AB0[*(int *)(sentrybot_data + 0x120)];
-    if (FUN_L00_0025ff38(moby, sentrybot_data + 0xD0, 128.0f, 0, 0, path + 4, *path) != 2) {
+    if (follow_5968(moby, sentrybot_data + 0xD0, 128.0f, 0, 0, path + 4, *path) != 2) {
         float target_angle;
         seen = 0;
         target_angle = fast_arc_tan(*(float *)(sentrybot_data + 0xD0) - MOBY(moby)->pos.x,

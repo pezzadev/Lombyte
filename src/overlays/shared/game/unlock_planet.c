@@ -107,8 +107,8 @@ int select_moby_combat_target(char *query_moby, char *target_output, float best)
 }
 
 extern int point_in_path_xy(void *, void *, int) __asm__("FUN_L00_00259740");
-int        FUN_L00_0025ff38(char *a, char *o, float best, int *list, int n, float *v, int nv);
-int        FUN_L00_0025ff38(char  *query_moby,
+int        follow_5968(char *a, char *o, float best, int *list, int n, float *v, int nv) __asm__("FUN_L00_0025ff38");
+int        follow_5968(char  *query_moby,
                             char  *target_output,
                             float  best,
                             int   *list,

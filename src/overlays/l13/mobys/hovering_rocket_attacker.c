@@ -326,7 +326,7 @@ extern void trooper_anim_update(void *, short *) __asm__("FUN_L00_0025d458");
 
 extern void trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
 
-extern int FUN_L00_0025ff38(float, void *, void *, int, int, void *, int);
+extern int follow_5968(float, void *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 
 extern char *D_L13_001B07B0[];
 
@@ -505,7 +505,7 @@ void update_hovering_rocket_attacker_common(unsigned char *moby) {
     }
     {
         char *target_selection_point_table = D_L13_001B07B0[*(int *)(moby_data + 0xD0)];
-        target_selection_status = FUN_L00_0025ff38(*(float *)(moby_data + 0xD8),
+        target_selection_status = follow_5968(*(float *)(moby_data + 0xD8),
                                                    moby,
                                                    moby_data + 0x70,
                                                    0,

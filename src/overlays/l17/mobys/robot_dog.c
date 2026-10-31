@@ -598,7 +598,7 @@ extern float random_float_between(float a, float b) __asm__("FUN_002132a8");
 extern int   collision_line(void *, void *, int, int, int) __asm__("FUN_001efa68");
 extern int
 hit_reaction(void *, void *, void *, int, int *, float *, int, int) __asm__("FUN_L00_0025a478");
-extern int  FUN_L00_0025ff38(float, char *, void *, int, int, void *, int);
+extern int  follow_5968(float, char *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 extern void trooper_knockback_arc(void *, float *, void *, void *) __asm__("FUN_L00_0025ab48");
 extern void
 trooper_start_knockback(float, void *, void *, int, int, int) __asm__("FUN_L00_0025c558");
@@ -655,7 +655,7 @@ void update_robot_dog_hit_reaction_and_target_detection(void *moby_v, int clip_v
     if (clip_volume_suppressed != 0) {
         return;
     }
-    if (FUN_L00_0025ff38(128.0f, (char *)moby, moby_vars->v180, 0, 0, 0, 0) == 2) {
+    if (follow_5968(128.0f, (char *)moby, moby_vars->v180, 0, 0, 0, 0) == 2) {
         return;
     }
     if (fast_vec_dist(moby->pos, moby_vars->v1B0) < 64.0f) {

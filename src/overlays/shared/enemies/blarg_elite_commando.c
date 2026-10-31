@@ -123,7 +123,7 @@ extern char *find_moby_hit(void *, int, int) __asm__("FUN_L00_0025a420");
 extern int
 hit_reaction(void *, void *, void *, int, int *, float *, int, int) __asm__("FUN_L00_0025a478");
 extern int  select_moby_combat_target(float, char *, void *) __asm__("FUN_L00_0025fcb8");
-extern int  FUN_L00_0025ff38(float, char *, void *, int, int, void *, int);
+extern int  follow_5968(float, char *, void *, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 extern void FUN_L00_00257470(void *, int, int);
 extern void trooper_knockback_arc(void *, float *, void *, void *) __asm__("FUN_L00_0025ab48");
 extern void
@@ -618,7 +618,7 @@ void update_blarg_elite_commando_damage_and_pursuit(struct Moby *commando_moby) 
         commando_data->pursuit_mode = 2;
     } else if (commando_data->path_index >= 0 && commando_data->pursuit_timer == 0) {
         char *path = D_L16_001B0930[commando_data->path_index];
-        FUN_L00_0025ff38(
+        follow_5968(
             24.0f, commando_moby, commando_data->target, 0, 0, path + 0x10, *(int *)path);
     } else {
         select_moby_combat_target(24.0f, commando_moby, commando_data->target);

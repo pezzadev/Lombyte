@@ -117,7 +117,7 @@ extern int
 hit_reaction(void *, void *, void *, int, int *, float *, int, int) __asm__("FUN_L00_0025a478");
 extern void FUN_L00_00257470(void *, int, int);
 extern int
-func_L00_00260FB0_f(char *, void *, float, int, int, void *, int) __asm__("FUN_L00_0025ff38");
+follow_5968(char *, void *, float, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 
 extern void  scale_vector_002d3878(float, void *) __asm__("FUN_L00_0025f730");
 extern void  draw_geometry_quad(void *, void *, int) __asm__("FUN_001f7d30");
@@ -408,7 +408,7 @@ void update_scoutbot_health_and_target(struct Moby *moby) {
     ((unsigned char *)moby)[0xA4] = 0xFF;
     if (((unsigned char *)moby)[0x20] != 0 && ((unsigned char *)moby)[0x20] != 4) {
         char *path = ((char *)l08_paths[*(int *)(scoutbot_pvars + 0x21C)]);
-        if (func_L00_00260FB0_f(
+        if (follow_5968(
                 moby, scoutbot_pvars + 0x170, 14.0f, 0, 0, path + 0x10, *(int *)path) != 2) {
             if (14.0f < vector_distance_xy(scoutbot_pvars + 0x1C0, scoutbot_pvars + 0x170)) {
                 *(int *)(scoutbot_pvars + 0x1B4) = 2;

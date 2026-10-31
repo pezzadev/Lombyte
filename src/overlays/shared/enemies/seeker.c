@@ -399,13 +399,13 @@ extern int   scale_time() __asm__("FUN_001f96b0");
 extern void  FUN_L00_00257470_c(void *, int, int) __asm__("FUN_L00_00257470");
 extern void  trooper_anim_update(void *m, short *p) __asm__("FUN_L00_0025d458");
 extern void  trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
-int          FUN_L00_0025ff38(float best,
+int          follow_5968(float best,
                               char *a,
                               char *o,
                               int  *excluded,
                               int   excluded_count,
                               void *region,
-                              int   region_count);
+                              int   region_count) __asm__("FUN_L00_0025ff38");
 int  select_moby_record_by_xy_distance(char *a, char *o, float best) __asm__("FUN_L04_00252e18");
 void trooper_knockback_arc(void *v, float *ang, float *s1, float *s2) __asm__("FUN_L00_0025ab48");
 void trooper_start_knockback(u8 *a, void *b, int c, int d, int e, float f) __asm__("FUN_L00_0025c558");

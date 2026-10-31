@@ -32,14 +32,14 @@
 /* Ported from rac1-decomp (src/overlays/shared/vendor_002B2A28.c: func_L14_002B44B8), where it is exact; names translated to the US level program. */
 
 extern char D_0013E533[];
-extern int  FUN_L00_0025ff38(char *, char *, float, int, int, int *, int);
+extern int  follow_5968(char *, char *, float, int, int, int *, int) __asm__("FUN_L00_0025ff38");
 
 void update_plasmabot_target(char *moby) __asm__("FUN_L14_002b3268");
 
 void update_plasmabot_target(char *moby) {
     char *plasmabot_private_vars = ((char *)MOBY(moby)->pvars);
     int  *target_filter_record = ((int *)l14_paths[*(int *)(plasmabot_private_vars + 0x244)]);
-    if (FUN_L00_0025ff38(moby,
+    if (follow_5968(moby,
                          plasmabot_private_vars + 0xD0,
                          *(float *)(plasmabot_private_vars + 0x234),
                          0,

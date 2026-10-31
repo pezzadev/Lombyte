@@ -429,7 +429,7 @@ trooper_start_knockback(ElectroidMoby *, void *, s32, s32, s32, f32) __asm__("FU
 extern void trooper_anim_update(ElectroidMoby *, void *) __asm__("FUN_L00_0025d458");
 extern void trooper_anim_finish(ElectroidMoby *, void *) __asm__("FUN_L00_0025d538");
 extern s32  select_moby_combat_target(ElectroidMoby *, f32, void *) __asm__("FUN_L00_0025fcb8");
-extern void FUN_L00_0025ff38(ElectroidMoby *, void *, s32, s32, void *, s32, f32);
+extern void follow_5968(ElectroidMoby *, void *, s32, s32, void *, s32, f32) __asm__("FUN_L00_0025ff38");
 f32         veldin_robot_default_target_range_gp __asm__("D_L00_00161BD0") = 24.0f;
 f32         veldin_robot_knockback_xy_scale_gp __asm__("D_L00_00161BDC") = 1e+01f;
 f32         veldin_robot_knockback_z_scale_gp __asm__("D_L00_00161BE0") = 9.5f;
@@ -504,7 +504,7 @@ void update_veldin_robot_damage_and_targeting(ElectroidMoby *moby) {
     trooper_anim_finish(moby, anim);
     if (moby->state == 1) {
         path = toad_paths[vars->unk1B4];
-        FUN_L00_0025ff38(moby, &vars->targetPos, 0, 0, path->pts, path->count, 64.0f);
+        follow_5968(moby, &vars->targetPos, 0, 0, path->pts, path->count, 64.0f);
     } else if (moby->state != 5) {
         range = veldin_robot_default_target_range_gp;
         if (vars->unk1DA != 0) {

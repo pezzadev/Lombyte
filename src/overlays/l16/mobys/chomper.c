@@ -217,7 +217,7 @@ extern float chomper_knockback_horizontal_speed_approach_rate_gp __asm__("D_L16_
 extern float chomper_knockback_gravity_gp __asm__("D_L16_00161E54") __attribute__((sda));
 extern float chomper_knockback_vertical_speed_gp __asm__("D_L16_00161E5C") __attribute__((sda));
 extern float chomper_knockback_horizontal_speed_gp __asm__("D_L16_00161E60") __attribute__((sda));
-extern int   FUN_L00_0025ff38(void *, void *, float, int, int, void *, int);
+extern int   follow_5968(void *, void *, float, int, int, void *, int) __asm__("FUN_L00_0025ff38");
 extern void  trooper_knockback_arc(void *, float *, void *, void *) __asm__("FUN_L00_0025ab48");
 extern void  trooper_anim_update(void *m, short *p) __asm__("FUN_L00_0025d458");
 
@@ -266,7 +266,7 @@ void update_chomper_hit_reaction_and_target(void *chomper_instance) {
     trooper_anim_finish(chomper_moby, pursuit_data->reaction);
     reaction_flags_or_path_entry_address = (int)&D_L16_001B0930[pursuit_data->path];
     reaction_kind_or_path_address = *(int *)reaction_flags_or_path_entry_address;
-    if (FUN_L00_0025ff38(chomper_moby,
+    if (follow_5968(chomper_moby,
                          pursuit_data->target,
                          16.0f,
                          0,

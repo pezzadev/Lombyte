@@ -165,7 +165,7 @@ extern char                *FUN_L00_0025a420(void *, int, int);
 extern void                 FUN_L00_00257470(void *, int, int);
 extern void                 FUN_00212f90(void *, int, int, int);
 extern float                scale_recovery_time(float) __asm__("FUN_L06_00216fa8");
-extern int                  FUN_L00_0025ff38(void *, void *, int, int, void *, int, float);
+extern int                  follow_5968(void *, void *, int, int, void *, int, float) __asm__("FUN_L00_0025ff38");
 extern void                 FUN_L06_002fb148_recovery_high(char *) __asm__("FUN_L06_002fb508");
 extern void                 FUN_L06_002fb148_recovery_low(char *) __asm__("FUN_L06_002fb8c8");
 extern short D_L06_0014162A NOT_SDA;
@@ -887,7 +887,7 @@ void update_alien_queen_hit_response_and_recovery(char *moby) {
         D_L06_00161F14,
         (fast_sin(*(float *)(alien_queen_hit_recovery_vars + 0x128)) + 1.0f) * 0.5f);
     path = D_L06_001B0C30[*(int *)(alien_queen_hit_recovery_vars + 0xEC)];
-    FUN_L00_0025ff38(moby, alien_queen_hit_recovery_vars + 0x70, 0, 0, path + 4, *path, 255.0f);
+    follow_5968(moby, alien_queen_hit_recovery_vars + 0x70, 0, 0, path + 4, *path, 255.0f);
     if (*(int *)(alien_queen_hit_recovery_vars + 0xB0) == 0)
         *(int *)(alien_queen_hit_recovery_vars + 0xB0) = D_L06_001413D0;
 }

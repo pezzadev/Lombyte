@@ -1822,7 +1822,7 @@ extern int resolve_moby_hit_response(void *, void *, void *, int, void *, void *
 extern void  trooper_anim_update(void *m, short *p) __asm__("FUN_L00_0025d458");
 extern void  trooper_anim_finish(void *, void *) __asm__("FUN_L00_0025d538");
 extern char *create_moby(int) __asm__("FUN_0020c4f8");
-extern int   FUN_L00_0025ff38_5e80(float a, char *m, char *b, int c, int d, int *e, int f) __asm__("FUN_L00_0025ff38");
+extern int   follow_5968(float a, char *m, char *b, int c, int d, int *e, int f) __asm__("FUN_L00_0025ff38");
 extern int   poll_moby_state_and_rearm(char *) __asm__("FUN_L18_002d8050");
 extern char *create_class_274_ring_effect(void *, void *, float) __asm__("FUN_L18_002dc3e0");
 extern void  FUN_L18_002f1cc8_5e80(void *) __asm__("FUN_L18_002f1cc8");
@@ -1963,7 +1963,7 @@ void update_drek_boss_damage_and_phase_transitions(char *moby) {
     update_entity(*(char **)(boss_data + 0x3A4));
     {
         int *e = D_L18_001B0EB0[*(int *)(boss_data + 0x218)];
-        FUN_L00_0025ff38_5e80(512.0f, moby, boss_data + 0x70, 0, 0, e + 4, e[0]);
+        follow_5968(512.0f, moby, boss_data + 0x70, 0, 0, e + 4, e[0]);
     }
     if (*(int *)(boss_data + 0xB0) == 0) {
         *(struct Moby **)(boss_data + 0xB0) = hero.moby;
