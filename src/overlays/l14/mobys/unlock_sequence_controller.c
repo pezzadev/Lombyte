@@ -32,6 +32,9 @@ void update_unlock_sequence_controller(struct Moby *moby) {
         UNLOCK_SEQUENCE_WAIT_FOR_TRIGGER = 1,
         UNLOCK_SEQUENCE_COUNTDOWN = 2
     };
+    enum {
+        UNLOCK_SEQUENCE_COMPLETE = 3
+    };
     int  *unlock_sequence_data = ((int *)moby->pvars);
     short id;
 
@@ -44,14 +47,14 @@ void update_unlock_sequence_controller(struct Moby *moby) {
         }
         id = ((short)moby->save_id);
         if (D_L14_001BB930.cleared[id] != 0) {
-            moby->state = 3;
+            moby->state = UNLOCK_SEQUENCE_COMPLETE;
             return;
         }
         if (D_0014C190_257218[current_level_index][id >> 5] >> (moby->save_id & 0x1F) & 1) {
-            moby->state = 3;
+            moby->state = UNLOCK_SEQUENCE_COMPLETE;
             return;
         }
-        moby->state = 1;
+        moby->state = UNLOCK_SEQUENCE_WAIT_FOR_TRIGGER;
         save_and_lower_unlock_sequence_mobys((char *)moby);
         break;
     case UNLOCK_SEQUENCE_WAIT_FOR_TRIGGER:
@@ -61,7 +64,7 @@ void update_unlock_sequence_controller(struct Moby *moby) {
         D_0014C190_257218[current_level_index][((short)moby->save_id) >> 5] |=
             1 << (moby->save_id & 0x1F);
         D_L14_001BABD0[((short)moby->save_id) >> 5] |= 1 << (moby->save_id & 0x1F);
-        moby->state = 2;
+        moby->state = UNLOCK_SEQUENCE_COUNTDOWN;
         unlock_sequence_data[1] = scale_game_frames(0x78);
         ((float *)unlock_sequence_data)[2] =
             1.0f / convert_integer_to_float(unlock_sequence_data[1]);
@@ -71,7 +74,7 @@ void update_unlock_sequence_controller(struct Moby *moby) {
         fast_dec_timer(&unlock_sequence_data[1]);
         raise_unlock_sequence_mobys((char *)moby);
         if (unlock_sequence_data[1] == 0) {
-            moby->state = 3;
+            moby->state = UNLOCK_SEQUENCE_COMPLETE;
         }
         break;
     }
