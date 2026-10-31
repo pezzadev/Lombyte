@@ -25,6 +25,9 @@ void update_triggered_moby_slide_and_lowering(char *moby) {
         MOBY_SLIDE_TO_END_POINT = 2,
         MOBY_LOWER_BELOW_POSE_HEIGHT = 3
     };
+    enum {
+        MOBY_LOWERING_COMPLETE = 4
+    };
     char        *slide_and_lowering_vars = ((char *)MOBY(moby)->pvars);
     float        slide_motion_scratch[4];
     float        slide_step_distance;
@@ -48,14 +51,14 @@ void update_triggered_moby_slide_and_lowering(char *moby) {
             MOBY(moby)->flags |= 0x8000;
         }
         fast_vec_add(moby + 0x10, moby + 0x10, slide_motion_scratch);
-        MOBY(moby)->state = 1;
+        MOBY(moby)->state = MOBY_WAIT_FOR_TRIGGER;
         break;
     }
     case MOBY_WAIT_FOR_TRIGGER:
         if ((*(unsigned char **)&D_L05_0015FFD8)[*(int *)(slide_and_lowering_vars + 0x14) * 256 +
                                                  0xBC] != 0) {
             allocate_voice_for_target_entry(0, 0, moby);
-            MOBY(moby)->state = 2;
+            MOBY(moby)->state = MOBY_SLIDE_TO_END_POINT;
             clear_u64_value(slide_and_lowering_vars);
         }
         break;
@@ -80,7 +83,7 @@ void update_triggered_moby_slide_and_lowering(char *moby) {
         fast_vec_normalize(slide_and_lowering_vars, slide_motion_scratch, speed);
         fast_vec_add(moby + 0x10, moby + 0x10, slide_and_lowering_vars);
         if (fast_vec_length(slide_motion_scratch) < 0.01f) {
-            MOBY(moby)->state = 3;
+            MOBY(moby)->state = MOBY_LOWER_BELOW_POSE_HEIGHT;
         }
         break;
     case MOBY_LOWER_BELOW_POSE_HEIGHT:
@@ -93,7 +96,7 @@ void update_triggered_moby_slide_and_lowering(char *moby) {
                                    (float *)&MOBY(moby)->pos.z,
                                    (float *)(slide_and_lowering_vars + 8));
         if (MOBY(moby)->pos.z < pose_entry->pos.z - 5.9f) {
-            MOBY(moby)->state = 4;
+            MOBY(moby)->state = MOBY_LOWERING_COMPLETE;
         }
         break;
     }
