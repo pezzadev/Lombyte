@@ -43,11 +43,15 @@
 void update_wall_button_blocker(struct Moby *moby) __asm__("FUN_L16_002e36e8");
 
 void update_wall_button_blocker(struct Moby *moby) {
+    enum {
+        WALL_BUTTON_BLOCKER_STATE_UNINITIALIZED = 0,
+        WALL_BUTTON_BLOCKER_STATE_INITIALIZED = 1
+    };
     float *rotation_scale_data = (float *)moby->pvars;
-    if (moby->state == 0) {
+    if (moby->state == WALL_BUTTON_BLOCKER_STATE_UNINITIALIZED) {
         fast_vec_normalize(&moby->rot_row1, &moby->rot_row1, rotation_scale_data[0] * 0.25f);
         fast_vec_normalize(&moby->rot_row2, &moby->rot_row2, rotation_scale_data[1] * 0.25f);
-        moby->state = 1;
+        moby->state = WALL_BUTTON_BLOCKER_STATE_INITIALIZED;
         moby->flags |= 0x101;
         update_entity(moby);
     }
