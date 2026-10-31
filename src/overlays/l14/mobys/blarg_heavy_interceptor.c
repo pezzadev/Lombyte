@@ -1653,6 +1653,9 @@ update_moby_rotation_oscillation(u8 *, u8 *, u8 *, f32, f32, f32) __asm__("FUN_L
 void update_blarg_heavy_interceptor_oscillation_and_patrol_heading(struct Moby *moby) __asm__("FUN_L14_002aea08");
 
 void update_blarg_heavy_interceptor_oscillation_and_patrol_heading(struct Moby *moby) {
+    enum {
+        INTERCEPTOR_STATE_PATROL_AND_SCAN = 1
+    };
     u8 *interceptor_private_vars = ((u8 *)moby->pvars);
     f32 heading_offset;
     update_moby_vertical_oscillation(
@@ -1668,7 +1671,7 @@ void update_blarg_heavy_interceptor_oscillation_and_patrol_heading(struct Moby *
         blarg_heavy_interceptor_rotation_oscillation_amplitude_gp,
         blarg_heavy_interceptor_rotation_oscillation_first_phase_increment_gp,
         blarg_heavy_interceptor_rotation_oscillation_second_phase_increment_gp);
-    if (moby->state == 1) {
+    if (moby->state == INTERCEPTOR_STATE_PATROL_AND_SCAN) {
         if (fast_dec_timer_s16((s16 *)(interceptor_private_vars + 0x1B4))) {
             *(s16 *)(interceptor_private_vars + 0x1B4) =
                 scale_game_frames(blarg_heavy_interceptor_patrol_heading_change_interval_frames_gp);
