@@ -22,6 +22,9 @@ extern void attach_manipulator(int, int, void *) __asm__("FUN_0020cb10");
 void update_menu_preview_pose_and_attachments(void *preview) __asm__("FUN_00224e18");
 
 void update_menu_preview_pose_and_attachments(void *preview) {
+    enum {
+        MENU_PREVIEW_BINDING_SELECTION_RESET = 0
+    };
     PauseMoby *moby = preview;
     char     **preview_vars = moby->vars;
     f32        transform[16];
@@ -78,7 +81,7 @@ void update_menu_preview_pose_and_attachments(void *preview) {
         *(int *)((char *)&first_attachment_manipulator + 0x28) = 0;
     }
     moby->binding_blend_word = 0;
-    moby->binding_state = 0;
+    moby->binding_state = MENU_PREVIEW_BINDING_SELECTION_RESET;
 }
 
 extern __typeof__(update_menu_preview_pose_and_attachments) func_00224E18
