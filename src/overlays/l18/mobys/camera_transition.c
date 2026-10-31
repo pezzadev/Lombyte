@@ -229,6 +229,9 @@ void start_camera_transition(struct Moby *moby,
                              int          transition_delay_frames,
 
                              int transition_mode) {
+    enum {
+        CAMERA_TRANSITION_STATE_PRE_TRANSITION_RAMP_UP = 2
+    };
     char *position_rotation_transition_vars = (char *)moby->pvars;
     *(int *)(position_rotation_transition_vars + 0x60) = 0;
     *(int *)(position_rotation_transition_vars + 0x64) = 0;
@@ -237,7 +240,7 @@ void start_camera_transition(struct Moby *moby,
     qcopy(position_rotation_transition_vars + 0x20, transition_start_rotation);
     qcopy(position_rotation_transition_vars + 0x30, transition_target_rotation);
     qcopy(position_rotation_transition_vars + 0x40, transition_setup_vector);
-    moby->state = 2;
+    moby->state = CAMERA_TRANSITION_STATE_PRE_TRANSITION_RAMP_UP;
     *(float *)(position_rotation_transition_vars + 0x68) = frame_time_sq * 0.333f;
     *(float *)(position_rotation_transition_vars + 0x70) =
         1.0f / (float)scale_game_frames(invulnerability_duration_frames);
