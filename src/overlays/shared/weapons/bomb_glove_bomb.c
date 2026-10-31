@@ -1411,13 +1411,13 @@ void bomb_update(BombMoby *bomb_moby) {
                     for (i = 0; i < blast_effect_count; i++) {
                         float spd = s * random_float_between(8.0f, 10.0f) * frame_time_macro -
                                     g * frame_time_macro;
-                        Colors6 c1 = l00_bomb_blast_effect_primary_palette;
+                        Colors6 blast_effect_primary_palette = l00_bomb_blast_effect_primary_palette;
                         Colors6 blast_effect_secondary_palette =
                             l00_bomb_blast_effect_secondary_palette;
                         FUN_L00_0026a9f0_2adb30(
                             &bomb_moby->pos,
                             &blast_velocity,
-                            swap_packed_color_channels(c1.c[random_integer_below(6)],
+                            swap_packed_color_channels(blast_effect_primary_palette.c[random_integer_below(6)],
                                                        (unsigned char)item_text_variant[0xA]),
                             swap_packed_color_channels(
                                 blast_effect_secondary_palette.c[random_integer_below(6)],
@@ -1585,7 +1585,7 @@ void bomb_update(BombMoby *bomb_moby) {
                                 mine_blend_color(0x7F << 24,
                                                  (0x7F << 24) | (cb << 16) | (cg << 8) | cr,
                                                  random_float_between(0.25f, 1.0f));
-                            int   c1 = mine_blend_color(0,
+                            int   shrinking_particle_secondary_color = mine_blend_color(0,
                                                       ((cb / 2) << 16) | ((cg / 2) << 8) | (cr / 2),
                                                       random_float_between(0.5f, 1.0f));
                             float sz;
@@ -1609,7 +1609,7 @@ void bomb_update(BombMoby *bomb_moby) {
                                 &v2,
                                 &particle_work_vector,
                                 shrinking_particle_primary_color,
-                                c1,
+                                shrinking_particle_secondary_color,
                                 sz,
                                 life,
                                 1,
