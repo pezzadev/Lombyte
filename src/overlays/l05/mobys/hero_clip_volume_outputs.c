@@ -29,7 +29,7 @@ void update_hero_clip_volume_outputs(struct Moby *moby) {
 
     switch (state) {
     case MOBY_INITIALIZE:
-        moby->state = 1;
+        moby->state = MOBY_CHECK_HERO_VOLUME;
         moby->flags |= 1;
         moby->update_dist = 0xFF;
         moby->collision = 0;
