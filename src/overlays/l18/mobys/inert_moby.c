@@ -48,8 +48,12 @@ typedef struct {
 void update_inert_moby(Level18VendorMobyShort *moby) __asm__("FUN_L18_002f7ab0");
 
 void update_inert_moby(Level18VendorMobyShort *moby) {
-    if (moby->state == 0) {
-        moby->state = 1;
+    enum {
+        INERT_MOBY_STATE_UNINITIALIZED = 0,
+        INERT_MOBY_STATE_INITIALIZED = 1
+    };
+    if (moby->state == INERT_MOBY_STATE_UNINITIALIZED) {
+        moby->state = INERT_MOBY_STATE_INITIALIZED;
         moby->flags |= 3;
         moby->substate = 0;
     }
