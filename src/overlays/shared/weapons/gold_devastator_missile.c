@@ -153,7 +153,7 @@ extern void FUN_L00_001ff290_c(void *, void *, void *) __asm__("FUN_L00_001ff290
 extern int  collision1688(void *, void *, int, void *, void *) __asm__("FUN_001efa68");
 extern void FUN_L00_001ffd48_c(void *, void *, float) __asm__("FUN_L00_001ffd48");
 extern void FUN_L00_001ffe20_c(void *, void *, void *) __asm__("FUN_L00_001ffe20");
-extern void FUN_L00_0026a4c8_c(void *, void *, int, int, float, int) __asm__("FUN_L00_0026a4c8");
+extern void spawn_particle_alt_9768(void *, void *, int, int, float, int) __asm__("FUN_L00_0026a4c8");
 
 extern E             D_0013E520;
 extern char         *active_mobies[] __asm__("D_L00_001ABA00");
@@ -1006,7 +1006,7 @@ void gold_devastator_missile_update(M910 *missile_moby) {
             debris_scale = size * 200000.0f;
             life = FUN_L00_00257b90(scale_game_frames(20), scale_game_frames(35)) -
                    particle_reduction * 10;
-            FUN_L00_0026a4c8_c((&missile_moby->pos), &v, c, f, debris_scale, life);
+            spawn_particle_alt_9768((&missile_moby->pos), &v, c, f, debris_scale, life);
         }
         if (D_L00_0015F5D0 < 0.95f && distance > 9.0f) {
             int c = 127, f = 127;
