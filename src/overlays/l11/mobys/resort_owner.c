@@ -65,11 +65,15 @@ approach_angle(float *p, float a, float *v, float b, float c, float d) __asm__("
 void trigger_pokitaru_paired_rotation(struct Moby *moby) __asm__("FUN_L11_002cb990");
 
 void trigger_pokitaru_paired_rotation(struct Moby *moby) {
+    enum {
+        POKITARU_PAIRED_ROTATION_WAITING = 1,
+        POKITARU_PAIRED_ROTATION_ROTATING = 2
+    };
     char *state = (char *)moby->pvars;
-    if (moby->oclass == 0x41 && moby->state == 1) {
+    if (moby->oclass == 0x41 && moby->state == POKITARU_PAIRED_ROTATION_WAITING) {
         char *child;
         D_0013D3E2[0] = moby->state;
-        moby->state = 2;
+        moby->state = POKITARU_PAIRED_ROTATION_ROTATING;
         child = *(char **)(state + 8);
         if (child)
             child[0x20] = 2;
