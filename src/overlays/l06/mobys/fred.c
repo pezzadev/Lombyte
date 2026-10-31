@@ -147,7 +147,7 @@ void fred_update(struct Moby *moby) {
         fred_vars->f174 = scale_game_frames(0x2D);
         set_moby_and_links_to_states_8_and_9(D_L06_0015FFD8_301070 + (fred_vars->f160 << 8));
         fred_vars->f20 = D_L06_00201880;
-        moby->state = 1;
+        moby->state = UPDATE_FRED_DIALOGUE;
         initialize_npc_dialogue(moby, fred_vars);
         break;
     case UPDATE_FRED_DIALOGUE:
@@ -160,7 +160,7 @@ void fred_update(struct Moby *moby) {
         if (check_all_listed_frog_states_fe_fd_or_10(fred_vars->f170) != 0) {
             if (fast_dec_timer_s16(&fred_vars->f174) != 0 &&
                 update_npc_dialogue(moby, fred_vars) != 0) {
-                moby->state = 2;
+                moby->state = HANDLE_FRED_DIALOGUE_RESULT;
                 if (fred_vars->f176 != 0) {
                     Vec_301070 t;
                     fast_vec_normalize(t, ((char *)&moby->rot_row0), 2.0f);
@@ -184,7 +184,7 @@ void fred_update(struct Moby *moby) {
                 jet_clear_persistent(moby->mission);
                 set_moby_and_links_to_states_4_and_5(D_L06_0015FFD8_301070 +
                                                      (fred_vars->f164 << 8));
-                moby->state = 1;
+                moby->state = UPDATE_FRED_DIALOGUE;
             }
             if (fred_vars->f4 == 2) {
                 grant_inventory_item(0x1D, 1);
@@ -208,7 +208,7 @@ void fred_update(struct Moby *moby) {
                 set_race_camera(&hero.motion.pos, &hero.motion.rot, 0x72, 1);
                 set_moby_and_links_to_states_8_and_9(D_L06_0015FFD8_301070 +
                                                      (fred_vars->f164 << 8));
-                moby->state = 3;
+                moby->state = INTERPOLATE_FRED_CUTSCENE_CAMERA;
                 moby->visible = 0;
                 moby->flags |= 1;
                 *(int *)&moby->collision = 0;
@@ -277,7 +277,7 @@ void fred_update(struct Moby *moby) {
             if (D_L06_0015F3FC_macro == 1.0f) {
                 set_race_camera(&hero.motion.pos, &hero.motion.rot, 0, 0);
                 jet_end_mount(0);
-                moby->state = 4;
+                moby->state = RAMP_FRED_POST_CUTSCENE_SCALAR_TO_ZERO;
             }
         }
         break;
@@ -285,7 +285,7 @@ void fred_update(struct Moby *moby) {
     case RAMP_FRED_POST_CUTSCENE_SCALAR_TO_ZERO:
         approach_value(&D_L06_0015F3FC_macro, 0.0f, frame_time_macro * 4.0f);
         if (D_L06_0015F3FC_macro == 0.0f) {
-            moby->state = 5;
+            moby->state = WAIT_FOR_FRED_REMOVAL_TRIGGER;
         }
         break;
     case WAIT_FOR_FRED_REMOVAL_TRIGGER:
