@@ -266,6 +266,7 @@ void alien_snapper_update(Moby *moby) {
         ALIEN_SNAPPER_STATE_DEATH_MOTION = 17
     };
     enum {
+        ALIEN_SNAPPER_ANIM_ACTIVATION = 3,
         ALIEN_SNAPPER_ANIM_HOME_NODE_JUMP_WINDUP = 6
     };
     SnapperVars_91A8 *snapper_behavior = (SnapperVars_91A8 *)moby->pvars;
@@ -391,7 +392,7 @@ void alien_snapper_update(Moby *moby) {
     case ALIEN_SNAPPER_STATE_PREPARE_HOME_NODE_JUMP:
         if (moby->anim_flags & 2) {
             switch (moby->prev_seq) {
-            case 3:
+            case ALIEN_SNAPPER_ANIM_ACTIVATION:
                 blend_moby_animation(moby, 6, 0, scale_game_frames(5));
                 break;
             case ALIEN_SNAPPER_ANIM_HOME_NODE_JUMP_WINDUP:
