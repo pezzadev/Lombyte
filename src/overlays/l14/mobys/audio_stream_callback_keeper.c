@@ -23,7 +23,7 @@ void update_audio_stream_callback_keeper(struct Moby *moby) {
     case MOBY_STATE_INITIALIZE:
         prepare_scaled_float_table_with_target_byte(
             l14_scaled_table_setup_target, 0x40, 0.6666667f);
-        moby->state = 1;
+        moby->state = MOBY_STATE_REGISTER_DRAW_CALLBACK;
         moby->update_dist = 0xFF;
         break;
     case MOBY_STATE_REGISTER_DRAW_CALLBACK:
