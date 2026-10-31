@@ -24,7 +24,7 @@ void update_triggered_moby_yaw(struct Moby *moby) {
     case MOBY_INITIALIZE_YAW:
         if (yaw_control_vars[0] != 0)
             moby->flags |= 0x8000;
-        moby->state = 1;
+        moby->state = MOBY_WAIT_FOR_TRIGGER;
         *(float *)&yaw_control_vars[3] = moby->rot.z;
         if (yaw_control_vars[0] != 0)
             moby->rot.z = fast_subtract_rotations(moby->rot.z, 1.5707964f);
@@ -34,7 +34,7 @@ void update_triggered_moby_yaw(struct Moby *moby) {
     case MOBY_WAIT_FOR_TRIGGER:
         if (((unsigned char *)*(int *)&D_L05_0015FFD8)[yaw_control_vars[2] * 256 + 0xBC] != 0) {
             allocate_voice_for_target_entry(0, 0, moby);
-            moby->state = 2;
+            moby->state = MOBY_APPROACH_SAVED_YAW_OFFSET;
         }
         break;
     case MOBY_APPROACH_SAVED_YAW_OFFSET: {
