@@ -28,7 +28,7 @@ extern float absolute_float(float);
 
 extern char                *D_L02_001B0AB0[];
 extern char                *D_L02_00167400_d __asm__("D_L02_00167400") NOT_SDA;
-extern char                *D_L02_0015EF50;
+extern char                *l02_moby_record_table __asm__("D_L02_0015EF50");
 extern char *D_L02_001674DC NOT_SDA;
 extern char                 D_L02_00167410[] NOT_SDA;
 extern LevelCamera          l02_camera_lui __asm__("D_L02_00167280") NOT_SDA;
@@ -50,7 +50,7 @@ int test_moby_camera_control_activation(char *moby) __asm__("FUN_L02_002fb648");
 
 int test_moby_camera_control_activation(char *moby) {
     char *special = D_L02_001674DC;
-    char *camera_control_entry = *(char **)(D_L02_0015EF50 + *(short *)(moby + 0x84) * 32 + 0x1c);
+    char *camera_control_entry = *(char **)(l02_moby_record_table + *(short *)(moby + 0x84) * 32 + 0x1c);
     char *target = *(char **)(camera_control_entry + 0x48);
     int  *activation_path_record;
     int   hero_containment_result;
@@ -124,7 +124,7 @@ int test_moby_camera_target_angle_limits(char *moby, float residual_angle_limit_
     float dot3;
     float den;
 
-    char *moby_record_table = D_L02_0015EF50;
+    char *moby_record_table = l02_moby_record_table;
     char *target_moby;
 
     moby_camera_control_entry = *(char **)(moby_record_table + *(short *)(moby + 0x84) * 32 + 0x1C);
@@ -170,7 +170,7 @@ void apply_moby_camera_control(char *moby) __asm__("FUN_L02_002fb9c8");
 
 void apply_moby_camera_control(char *moby) {
     char *moby_camera_control_record =
-        *(char **)(D_L02_0015EF50 + *(short *)(moby + 0x84) * 32 + 0x1c);
+        *(char **)(l02_moby_record_table + *(short *)(moby + 0x84) * 32 + 0x1c);
     char           *target;
     unsigned short *group;
     int             id;
@@ -258,7 +258,7 @@ void apply_moby_camera_control(char *moby) {
         angle = fast_arc_tan(*(float *)D_L02_00167400_d, *(float *)(D_L02_00167400_d + 4));
         if (*(short *)(moby_camera_control_record + 0x20) < 2)
             *(float *)(moby_camera_control_record + 0x40) =
-                *(float *)(D_L02_0015EF50 + *(short *)(moby + 0x84) * 32 + 0x18);
+                *(float *)(l02_moby_record_table + *(short *)(moby + 0x84) * 32 + 0x18);
         else if (absolute_float(controller_state.analog[0]) >= 0.3f ||
                  absolute_float(controller_state.analog[1]) >= 0.3f)
             *(float *)(moby_camera_control_record + 0x40) = angle;
@@ -267,7 +267,7 @@ void apply_moby_camera_control(char *moby) {
             fast_add_rotations(heading, 3.1415927f);
     }
     if (*(short *)(moby_camera_control_record + 0x3c) == 4) {
-        heading = *(float *)(D_L02_0015EF50 + *(short *)(moby + 0x84) * 32 + 0x18);
+        heading = *(float *)(l02_moby_record_table + *(short *)(moby + 0x84) * 32 + 0x18);
         angle = fast_arc_tan(*(float *)D_L02_00167400_d, *(float *)(D_L02_00167400_d + 4));
         if (fast_difference_between_rotations(heading, angle) > 1.5707964f)
             heading = fast_add_rotations(heading, 3.1415927f);
@@ -434,7 +434,7 @@ int update_moby_camera_control(char *moby) __asm__("FUN_L02_002fc298");
 
 int update_moby_camera_control(char *moby) {
     char *moby_camera_control_data =
-        *(char **)(D_L02_0015EF50 + *(short *)(moby + 0x84) * 32 + 0x1C);
+        *(char **)(l02_moby_record_table + *(short *)(moby + 0x84) * 32 + 0x1C);
     if (*(short *)(D_L02_00167400_lui + 0x86) == 0 &&
         *(short *)(moby_camera_control_data + 0x20) >= 0)
         apply_moby_camera_control(moby);
