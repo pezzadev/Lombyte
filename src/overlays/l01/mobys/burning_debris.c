@@ -68,7 +68,7 @@ void update_burning_debris(struct Moby *moby) {
     s32       grey_intensity;
     s32       alpha;
     s32       grey;
-    f32       s;
+    f32       initial_particle_scalar;
     u8       *puff;
     u8       *puff_data;
 
@@ -127,12 +127,12 @@ void update_burning_debris(struct Moby *moby) {
         mark_moby_for_removal(moby);
         return;
     }
-    s = random_float_between(0.5f, 1.5f) * 210000.0f;
+    initial_particle_scalar = random_float_between(0.5f, 1.5f) * 210000.0f;
     spawn_burst(&moby->pos,
                 &D_L01_0015F580,
                 0x4F007FFF,
                 0x1FFFFFFF,
-                s,
+                initial_particle_scalar,
                 FUN_L00_00257b90(scale_game_frames(10), scale_game_frames(20)),
                 1);
     alpha = 0x60000000;
@@ -141,7 +141,7 @@ void update_burning_debris(struct Moby *moby) {
         if (random_integer_below(2)) {
             signed_puff_variation = -signed_puff_variation;
         }
-        s = random_float_between(40000.0f, 100000.0f);
+        initial_particle_scalar = random_float_between(40000.0f, 100000.0f);
         grey_intensity = FUN_L00_00257b90(0x30, 0xFF);
         grey = (grey_intensity << 8) | alpha;
         puff = spawn_puff(&moby->pos,
@@ -150,7 +150,7 @@ void update_burning_debris(struct Moby *moby) {
                           1.0f,
                           signed_puff_variation,
                           &D_L01_0015F580,
-                          s,
+                          initial_particle_scalar,
                           grey_intensity | ((grey_intensity << 16) | grey));
         if (puff != NULL) {
             puff[3] = 0x44;
