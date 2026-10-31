@@ -755,7 +755,7 @@ void enter_hero_vehicle_mode_and_set_moby(int vehicle_mode, int initial_state, i
     FUN_L00_00257024(*(void **)(hero_state_base + 0x2080));
     apply_hero_and_item_scale_sequence();
     *(short *)(hero_state_base + 0x22CC) = initial_state;
-    if (vehicle_mode == 1) {
+    if (vehicle_mode == HERO_VEHICLE_MODE_CLANK) {
         *(unsigned short *)(hero_state_base + 0x22B0) =
             *(unsigned short *)(hero_state_base + 0x22A8);
         *(int *)(hero_state_base + 0x22A8) = *(int *)(hero_state_base + 0x22AC);
