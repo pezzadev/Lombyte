@@ -41,7 +41,7 @@ void update_linked_pair_ribbons(struct Moby *moby) {
         case MOBY_STATE_INITIALIZE_LINKED_PAIRS:
             if (linked_pair_effect_data[0] == 0) {
                 func_L16_002D0990_2D0870(moby);
-                moby->state = 1;
+                moby->state = MOBY_STATE_UPDATE_DRAW_AND_SOUND;
             }
             break;
         case MOBY_STATE_UPDATE_DRAW_AND_SOUND:
