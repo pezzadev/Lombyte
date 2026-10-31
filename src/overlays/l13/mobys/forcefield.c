@@ -106,7 +106,7 @@ void forcefield_update(struct Moby *moby) {
     int   wrap_adjusted_step;
     switch (moby->state) {
     case FORCEFIELD_STATE_INITIALIZE:
-        moby->state = 1;
+        moby->state = FORCEFIELD_STATE_MONITOR_LINKED_MOBY;
         moby->alpha = 0x14;
         moby->flags |= 0xA08;
         *(short *)(forcefield_data + 0xE) = -1;
@@ -122,11 +122,11 @@ void forcefield_update(struct Moby *moby) {
                  (MOBY(linked_moby)->save_id & 0x1F)) &
                     1) {
                 *(float *)(forcefield_data + 4) = 1.0f;
-                moby->state = 2;
+                moby->state = FORCEFIELD_STATE_FADE_OUT;
             }
         } else {
             *(float *)(forcefield_data + 4) = 1.0f;
-            moby->state = 2;
+            moby->state = FORCEFIELD_STATE_FADE_OUT;
             stub_printf(forcefield_missing_trigger_format, moby->oclass, ((short)moby->save_id));
         }
         spawn_forcefield_contact_effects(moby, forcefield_data);
@@ -134,7 +134,7 @@ void forcefield_update(struct Moby *moby) {
     case FORCEFIELD_STATE_FADE_OUT:
         *(float *)(forcefield_data + 4) -= frame_scale * 0.05f;
         if (*(float *)(forcefield_data + 4) < 0.0f)
-            moby->state = 3;
+            moby->state = FORCEFIELD_STATE_REMOVE;
         else
             moby->alpha = truncate_float_to_s32(*(float *)(forcefield_data + 4) * 20.0f);
         break;
