@@ -20,6 +20,9 @@ extern int advance_alternate_camera_transition(void *, void *) __asm__("FUN_001e
 void update_camera_blend(char *to_cam) __asm__("FUN_001ed2b0");
 
 void update_camera_blend(char *to_cam) {
+    enum {
+        CAMERA_TRANSITION_PHASE_IDLE = 0
+    };
     char *camera_transition_state = cam_trans_state;
     int   transition_complete;
 
@@ -36,7 +39,7 @@ void update_camera_blend(char *to_cam) {
             qcopy(camera_rows + 0x20, to_cam + 0x20);
             qcopy(camera_rows - 0x210, to_cam + 0x30);
         }
-        *(short *)camera_transition_state = 0;
+        *(short *)camera_transition_state = CAMERA_TRANSITION_PHASE_IDLE;
         camera_transition_state[2] = 0;
     }
 }
