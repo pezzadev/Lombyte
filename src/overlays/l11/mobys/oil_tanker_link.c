@@ -59,6 +59,9 @@ void update_oil_tanker_link_effects_and_destruction(struct Moby *moby) {
         TANKER_LINK_EMIT_EFFECT_AND_SAVE_POSITION = 0,
         TANKER_LINK_BURST_AND_HIDE = 1
     };
+    enum {
+        TANKER_LINK_HIDDEN_AFTER_BURST = 2
+    };
     char *link_vars = (char *)moby->pvars;
     float effect_scratch_vector[4];
     float effect_motion_vector[4];
@@ -130,7 +133,7 @@ void update_oil_tanker_link_effects_and_destruction(struct Moby *moby) {
                             dv,
                             frame_time_sq * 12.0f,
                             dv);
-        moby->state = 2;
+        moby->state = TANKER_LINK_HIDDEN_AFTER_BURST;
         moby->visible = 0;
         moby->flags |= 1;
         break;
