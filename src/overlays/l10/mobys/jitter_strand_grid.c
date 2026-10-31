@@ -57,7 +57,7 @@ void update_jitter_strand_grid(struct Moby *moby) {
                 jitter_strand_grid_vars->timers[3][i] = start + 34;
             }
         }
-        moby->state = 1;
+        moby->state = JITTER_STRAND_GRID_STATE_UPDATE;
         break;
     case JITTER_STRAND_GRID_STATE_UPDATE: {
         int group, strand_column, row;
