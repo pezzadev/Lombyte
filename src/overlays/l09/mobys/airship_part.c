@@ -233,7 +233,7 @@ void update_airship_part(struct Moby *moby) {
         joint_offset_scale = moby->scale * 0.0009765625f;
         get_moby_joint_matrices(moby, 1, &joint, transform_and_effect_scratch.m);
         fast_vec_scale(part_vars->off, transform_and_effect_scratch.m[3], joint_offset_scale);
-        moby->state = 1;
+        moby->state = AIRSHIP_PART_STATE_WAIT_FOR_BREAKUP_COMMAND;
         break;
     }
     case AIRSHIP_PART_STATE_WAIT_FOR_BREAKUP_COMMAND:
@@ -266,7 +266,7 @@ void update_airship_part(struct Moby *moby) {
             moby->flags |= part_vars->parent->flags & 1;
             moby->command = part_vars->parent->command;
         }
-        if (moby->state == 2) {
+        if (moby->state == AIRSHIP_PART_STATE_WAIT_FOR_BREAKUP_GATE) {
             if (moby->oclass == 0x4A0) {
                 moby->rot.x =
                     fast_add_rotations(moby->rot.x,
@@ -274,7 +274,7 @@ void update_airship_part(struct Moby *moby) {
                                            0.017453292f * frame_time);
             }
             if (fast_dec_timer_s16(&part_vars->h2A) != 0) {
-                moby->state = 3;
+                moby->state = AIRSHIP_PART_STATE_BEGIN_BREAKUP;
             }
         } else if (moby->command == 1) {
             int i;
@@ -287,7 +287,7 @@ void update_airship_part(struct Moby *moby) {
                     part_vars->parts[i]->update_dist = 0xFF;
                 }
             }
-            moby->state = 2;
+            moby->state = AIRSHIP_PART_STATE_WAIT_FOR_BREAKUP_GATE;
         }
         break;
     }
@@ -337,7 +337,7 @@ void update_airship_part(struct Moby *moby) {
                 airship_part_downward_acceleration_override_range_end_gp * frame_time_sq_macro);
         }
         moby->collision = 0;
-        moby->state = 4;
+        moby->state = AIRSHIP_PART_STATE_FALLING_WITH_EFFECTS;
         break;
     }
     case AIRSHIP_PART_STATE_FALLING_WITH_EFFECTS:
@@ -400,7 +400,7 @@ void update_airship_part(struct Moby *moby) {
             part_vars->f20 *= 0.9f;
             part_vars->f24 *= 0.9f;
             allocate_voice_for_target_entry(0, 0, (int)moby);
-            moby->state = 5;
+            moby->state = AIRSHIP_PART_STATE_FALLING_AFTER_DAMPING;
         }
         break;
     case AIRSHIP_PART_STATE_FALLING_AFTER_DAMPING:
