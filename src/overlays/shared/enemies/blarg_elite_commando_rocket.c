@@ -90,7 +90,7 @@ void update_blarg_elite_commando_rocket(unsigned char *moby) {
     fast_vec_add(rocket_next_position, moby + 0x10, rocket_data);
     fast_vec_scale(back, rocket_data, -2.0f);
     fast_vec_add(back, back, moby + 0x10);
-    if (hero.vehicle_mode == 2 && random_integer_below(5) != 0)
+    if (hero.vehicle_mode == HERO_VEHICLE_MODE_GIANT_CLANK && random_integer_below(5) != 0)
         collision_setup_value = 0.0f;
     make_hit_descriptor(col, moby, 0x10003, collision_setup_value, rocket_data);
     *(short *)(col + 0x1A) = MOBY(moby)->oclass;
