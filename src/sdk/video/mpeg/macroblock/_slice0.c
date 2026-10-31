@@ -13,6 +13,9 @@ extern s32 _sliceA0();
 extern s32 _waitBdecOut();
 
 s32 _slice0(struct MpegDecoder *mp, s32 nmb) {
+    enum {
+        SLICE_SETUP_SUCCESS = 0
+    };
     s32 blk[16];
     s32 mbx;
     s32 inc;
@@ -24,7 +27,7 @@ s32 _slice0(struct MpegDecoder *mp, s32 nmb) {
     mbx = 0;
     inc = 0;
     slice_setup_status = _sliceA0(mp, nmb, &mbx, &inc, blk);
-    if (slice_setup_status != 0) {
+    if (slice_setup_status != SLICE_SETUP_SUCCESS) {
         return slice_setup_status;
     }
     mp->slice_error = 0;
