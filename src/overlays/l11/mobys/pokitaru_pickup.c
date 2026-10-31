@@ -32,7 +32,7 @@ void update_pokitaru_pickup(struct Moby *moby) {
         } else {
             moby->pos.z += 0.75f;
             moby->flags |= 1;
-            moby->state = 1;
+            moby->state = PICKUP_IDLE;
         }
         break;
     case PICKUP_IDLE:
