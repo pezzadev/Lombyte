@@ -363,6 +363,9 @@ void plasmabot_update(char *moby) __asm__("FUN_L14_002b17d8");
 
 /* Moby class 28 */
 void plasmabot_update(char *moby) {
+    enum {
+        PLASMABOT_TARGET_STATUS_REJECTED = 2
+    };
     PlasmabotVars *plasmabot_update_private_vars;
     char          *plasmabot_aim_target_moby;
     int            state;
@@ -498,7 +501,7 @@ void plasmabot_update(char *moby) {
     }
     case PLASMABOT_WAIT_TO_START_PATH_TRAVERSAL: {
         float *path;
-        if (plasmabot_update_private_vars->target_selection_status == 2)
+        if (plasmabot_update_private_vars->target_selection_status == PLASMABOT_TARGET_STATUS_REJECTED)
             return;
         if (fast_dec_timer_s16(&plasmabot_update_private_vars->path_traversal_delay_timer) == 0)
             return;
@@ -577,7 +580,7 @@ void plasmabot_update(char *moby) {
                   k,
                   k,
                   frame_time * 6.2831855f);
-        if (plasmabot_update_private_vars->target_selection_status == 2)
+        if (plasmabot_update_private_vars->target_selection_status == PLASMABOT_TARGET_STATUS_REJECTED)
             break;
         if (fast_dec_timer_s16(&plasmabot_update_private_vars->path_traversal_delay_timer) == 0)
             break;
@@ -632,7 +635,7 @@ void plasmabot_update(char *moby) {
                   frame_time * 6.2831855f);
         aim = update_plasmabot_aim_quaternion(moby, 0, MOBY(moby)->rot.z);
         update_plasmabot_aim_joint_rotation(moby, ang);
-        if (plasmabot_update_private_vars->target_selection_status == 2) {
+        if (plasmabot_update_private_vars->target_selection_status == PLASMABOT_TARGET_STATUS_REJECTED) {
             if (plasmabot_update_private_vars->path_index == -1)
                 break;
             ((unsigned char *)moby)[0x20] = 8;
