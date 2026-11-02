@@ -68,7 +68,7 @@ struct PokiPathVars {
     s32          unk13C; /* 0x13C */
     f32          unk140; /* 0x140 */
     u8           pad_144[8];
-    f32          unk14C; /* 0x14C */
+    f32          yaw_velocity; /* 0x14C */
     u8           pad_150[8];
     s32          knockback_extension_timer; /* 0x158 */
     u8           pad_15C[4];
@@ -119,6 +119,9 @@ void psytcopus_update(struct Moby *m) __asm__("FUN_L11_00310180");
 
 /* Moby class 1231 */
 void psytcopus_update(struct Moby *psytcopus) {
+    enum {
+        PSYTCOPUS_PROJECTILE_CREATION_BLOCKED = 2
+    };
     struct PokiPathVars *psytcopus_vars = (struct PokiPathVars *)psytcopus->pvars;
     struct Moby         *target;
     Vec4f                projectile_vector_scratch;
@@ -161,12 +164,12 @@ void psytcopus_update(struct Moby *psytcopus) {
                              D_001413D0->pos.y - psytcopus->pos.y);
         approach_angle(yaw,
                        angle,
-                       &psytcopus_vars->unk14C,
+                       &psytcopus_vars->yaw_velocity,
                        frame_time_sq * 6.2831855f,
                        frame_time_sq * 6.2831855f,
                        frame_time * 6.2831855f);
     }
-        if (psytcopus_vars->projectile_creation_gate_state != 2) {
+        if (psytcopus_vars->projectile_creation_gate_state != PSYTCOPUS_PROJECTILE_CREATION_BLOCKED) {
             psytcopus->state = PSYTCOPUS_STATE_CREATE_PROJECTILE;
             if (psytcopus->prev_seq != 2) {
                 blend_moby_animation(psytcopus, 2, 0, scale_game_frames(10));
@@ -178,7 +181,7 @@ void psytcopus_update(struct Moby *psytcopus) {
         angle = fast_arc_tan(target->pos.x - psytcopus->pos.x, target->pos.y - psytcopus->pos.y);
         approach_angle(yaw,
                        angle,
-                       &psytcopus_vars->unk14C,
+                       &psytcopus_vars->yaw_velocity,
                        frame_time_sq * 6.2831855f,
                        frame_time_sq * 6.2831855f,
                        frame_time * 6.2831855f);
@@ -205,7 +208,7 @@ void psytcopus_update(struct Moby *psytcopus) {
         angle = fast_arc_tan(target->pos.x - psytcopus->pos.x, target->pos.y - psytcopus->pos.y);
         approach_angle(yaw,
                        angle,
-                       &psytcopus_vars->unk14C,
+                       &psytcopus_vars->yaw_velocity,
                        frame_time_sq * 6.2831855f,
                        frame_time_sq * 6.2831855f,
                        frame_time * 6.2831855f);
