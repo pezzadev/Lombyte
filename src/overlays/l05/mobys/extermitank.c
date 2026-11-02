@@ -159,6 +159,10 @@ typedef struct ExtermitankVars {
 
 /* Moby class 625 */
 void extermitank_update(unsigned char *moby) {
+    enum {
+        EXTERMITANK_LIFECYCLE_INITIALIZED = 1,
+        EXTERMITANK_LIFECYCLE_REMOVE = 2
+    };
     ExtermitankVars *extermitank_vars = (ExtermitankVars *)MOBY(moby)->pvars;
     float            origin_position[4];
     float            particle_vector_a[4];
@@ -167,7 +171,7 @@ void extermitank_update(unsigned char *moby) {
 
     handle_extermitank_hits_and_sync_children((char *)moby);
     process_extermitank_particle_hits((char *)moby);
-    if (extermitank_vars->lifecycle_state == 2) {
+    if (extermitank_vars->lifecycle_state == EXTERMITANK_LIFECYCLE_REMOVE) {
         if (extermitank_vars->unk184 != 0)
             mark_moby_for_removal_c3(extermitank_vars->unk184);
         if (extermitank_vars->unk188 != 0)
@@ -238,7 +242,7 @@ void extermitank_update(unsigned char *moby) {
         extermitank_vars->unk94 = D_L05_00161AF8 * D_0015ED6C_gp;
         clear_u64_value(extermitank_vars->unk40);
         extermitank_vars->unk3E |= 2;
-        extermitank_vars->lifecycle_state = 1;
+        extermitank_vars->lifecycle_state = EXTERMITANK_LIFECYCLE_INITIALIZED;
         extermitank_vars->unk29 = 0;
         extermitank_vars->max_health = 6;
         extermitank_vars->unk28 = 3;
