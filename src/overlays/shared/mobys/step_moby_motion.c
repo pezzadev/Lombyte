@@ -158,6 +158,9 @@ void trooper_start_knockback(u8       *moby,
                              int       animation_frame_index,
 
                              float knockback_angle) {
+    enum {
+        MOTION_RISING = 0
+    };
     float *moby_vars_record;
     knockback_state->f0 = fast_cos(knockback_angle) * knockback_state->f18;
     knockback_state->f4 = fast_sin(knockback_angle) * knockback_state->f18;
@@ -166,7 +169,7 @@ void trooper_start_knockback(u8       *moby,
     knockback_state->f40 = fast_add_rotations(knockback_angle, 3.1415927f);
     knockback_state->w44 = 0;
     knockback_state->h2C = scale_game_frames(300);
-    knockback_state->motion_phase = 0;
+    knockback_state->motion_phase = MOTION_RISING;
     knockback_state->b3C = 1;
     moby_vars_record = get_moby_target_info(moby);
     if (moby_vars_record && *moby_vars_record == 0.0f) {
