@@ -319,7 +319,7 @@ typedef struct {
     float          f84;
     float          knockback_horizontal_launch_step;
     float          knockback_vertical_launch_step;
-    int            w90;
+    int            knockback_collision_distance_scale;
     int            w94;
     float          knockback_collision_height_offset;
     char           pad9C[0x11];
@@ -612,7 +612,7 @@ void birdbot_update(PeMoby *birdbot_moby) {
             break;
         case BIRDBOT_HIT_REACTION_NONFATAL_KNOCKBACK:
         case BIRDBOT_HIT_REACTION_ANIMATED_NONFATAL_KNOCKBACK:
-            birdbot_vars->w90 = 0x200;
+            birdbot_vars->knockback_collision_distance_scale = 0x200;
             birdbot_vars->b67 = 0x78;
             birdbot_vars->knockback_collision_height_offset = 0.5f;
             birdbot_vars->knockback_gravity_step = 0.008f;
@@ -637,7 +637,7 @@ void birdbot_update(PeMoby *birdbot_moby) {
             break;
         case BIRDBOT_HIT_REACTION_LOW_SPEED_NONFATAL_KNOCKBACK:
         case BIRDBOT_HIT_REACTION_LOW_SPEED_NONFATAL_KNOCKBACK_NO_BLEND:
-            birdbot_vars->w90 = 0x200;
+            birdbot_vars->knockback_collision_distance_scale = 0x200;
             birdbot_vars->b67 = 0xFA;
             birdbot_vars->knockback_gravity_step = 0.008f;
             birdbot_vars->knockback_horizontal_launch_step =
