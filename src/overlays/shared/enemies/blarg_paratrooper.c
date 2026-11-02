@@ -640,6 +640,9 @@ void update_blarg_paratrooper_damage_and_state(char *moby) {
     enum {
         PARATROOPER_HIT_STATUS_NO_HIT_OR_SUPPRESSED = 1
     };
+    enum {
+        PARATROOPER_TARGET_UNAVAILABLE = 2
+    };
     Paratrooper302618 *paratrooper_instance_state;
     char              *target, *child, *attached, *chased;
     float              pos[4] __attribute__((aligned(16)));
@@ -817,7 +820,7 @@ void update_blarg_paratrooper_damage_and_state(char *moby) {
             distance = vector_distance_xy(&MOBY(moby)->pos, &paratrooper_instance_state->unk120);
             if (paratrooper_instance_state->unk1DC < distance ||
                 3.0f < absolute_float(MOBY(moby)->pos.z - paratrooper_instance_state->unk128))
-                paratrooper_instance_state->target_selection_status = 2;
+                paratrooper_instance_state->target_selection_status = PARATROOPER_TARGET_UNAVAILABLE;
         }
     } else {
         chased = paratrooper_instance_state->target_moby;
@@ -826,7 +829,7 @@ void update_blarg_paratrooper_damage_and_state(char *moby) {
             qcopy(&paratrooper_instance_state->unk120, chased + 0x10);
         } else {
             paratrooper_instance_state->target_moby = 0;
-            paratrooper_instance_state->target_selection_status = 2;
+            paratrooper_instance_state->target_selection_status = PARATROOPER_TARGET_UNAVAILABLE;
         }
     }
     if (*(int *)&paratrooper_instance_state->target_moby == 0)
