@@ -312,7 +312,7 @@ typedef struct {
     unsigned char  b5A;
     char           pad5B[5];
     char           x60[7];
-    unsigned char  b67;
+    unsigned char  hit_response_channel_peak;
     char           pad68[8];
     char           x70[0x10];
     float          knockback_gravity_step;
@@ -604,7 +604,7 @@ void birdbot_update(PeMoby *birdbot_moby) {
                                   &birdbot_vars->knockback_vertical_launch_step);
             FUN_L00_0025c558_u(
                 knockback_heading, birdbot_moby, birdbot_vars->x70, 9, scale_game_frames(2), 0);
-            birdbot_vars->b67 = 0xB4;
+            birdbot_vars->hit_response_channel_peak = 0xB4;
             birdbot_moby->state = BIRDBOT_STATE_FATAL_KNOCKBACK;
             birdbot_moby->h34 &= 0xEFFF;
             trooper_anim_update(birdbot_moby, (short *)birdbot_vars->x60);
@@ -613,7 +613,7 @@ void birdbot_update(PeMoby *birdbot_moby) {
         case BIRDBOT_HIT_REACTION_NONFATAL_KNOCKBACK:
         case BIRDBOT_HIT_REACTION_ANIMATED_NONFATAL_KNOCKBACK:
             birdbot_vars->knockback_collision_distance_scale = 0x200;
-            birdbot_vars->b67 = 0x78;
+            birdbot_vars->hit_response_channel_peak = 0x78;
             birdbot_vars->knockback_collision_height_offset = 0.5f;
             birdbot_vars->knockback_gravity_step = 0.008f;
             birdbot_vars->knockback_horizontal_launch_step =
@@ -638,7 +638,7 @@ void birdbot_update(PeMoby *birdbot_moby) {
         case BIRDBOT_HIT_REACTION_LOW_SPEED_NONFATAL_KNOCKBACK:
         case BIRDBOT_HIT_REACTION_LOW_SPEED_NONFATAL_KNOCKBACK_NO_BLEND:
             birdbot_vars->knockback_collision_distance_scale = 0x200;
-            birdbot_vars->b67 = 0xFA;
+            birdbot_vars->hit_response_channel_peak = 0xFA;
             birdbot_vars->knockback_gravity_step = 0.008f;
             birdbot_vars->knockback_horizontal_launch_step =
                 square_root(birdbot_vars->f84 * 2.0f * 1.5f);
