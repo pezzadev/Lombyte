@@ -8,7 +8,9 @@
 #include "rnc/camera/follow_cam.h"
 
 /* Stores f at +0x1CC of D_L00_00166E00+0x70 while the short at 0x86 is 0. */
-void FUN_L00_002e8540(float stored_value) {
+void set_follow_camera_angle_parameter(float stored_value) __asm__("FUN_L00_002e8540");
+
+void set_follow_camera_angle_parameter(float stored_value) {
     char *camera_record = current_follow_cam;
     if (*(short *)(camera_record + 0x86) == 0) {
         *(float *)(*(char **)(camera_record + 0x70) + 0x1cc) = stored_value;

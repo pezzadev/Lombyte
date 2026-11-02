@@ -11,6 +11,7 @@
 #include "rnc/overlay/shared/camera/swing_volume_camera.h"
 #include "rnc/overlay/shared/camera.h"
 #include "rnc/overlay/shared/camera/follow_camera_set_up_spring.h"
+void set_follow_camera_angle_parameter(float) __asm__("FUN_L00_002e8540");
 #include "rnc/overlay/shared/rendering/culling/test_point_in_transformed_unit_cylinder.h"
 #include "rnc/rendering/clip_volume.h"
 
@@ -193,7 +194,7 @@ run:
         follow_camera_set_offset_scale(0, params->offset_scale, 0.005f);
     }
     if (params->unk28 != 0.0f) {
-        FUN_L00_002e8540(params->unk28 * 0.017453292f);
+        set_follow_camera_angle_parameter(params->unk28 * 0.017453292f);
     }
     if (params->keep_unk10 == 0) {
         set_follow_camera_orbit_clamp_mode(0);
