@@ -145,7 +145,7 @@ typedef struct D_B7B0 {
     float          knockback_horizontal_deceleration;
     float          knockback_initial_horizontal_displacement;
     float          knockback_initial_vertical_displacement;
-    int            fE0;
+    int            knockback_collision_extent;
     int            knockback_motion_flags;
     float          knockback_collision_height_offset;
     char           padEC[0x11];
@@ -466,7 +466,7 @@ void big_axebot_update(M_B7B0 *moby) {
                     break;
                 case BIG_AXEBOT_HIT_REACTION_FATAL:
                     data->knockback_collision_height_offset = 1.0f;
-                    data->fE0 = 0x400;
+                    data->knockback_collision_extent = 0x400;
                     trooper_set_knockback(data->fC0, 5.7f, 4.0f);
                     *(OvlQuad *)vector_quaternion_scratch = *(OvlQuad *)hit->pos;
                     trooper_knockback_arc(vector_quaternion_scratch,
