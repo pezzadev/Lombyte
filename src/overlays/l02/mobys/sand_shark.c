@@ -295,6 +295,10 @@ void sand_shark_update(struct Moby *moby) {
     enum {
         SAND_SHARK_LANDED_AFTER_KNOCKBACK = 0xB
     };
+    enum {
+        SAND_SHARK_RELAUNCH_REQUEST_CONSUMED = 1,
+        SAND_SHARK_TARGET_SELECTION_EXCLUDED = 2
+    };
     Varsd3e50 *sand_shark_behavior_vars;
     OvlVec4    position_or_offset_scratch;
     OvlVec4    target_or_particle_vector;
@@ -338,7 +342,7 @@ void sand_shark_update(struct Moby *moby) {
         sand_shark_behavior_vars->unk20 = 1.0f;
         sand_shark_behavior_vars->unk58 = D_L02_00161900;
         sand_shark_behavior_vars->unk5C = 1;
-        sand_shark_behavior_vars->relaunch_request_state = 1;
+        sand_shark_behavior_vars->relaunch_request_state = SAND_SHARK_RELAUNCH_REQUEST_CONSUMED;
         sand_shark_behavior_vars->unk29 = 1;
         sand_shark_behavior_vars->target_range_extension_timer = 0;
         FUN_L01_0026d930_e50(&sand_shark_behavior_vars->walk_mode);
@@ -423,7 +427,7 @@ void sand_shark_update(struct Moby *moby) {
             FUN_L02_002d5a68_e50(&target_or_particle_vector);
         }
         moby->pos.z -= sand_shark_height_offset_gp;
-        if (sand_shark_behavior_vars->target_selection_status != 2) {
+        if (sand_shark_behavior_vars->target_selection_status != SAND_SHARK_TARGET_SELECTION_EXCLUDED) {
             if (sand_shark_behavior_vars->wander_target_volume_index >= 0) {
                 if ((!is_point_inside_clip_volume(
                          &sand_shark_behavior_vars->target,
@@ -462,7 +466,7 @@ void sand_shark_update(struct Moby *moby) {
         }
         break;
     case SAND_SHARK_WAIT_FOR_TARGET_IN_VOLUME:
-        if (sand_shark_behavior_vars->target_selection_status != 2 &&
+        if (sand_shark_behavior_vars->target_selection_status != SAND_SHARK_TARGET_SELECTION_EXCLUDED &&
             is_point_inside_clip_volume(&sand_shark_behavior_vars->target,
                                         sand_shark_behavior_vars->target_activation_volume_index)) {
             moby->state = SAND_SHARK_APPROACH_TARGET;
@@ -511,7 +515,7 @@ void sand_shark_update(struct Moby *moby) {
                 if (moby->prev_seq != 1) {
                     blend_moby_animation(moby, 1, 0, scale_game_frames(0xA));
                 }
-            } else if (sand_shark_behavior_vars->target_selection_status != 2) {
+            } else if (sand_shark_behavior_vars->target_selection_status != SAND_SHARK_TARGET_SELECTION_EXCLUDED) {
                 moby->state = SAND_SHARK_APPROACH_TARGET;
                 if (moby->prev_seq != 0) {
                     blend_moby_animation(moby, 0, 0, scale_game_frames(0xF));
@@ -536,7 +540,7 @@ void sand_shark_update(struct Moby *moby) {
                 if (moby->prev_seq != 1) {
                     blend_moby_animation(moby, 1, 0, scale_game_frames(0xA));
                 }
-            } else if (sand_shark_behavior_vars->target_selection_status != 2) {
+            } else if (sand_shark_behavior_vars->target_selection_status != SAND_SHARK_TARGET_SELECTION_EXCLUDED) {
                 moby->state = SAND_SHARK_APPROACH_TARGET;
                 if (moby->prev_seq != 0) {
                     blend_moby_animation(moby, 0, 0, scale_game_frames(0xF));
@@ -638,7 +642,7 @@ void sand_shark_update(struct Moby *moby) {
         if (moby->state == SAND_SHARK_APPROACH_TARGET_WITH_HEIGHT_OFFSET) {
             moby->pos.z -= sand_shark_height_offset_gp;
         }
-        if (sand_shark_behavior_vars->target_selection_status != 2) {
+        if (sand_shark_behavior_vars->target_selection_status != SAND_SHARK_TARGET_SELECTION_EXCLUDED) {
             if (sand_shark_behavior_vars->target_activation_volume_index >= 0 &&
                 !is_point_inside_clip_volume(
                     &sand_shark_behavior_vars->target,
@@ -755,7 +759,7 @@ void sand_shark_update(struct Moby *moby) {
             }
         }
         if (sand_shark_behavior_vars->outside_path_return_active == 0) {
-            if (sand_shark_behavior_vars->target_selection_status != 2) {
+            if (sand_shark_behavior_vars->target_selection_status != SAND_SHARK_TARGET_SELECTION_EXCLUDED) {
                 fast_vec_sub(&target_home_delta,
                              &sand_shark_behavior_vars->target,
                              &sand_shark_behavior_vars->home);
