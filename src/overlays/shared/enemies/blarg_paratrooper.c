@@ -72,11 +72,11 @@ typedef struct Paratrooper302618 {
     u8            padD4[0x4];
     float         fD8;
     float         fDC;
-    float         fE0;
+    float         waypoint_advance_distance;
     u8            padE4[0x10];
     f32           unkF4;
-    float         fF8;
-    float         fFC;
+    float         movement_heading_error_limit;
+    float         movement_arrival_distance;
     u8            pad100[0xc];
     float         f10C;
     float         f110;
@@ -189,6 +189,9 @@ void blarg_paratrooper_update(char *moby) {
     enum {
         PARATROOPER_TARGET_UNAVAILABLE = 2
     };
+    enum {
+        PARATROOPER_REMOVAL_REQUESTED = 2
+    };
     Paratrooper302618 *paratrooper_private_state =
         (Paratrooper302618 *)(*(char **)((char *)(moby) + 0x78));
     char       *path;
@@ -225,7 +228,7 @@ void blarg_paratrooper_update(char *moby) {
         (*(unsigned char *)((char *)(moby) + 0x20)) = 8;
     }
     if ((*(unsigned char *)((char *)(moby) + 0x20)) != 0 &&
-        paratrooper_private_state->removal_status == 2) {
+        paratrooper_private_state->removal_status == PARATROOPER_REMOVAL_REQUESTED) {
         mark_moby_for_removal(moby);
         if (paratrooper_private_state->bone_attachment_moby)
             mark_moby_for_removal(paratrooper_private_state->bone_attachment_moby);
@@ -256,8 +259,8 @@ void blarg_paratrooper_update(char *moby) {
         turn_rate = D_0015ED70 * 6.981317f;
         paratrooper_private_state->f110 = paratrooper_private_state->f10C = turn_rate;
         paratrooper_private_state->f114 = D_0015ED6C * 8.726646f;
-        paratrooper_private_state->fF8 = 0.34906584f;
-        paratrooper_private_state->fFC = 0.2f;
+        paratrooper_private_state->movement_heading_error_limit = 0.34906584f;
+        paratrooper_private_state->movement_arrival_distance = 0.2f;
         if (random302618() & 1)
             (*(unsigned short *)((char *)(moby) + 0x34)) |= 0x8000;
         qcopy(&MOBY(moby)->pos,
@@ -287,12 +290,12 @@ void blarg_paratrooper_update(char *moby) {
         if (vector_distance_xy(&MOBY(moby)->pos,
                                path + 0x10 +
                                    paratrooper_private_state->destination_waypoint_index * 16) <
-            paratrooper_private_state->fE0) {
+            paratrooper_private_state->waypoint_advance_distance) {
             short direction = paratrooper_private_state->patrol_waypoint_step;
             int   index = paratrooper_private_state->destination_waypoint_index + direction;
             paratrooper_private_state->destination_waypoint_index = index;
             if (index >= (*(int *)((char *)(path) + 0)) || index < 0) {
-                paratrooper_private_state->fE0 = 0.0f;
+                paratrooper_private_state->waypoint_advance_distance = 0.0f;
                 paratrooper_private_state->patrol_waypoint_step = -direction;
                 paratrooper_private_state->destination_waypoint_index =
                     index + 2 * paratrooper_private_state->patrol_waypoint_step;
@@ -322,8 +325,8 @@ void blarg_paratrooper_update(char *moby) {
             &MOBY(moby)->pos,
             ((char *)l08_paths[paratrooper_private_state->jump_path_index]) + 0x10 +
                 paratrooper_private_state->destination_waypoint_index * 16);
-        if (distance < 1.0f || distance < paratrooper_private_state->fE0) {
-            paratrooper_private_state->fE0 = 0.0f;
+        if (distance < 1.0f || distance < paratrooper_private_state->waypoint_advance_distance) {
+            paratrooper_private_state->waypoint_advance_distance = 0.0f;
             (*(unsigned char *)((char *)(moby) + 0x20)) = 3;
         } else {
             step_mover_2e3f20(moby,
