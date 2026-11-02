@@ -281,6 +281,9 @@ void handle_psytcopus_hits(struct Moby *psytcopus) {
         HIT_REACTION_HURT_WITHOUT_STATE_CHANGE = 10,
         HIT_REACTION_NO_RESPONSE = 11
     };
+    enum {
+        PSYTCOPUS_PROJECTILE_CREATION_BLOCKED = 2
+    };
     struct PokiPathVars *psytcopus_vars = (struct PokiPathVars *)psytcopus->pvars;
     Vec4f                projectile_and_hit_vector_scratch;
     int                  hits;
@@ -396,7 +399,7 @@ void handle_psytcopus_hits(struct Moby *psytcopus) {
             2 &&
         (psytcopus_vars->unk140 < vector_distance_xy(&psytcopus->pos, &psytcopus_vars->unkD0) ||
          absolute_float(psytcopus->pos.z - psytcopus_vars->unkD0.z) > 3.0f)) {
-        psytcopus_vars->projectile_creation_gate_state = 2;
+        psytcopus_vars->projectile_creation_gate_state = PSYTCOPUS_PROJECTILE_CREATION_BLOCKED;
     }
     if (psytcopus_vars->target == 0) {
         psytcopus_vars->target = D_001413D0;
