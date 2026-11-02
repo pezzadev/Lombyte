@@ -59,7 +59,7 @@ typedef struct LargeAmoeboidVars {
     f32   unk70;
     u8    pad74[0xc];
     s32   unk80;
-    s32   unk84;
+    s32   knockback_motion_flags;
     f32   unk88;
     u8    pad8C[0x11];
     s8    unk9D;
@@ -662,6 +662,10 @@ void large_amoeboid_update(unsigned char *moby) {
 /* Ported from rac1-decomp (src/overlays/shared/vendor_002B90A8.c: func_L01_002F0040), where it is exact; names translated to the US level program. */
 
 void process_amoeboid_hits_and_update_targeting(char *moby) {
+    enum {
+        AMOEBOID_TARGET_STATUS_ALTERNATE_MOBY = 1,
+        AMOEBOID_TARGET_STATUS_UNAVAILABLE = 2
+    };
     V_2F0040           scratch_vector;
     V_2F0040           line_test_endpoint;
     int                flag;
@@ -735,7 +739,7 @@ void process_amoeboid_hits_and_update_targeting(char *moby) {
         moby_vars->health = moby_vars->health - hit_decrement;
         moby_vars->unk9D = 0;
         moby_vars->unk70 = rate;
-        moby_vars->unk84 = 8;
+        moby_vars->knockback_motion_flags = 8;
         moby_vars->unk80 =
             truncate_float_to_s32(moby_vars->size_scale * size_multiplier * fixed_scale);
         moby_vars->unk88 = moby_vars->size_scale * size_multiplier;
@@ -836,7 +840,7 @@ void process_amoeboid_hits_and_update_targeting(char *moby) {
             if (moby_vars->effective_target_search_radius <
                     vector_distance_xy(&moby_vars->home_pos, path_search_position) ||
                 3.0f < absolute_float(MOBY(moby)->pos.z - moby_vars->unk1C0[2])) {
-                moby_vars->target_selection_status = 2;
+                moby_vars->target_selection_status = AMOEBOID_TARGET_STATUS_UNAVAILABLE;
             }
         }
     }
@@ -846,11 +850,11 @@ void process_amoeboid_hits_and_update_targeting(char *moby) {
         if (cand != 0) {
             candidate_distance = vector_distance_xy(&MOBY(moby)->pos, cand + 0x10);
             if (candidate_distance < moby_vars->effective_target_search_radius) {
-                if (moby_vars->target_selection_status == 2 ||
+                if (moby_vars->target_selection_status == AMOEBOID_TARGET_STATUS_UNAVAILABLE ||
                     candidate_distance <
                         vector_distance_xy(&MOBY(moby)->pos, moby_vars->target + 0x10)) {
                     moby_vars->target = cand;
-                    moby_vars->target_selection_status = 1;
+                    moby_vars->target_selection_status = AMOEBOID_TARGET_STATUS_ALTERNATE_MOBY;
                 }
             }
         }
