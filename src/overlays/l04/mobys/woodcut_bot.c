@@ -25,7 +25,7 @@ void initialize_woodcut_bot_movement_data(void *moby) __asm__("FUN_L04_002d1418"
 
 typedef struct WoodcutBotVars {
     u8  pad_0[0x160];
-    u8  unk160;
+    u8  leg_a_joint_position_start;
     u8  pad_161[0x6F];
     s32 unk1D0;
     s32 unk1D4;
@@ -70,7 +70,7 @@ typedef struct WoodcutBotVars {
 
 void initialize_woodcut_bot_movement_data(void *moby) {
     WoodcutBotVars *moby_vars = (WoodcutBotVars *)MOBY(moby)->pvars;
-    char           *movement_data = &moby_vars->unk160;
+    char           *movement_data = &moby_vars->leg_a_joint_position_start;
     float           speed;
     float           angleHalf;
     float           angleFull;
