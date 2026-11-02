@@ -60,7 +60,7 @@ struct PokiPathVars {
     Vec4f        unkD0; /* 0xD0 */
     u8           pad_E0[0x30];
     struct Moby *target; /* 0x110 */
-    s32          unk114; /* 0x114 */
+    s32          projectile_creation_gate_state; /* 0x114 */
     u8           pad_118[0x18];
     s32          unk130; /* 0x130 */
     s32          unk134; /* 0x134 */
@@ -166,7 +166,7 @@ void psytcopus_update(struct Moby *psytcopus) {
                        frame_time_sq * 6.2831855f,
                        frame_time * 6.2831855f);
     }
-        if (psytcopus_vars->unk114 != 2) {
+        if (psytcopus_vars->projectile_creation_gate_state != 2) {
             psytcopus->state = PSYTCOPUS_STATE_CREATE_PROJECTILE;
             if (psytcopus->prev_seq != 2) {
                 blend_moby_animation(psytcopus, 2, 0, scale_game_frames(10));
@@ -393,7 +393,7 @@ void handle_psytcopus_hits(struct Moby *psytcopus) {
             2 &&
         (psytcopus_vars->unk140 < vector_distance_xy(&psytcopus->pos, &psytcopus_vars->unkD0) ||
          absolute_float(psytcopus->pos.z - psytcopus_vars->unkD0.z) > 3.0f)) {
-        psytcopus_vars->unk114 = 2;
+        psytcopus_vars->projectile_creation_gate_state = 2;
     }
     if (psytcopus_vars->target == 0) {
         psytcopus_vars->target = D_001413D0;
