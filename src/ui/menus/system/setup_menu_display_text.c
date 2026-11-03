@@ -24,7 +24,7 @@ int setup_menu_display_text(struct MenuScreen *menu) {
     char                  formatted_menu_text[0x100];
     struct PreviewCamera *camera = &preview_camera;
     struct Moby          *preview_moby = menu->data.preview.moby;
-    int                   count;
+    int                   collected_gold_bolt_count;
 
     preview_moby->pos.x = camera->position.f[0] + 8.0f;
     preview_moby->pos.y = camera->position.f[1] + setup_menu_moby_camera_y_offset;
@@ -33,19 +33,19 @@ int setup_menu_display_text(struct MenuScreen *menu) {
         draw_moby_list(menu->data.preview.moby, 1);
     }
     setup_gif_paging(0);
-    count = 0;
+    collected_gold_bolt_count = 0;
     {
         int k;
         for (k = 0; k < 4; k++) {
             if (D_0014BEC0[level_map_selection.level * 4 + k] != 0) {
-                count = count + 1;
+                collected_gold_bolt_count = collected_gold_bolt_count + 1;
             }
         }
     }
     sprintf(formatted_menu_text,
             setup_menu_text_format,
             get_help_message_text(0x4F4F),
-            count,
+            collected_gold_bolt_count,
             get_help_message_text(0x4F53),
             menu_display_value_by_level[level_map_selection.level]);
     font_print_right(
