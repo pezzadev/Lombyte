@@ -102,7 +102,7 @@ typedef struct Crab2E30F8 {
     char          p59;
     unsigned char b5A;
     char          p5B[5];
-    char          q60[7];
+    char          hit_reaction_animation_state[7];
     unsigned char b67;
     char          p68[8];
     float         knockback_motion_xy[2];
@@ -826,7 +826,7 @@ void toxic_crab_update(Moby2E30F8 *m) {
                                     0,
                                     fast_add_rotations(m->heading_radians, 3.1415927f));
                 crab_data->b67 = 0xFA;
-                FUN_L00_0025d458(m, (short *)crab_data->q60);
+                FUN_L00_0025d458(m, (short *)crab_data->hit_reaction_animation_state);
                 FUN_L00_00257470(m, 0, -1);
                 break;
             }
