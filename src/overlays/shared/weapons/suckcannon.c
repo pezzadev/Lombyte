@@ -3061,11 +3061,11 @@ void suck_beam_update(void *moby, void *position) {
     }
     add_draw_callback(suck_beam_draw_mesh, (int)moby);
     {
-        int count, sparks;
-        count = 0;
+        int spawned_beam_particle_count, sparks;
+        spawned_beam_particle_count = 0;
         sparks = 0;
         for (i = 0; i < 200; i++) {
-            if (!D_L00_001E4C80_lui[i].p && count < 5) {
+            if (!D_L00_001E4C80_lui[i].p && spawned_beam_particle_count < 5) {
                 for (segment = 9; segment >= 0 && D_L00_001E6008[segment] < 64; segment--)
                     ;
                 if (segment > 0) {
@@ -3106,7 +3106,7 @@ void suck_beam_update(void *moby, void *position) {
                             Tail41 *tail = &main->tail;
                             main->life = 200;
                             tail->mode = 2;
-                            count++;
+                            spawned_beam_particle_count++;
                             tail->r = 127;
                             tail->g = 200;
                         }
