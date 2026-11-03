@@ -28,7 +28,7 @@ s32 sceClose(s32 fd) {
     s32                  ok;
     s32                  sid;
     struct SifFileSlot  *io;
-    struct SifFileState *state = &D_00156880;
+    struct SifFileState *close_request = &D_00156880;
 
     io = get_iob(fd);
     _sceFsWaitS(1);
@@ -40,16 +40,16 @@ s32 sceClose(s32 fd) {
         _sceFsSigSema();
         return -9;
     }
-    state->unkC = io->fd;
+    close_request->unkC = io->fd;
     sema.maxCount = 1;
-    state->unk10 = io - fio_iob;
+    close_request->unk10 = io - fio_iob;
     sema.initCount = 0;
     sema.option = 0;
     sid = CreateSema(&sema);
-    state->unk0 = sid;
-    state->unk4 = (s32)&close_completion_result;
-    state->unk8 = 4;
-    if (sceSifCallRpc(&fio_rpc_client, 1, 0, state, 0x14, fio_rpc_result, 4, 0, 0) < 0) {
+    close_request->unk0 = sid;
+    close_request->unk4 = (s32)&close_completion_result;
+    close_request->unk8 = 4;
+    if (sceSifCallRpc(&fio_rpc_client, 1, 0, close_request, 0x14, fio_rpc_result, 4, 0, 0) < 0) {
         DeleteSema(sid);
         _sceFsSigSema();
         return -0xB;
