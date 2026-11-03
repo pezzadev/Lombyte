@@ -82,7 +82,7 @@ void command_falling_platform_update(char *moby) {
     float sway;
     float roll;
     float speed;
-    int   timer;
+    int   random_bits_or_sink_hold_frames;
 
     qcopy(previous, moby + 0x10);
     fast_vec_scale(delta, moby + 0x10, -1.0f);
@@ -102,8 +102,8 @@ void command_falling_platform_update(char *moby) {
         falling_platform_vars->unk24 = 0;
         falling_platform_vars->unk28 = 4;
         falling_platform_vars->unk3E = 13;
-        timer = rand();
-        if (timer & 1)
+        random_bits_or_sink_hold_frames = rand();
+        if (random_bits_or_sink_hold_frames & 1)
             MOBY(moby)->rot.z = fast_add_rotations(MOBY(moby)->rot.z, 3.1415927f);
         falling_platform_vars->saved_rot_x = MOBY(moby)->rot.x;
         falling_platform_vars->saved_rot_y = MOBY(moby)->rot.y;
@@ -199,8 +199,8 @@ void command_falling_platform_update(char *moby) {
         if (hero.air_frames.s == 0 && (char *)hero.ground_moby == moby) {
             if (falling_platform_vars->unkAC == 0)
                 FUN_0022da68(0, 0, (int)moby);
-            timer = scale_game_frames(90);
-            if (falling_platform_vars->unkAC < timer)
+            random_bits_or_sink_hold_frames = scale_game_frames(90);
+            if (falling_platform_vars->unkAC < random_bits_or_sink_hold_frames)
                 falling_platform_vars->unkAC = scale_game_frames(90);
         }
         if (falling_platform_vars->unkAC != 0) {
