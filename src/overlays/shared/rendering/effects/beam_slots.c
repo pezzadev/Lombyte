@@ -142,7 +142,7 @@ typedef struct {
     f32 v[4][4];
     s32 col[4];
     f32 uv[4][2];
-    s64 r70;
+    s64 texture_clamp_state;
     s64 effect_texture;
     u64 texture_sampling_state;
     u64 alpha_blend_state;
@@ -719,7 +719,7 @@ void draw_beam_endpoint_quads_with_glow(s32 unused, s32 beam_slot) {
     geometry_quad.effect_texture = get_effect_texture(0xB);
     geometry_quad.alpha_blend_state = 0xFF00000044;
     geometry_quad.texture_sampling_state = 0xFF9000000260;
-    geometry_quad.r70 = 5;
+    geometry_quad.texture_clamp_state = 5;
     geometry_quad.col[3] = -1;
     geometry_quad.col[2] = -1;
     geometry_quad.col[1] = -1;
