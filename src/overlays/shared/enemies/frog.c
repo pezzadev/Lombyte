@@ -274,17 +274,17 @@ void frog_update(unsigned char *moby) {
     float          D[4] __attribute__((aligned(16)));
     FrogVars      *frog_instance_vars;
     unsigned char *target;
-    int            mode;
+    int            visibility_override_mode;
 
     frog_instance_vars = (FrogVars *)MOBY(moby)->pvars;
     if (l06_frog_updates_disabled != 0) {
         return;
     }
-    mode = D_L06_0015F5C4;
-    if (mode == 2 && ((MOBY(moby)->flags ^ 1) & 1)) {
+    visibility_override_mode = D_L06_0015F5C4;
+    if (visibility_override_mode == 2 && ((MOBY(moby)->flags ^ 1) & 1)) {
         frog_instance_vars->unk1EA = 1;
         MOBY(moby)->flags |= 0x41;
-    } else if (mode == 0 && frog_instance_vars->unk1EA != 0) {
+    } else if (visibility_override_mode == 0 && frog_instance_vars->unk1EA != 0) {
         frog_instance_vars->unk1EA = 0;
         MOBY(moby)->flags &= 0xFFBE;
     }
