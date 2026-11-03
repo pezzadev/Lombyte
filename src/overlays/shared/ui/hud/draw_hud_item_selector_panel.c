@@ -246,7 +246,7 @@ void update_hud_item_selector_selection_and_visibility(Obj *hud_element) __asm__
 
 void update_hud_item_selector_selection_and_visibility(Obj *hud_element) {
     float x, y, mag, stick_angle, a, slot_position, previous_slot_angle;
-    int   previous_selected_slot_index, slot_step, stick_slot_index, k, id;
+    int   previous_selected_slot_index, slot_step, stick_slot_index, k, selected_item_id;
     u8   *counters = &hud_element->b70;
 
     hud_element->w7C = scale_game_frames(0xB4);
@@ -352,10 +352,10 @@ void update_hud_item_selector_selection_and_visibility(Obj *hud_element) {
         counters[1]++;
     if (!(((s32)controller_state.held_unmasked) & 0x10)) {
         int sel = hud_element->w74;
-        if (sel >= 0 && (id = D_L00_0015FAC0_c[D_L00_0015F72C][sel].unk18) != 0) {
+        if (sel >= 0 && (selected_item_id = D_L00_0015FAC0_c[D_L00_0015F72C][sel].unk18) != 0) {
             VendorItemInfo *rr;
-            int             ri = id;
-            if (hero_lui.items[0].item_id != id) {
+            int             ri = selected_item_id;
+            if (hero_lui.items[0].item_id != selected_item_id) {
                 if (usage_stats.stat[20].count < 0xFFFF)
                     usage_stats.stat[20].count++;
             }
@@ -363,13 +363,13 @@ void update_hud_item_selector_selection_and_visibility(Obj *hud_element) {
                 usage_stats.stat[20].latest_time_bucket = scale_game_frames(D_0015EEA4) / 600;
             usage_stats.stat[20].level_mask =
                 usage_stats.stat[20].level_mask | (1 << current_level_index) | 0x80000000;
-            if (id == 0x18)
+            if (selected_item_id == 0x18)
                 hero_lui.unk1FF5 = 1;
             else
-                hero_lui.pending_item[0] = id;
+                hero_lui.pending_item[0] = selected_item_id;
             rr = &D_L00_001C40B0[ri];
-            if (rr->h8 && rr->hE < weapon_ammo_counts[id])
-                weapon_ammo_counts[id] = rr->hE;
+            if (rr->h8 && rr->hE < weapon_ammo_counts[selected_item_id])
+                weapon_ammo_counts[selected_item_id] = rr->hE;
         }
         if (counters[0])
             counters[0]--;
