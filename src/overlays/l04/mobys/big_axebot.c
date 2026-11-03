@@ -138,7 +138,7 @@ typedef struct D_B7B0 {
     unsigned char  f5A;
     char           pad5B[0x55];
     char           hit_transition_state[7];
-    unsigned char  fB7;
+    unsigned char  hit_transition_target_channel;
     char           padB8[8];
     float          fC0[4];
     float          knockback_gravity_step;
@@ -403,7 +403,7 @@ void big_axebot_update(M_B7B0 *moby) {
                     data->recoil_pitch_angle = -0.5235988f;
                 }
                 data->recoil_pose_cooldown_timer = scale_game_frames(0x1E);
-                data->fB7 = 0x78;
+                data->hit_transition_target_channel = 0x78;
                 trooper_anim_update(moby, (short *)data->hit_transition_state);
             } else {
                 switch (hit_reaction_result) {
@@ -426,7 +426,7 @@ void big_axebot_update(M_B7B0 *moby) {
                         moby->state = BIG_AXEBOT_STATE_HIT_RECOVERY;
                     }
                     data->recoil_displacement = 3.4f / scale_time(7.0f) * 0.5f;
-                    data->fB7 = 0x78;
+                    data->hit_transition_target_channel = 0x78;
                     trooper_anim_update(moby, (short *)data->hit_transition_state);
                     data->hit_response_cooldown_timer = scale_game_frames(0x46);
                     data->extended_detection_timer = scale_game_frames(0xF0);
@@ -446,7 +446,7 @@ void big_axebot_update(M_B7B0 *moby) {
                     data->knockback_ascent_target_frame = 5.0f;
                     data->knockback_descent_target_frame = 10.0f;
                     data->recoil_displacement = 3.4f / scale_time(7.0f);
-                    data->fB7 = 0x78;
+                    data->hit_transition_target_channel = 0x78;
                     trooper_anim_update(moby, (short *)data->hit_transition_state);
                     data->hit_response_cooldown_timer = scale_game_frames(0x46);
                     data->extended_detection_timer = scale_game_frames(0xF0);
@@ -459,7 +459,7 @@ void big_axebot_update(M_B7B0 *moby) {
                     data->idle_action_delay_timer = scale_game_frames(0x28);
                     moby->state = BIG_AXEBOT_STATE_IDLE;
                     data->recoil_displacement = 3.4f / scale_time(7.0f);
-                    data->fB7 = 0x78;
+                    data->hit_transition_target_channel = 0x78;
                     trooper_anim_update(moby, (short *)data->hit_transition_state);
                     data->hit_response_cooldown_timer = scale_game_frames(0x46);
                     data->extended_detection_timer = scale_game_frames(0xF0);
@@ -477,7 +477,7 @@ void big_axebot_update(M_B7B0 *moby) {
                     data->knockback_ascent_target_frame = 12.0f;
                     data->knockback_descent_target_frame = 25.0f;
                     moby->state = BIG_AXEBOT_STATE_DYING;
-                    data->fB7 = 0x78;
+                    data->hit_transition_target_channel = 0x78;
                     trooper_anim_update(moby, (short *)data->hit_transition_state);
                     FUN_L00_00257470(moby, 0, -1);
                     break;
