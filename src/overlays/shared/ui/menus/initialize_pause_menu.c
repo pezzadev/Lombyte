@@ -365,11 +365,11 @@ void initialize_pause_menu(void) {
             gs_texture_allocation_start = start + 0x4000;
         }
     } else {
-        s32 count;
+        s32 texture_slots_cleared;
         D_L00_001841F0.unk240 = 0;
         D_L00_001841F0.unk244 = 0;
         slot = &D_L00_001841F0.texture_slots[3];
-        for (count = 0; count < 4; count++) {
+        for (texture_slots_cleared = 0; texture_slots_cleared < 4; texture_slots_cleared++) {
             *slot = 0;
             slot--;
         }
