@@ -184,7 +184,7 @@ void doom_bot_update(struct Moby *moby) {
     struct Moby  *target;
     AimInfo      *aim;
     float         scale, speed, z, height, reach, angle, distance;
-    int           blocked, move_flags, count, arc_motion_result;
+    int           blocked, move_flags, collected_moby_count, arc_motion_result;
     unsigned char old_state;
     if (!moby || !(doom_bot_vars = (DoomBotVars *)moby->pvars))
         return;
@@ -590,12 +590,12 @@ void doom_bot_update(struct Moby *moby) {
                             -1,
                             item_text_variant[0x14]);
             movement_and_detonation_vectors[1].f[2] += scale * 0.5f;
-            count = collect_mobies_in_sphere(&moby->pos, speed, 0x15, moby, 0);
+            collected_moby_count = collect_mobies_in_sphere(&moby->pos, speed, 0x15, moby, 0);
             movement_and_detonation_vectors[3].q = *(OvlQuad *)&moby->pos;
             send_blast_hits(moby,
                             &movement_and_detonation_vectors[3],
                             D_L00_00177F00,
-                            count,
+                            collected_moby_count,
                             0,
                             0x10000,
                             2,
