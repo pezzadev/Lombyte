@@ -79,7 +79,7 @@ void process_menu_entry(void *callback_context, Menu *menu, s32 follow_entry_lin
     char     *substring_match;
     s32       ok;
     s32       condition_target_entry_index;
-    u16       flags;
+    u16       source_entry_flags;
     s16       linked_entry_index;
     s16       kind;
     s32       bolt_threshold;
@@ -93,11 +93,11 @@ void process_menu_entry(void *callback_context, Menu *menu, s32 follow_entry_lin
         menu->unk38 = world_update_time;
         linked_entry_index = current_menu_entry->unk6;
         if (menu->unk36 != linked_entry_index) {
-            flags = current_menu_entry->unk10;
+            source_entry_flags = current_menu_entry->unk10;
             menu->unk36 = current_menu_entry->unk6;
             current_menu_entry = (MenuItem *)(menu->unk3C + linked_entry_index * 0x1C);
             menu->unk8 = *(u8 *)&current_menu_entry->unk10 & 1;
-            if (flags & 4) {
+            if (source_entry_flags & 4) {
                 menu_entry_context[2] = (s32)callback_context;
                 menu_entry_context[3] = (s32)menu;
                 if (current_menu_entry->unk4 & 0x4000) {
