@@ -205,7 +205,7 @@ typedef struct M_B7B0 {
     char           pad7C[3];
     char           f7F;
     char           pad80[0x24];
-    unsigned char  fA4;
+    unsigned char  hit_record_index;
     char           padA5;
     short          cls;
     char           padA8[0x14];
@@ -490,7 +490,7 @@ void big_axebot_update(M_B7B0 *moby) {
             }
         }
     }
-    moby->fA4 = 0xFF;
+    moby->hit_record_index = 0xFF;
     if (data->extended_detection_request != 0) {
         data->extended_detection_timer = scale_game_frames(0xF0);
     }
