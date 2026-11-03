@@ -286,7 +286,7 @@ void draw_snagglebeast_rope_attack_layer(
     SnagglebeastVars   *rope_layer_moby_vars = (SnagglebeastVars *)MOBY(moby)->pvars;
     struct GeometryQuad quad;
     struct GeometryQuad inner;
-    float               offset[4];
+    float               rope_radial_offset[4];
     float               spin;
     float               step;
     float               angle;
@@ -339,11 +339,11 @@ void draw_snagglebeast_rope_attack_layer(
         qcopy(&quad.positions[0], &quad.positions[1]);
         qcopy(&quad.positions[2], &quad.positions[3]);
         wrapped = normalize_angle(angle + spin * 0.02f);
-        offset[1] = radius * fast_cos(wrapped);
-        offset[2] = radius * fast_sin(wrapped);
-        offset[0] = 0.0f;
-        transform_vector_by_basis(offset, offset, moby + 0xC0);
-        fast_vec_add(&quad.positions[3], rope_layer_moby_vars->unk140, offset);
+        rope_radial_offset[1] = radius * fast_cos(wrapped);
+        rope_radial_offset[2] = radius * fast_sin(wrapped);
+        rope_radial_offset[0] = 0.0f;
+        transform_vector_by_basis(rope_radial_offset, rope_radial_offset, moby + 0xC0);
+        fast_vec_add(&quad.positions[3], rope_layer_moby_vars->unk140, rope_radial_offset);
         if (angle != -3.1415927f) {
             draw_geometry_quad(&quad, 0, 1);
             qcopy(&inner.positions[2], &quad.positions[2]);
