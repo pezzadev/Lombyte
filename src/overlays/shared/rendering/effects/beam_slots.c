@@ -699,6 +699,9 @@ void draw_beam_strand_with_glow(
 void draw_beam_endpoint_quads_with_glow(s32 unused, s32 beam_slot) __asm__("FUN_L00_002e3388");
 
 void draw_beam_endpoint_quads_with_glow(s32 unused, s32 beam_slot) {
+    enum {
+        TEXTURE_CLAMP_UV = 5
+    };
     Q_e3388 geometry_quad;
     f32     endpoint_to_camera_axis[4] __attribute__((aligned(16)));
     f32     endpoint_quad_side_axis[4] __attribute__((aligned(16)));
@@ -719,7 +722,7 @@ void draw_beam_endpoint_quads_with_glow(s32 unused, s32 beam_slot) {
     geometry_quad.effect_texture = get_effect_texture(0xB);
     geometry_quad.alpha_blend_state = 0xFF00000044;
     geometry_quad.texture_sampling_state = 0xFF9000000260;
-    geometry_quad.texture_clamp_state = 5;
+    geometry_quad.texture_clamp_state = TEXTURE_CLAMP_UV;
     geometry_quad.col[3] = -1;
     geometry_quad.col[2] = -1;
     geometry_quad.col[1] = -1;
