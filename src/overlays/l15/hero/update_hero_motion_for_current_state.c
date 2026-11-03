@@ -200,7 +200,7 @@ s32 process_hero_incoming_hit(s32 apply_hit_reaction) {
     T_210ce8 *incoming_hit_record;
     u8       *mob;
     s32       flag;
-    s32       id;
+    s32       hit_reaction_state;
     f32       horizontal_knockback_scale, vertical_knockback_scale, knockback_scale_factor;
     V_210ce8  knockback_vector;
 
@@ -267,9 +267,9 @@ s32 process_hero_incoming_hit(s32 apply_hit_reaction) {
     case HERO_VEHICLE_MODE_ON_FOOT:
         mob = ((u8 *)hero.damage_source_moby);
         if (mob != 0 && (*(s16 *)(mob + 0xA6) == 0x4EB || *(s16 *)(mob + 0xA6) == 0x558)) {
-            id = 0x80;
+            hit_reaction_state = 0x80;
         call_ret:
-            hero_set_state(id, 1);
+            hero_set_state(hit_reaction_state, 1);
             return 1;
         }
         if (hero.state.control_mode == 0x16) {
@@ -280,14 +280,14 @@ s32 process_hero_incoming_hit(s32 apply_hit_reaction) {
         if (hero.state.control_mode == 0x12) {
             mob = ((u8 *)hero.damage_source_moby);
             if (mob != 0 && *(s16 *)(mob + 0xA6) == 0x28F) {
-                id = 0x82;
+                hit_reaction_state = 0x82;
                 goto call_ret;
             }
             hero_set_state(0x75, 1);
         } else if (hero.state.control_mode == 0x11) {
             mob = ((u8 *)hero.damage_source_moby);
             if (mob != 0 && *(s16 *)(mob + 0xA6) == 0x28F) {
-                id = 0x82;
+                hit_reaction_state = 0x82;
                 goto call_ret;
             }
             if (current_level_index == 0xF || current_level_index == 0x11) {
@@ -301,7 +301,7 @@ s32 process_hero_incoming_hit(s32 apply_hit_reaction) {
         } else if (hero.state.control_mode == 3) {
             mob = ((u8 *)hero.damage_source_moby);
             if (mob != 0) {
-                id = 0x82;
+                hit_reaction_state = 0x82;
                 if (*(s16 *)(mob + 0xA6) == 0x28F) {
                     goto call_ret;
                 }
