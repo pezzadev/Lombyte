@@ -464,7 +464,7 @@ void initialize_moby_motion_at_position(V_2aa008 *requested_position,
     M_2aa008    *moby_vars;
     struct Hero *P;
     N_2aa008    *scanned_moby;
-    s32          count;
+    s32          other_same_class_moby_count;
     N_2aa008    *best;
     s32          bestv;
     V_2aa008    *k;
@@ -485,7 +485,7 @@ void initialize_moby_motion_at_position(V_2aa008 *requested_position,
         fast_vec_add(moby_vars, moby_vars, &P->motion.displacement);
     }
     moby_vars->h34 = scale_game_frames(0x78);
-    count = 0;
+    other_same_class_moby_count = 0;
     best = 0;
     bestv = 0;
     for (scanned_moby = D_L00_0015FFE4_2aa008; scanned_moby; scanned_moby = scanned_moby->p28) {
@@ -498,10 +498,10 @@ void initialize_moby_motion_at_position(V_2aa008 *requested_position,
                             bestv = ((D_2aa008 *)scanned_moby->moby_private_vars)->i5C;
                             best = scanned_moby;
                         }
-                        count++;
+                        other_same_class_moby_count++;
                     }
     }
-    if (count >= 8)
+    if (other_same_class_moby_count >= 8)
         ((D_2aa008 *)best->moby_private_vars)->i5C = -1;
     qcopy(&initialized_moby->v10, requested_position);
     vector_scratch.q = ((Q_2aa008 *)hero.moby)->v10.q;
