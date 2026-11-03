@@ -395,7 +395,7 @@ s32 leg_walker_update(struct Moby *moby, LegRig *rig, f32 speed, f32 heading, f3
     s32    probe_kind;
     f32    probe_start, probe_end;
     s32    mode;
-    s32    flags;
+    s32    movement_constraint_flags;
     s32    changed;
     f32    time;
     s32    i;
@@ -488,7 +488,7 @@ s32 leg_walker_update(struct Moby *moby, LegRig *rig, f32 speed, f32 heading, f3
         if (rig->speed < speed)
             rig->speed = speed;
     }
-    flags = update_leg_rig_height_and_tilt(moby, rig);
+    movement_constraint_flags = update_leg_rig_height_and_tilt(moby, rig);
     walker_update_gait(moby, rig, speed, heading, step, changed);
     if (!(rig->unkEE & 4)) {
         rig_probe_setup(moby, 0, &probe_kind, &local.v.ground, &probe_start, &probe_end);
@@ -506,12 +506,12 @@ s32 leg_walker_update(struct Moby *moby, LegRig *rig, f32 speed, f32 heading, f3
         for (tries = 0; tries < 8 && rig_probe(&local.v.ground, 4, probe_start, moby, probe_end);
              tries++) {
             qcopy(&local.v.ground, D_L04_00173FF0);
-            flags |= 1;
+            movement_constraint_flags |= 1;
         }
         fast_vec_sub(transformed, &local.v.ground, pos);
         fast_vec_add(pos, &local.v.ground, &local.v.offset);
         if (vector_length_xy(transformed) < rig->speed * 0.5f)
-            flags |= 2;
+            movement_constraint_flags |= 2;
     }
     local.joints[0] = rig->legs[0].joint;
     local.joints[1] = rig->legs[0].joint2;
@@ -521,7 +521,7 @@ s32 leg_walker_update(struct Moby *moby, LegRig *rig, f32 speed, f32 heading, f3
     local.joints[5] = rig->jointB5;
     transform_scaled_vertex_batch(moby, 6, local.joints, rig);
     if (rig->unkB7 == 0x12 && moby->seq == rig->anims[12]->id)
-        return flags;
+        return movement_constraint_flags;
     moby->anim_speed = 1.0f;
     if (rig->unkB7 != 0) {
         LegRigAnim **fallback = rig->anims;
@@ -549,7 +549,7 @@ s32 leg_walker_update(struct Moby *moby, LegRig *rig, f32 speed, f32 heading, f3
             fallback++;
         }
     }
-    return flags;
+    return movement_constraint_flags;
 }
 
 u8 D_L04_001CA938[13][4] = {
