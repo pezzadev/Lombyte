@@ -147,6 +147,9 @@ void volume_camera_swing(struct UpdateCam *swing_camera_record) {
     enum {
         SWING_CAMERA_TYPE_SLIDE_RELEASE_ANGLE_ALLOW_AIRBORNE_ENTRY = 7
     };
+    enum {
+        SWING_CAMERA_TYPE_FORCE_FOLLOW_MODE = 11
+    };
     CameraVec          gravity_offset_or_yaw_direction;
     SwingCameraParams *params;
     struct UpdateCam  *current_follow_camera_record;
@@ -250,7 +253,7 @@ void volume_camera_swing(struct UpdateCam *swing_camera_record) {
         set_follow_camera_blend_output_flags();
         FOLLOW_CAM_STATE(current_follow_cam)->tail.mode = 0x14D;
     }
-    if (params->type == 11) {
+    if (params->type == SWING_CAMERA_TYPE_FORCE_FOLLOW_MODE) {
         set_follow_camera_blend_output_flags();
         FOLLOW_CAM_STATE(current_follow_cam)->tail.mode = 2;
     }
