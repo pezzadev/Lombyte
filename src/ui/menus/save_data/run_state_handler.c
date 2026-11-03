@@ -8,11 +8,11 @@ extern void (*save_card_state_handlers[25])(void) __asm__("D_001A0438");
 void run_state_handler(void) __asm__("FUN_00208840");
 
 void run_state_handler(void) {
-    s32 state = mode_freeze_state;
+    s32 state_before_handler = mode_freeze_state;
 
-    save_card_state_handlers[state]();
+    save_card_state_handlers[state_before_handler]();
     D_00161280++;
-    if (mode_freeze_state != state) {
+    if (mode_freeze_state != state_before_handler) {
         D_00161280 = 0;
     }
 }
