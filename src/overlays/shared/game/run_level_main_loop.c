@@ -513,10 +513,10 @@ void initialize_render_archive_transfer(void) {
     s32                 buffer;
     s32                 bytes;
     s32                 archive_index;
-    RenderArchiveState *state = &D_L00_001841F0;
+    RenderArchiveState *render_archive = &D_L00_001841F0;
 
     noop_main_callback();
-    update_map_icons(state->archive_index, 1);
+    update_map_icons(render_archive->archive_index, 1);
     first_base = D_L00_001B9CF0.first_base;
     second_base = D_L00_001B9CF0.second_base;
     buffer = first_base + 0x9a800;
@@ -526,29 +526,29 @@ void initialize_render_archive_transfer(void) {
     D_L00_001841F0.buffer = buffer;
     D_L00_001841F0.old_end = second_base;
     D_L00_001B9CF0.second_base = second_base + 0x48000;
-    state->zero_284 = 0;
-    state->zero_288 = 0;
-    state->slot_28c = -1;
-    state->level_slot = -1;
-    state->slot_294 = -1;
-    state->slot_298 = -1;
-    state->slot_29c = -1;
-    state->slot_2a0 = -1;
-    if (state->file_handle != -1) {
-        if (state->loaded == 0 && D_0013D4E1 != 0) {
-            archive_index = state->archive_index;
+    render_archive->zero_284 = 0;
+    render_archive->zero_288 = 0;
+    render_archive->slot_28c = -1;
+    render_archive->level_slot = -1;
+    render_archive->slot_294 = -1;
+    render_archive->slot_298 = -1;
+    render_archive->slot_29c = -1;
+    render_archive->slot_2a0 = -1;
+    if (render_archive->file_handle != -1) {
+        if (render_archive->loaded == 0 && D_0013D4E1 != 0) {
+            archive_index = render_archive->archive_index;
             bytes = disc_table.render_archives[archive_index].size << 7;
             start_audio_stream_read(buffer,
                                     disc_table.render_archives[archive_index].sector,
                                     disc_table.render_archives[archive_index].size);
             update_audio_stream_until_idle(1);
-            state->loaded = 1;
-            state->transfer_bytes = bytes;
-            send_dma_to_stash_slot(state->buffer, state->file_handle, 0, bytes);
-            state->level_slot = current_level_index + 0x100;
-            state->last_transfer_bytes = bytes;
-            state->active = 1;
-            state->load_state = -2;
+            render_archive->loaded = 1;
+            render_archive->transfer_bytes = bytes;
+            send_dma_to_stash_slot(render_archive->buffer, render_archive->file_handle, 0, bytes);
+            render_archive->level_slot = current_level_index + 0x100;
+            render_archive->last_transfer_bytes = bytes;
+            render_archive->active = 1;
+            render_archive->load_state = -2;
             return;
         }
         if (D_L00_001841F0.file_handle != -1) {
