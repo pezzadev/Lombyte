@@ -109,7 +109,7 @@ typedef struct {
     void   *xD0;
     u8      padd4[0x3C];
     u8      fx110[0x7];
-    u8      x117;
+    u8      hit_effect_first_channel_target;
     u8      pad118[0x8];
     u8      knock[0x10];
     f32     knockback_gravity_step;
@@ -311,7 +311,7 @@ void peckbot_update(Mob577 *peckbot_moby) {
                 peckbot_vars->knockback_apex_animation_frame = 11.0f;
                 peckbot_vars->knockback_animation_stop_frame = 18.0f;
                 peckbot_moby->state = PECKBOT_STATE_FATAL_KNOCKBACK;
-                peckbot_vars->x117 = 0x78;
+                peckbot_vars->hit_effect_first_channel_target = 0x78;
                 trooper_anim_update(peckbot_moby, peckbot_vars->fx110);
                 FUN_L00_00257470(peckbot_moby, 0, -1);
             } else {
@@ -322,7 +322,7 @@ void peckbot_update(Mob577 *peckbot_moby) {
                 peckbot_vars->knockback_apex_animation_frame = 5.0f;
                 peckbot_vars->knockback_animation_stop_frame = 10.0f;
                 peckbot_moby->state = PECKBOT_STATE_NONFATAL_KNOCKBACK;
-                peckbot_vars->x117 = 0xFA;
+                peckbot_vars->hit_effect_first_channel_target = 0xFA;
                 peckbot_vars->flee_timer = scale_game_frames(0x3C);
                 trooper_anim_update(peckbot_moby, peckbot_vars->fx110);
             }
