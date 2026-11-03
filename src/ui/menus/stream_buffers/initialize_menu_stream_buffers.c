@@ -9,7 +9,7 @@ void initialize_menu_stream_buffers(s32 mode) __asm__("FUN_00225ac0");
  * and two further primary descriptors. Address strides are 0x11800 for
  * the first two groups and 0x4F000 for the final group. The flag word
  * is one only for the final group. */
-void initialize_menu_stream_buffers(s32 mode) {
+void initialize_menu_stream_buffers(s32 use_full_buffer_layout) {
     enum {
         MENU_STREAM_MODE_SINGLE_PRIMARY_BUFFER = 0
     };
@@ -25,7 +25,7 @@ void initialize_menu_stream_buffers(s32 mode) {
 
     primary_address = menu_system.help_text_buffer;
     secondary_address = menu_system.unk10C;
-    if (mode == MENU_STREAM_MODE_SINGLE_PRIMARY_BUFFER) {
+    if (use_full_buffer_layout == MENU_STREAM_MODE_SINGLE_PRIMARY_BUFFER) {
         primary_count = 1;
         secondary_count = 0;
         large_count = 0;
