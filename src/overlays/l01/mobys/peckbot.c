@@ -121,7 +121,7 @@ typedef struct {
     u8      pad148[0x15];
     u8      x15D;
     u8      pad15e[0x12];
-    f32     x170;
+    f32     knockback_apex_animation_frame;
     f32     knockback_animation_stop_frame;
     u8      pad178[0x8];
     s32     x180;
@@ -308,7 +308,7 @@ void peckbot_update(Mob577 *peckbot_moby) {
                 trooper_knockback_arc(
                     &vector_scratch, &angle, &peckbot_vars->knockback_initial_horizontal_speed, &peckbot_vars->knockback_initial_vertical_speed);
                 trooper_start_knockback(peckbot_moby, peckbot_vars->knock, 7, 1, 0, angle);
-                peckbot_vars->x170 = 11.0f;
+                peckbot_vars->knockback_apex_animation_frame = 11.0f;
                 peckbot_vars->knockback_animation_stop_frame = 18.0f;
                 peckbot_moby->state = PECKBOT_STATE_FATAL_KNOCKBACK;
                 peckbot_vars->x117 = 0x78;
@@ -319,7 +319,7 @@ void peckbot_update(Mob577 *peckbot_moby) {
                 trooper_knockback_arc(
                     &vector_scratch, &angle, &peckbot_vars->knockback_initial_horizontal_speed, &peckbot_vars->knockback_initial_vertical_speed);
                 trooper_start_knockback(peckbot_moby, peckbot_vars->knock, 6, 1, 0, angle);
-                peckbot_vars->x170 = 5.0f;
+                peckbot_vars->knockback_apex_animation_frame = 5.0f;
                 peckbot_vars->knockback_animation_stop_frame = 10.0f;
                 peckbot_moby->state = PECKBOT_STATE_NONFATAL_KNOCKBACK;
                 peckbot_vars->x117 = 0xFA;
@@ -490,7 +490,7 @@ void peckbot_update(Mob577 *peckbot_moby) {
             peckbot_vars->x15D = 0;
             trooper_start_knockback(
                 peckbot_moby, peckbot_vars->knock, 6, 1, 0, peckbot_moby->rot.f[2]);
-            peckbot_vars->x170 = 5.0f;
+            peckbot_vars->knockback_apex_animation_frame = 5.0f;
             peckbot_vars->knockback_animation_stop_frame = 10.0f;
             peckbot_moby->state = PECKBOT_STATE_HOME_TRIGGERED_KNOCKBACK;
         }
