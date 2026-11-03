@@ -302,9 +302,9 @@ extern Vec4 magnet_elevator_local_path_points[11] __asm__("D_L17_001D9F70");
 void rebuild_magnet_elevator_world_path(struct Moby *moby) __asm__("FUN_L17_002eea70");
 
 void rebuild_magnet_elevator_world_path(struct Moby *moby) {
-    char *state = (char *)moby->pvars;
+    char *elevator_private_state = (char *)moby->pvars;
     if (hero.unk308 && hero.ground_moby == moby) {
-        char *world_path_point = *(char **)(D_L17_001B0DB0 + *(int *)(state + 0x80) * 4) + 0x10;
+        char *world_path_point = *(char **)(D_L17_001B0DB0 + *(int *)(elevator_private_state + 0x80) * 4) + 0x10;
         char *point = &moby->rot_row0;
         int   i;
         for (i = 10; i >= 0; i--) {
@@ -314,6 +314,6 @@ void rebuild_magnet_elevator_world_path(struct Moby *moby) {
             *(float *)(world_path_point + 0xC) = 1.0f;
             world_path_point += 0x10;
         }
-        hero.path_constrain_pending = *(unsigned short *)(state + 0x80);
+        hero.path_constrain_pending = *(unsigned short *)(elevator_private_state + 0x80);
     }
 }
