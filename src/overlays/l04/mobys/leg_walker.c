@@ -290,7 +290,7 @@ int update_leg_rig_height_and_tilt(StMoby *moby, Steer *steer_state) {
 
 extern float rig_turn_2d48(float, float, float *, float, float, float) __asm__("FUN_L00_00258110");
 
-void FUN_L04_00292d48(struct Moby *moby, LegRig *rig, int flags) {
+void FUN_L04_00292d48(struct Moby *moby, LegRig *rig, int gait_mask) {
     float      joint[16];
     float      tilt[4];
     float      twist;
@@ -309,7 +309,7 @@ void FUN_L04_00292d48(struct Moby *moby, LegRig *rig, int flags) {
             fast_add_rotations(fast_subtract_rotations(leg->yaw, heading), leg->upper_turn),
             leg->lower_turn);
         base_yaw = fast_subtract_rotations(heading, twist);
-        if (rig->unkB7 == 0 || (flags & mask) == 0) {
+        if (rig->unkB7 == 0 || (gait_mask & mask) == 0) {
             leg->upper_turn = rig_turn_2d48(leg->upper_turn,
                                             0.0f,
                                             &rig->legs[i].upper_turn_speed,
@@ -354,7 +354,7 @@ void FUN_L04_00292d48(struct Moby *moby, LegRig *rig, int flags) {
             build_axis_rotation_quaternion(rig->legs[i].manip_b.rot, 2, rig->legs[i].upper_turn);
         if (rig->legs[i].manip_a.attached) {
             build_axis_rotation_quaternion(rig->legs[i].manip_a.rot, 2, rig->legs[i].lower_turn);
-            if (flags & mask) {
+            if (gait_mask & mask) {
                 build_axis_rotation_quaternion(tilt, 0, -moby->rot.x);
                 multiply_quaternions(rig->legs[i].manip_a.rot, rig->legs[i].manip_a.rot, tilt);
             }
