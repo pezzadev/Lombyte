@@ -284,15 +284,15 @@ s32  try_start_hero_item_idle_animation(void) __asm__("FUN_L00_00229a98");
 
 s32 try_start_hero_item_idle_animation(void) {
     struct Hero *hero_ptr = &hero;
-    s32          id, k;
+    s32          slot_zero_item_id, k;
     if (hero_ptr->item_anim_active == 0 || hero_ptr->unk20AA == 0 || hero_ptr->unk22C8 != 0)
         return 0;
-    id = hero_slot_item_id(0);
-    if (id != hero_ptr->item_anim_item_id) {
+    slot_zero_item_id = hero_slot_item_id(0);
+    if (slot_zero_item_id != hero_ptr->item_anim_item_id) {
         cancel_hero_item_animation();
         return 0;
     }
-    k = item_defs[id].hero_animation;
+    k = item_defs[slot_zero_item_id].hero_animation;
     if (hero_set_state(HERO_STATE_IDLE, 0) == 0)
         return 0;
     set_hero_animation(k, 0, (f32)scale_game_frames(0xB));
