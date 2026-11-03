@@ -15,15 +15,15 @@ struct IpuContext {
 void sceIpuRestartDMA(struct IpuContext *ctx) {
     u32 bits;
     u32 magic;
-    u32 count;
+    u32 buffered_quadword_count;
     s32 input_dma_quadword_count;
     s32 input_dma_address;
 
     bits = (u32)ctx->unk1C;
     magic = bits & 0x7F;
-    count = ((bits >> 16) & 3) + ((bits >> 8) & 0xF);
-    input_dma_address = ctx->unk0 - count * 0x10;
-    input_dma_quadword_count = ctx->unk8 + count;
+    buffered_quadword_count = ((bits >> 16) & 3) + ((bits >> 8) & 0xF);
+    input_dma_address = ctx->unk0 - buffered_quadword_count * 0x10;
+    input_dma_quadword_count = ctx->unk8 + buffered_quadword_count;
     if (ctx->unk10 != 0) {
         if (ctx->unk14 != 0) {
             *(volatile u32 *)0x1000B010 = ctx->unk10;
