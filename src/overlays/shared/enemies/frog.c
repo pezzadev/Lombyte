@@ -268,6 +268,10 @@ void frog_update(unsigned char *moby) {
     enum {
         FROG_TARGET_MODE_NO_PURSUIT_TARGET = 2
     };
+    enum {
+        FROG_VISIBILITY_OVERRIDE_RESTORE = 0,
+        FROG_VISIBILITY_OVERRIDE_APPLY = 2
+    };
     float          A[4] __attribute__((aligned(16)));
     float          B[4] __attribute__((aligned(16)));
     float          C[4] __attribute__((aligned(16)));
@@ -281,10 +285,10 @@ void frog_update(unsigned char *moby) {
         return;
     }
     visibility_override_mode = D_L06_0015F5C4;
-    if (visibility_override_mode == 2 && ((MOBY(moby)->flags ^ 1) & 1)) {
+    if (visibility_override_mode == FROG_VISIBILITY_OVERRIDE_APPLY && ((MOBY(moby)->flags ^ 1) & 1)) {
         frog_instance_vars->unk1EA = 1;
         MOBY(moby)->flags |= 0x41;
-    } else if (visibility_override_mode == 0 && frog_instance_vars->unk1EA != 0) {
+    } else if (visibility_override_mode == FROG_VISIBILITY_OVERRIDE_RESTORE && frog_instance_vars->unk1EA != 0) {
         frog_instance_vars->unk1EA = 0;
         MOBY(moby)->flags &= 0xFFBE;
     }
