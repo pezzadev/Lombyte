@@ -95,7 +95,7 @@ typedef struct {
 void set_moby_color(s32, s32, s32, s32) __asm__("FUN_L00_002502f0");
 void trooper_anim_finish(s32 id, S_25d538 *s) __asm__("FUN_L00_0025d538");
 
-void trooper_anim_finish(s32 id, S_25d538 *animation_state) {
+void trooper_anim_finish(s32 color_target_moby, S_25d538 *animation_state) {
     enum {
         MOBY_COLOR_PHASE_TO_SECONDARY_COLOR = 0,
         MOBY_COLOR_PHASE_TO_ORIGINAL_COLOR = 1
@@ -106,7 +106,7 @@ void trooper_anim_finish(s32 id, S_25d538 *animation_state) {
         return;
     if (fast_dec_timer_s16(animation_state)) {
         if (animation_state->phase != MOBY_COLOR_PHASE_TO_SECONDARY_COLOR) {
-            set_moby_color(id, animation_state->r0, animation_state->g0, animation_state->b0);
+            set_moby_color(color_target_moby, animation_state->r0, animation_state->g0, animation_state->b0);
             return;
         }
         animation_state->phase = MOBY_COLOR_PHASE_TO_ORIGINAL_COLOR;
@@ -149,7 +149,7 @@ void trooper_anim_finish(s32 id, S_25d538 *animation_state) {
         else
             b = animation_state->b0;
     }
-    set_moby_color(id, r, g, b);
+    set_moby_color(color_target_moby, r, g, b);
 }
 
 s32 offset_path_index(s32 *tab, s32 i, s32 index_offset, s32 wrap) __asm__("FUN_L00_0025d7a0");
