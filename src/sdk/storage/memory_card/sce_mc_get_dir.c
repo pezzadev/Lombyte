@@ -20,7 +20,7 @@ extern s32                    SignalSema();
 extern s32                    sceSifWriteBackDCache();
 extern s32                    strncpy(s8 *, s8 *, s32);
 
-s32 sceMcGetDir(s32 port, s32 slot, s8 *name, s32 mode, s32 maxent, s32 table) {
+s32 sceMcGetDir(s32 port, s32 slot, s8 *name, s32 continue_search, s32 maxent, s32 table) {
     enum {
         RPC_SUBMISSION_SUCCESS = 0
     };
@@ -39,7 +39,7 @@ s32 sceMcGetDir(s32 port, s32 slot, s8 *name, s32 mode, s32 maxent, s32 table) {
         }
         D_00159AB0.unk0 = port;
         D_00159AB0.unk4 = path_arg;
-        D_00159AB0.unk8 = mode;
+        D_00159AB0.unk8 = continue_search;
         D_00159AB0.unkC = maxent;
         D_00159AB0.unk10 = table;
         strncpy((s8 *)((u8 *)&D_00159AB0 + 0x14), name, 0x3FF);
