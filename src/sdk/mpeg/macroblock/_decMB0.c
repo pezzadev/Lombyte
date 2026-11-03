@@ -37,7 +37,7 @@ int       _decMB0(struct MpegDecoder *decoder,
     u32  dc_reset_command_base;
     int  motion_vector_count;
     int  type_code;
-    int  type;
+    int  macroblock_type_flags;
     int  coding_type;
     int  new_var;
     int  command_base;
@@ -149,9 +149,9 @@ int       _decMB0(struct MpegDecoder *decoder,
         }
         decode_success = 0;
         if (decoder->slice_error == 0) {
-            type = *mb_type;
-            coded = type & 3;
-            if (type & 1) {
+            macroblock_type_flags = *mb_type;
+            coded = macroblock_type_flags & 3;
+            if (macroblock_type_flags & 1) {
                 if (decoder->concealment_motion_vectors != 0) {
                     _flushBuf(decoder, 1);
                 };
