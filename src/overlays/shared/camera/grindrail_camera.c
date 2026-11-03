@@ -328,14 +328,14 @@ void update_camera_position_and_orientation_from_paths(Cam *camera_to_update) {
     SubC         *progress = &data->c;
     CameraPreset *camera_path_preset = l01_camera_preset_rows_macro[camera_to_update->unk84].preset;
     float         rate = 0.01f;
-    int           mode = camera_path_preset->kind;
+    int           preset_kind = camera_path_preset->kind;
     int           path_index = camera_path_preset->track_path;
     float         lead = camera_path_preset->lead;
     float         pitch_error;
     float         look_length;
     float         pitch_step;
 
-    if (mode == CAMERA_PRESET_KIND_RAIL_SEGMENT_SYNC) {
+    if (preset_kind == CAMERA_PRESET_KIND_RAIL_SEGMENT_SYNC) {
         Path *path;
         float dist;
 
@@ -359,7 +359,7 @@ void update_camera_position_and_orientation_from_paths(Cam *camera_to_update) {
             camera_to_update->pos[1], rail_point[1], &data->vel[1], rate, 0.175f, 0.0f);
         camera_to_update->pos[2] = cam_interp_values(
             camera_to_update->pos[2], rail_point[2], &data->vel[2], rate, 0.175f, 0.0f);
-    } else if (mode == CAMERA_PRESET_KIND_MAPPED_PATHS) {
+    } else if (preset_kind == CAMERA_PRESET_KIND_MAPPED_PATHS) {
         Path *pathA = ((Path *)l01_paths[path_index]);
         Path *pathD = (Path *)l01_splines_macro[camera_path_preset->target].path;
         Path *pathC = ((Path *)l01_paths[camera_path_preset->path]);
