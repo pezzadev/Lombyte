@@ -5423,7 +5423,7 @@ void draw_dual_texture_50_quad_mesh(void) {
     float         y_offset = dual_texture_mesh_first_pass_u_offset_multiplier_gp * l06_camera.yaw;
     float         x_offset = dual_texture_mesh_first_pass_v_offset_multiplier_gp * l06_camera.pitch;
     void         *matrix_ptr;
-    long          flags;
+    long          packed_blend_settings;
     int           i, j;
 
     long tex = get_effect_texture(dual_texture_mesh_first_pass_texture_index_gp);
@@ -5431,13 +5431,13 @@ void draw_dual_texture_50_quad_mesh(void) {
     second_pass_quad_packet.tex = get_effect_texture(0x2a);
     second_pass_quad_packet.unk80 = 0xFF9000000260L;
     first_pass_quad_packet.unk80 = 0xFF9000000260L;
-    flags = (long)dual_texture_mesh_blend_color_a_selector_gp;
-    flags |= (long)dual_texture_mesh_blend_color_b_selector_gp << 2;
-    flags |= (long)dual_texture_mesh_blend_alpha_c_selector_gp << 4;
-    flags |= (long)dual_texture_mesh_blend_color_d_selector_gp << 6;
-    flags |= (long)dual_texture_mesh_blend_fixed_alpha_gp << 32;
-    second_pass_quad_packet.unk88 = flags;
-    first_pass_quad_packet.unk88 = flags;
+    packed_blend_settings = (long)dual_texture_mesh_blend_color_a_selector_gp;
+    packed_blend_settings |= (long)dual_texture_mesh_blend_color_b_selector_gp << 2;
+    packed_blend_settings |= (long)dual_texture_mesh_blend_alpha_c_selector_gp << 4;
+    packed_blend_settings |= (long)dual_texture_mesh_blend_color_d_selector_gp << 6;
+    packed_blend_settings |= (long)dual_texture_mesh_blend_fixed_alpha_gp << 32;
+    second_pass_quad_packet.unk88 = packed_blend_settings;
+    first_pass_quad_packet.unk88 = packed_blend_settings;
     second_pass_quad_packet.unk70 = 0;
     first_pass_quad_packet.unk70 = 0;
     matrix_ptr = matrix;
