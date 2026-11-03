@@ -489,13 +489,13 @@ void update_armed_transport_damage_and_targeting(struct Moby *transport_moby) {
                 if (hero.vehicle_mode != HERO_VEHICLE_MODE_GIANT_CLANK)
                     FUN_0022da68_i(2, 0, transport_moby);
                 {
-                    int *child = (int *)(&transport_data->unkC0), count = 3;
+                    int *child = (int *)(&transport_data->unkC0), passenger_slot_countdown = 3;
                     do {
                         char *pool = D_L16_0015FFD8_sda;
                         if (*child >= 0)
                             mark_moby_for_removal(pool + (*child << 8));
                         child++;
-                    } while (--count >= 0);
+                    } while (--passenger_slot_countdown >= 0);
                 }
                 transport_moby->state = ARMED_TRANSPORT_STATE_DYING;
                 transport_data->death_timer_frames = scale_game_frames(90);
