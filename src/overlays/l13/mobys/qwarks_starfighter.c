@@ -741,7 +741,7 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
     };
     int         hit;
     int         rf;
-    int         mode;
+    int         damage_outcome;
     int         i;
     int         k;
     int         j;
@@ -754,7 +754,7 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
 
     if (moby->state < STARFIGHTER_STATE_OWNER_UNAVAILABLE) {
         dd = &moby_data->sub;
-        mode = ATTACHMENT_DAMAGE_NONE;
+        damage_outcome = ATTACHMENT_DAMAGE_NONE;
         rf = 0;
         k6 = 6.0f;
         step = (float)dd->max_health / k6;
@@ -779,12 +779,12 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
                 }
                 if (dd->health <= r->damage_amount) {
                     func_L13_002EAC18_2EAE80(moby, moby_data, dd, r);
-                    mode = ATTACHMENT_DAMAGE_LETHAL;
+                    damage_outcome = ATTACHMENT_DAMAGE_LETHAL;
                     moby_data->first->bA4 = 0xFF;
                 } else {
                     dd->health = dd->health - r->damage_amount;
                     moby_data->damage_flash_red = 0xFA;
-                    mode = ATTACHMENT_DAMAGE_APPLIED;
+                    damage_outcome = ATTACHMENT_DAMAGE_APPLIED;
                     moby_data->sub.h6 = scale_game_frames(0);
                     func_L00_0025E4B0_2EAE80(moby, moby_data->damage_flash_state_prefix);
                     moby_data->first->bA4 = 0xFF;
@@ -833,7 +833,7 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
                     }
                     moby_data->h138 = 0;
                     moby_data->b148 = 0;
-                    mode = ATTACHMENT_DAMAGE_STAGE_ADVANCED;
+                    damage_outcome = ATTACHMENT_DAMAGE_STAGE_ADVANCED;
                     if (moby->bBC == 7) {
                         for (j = moby->bBC - 1; j < 10; j++) {
                             func_L13_002EAAB8_2EAE80(
@@ -848,7 +848,7 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
                 }
             }
         }
-        for (i = 0; i < 11 && mode == ATTACHMENT_DAMAGE_NONE; i++) {
+        for (i = 0; i < 11 && damage_outcome == ATTACHMENT_DAMAGE_NONE; i++) {
             if (moby_data->list[i] == 0) {
                 continue;
             }
@@ -878,12 +878,12 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
             }
             if (dd->health <= r->damage_amount) {
                 func_L13_002EAC18_2EAE80(moby, moby_data, dd, r);
-                mode = ATTACHMENT_DAMAGE_LETHAL;
+                damage_outcome = ATTACHMENT_DAMAGE_LETHAL;
                 moby_data->list[i]->bA4 = 0xFF;
             } else {
                 dd->health = dd->health - r->damage_amount;
                 moby_data->damage_flash_red = 0xFA;
-                mode = ATTACHMENT_DAMAGE_APPLIED;
+                damage_outcome = ATTACHMENT_DAMAGE_APPLIED;
                 moby_data->sub.h6 = scale_game_frames(0);
                 func_L00_0025E4B0_2EAE80(moby, moby_data->damage_flash_state_prefix);
                 moby_data->list[i]->bA4 = 0xFF;
@@ -930,7 +930,7 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
                 }
                 moby_data->h138 = 0;
                 moby_data->b148 = 0;
-                mode = ATTACHMENT_DAMAGE_STAGE_ADVANCED;
+                damage_outcome = ATTACHMENT_DAMAGE_STAGE_ADVANCED;
                 if (moby->bBC == 7) {
                     for (k = moby->bBC - 1; k < 10; k++) {
                         func_L13_002EAAB8_2EAE80(
@@ -942,7 +942,7 @@ void process_moby_attachment_damage(Moby_2EAE80 *moby, Data_2EAE80 *moby_data) {
                 moby_data->b148 = 1;
             }
         }
-        if (mode > ATTACHMENT_DAMAGE_NONE) {
+        if (damage_outcome > ATTACHMENT_DAMAGE_NONE) {
             if (rf != 0) {
                 switch (moby->bBC - 1) {
                 case DAMAGE_STAGE_SKIP_LINE_QUEUE:
